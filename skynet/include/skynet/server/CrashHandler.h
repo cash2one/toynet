@@ -16,7 +16,7 @@ namespace skynet
  * @parm dir 덤프파일을 기록할 디렉토리(끝에 \가 붙어야 한다)
  * @parm filenamePrefix 덤프파일명 앞에 붙을 접두어
  */
-void initCrashHandler(const TCHAR* dir, const TCHAR* filenamePrefix);
+void initCrashHandler(const ACE_TCHAR* dir, const ACE_TCHAR* filenamePrefix);
 
 } // namespace skynet
 

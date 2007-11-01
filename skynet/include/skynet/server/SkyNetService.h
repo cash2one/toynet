@@ -1,13 +1,13 @@
 /**
-* Copyright (c) 2004 Mega Enterprise Co., Ltd.
+* Copyright (c) 
 *
-* @author 김병수 <kcando@megaking.co.kr>
+* @author 
 */
-// WarNetService.h
+// SkyNetService.h
 #if !defined(INCLUDED_WARNETSERVICE)
 #define INCLUDED_WARNETSERVICE
 
-#include <skynet/server/WarNetServiceBase.h>
+#include <skynet/server/SkyNetServiceBase.h>
 #include <skynet/server/ClientAcceptor.h>
 #include <skynet/server/ClientId.h>
 #include <skynet/server/ProactorEventLooper.h>
@@ -23,13 +23,22 @@
 
 #pragma warning ( push )
 #pragma warning ( disable: 4702 )
-#include <hash_map>
+//#include <hash_map>
 #pragma warning ( pop )
 #include <vector>
 #include <memory>
 
 class ACE_Message_Block;
 class ACE_Configuration_Heap;
+
+class HackShield
+{
+public:
+  HackShield(){}
+  ~HackShield(){}
+private:
+
+};
 
 namespace skynet
 {
@@ -45,7 +54,8 @@ class HackShield;
 class WARNET_API WarNetService : public WarNetServiceBase
 {
 private:
-    typedef stdext::hash_map<ClientId, GameClientSession*> Clients;
+    //typedef stdext::hash_map<ClientId, GameClientSession*> Clients;
+    typedef Hash_Map<ClientId, GameClientSession*>  Clients;
     struct QueueItem;
     // ACE_Task<>::putq()에서 알 수 없는 데드락이 발생하여 light queue로 대체
     typedef Queue<QueueItem> QueueType;

@@ -1,7 +1,7 @@
 /**
-* Copyright (c) 2004 Mega Enterprise Co., Ltd.
+* Copyright (c)
 *
-* @author 김병수 <kcando@megaking.co.kr>
+* @author 
 */
 // ClientId.h
 #if !defined(INCLUDED_CLIENTID)
@@ -17,7 +17,9 @@ namespace skynet
 
 /// ClientAcceptor에서 사용하는 클라이언트 식별자
 //typedef unsigned long ClientId;
-enum ClientId { INVALID_CLIENTID = 0 };
+//enum ClientId { INVALID_CLIENTID = 0 };
+const int INVALID_CLIENTID = 0;
+typedef int ClientId; 
 
 inline bool isValidClientId(ClientId id)
 {
