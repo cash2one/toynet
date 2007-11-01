@@ -8,7 +8,7 @@
 # this file will be lost the next time it is generated.
 #
 # MPC Command:
-# /home/softpark/ACE_wrappers/bin/mwc.pl -exclude TAO/TAO_*.mwc,TAO/CIAO/CIAO_*.mwc -value_project includes+=/home/softpark/SkyNet/include -recurse -relative ACE_ROOT=/home/softpark/ACE_wrappers
+# /home/softpark/ACE_wrappers/bin/mwc.pl 
 #
 #-------------------------------------------------------------------------
 MAKEFILE = GNUmakefile

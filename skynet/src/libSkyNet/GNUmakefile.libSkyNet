@@ -105,7 +105,6 @@ LDLIBPATH     = -L.
 else
 LDFLAGS      += -L.
 endif
-CPPFLAGS     += -I/home/softpark/SkyNet/include
 
 #----------------------------------------------------------------------------
 #       Local targets
