@@ -8,7 +8,7 @@
 # this file will be lost the next time it is generated.
 #
 # MPC Command:
-# /home/softpark/ACE_wrappers/bin/mwc.pl 
+# /home/softpark/ACE_wrappers/bin/mwc.pl -exclude TAO/TAO_*.mwc,TAO/CIAO/CIAO_*.mwc -value_project includes+=/home/softpark/Work/toynet/skynet/include -recurse -relative ACE_ROOT=/home/softpark/ACE_wrappers
 #
 #-------------------------------------------------------------------------
 MAKEFILE = GNUmakefile
@@ -19,15 +19,15 @@ endif
 
 include $(ACE_ROOT)/include/makeinclude/macros.GNU
 
-all: libSkyNet
+all: SkyNet
 REMAINING_TARGETS := $(subst all, , $(TARGETS_NESTED:.nested=)) $(CUSTOM_TARGETS)
 
 $(REMAINING_TARGETS):
-	@$(MAKE) -f GNUmakefile.libSkyNet $(@)
+	@$(MAKE) -f GNUmakefile.SkyNet $(@)
 
-.PHONY: libSkyNet
-libSkyNet:
-	@$(MAKE) -f GNUmakefile.libSkyNet all
+.PHONY: SkyNet
+SkyNet:
+	@$(MAKE) -f GNUmakefile.SkyNet all
 
 project_name_list:
-	@echo libSkyNet
+	@echo SkyNet

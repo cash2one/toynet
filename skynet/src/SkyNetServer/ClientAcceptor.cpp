@@ -7,7 +7,7 @@
 //
 #include "stdafx.h"
 #include <skynet/server/ClientAcceptor.h>
-#include <skynet/server/WarNetService.h>
+#include <skynet/server/SkyNetService.h>
 #include <skynet/server/GameClientSession.h>
 #include <skynet/detail/Logging.h>
 #include <ace/Guard_T.h>

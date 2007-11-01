@@ -6,7 +6,7 @@
 // WarNetService.cpp
 //
 #include "stdafx.h"
-#include <skynet/server/WarNetService.h>
+#include <skynet/server/SkyNetService.h>
 #include "HackShield.h"
 #include <skynet/server/ServerInternalMessage.h>
 #include <skynet/detail/CommonMessage.h>
@@ -119,9 +119,12 @@ void WarNetService::onShutdown()
 void WarNetService::onAuthenticated(ClientId clientId)
 {
     ACE_GUARD(ACE_Thread_Mutex, guard, clientsLock_);
-    Clients::iterator pos = clients_.find(clientId);
-    if (pos != clients_.end()) {
-        ((*pos).second)->onAuthenticated();
+    //Clients::iterator pos = clients_.find(clientId);
+    GameClientSession* pSession = 0;
+    clients_.find(clientId, pSession);
+    if (pSession) {
+        //((*pos).second)->onAuthenticated();
+        pSession->onAuthenticated();
     }
 }
 
@@ -190,13 +193,12 @@ bool WarNetService::insert(GameClientSession* session)
     ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, clientsLock_, false);
 
     incrementClientId(clientId_);
-    if ((clients_.insert(
-            Clients::value_type(clientId_, session))).second) {
+    //if ((clients_.insert( Clients::value_type(clientId_, session))).second) {
+    if ((clients_.bind( clientId_, session))) {
         session->setClientId(clientId_);
 
-        WN_LOG_INFO3(
-            ACE_TEXT("Client(#%d) is connected. Total %d.\n"),
-            clientId_, clients_.size());
+        WN_LOG_INFO3( ACE_TEXT("Client(#%d) is connected. Total %d.\n"), //clientId_, clients_.size());
+            clientId_, clients_.current_size()); // total_size()?
         return true;
     }
 
@@ -212,14 +214,18 @@ void WarNetService::remove(GameClientSession* session)
     {
         ACE_GUARD(ACE_Thread_Mutex, guard, clientsLock_);
 
-        Clients::iterator pos = clients_.find(session->getClientId());
-        if (pos != clients_.end()) {
-            clients_.erase(pos);
+        //Clients::iterator pos = clients_.find(session->getClientId());
+        GameClientSession* pSession = 0;
+	clients_.find(session->getClientId(), pSession);
+        //if (pos != clients_.end()) {
+        if (pSession  != 0) {
+            //clients_.erase(pos);
+            clients_.unbind(session->getClientId());
             found = true;
         }
 
         WN_LOG_INFO3(ACE_TEXT("Client(#%d) is disconnected. Total=%d.\n"),
-            session->getClientId(), clients_.size());
+            session->getClientId(), clients_.current_size());
     }
 
     if (found) {
@@ -232,7 +238,8 @@ void WarNetService::removeAll()
 {
     ACE_GUARD(ACE_Thread_Mutex, guard, clientsLock_);
 
-    clients_.clear();
+    //clients_.clear();
+    clients_.unbind_all();
 }
 
 
@@ -240,7 +247,10 @@ bool WarNetService::isExist(ClientId clientId) const
 {
     ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, clientsLock_, false);
 
-    return clients_.find(clientId) != clients_.end();
+    GameClientSession* pSession = 0;
+    //return clients_.find(clientId) != clients_.end();
+    clients_.find(clientId, pSession);
+    return pSession;
 }
 
 
@@ -248,7 +258,7 @@ size_t WarNetService::getClientCount() const
 {
     ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, clientsLock_, 0);
 
-    return clients_.size();
+    return clients_.current_size();
 }
 
 
@@ -256,9 +266,11 @@ std::string WarNetService::getIpAddress(ClientId clientId) const
 {
     ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, clientsLock_, false);
 
-    Clients::const_iterator pos = clients_.find(clientId);
-    if (pos != clients_.end()) {
-        return ((*pos).second)->getIpAddress();
+    //Clients::const_iterator pos = clients_.find(clientId);
+    GameClientSession* pSession = 0 ;
+     clients_.find(clientId, pSession);
+    if (pSession) {
+        return pSession->getIpAddress();
     }
     return "unknown";
 }
@@ -295,9 +307,10 @@ bool WarNetService::postClientMessageToAll(const Message* msg)
 {
     ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, clientsLock_, false);
 
-    for (Clients::const_iterator pos = clients_.begin();
-            pos != clients_.end(); ++pos) {
-        GameClientSession* session = (*pos).second;
+    //for (Clients::const_iterator pos = clients_.begin(); pos != clients_.end(); ++pos) {
+    for (Clients::iterator pos = clients_.begin(); pos != clients_.end(); pos++) {
+        //GameClientSession* session = (*pos).second;
+        GameClientSession* session = (*pos).int_id_;
         WN_ASSERT(session != 0);
         (void)session->sendMessage(msg);
     }
@@ -337,11 +350,14 @@ GameClientSession* WarNetService::getGameClientSession(ClientId clientId)
 
 GameClientSession* WarNetService::getGameClientSession_i(ClientId clientId)
 {
-    Clients::iterator pos = clients_.find(clientId);
-    if (pos != clients_.end()) {
-        return (*pos).second;
-    }
-    return 0;
+    GameClientSession* pSession = 0;
+    //Clients::iterator pos = clients_.find(clientId);
+    clients_.find(clientId, pSession);
+    //if (pos != clients_.end()) {
+    //    return (*pos).second;
+    //}
+    //return 0;
+    return pSession;
 }
 
 
@@ -366,7 +382,8 @@ WarNetService::QueueType& WarNetService::getMessageQueue(ClientId clientId)
 {
     const Queues::size_type queueIndex =
         (static_cast<size_t>(clientId) % msgQueues_.size());
-    WN_ASSERT((queueIndex >= 0) && (queueIndex < msgQueues_.size()));
+    //WN_ASSERT((queueIndex >= 0) && (queueIndex < msgQueues_.size())); // queueIndex : Ç×»ó 0 
+    WN_ASSERT(queueIndex < msgQueues_.size());
     return *(msgQueues_[queueIndex]);
 }
 
@@ -387,7 +404,8 @@ WarNetService::QueueType& WarNetService::getMessageQueue()
     WN_ASSERT(pos != threads.end());
 
     const Queues::size_type queueIndex = (pos - threads.begin());
-    WN_ASSERT((queueIndex >= 0) && (queueIndex < msgQueues_.size()));
+    //WN_ASSERT((queueIndex >= 0) && (queueIndex < msgQueues_.size()));
+    WN_ASSERT(queueIndex < msgQueues_.size());
     return *(msgQueues_[queueIndex]);
 }
 

@@ -9,8 +9,8 @@
 #include <skynet/server/GameClientSession.h>
 #include <skynet/detail/ServerMessageAdaptorFactory.h>
 #include <skynet/detail/ServerMessageAdaptor.h>
-#include <skynet/server/WarNetService.h>
-#include <skynet/server/HackingMonitor.h>
+#include <skynet/server/SkyNetService.h>
+//#include <skynet/server/HackingMonitor.h>
 #include <skynet/detail/CommonMessage.h>
 #include <skynet/detail/MessageAdaptor.h>
 #include <skynet/detail/AceUtil.h>

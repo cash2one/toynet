@@ -15,7 +15,7 @@
 #include <boost/static_assert.hpp>
 
 #ifndef _LINUX
-BOOST_STATIC_ASSERT(sizeof(ACE_WSTRING_TYPE) == 2);
+//BOOST_STATIC_ASSERT(sizeof(ACE_WSTRING_TYPE) == 2);
 #endif
 
 namespace skynet

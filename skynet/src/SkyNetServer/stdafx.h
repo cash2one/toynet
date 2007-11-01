@@ -16,13 +16,15 @@
 
 #include <skynet/detail/SkyNetConfig.h>
 #include <skynet/warnet_export.h>
-#include <tchar.h>
+#ifdef _WINDOWS
+   #include <tchar.h>
+#endif
 #include <string>
 #pragma warning ( push )
 #pragma warning ( disable: 4702 )
 #include <vector>
 #include <list>
-#include <hash_map>
+//#include <hash_map>
 #pragma warning ( pop )
 #include <skynet/detail/Assert.h>
 

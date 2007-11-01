@@ -6,7 +6,7 @@
 // WarNetServiceBase.cpp
 //
 #include "stdafx.h"
-#include <skynet/server/WarNetServiceBase.h>
+#include <skynet/server/SkyNetServiceBase.h>
 #include <skynet/server/CrashHandler.h>
 #include <skynet/detail/Logging.h>
 
