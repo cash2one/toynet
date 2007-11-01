@@ -14,12 +14,12 @@
 namespace skynet
 {
 
-TCHAR dumpDir[MAXPATHLEN];
-TCHAR dumpFilenamePrefix[MAXPATHLEN];
+ACE_TCHAR dumpDir[MAXPATHLEN];
+ACE_TCHAR dumpFilenamePrefix[MAXPATHLEN];
 
+/*
 LONG __stdcall theCrashHandler(EXCEPTION_POINTERS* pExPtrs)
 {
-	/*
     WN_LOG_ERROR2(ACE_TEXT("Crash(Reason:%W)\n"),
         GetFaultReason(pExPtrs));
     WN_LOG_ERROR2(ACE_TEXT("Crash(Register:%W)\n"),
@@ -48,12 +48,11 @@ LONG __stdcall theCrashHandler(EXCEPTION_POINTERS* pExPtrs)
         else
             WN_LOG_ERROR2(ACE_TEXT("Core Dump Failed(%s)!!!\n"), dumpPath);
     }
-	*/
     return EXCEPTION_EXECUTE_HANDLER;
 }
+*/
 
-
-void initCrashHandler(const TCHAR* dir, const TCHAR* filenamePrefix)
+void initCrashHandler(const ACE_TCHAR* dir, const ACE_TCHAR* filenamePrefix)
 {
     WN_ASSERT(dir != 0);
     WN_ASSERT(filenamePrefix != 0);
