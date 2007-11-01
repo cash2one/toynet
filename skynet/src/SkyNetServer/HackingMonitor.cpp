@@ -1,9 +1,10 @@
 /**
-* Copyright (c) 2004 Mega Enterprise Co., Ltd.
+* Copyright (c) 
 *
-* @author ±èº´¼ö <kcando@megaking.co.kr>
+* @author 
 */
 #include "stdafx.h"
+/*
 #include <skynet/server/HackingMonitor.h>
 #include "HackShield.h"
 #include <skynet/detail/Logging.h>
@@ -67,3 +68,4 @@ bool HackingMonitor::analyzeResponse(const Buffer& response)
 }
 
 } // namespace skynet
+*/

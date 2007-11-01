@@ -1,7 +1,7 @@
 /**
-* Copyright (c) 2004 Mega Enterprise Co., Ltd.
+* Copyright (c) 
 *
-* @author ±èº´¼ö <kcando@megaking.co.kr>
+* @author 
 */
 // GameClientSession.h
 #if !defined(INCLUDED_GAMECLIENTSESSION)
@@ -16,7 +16,7 @@ namespace skynet
 
 class WarNetService;
 class ServerMessageAdaptor;
-class HackingMonitor;
+//class HackingMonitor;
 
 /**
  * @class GameClientSession
@@ -70,7 +70,7 @@ private:
 
     ACE_Time_Value lastHeartbeatTime_;
 
-    std::auto_ptr<HackingMonitor> hackingMonitor_;
+    //std::auto_ptr<HackingMonitor> hackingMonitor_;
 };
 
 } // namespace skynet

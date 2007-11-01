@@ -50,7 +50,7 @@
 				BufferSecurityCheck="true"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
-				WarningLevel="4"
+				WarningLevel="0"
 				WarnAsError="true"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
@@ -66,7 +66,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="aced.lib ../../lib/BugslayerUtil.LIB AntiCpSvr.lib"
+				AdditionalDependencies="aced.lib"
 				OutputFile="$(OutDir)/SkyNetServer_d.dll"
 				AdditionalLibraryDirectories="../../lib"
 				GenerateDebugInformation="true"

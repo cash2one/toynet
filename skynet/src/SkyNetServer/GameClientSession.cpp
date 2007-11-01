@@ -1,7 +1,7 @@
 /**
-* Copyright (c) 2004 Mega Enterprise Co., Ltd.
+* Copyright (c) 
 *
-* @author 김병수 <kcando@megaking.co.kr>
+* @author 
 */
 // GameClientSession.cpp
 //
@@ -197,11 +197,13 @@ void GameClientSession::onAuthenticated()
     cancelAuthenticateVerifyTimer();
     
     if (service_->useHackShield()) {
+		/*
         if (! hackingMonitor_->guidAcked()) {
             WN_LOG_ERROR("First HackShield GuidAckMsg didn't arrived!!!\n");
             disconnect();
             return;
         }
+		*/
     }
     
     setupHeartbeatTimer();
@@ -231,16 +233,19 @@ bool GameClientSession::isZombie(size_t timeout) const
 
 void GameClientSession::initHackingMonitor()
 {
+	/*
     if (! service_->useHackShield()) {
         return;
     }
 
     hackingMonitor_.reset(new HackingMonitor(service_->getHackShield()));
+	*/
 }
 
 
 void GameClientSession::sendFirstHackingMonitorMessage()
 {
+	/*
     if (! service_->useHackShield()) {
         return;
     }
@@ -258,11 +263,13 @@ void GameClientSession::sendFirstHackingMonitorMessage()
         disconnect();
         WN_ASSERT(false && "우째 이런 일이!!!");
     }
+	*/
 }
 
 
 void GameClientSession::sendHackingMonitorMessage()
 {
+	/*
     WN_ASSERT(hackingMonitor_.get() != 0);
     WN_ASSERT(hackingMonitor_->guidAcked());
 
@@ -275,11 +282,13 @@ void GameClientSession::sendHackingMonitorMessage()
         const HackShieldGuidReqMessage msg(&(request[0]), sizeof(request));
         (void)sendMessage(&msg);
     }
+	*/
 }
 
 
 bool GameClientSession::monitorHacking(const Message* message)
 {
+	/*
     WN_ASSERT(message != 0);
     if (! hackingMonitor_.get()) {
         return true;
@@ -295,6 +304,7 @@ bool GameClientSession::monitorHacking(const Message* message)
         (void)analyzeAckMsg(message);
         return false;
     }
+	*/
 
     return true;
 }
@@ -305,9 +315,10 @@ bool GameClientSession::analyzeGuidAckMsg(const Message* message)
     const HackShieldGuidAckMessage& realMsg =
         dynamic_cast<const HackShieldGuidAckMessage&>(*message);
 
+	/*
     if (hackingMonitor_->analyzeGuidResponse(realMsg.getAckMsg())) {
         return true;
-    }
+    }*/
 
     WN_LOG_ERROR2(ACE_TEXT("Client(#%d) is HACKED!!!(Guid CRC mismatch)\n"),
         getClientId());
@@ -321,9 +332,10 @@ bool GameClientSession::analyzeAckMsg(const Message* message)
     const HackShieldAckMessage& realMsg =
         dynamic_cast<const HackShieldAckMessage&>(*message);
 
+	/*
     if (hackingMonitor_->analyzeResponse(realMsg.getAckMsg())) {
         return true;
-    }
+    }*/
 
     WN_LOG_ERROR2(ACE_TEXT("Client(#%d) is HACKED!!!(CRC mismatch)\n"),
         getClientId());

@@ -1,9 +1,11 @@
 /**
-* Copyright (c) 2004 Mega Enterprise Co., Ltd.
+* Copyright (c) 
 *
-* @author ±èº´¼ö <kcando@megaking.co.kr>
+* @author 
 */
+
 #include "stdafx.h"
+/*
 #include "HackShield.h"
 #include <skynet/Wdr.h>
 #include <skynet/detail/Logging.h>
@@ -139,3 +141,4 @@ bool HackShield::analyzeResponse(const unsigned long* crcInfo,
 }
 
 } // namespace skynet
+*/

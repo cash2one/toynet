@@ -1,7 +1,7 @@
 /**
-* Copyright (c) 2004 Mega Enterprise Co., Ltd.
+* Copyright (c) 
 *
-* @author ±èº´¼ö <kcando@megaking.co.kr>
+* @author 
 */
 // ReactorEventLooper.h
 #if !defined(INCLUDED_REACTOREVENTLOOPER)

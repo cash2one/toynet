@@ -1,7 +1,7 @@
 /**
-* Copyright (c) 2004 Mega Enterprise Co., Ltd.
+* Copyright (c) 
 *
-* @author 김병수 <kcando@megaking.co.kr>
+* @author 
 */
 // stdafx.h : include file for standard system include files,
 // or project specific include files that are used frequently, but
@@ -40,6 +40,9 @@
 #pragma warning ( pop )
 
 #undef ACE_NLOGGING
+
+//vc80 에서는 time_t 가 기본 64bit형.
+#define _USE_32BIT_TIME_T
 
 // conditional expression is constant
 #pragma warning ( disable: 4127 )

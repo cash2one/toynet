@@ -1,13 +1,14 @@
 /**
-* Copyright (c) 2004 Mega Enterprise Co., Ltd.
+* Copyright (c) 
 *
-* @author ±èº´¼ö <kcando@megaking.co.kr>
+* @author 
 */
 // CrashHandler.cpp
 //
 #include "stdafx.h"
 #include <skynet/detail/Logging.h>
-#include <BugSlayer/BugslayerUtil.h>
+
+//#include <BugSlayer/BugslayerUtil.h>
 #include <skynet/detail/Assert.h>
 
 namespace skynet
@@ -18,6 +19,7 @@ TCHAR dumpFilenamePrefix[MAXPATHLEN];
 
 LONG __stdcall theCrashHandler(EXCEPTION_POINTERS* pExPtrs)
 {
+	/*
     WN_LOG_ERROR2(ACE_TEXT("Crash(Reason:%W)\n"),
         GetFaultReason(pExPtrs));
     WN_LOG_ERROR2(ACE_TEXT("Crash(Register:%W)\n"),
@@ -46,6 +48,7 @@ LONG __stdcall theCrashHandler(EXCEPTION_POINTERS* pExPtrs)
         else
             WN_LOG_ERROR2(ACE_TEXT("Core Dump Failed(%s)!!!\n"), dumpPath);
     }
+	*/
     return EXCEPTION_EXECUTE_HANDLER;
 }
 
@@ -57,7 +60,7 @@ void initCrashHandler(const TCHAR* dir, const TCHAR* filenamePrefix)
 
     ACE_OS::strcpy(dumpDir, dir);
     ACE_OS::strcpy(dumpFilenamePrefix, filenamePrefix);
-    SetCrashHandlerFilter(&theCrashHandler);
+    //SetCrashHandlerFilter(&theCrashHandler);
 }
 
 } // namespace skynet
