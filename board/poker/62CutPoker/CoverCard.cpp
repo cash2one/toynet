@@ -73,7 +73,7 @@ BOOL CCoverCard::OnLButtonUp(int xp, int yp)
 {
 	if( bAllowControl && Game.FlyWindCard == FALSE )
 	{
-		if ( nYpMove > nLimitYp + 20)
+		if ( nYpMove > nLimitYp + 40)
 		{
 			nYpMove = nLimitYp + 200;
 		}
