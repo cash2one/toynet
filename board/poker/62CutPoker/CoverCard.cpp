@@ -78,6 +78,7 @@ BOOL CCoverCard::OnLButtonUp(int xp, int yp)
 		if ( nYpMove > nLimitYp + nOopenGap)
 		{
 			nYpMove = 700;
+			bAllowControl = FALSE;
 		}
 		else if ( nYpMove <= nLimitYp + nOopenGap)
 			nYpMove = nLimitYp;
