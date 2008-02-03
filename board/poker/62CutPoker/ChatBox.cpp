@@ -170,7 +170,7 @@ void CChatBox::chat_changeinitpos()
 		m_Height = m_OrgHeight = m_height[0];
 
 		// 그래픽 버튼 초기화
-		BadUserBtn.Init(m_pParent, pPage, 214, 570, &BadUserBtnSpr, 0, IDM_BADUSER);
+		//BadUserBtn.Init(m_pParent, pPage, 214, 570, &BadUserBtnSpr, 0, IDM_BADUSER);
 		// 족보등급 보이기
 		TabViewChatBtn.Init(m_pParent, pPage, 3, 404, &ObserverSpr, 3, IDM_TABVIEWCHAT); //
 		TabViewRuleBtn.Init(m_pParent, pPage, 125, 404, &ObserverSpr, 4, IDM_TABVIEWRULE); //
@@ -1031,7 +1031,7 @@ void CChatBox::Draw( CDC *pDC )
 	if( m_bShow == FALSE )		return;
 	
 	if( Game.bViewTab ) {
-		DrawRule(pDC); // 족보 보기
+		//DrawRule(pDC); // 족보 보기
 	}
 	else {
 		DrawChat(pDC); // 채팅 보기
@@ -1039,8 +1039,8 @@ void CChatBox::Draw( CDC *pDC )
 	
 
 //	if(g_RI.bPlayer==0) {
-		TabViewChatBtn.Draw(pDC);
-		TabViewRuleBtn.Draw(pDC);
+		//TabViewChatBtn.Draw(pDC);
+		//TabViewRuleBtn.Draw(pDC);
 //	}
 	
 	if( Game.bViewTab ) {
@@ -1345,9 +1345,9 @@ void CChatBox::DrawScrollBarUse( CDC *pDC )
 			m_ScrollBaseRect.bottom - 1, RGBmix( 31, 31, 31 ), 18 );
 */
 
-		m_ScrollUpBtn.Draw( pDC );			//	스크롤 업 버튼
-		m_ScrollDownBtn.Draw( pDC );			//	스크롤 다운 버튼
-		m_ScrollThumbBtn.Draw( pDC );		//	텀버 버튼
+		//m_ScrollUpBtn.Draw( pDC );			//	스크롤 업 버튼
+		//m_ScrollDownBtn.Draw( pDC );			//	스크롤 다운 버튼
+		//m_ScrollThumbBtn.Draw( pDC );		//	텀버 버튼
 	}
 	else	m_ScrollBaseRect = 0;
 

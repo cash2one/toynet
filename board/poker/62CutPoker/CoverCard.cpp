@@ -50,6 +50,7 @@ void CCoverCard::Reset()
 	bAllowControl = FALSE;
 	bButtonDown = FALSE;
 	bButtonMove = FALSE;
+	bDraw = FALSE;
 }
 
 
@@ -71,14 +72,17 @@ void CCoverCard::Draw( int nYp )
 
 BOOL CCoverCard::OnLButtonUp(int xp, int yp)
 {
+	const int nOopenGap = 40;
 	if( bAllowControl && Game.FlyWindCard == FALSE )
 	{
-		if ( nYpMove > nLimitYp + 40)
+		if ( nYpMove > nLimitYp + nOopenGap)
 		{
-			nYpMove = nLimitYp + 200;
+			nYpMove = 700;
 		}
-		else if ( nYpMove <= nLimitYp + 20)
+		else if ( nYpMove <= nLimitYp + nOopenGap)
 			nYpMove = nLimitYp;
+
+		Game.CardDeck[0].CoverDraw(nYpMove);
 
 		bButtonDown = FALSE;
 		bButtonMove = FALSE;
@@ -95,7 +99,6 @@ BOOL CCoverCard::OnLButtonDown(int xp, int yp)
 		{	
 			nYpDown = yp;
 			bButtonDown = TRUE;
-			bShow = TRUE;
 			Game.CardDeck[0].Draw(TRUE);
 			 
 			return TRUE;
@@ -114,8 +117,9 @@ BOOL CCoverCard::OnLButtonMove(int xp, int yp)
 			int nGapMove = yp - nYpDown;
 			nYpMove = nGapMove+nLimitYp;
 			bButtonMove = TRUE;
-			Game.CardDeck[0].CoverDraw(nYpMove);
 			Game.CardDeck[0].SetFaceUp(6);
+			Game.CardDeck[0].CoverDraw(nYpMove);
+			
 			return TRUE;
 		}
 	}

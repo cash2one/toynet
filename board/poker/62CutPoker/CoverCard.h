@@ -23,6 +23,7 @@ public:
 	BOOL bAllowControl;
 	BOOL bButtonDown;
 	BOOL bButtonMove;
+	BOOL bDraw;
 	int	nYpDown;
 	int nYpMove;
 

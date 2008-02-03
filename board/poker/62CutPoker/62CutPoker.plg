@@ -6,17 +6,18 @@
 --------------------Configuration: 62CutPoker - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "D:\DOCUME~1\Yuna\LOCALS~1\Temp\RSP6C0.tmp" with contents
+Creating temporary file "D:\DOCUME~1\Yuna\LOCALS~1\Temp\RSP88C.tmp" with contents
 [
 /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\CommonFile" /I ".\GraphLib" /I ".\SoundLib" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Debug/" /Fp"Debug/62CutPoker.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"E:\work\Netmarble_src\NewPoker6_New\Source\62CutPoker\Game.cpp"
+"E:\work\Netmarble_src\NewPoker6_New\Source\62CutPoker\CoverCard.cpp"
 ]
-Creating command line "cl.exe @D:\DOCUME~1\Yuna\LOCALS~1\Temp\RSP6C0.tmp" 
-Creating temporary file "D:\DOCUME~1\Yuna\LOCALS~1\Temp\RSP6C1.tmp" with contents
+Creating command line "cl.exe @D:\DOCUME~1\Yuna\LOCALS~1\Temp\RSP88C.tmp" 
+Creating temporary file "D:\DOCUME~1\Yuna\LOCALS~1\Temp\RSP88D.tmp" with contents
 [
-/nologo /subsystem:windows /incremental:yes /pdb:"Debug/New7Poker_Debug.pdb" /map:"Debug/New7Poker_Debug.map" /debug /machine:I386 /out:"../_BIN/Client/New7Poker_Debug.exe" /pdbtype:sept /libpath:".\GraphLib" /libpath:"..\CommonFile" /libpath:".\FolderLib" /libpath:".\SoundLib" 
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/NewPoker_Debug.pdb" /map:"Debug/NewPoker_Debug.map" /debug /machine:I386 /out:"../_BIN/Client/NewPoker_Debug.exe" /pdbtype:sept /libpath:".\GraphLib" /libpath:"..\CommonFile" /libpath:".\FolderLib" /libpath:".\SoundLib" 
 .\Debug\62CutPokerDlg.obj
 .\Debug\CharView.obj
+.\Debug\CoverCard.obj
 .\Debug\GameDlg.obj
 .\Debug\Global.obj
 .\Debug\LobyDlg.obj
@@ -131,16 +132,136 @@ Creating temporary file "D:\DOCUME~1\Yuna\LOCALS~1\Temp\RSP6C1.tmp" with content
 .\Debug\62CutPoker.res
 .\NMCrypt.lib
 ]
-Creating command line "link.exe @D:\DOCUME~1\Yuna\LOCALS~1\Temp\RSP6C1.tmp"
+Creating command line "link.exe @D:\DOCUME~1\Yuna\LOCALS~1\Temp\RSP88D.tmp"
 <h3>Output Window</h3>
 Compiling...
-Game.cpp
+CoverCard.cpp
 Linking...
+Creating temporary file "D:\DOCUME~1\Yuna\LOCALS~1\Temp\RSP88E.tmp" with contents
+[
+/nologo /o"Debug/62CutPoker.bsc" 
+.\Debug\StdAfx.sbr
+.\Debug\62CutPokerDlg.sbr
+.\Debug\CharView.sbr
+.\Debug\CoverCard.sbr
+.\Debug\GameDlg.sbr
+.\Debug\Global.sbr
+.\Debug\LobyDlg.sbr
+.\Debug\ProfileDlg.sbr
+.\Debug\RoomInfoDlg.sbr
+.\Debug\TitleDlg.sbr
+.\Debug\Display.sbr
+.\Debug\Dither.sbr
+.\Debug\Graphic.sbr
+.\Debug\Jpegfile.sbr
+.\Debug\Sprite8.sbr
+.\Debug\xAniFile.sbr
+.\Debug\xAniMan.sbr
+.\Debug\xHan.sbr
+.\Debug\xLayer.sbr
+.\Debug\xSprite.sbr
+.\Debug\DataSock.sbr
+.\Debug\ServerSock.sbr
+.\Debug\SockMan.sbr
+.\Debug\StreamBuf.sbr
+.\Debug\CheckButton.sbr
+.\Debug\GraphButton.sbr
+.\Debug\MyBitmap.sbr
+.\Debug\MyButton.sbr
+.\Debug\BadChat.sbr
+.\Debug\BadChatMan.sbr
+.\Debug\BmpCheckButton.sbr
+.\Debug\BmpRadioBtn.sbr
+.\Debug\BmpToRegion.sbr
+.\Debug\DesktopIconMan.sbr
+.\Debug\DialogCtrlReposition.sbr
+.\Debug\IME.sbr
+.\Debug\KHSToolTip.sbr
+.\Debug\ListCtrlEx.sbr
+.\Debug\NoChat.sbr
+.\Debug\SysUtil.sbr
+.\Debug\TitleTip.sbr
+.\Debug\WebCtrl.sbr
+.\Debug\CharCutInArray.sbr
+.\Debug\ChatBox.sbr
+.\Debug\ChatViewEdit.sbr
+.\Debug\SendEdit.sbr
+.\Debug\CharBox.sbr
+.\Debug\Game.sbr
+.\Debug\GameView.sbr
+.\Debug\InfoBox.sbr
+.\Debug\LevelView.sbr
+.\Debug\Oring.sbr
+.\Debug\Player.sbr
+.\Debug\PlayScr.sbr
+.\Debug\SyncFPS.sbr
+.\Debug\ThreadTimer.sbr
+.\Debug\MciMedia.sbr
+.\Debug\Sound.sbr
+.\Debug\xOgg.sbr
+.\Debug\xSound.sbr
+.\Debug\NMSTR.sbr
+.\Debug\NMSTRMAN.sbr
+.\Debug\Card.sbr
+.\Debug\CardDeck.sbr
+.\Debug\CardEx.sbr
+.\Debug\Chip.sbr
+.\Debug\Movement.sbr
+.\Debug\SevenCard.sbr
+.\Debug\ShortCut.sbr
+.\Debug\62CutPoker.sbr
+.\Debug\BadUserDlg.sbr
+.\Debug\BadUserWarningDlg.sbr
+.\Debug\BanishVoteDlg.sbr
+.\Debug\BannerWnd.sbr
+.\Debug\ChangeCharDlg.sbr
+.\Debug\ConfigDlg.sbr
+.\Debug\LoginDlg.sbr
+.\Debug\MsgBox.sbr
+.\Debug\MsgDlg.sbr
+.\Debug\MyVoteDlg.sbr
+.\Debug\OptionDlg.sbr
+.\Debug\ProgressCtrlEx.sbr
+.\Debug\RoomPassDlg.sbr
+.\Debug\SockCmnd.sbr
+.\Debug\WebProfileDlg.sbr
+.\Debug\WhisperDlg.sbr
+.\Debug\InviteDlg.sbr
+.\Debug\RecvInviteDlg.sbr
+.\Debug\RefuseInviteDlg.sbr
+.\Debug\ResultFindIdDlg.sbr
+.\Debug\SendInviteDlg.sbr
+.\Debug\AskBuyItemDlg.sbr
+.\Debug\GameItemDlg.sbr
+.\Debug\ItemListDlg.sbr
+.\Debug\PremServiceDlg.sbr
+.\Debug\CommMsg.sbr
+.\Debug\ExHandle.sbr
+.\Debug\UserStruct.sbr
+.\Debug\AdminMessageDlg.sbr
+.\Debug\AdminTitleDlg.sbr
+.\Debug\CreateRoomDlg.sbr
+.\Debug\LeadersMoneyLimit.sbr
+.\Debug\LimitMoneyConfirmDlg.sbr
+.\Debug\ObserverDlg.sbr
+.\Debug\ResultHi.sbr
+.\Debug\RoomOptionDlg.sbr
+.\Debug\SelCardChoiceDlg.sbr
+.\Debug\SelCardDlg.sbr
+.\Debug\StartDlg.sbr
+.\Debug\LobbyListWnd.sbr
+.\Debug\MsgBoxDlg.sbr
+.\Debug\NoticeDlg.sbr
+.\Debug\NewAskChargeDlg.sbr
+.\Debug\WebCtrl4New.sbr]
+Creating command line "bscmake.exe @D:\DOCUME~1\Yuna\LOCALS~1\Temp\RSP88E.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
 
 
 
 <h3>Results</h3>
-New7Poker_Debug.exe - 0 error(s), 0 warning(s)
+NewPoker_Debug.exe - 0 error(s), 0 warning(s)
 </pre>
 </body>
 </html>

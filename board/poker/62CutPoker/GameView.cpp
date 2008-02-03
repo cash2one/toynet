@@ -680,8 +680,8 @@ void CGameView::OnPaint()
 	}
 
 	// ### [ 관전기능 ] ###
-	sInOut_Btn.Draw(&MemDC);
-	ObserverViewBtn.Draw(&MemDC);
+	//sInOut_Btn.Draw(&MemDC);
+	//ObserverViewBtn.Draw(&MemDC);
 	
 
 	// 게임 진행관련 버튼
@@ -700,8 +700,8 @@ void CGameView::OnPaint()
 		GameStartBtn.Draw(&MemDC); //시작버튼		
 	}
 
-	MasterBtn.Draw(&MemDC);
-	BanishvoteBtn.Draw(&MemDC);
+//	MasterBtn.Draw(&MemDC);
+//	BanishvoteBtn.Draw(&MemDC);
 //	SortBtn.Draw(&MemDC);
 	// 정보창 그리기
 //	InfoBox.Draw(&MemDC);

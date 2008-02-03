@@ -82,6 +82,7 @@ void CBadUserDlg::OnOK()
 
 BOOL CBadUserDlg::OnInitDialog() 
 {
+	
 	CDialog::OnInitDialog();
 	// TODO: Add extra initialization here
 
@@ -111,6 +112,7 @@ BOOL CBadUserDlg::OnInitDialog()
 	m_btn_Announce.Init(112,265,".\\image\\commonbtn\\btn_check.bmp",NULL,this);
 
 	m_bAnnounce = FALSE;
+	
 
 	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

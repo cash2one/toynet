@@ -178,6 +178,7 @@ void CPlayScr::Init(CWnd *pWnd, CPage *ppage, int pnum)
 		break;
 	}
 
+	
 	//ÀèÆÌ ¸Ó´Ï ÁÂÇ¥
 	m_jackpotx[0] = 778; m_jackpoty[0] = 44;
 	m_jackpotx[1] = 782; m_jackpoty[1] = 44;
@@ -185,6 +186,7 @@ void CPlayScr::Init(CWnd *pWnd, CPage *ppage, int pnum)
 	// ÀèÆÌ bg ÁÂÇ¥
 	m_jackpotanix[0] = 553; m_jackpotaniy[0] = 26;
 	m_jackpotanix[1] = 553; m_jackpotaniy[1] = 26;
+	
 
 	playscr_changeinitpos();
 }
@@ -1882,6 +1884,7 @@ void CPlayScr::Draw(CDC *pDC)
 // [ ###ÀèÆÌ### ] 
 void CPlayScr::draw_jackpot_digit()
 {		
+	/*
 	if(PNum==0 && Game.m_JackPotActive > 0) 
 		pPage->PutSprAuto(JackPotaniX, JackPotaniY, &JackPotSpr, 12+ Game.GameCnt%2);
 	else
@@ -1952,6 +1955,7 @@ void CPlayScr::draw_jackpot_digit()
 		tmp = tmp / 10;
 		kk++;
 	}
+	*/
 }
 
 
