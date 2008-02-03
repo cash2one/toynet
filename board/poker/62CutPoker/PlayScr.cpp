@@ -1043,6 +1043,7 @@ void CPlayScr::draw_5user(CDC *pDC)
 		
 		// ###### 카드 족보  ######
 		// ### [ 관전기능 ] ###	
+		
 		if(!g_MyObserver &&  PNum == 0 && Play[0].JoinState == 1 && Play[0].nOpenTotal > 0 
 			&& !Game.FlyWindCard) //&& g_Poker.nState != RSTATE_CHANGECARD )  //카드 날라갈떄는 그리지 않는다.	
 		{ // 나의 카드 족보
@@ -1057,7 +1058,7 @@ void CPlayScr::draw_5user(CDC *pDC)
 					rect.SetRect(0,0,160,14);
 					rect.OffsetRect(MsgX, Yp+167);
 					pDC->DrawText(str, &rect, DT_CENTER | DT_WORDBREAK);					
-					
+
 					if( Game.bViewTab ) {
 						int rule = Game.MyHighRule;
 						if(rule > 1 && rule < 20)
@@ -1067,7 +1068,7 @@ void CPlayScr::draw_5user(CDC *pDC)
 								rule =  0;
 							else
 								rule = 13 - rule;							
-
+					
 							if(rule < 8) pPage->PutSprAuto(10, 430+20*rule, &EtcSpr, rule+4);
 							else pPage->PutSprAuto(125, 510+20*(rule-8), &EtcSpr, rule+4);
 						}

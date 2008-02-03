@@ -63,6 +63,7 @@ public:
 	int MoveSpeed;		// 이동 속도
 	int AccelSpeed;		// 가속 이동 속도
 
+
 	// 반짝임 관련 변수
 	BOOL bTwincle;
 	int TwincleCnt;		// 반짝임 카운트

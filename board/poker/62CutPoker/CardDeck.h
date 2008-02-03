@@ -10,8 +10,9 @@
 #endif // _MSC_VER > 1000
 
 #include "CardEx.h"
+#include "CoverCard.h"
 
-#define SELECT_TOTALCARD 8  //6 by softpark  // ###[8포커]###
+#define SELECT_TOTALCARD 7  //6 by softpark  // ###[8포커]### 
 #define EMPTY -1 // 빈상태 (62Cut)
 #define _CARD_YPOS_OFFSET 5
 
@@ -22,6 +23,7 @@ public:
 	
 	int PNum;			   // 플레이어 넘버
 	CCardEx Card[SELECT_TOTALCARD];		   // 카드저장 클래스 // ###[8포커]###	
+	CCoverCard CoverCard;					   // 커버카드저장 클래스 -jeong
 	CRect CardRect[SELECT_TOTALCARD];		// 카드 바꾸기 rect 값
 
 	CPage *pPage;
@@ -54,6 +56,7 @@ public:
 
 	void Reset();
 	void NewCardSet(int cardNum);
+	void CoverCardSet(int cardNum); // 커버카드 - jeong
 	int GetCardNo(int index);
 	void DrawXY();
 	void SetFaceUp(int index);
@@ -61,6 +64,7 @@ public:
 	void CardSet(int cardnum);
 	void OnTimer();
 	void Draw( BOOL bFold = FALSE);
+	void CoverDraw( int nYp = 462 );
 
 	BOOL GetFace(int index);
 

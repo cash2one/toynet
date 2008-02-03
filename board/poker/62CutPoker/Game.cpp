@@ -331,18 +331,22 @@ BOOL CGame::OnLButtonDown(int x, int y)
 	if(PlayScr[4].OnLButtonDown(x, y)) { return TRUE; }
 	if(PlayScr[5].OnLButtonDown(x, y)) { return TRUE; }
 
+	g_CvCard.OnLButtonDown(x, y);
+	
 	return FALSE;
 }
 
 BOOL CGame::OnLButtonUp(int x, int y)
 {
 	if(PlayScr[0].OnLButtonUp(x, y) ) return TRUE;
+	g_CvCard.OnLButtonUp(x, y);
 	return FALSE;
 }
 
 BOOL CGame::OnMouseMove(int x, int y)
 {
 	if(PlayScr[0].OnMouseMove(x, y) ) return TRUE;
+	g_CvCard.OnLButtonMove(x, y);
 	return FALSE;
 }
 
@@ -738,9 +742,11 @@ void CGame::Card_Distribute()
 			for(int i = pnum; i<g_Max_Player + pnum; i++) {
 				int index = i;
 				if(index >= g_Max_Player) index = index-g_Max_Player;
-				if(strlen(Play[index].UI.ID)>0 && Play[index].JoinState == 1 && Play[index].PlayState == 1)	{
+				if(strlen(Play[index].UI.ID)>0 && Play[index].JoinState == 1 && Play[index].PlayState == 1)	
+				{
 					CCard* pCard = &CardDeck[index].Card[j];
-					if(pCard != NULL) {
+					if(pCard != NULL) 
+					{
 						pCard->m_move.SetCurPos(pt1);
 						pt.x = pCard->Xp;
 						pt.y = pCard->Yp;
@@ -771,9 +777,11 @@ void CGame::Card_Distribute()
 		for(int i=pnum;  i < g_Max_Player + pnum; i++)  {
 			int index = i;
 			if(index >= g_Max_Player) index = index - g_Max_Player;
-			if(strlen(Play[index].UI.ID)>0 && Play[index].JoinState == 1 && Play[index].PlayState == 1 ){//&& j<SELECT_TOTALCARD) {//softpark j<SELECT_TOTALCARD 추가 : overflow 방 지. 현재 미 추가시. seven포카로 변경해서 그런지. 7 이 나오면서 overflow 발생
+			if(strlen(Play[index].UI.ID)>0 && Play[index].JoinState == 1 && Play[index].PlayState == 1 )
+			{//&& j<SELECT_TOTALCARD) {//softpark j<SELECT_TOTALCARD 추가 : overflow 방 지. 현재 미 추가시. seven포카로 변경해서 그런지. 7 이 나오면서 overflow 발생
 				CCard* pCard = &CardDeck[index].Card[j];
-				if(pCard != NULL)  {
+				if(pCard != NULL)  
+				{
 					pCard->m_move.SetCurPos(pt1);
 					pt.x = pCard->Xp;
 					pt.y = pCard->Yp;
@@ -792,6 +800,8 @@ void CGame::Card_Distribute()
 			SetWindCardEnd();
 		}
 	}
+
+
 
 }
 
@@ -924,7 +934,7 @@ void CGame::Raise(POKERGAME *pMsg)
 					else // hidden
 					{
 						// ### [ 관전기능 ] ###
-						CardDeck[0].NewCardSet( DUMY_CARD); 
+						CardDeck[0].NewCardSet( DUMY_CARD);
 						/*
 						if(openCnt > 0) {
 							// ### [ 관전기능 ] ###
@@ -959,9 +969,11 @@ void CGame::Raise(POKERGAME *pMsg)
 						CardDeck[pn].Card[2].CardNo = g_Poker.PS[i].nCard[0]; // 값 변경
 						CardDeck[pn].NewCardSet( g_Poker.PS[i].nCard[1]);  // 값 등록
 						
+						
 						for(int k = 2; k < totCnt-1; k++) {
 							CardDeck[pn].SetFaceUp(k);
 						}
+
 					}
 					else if(totCnt < 7)
 					{
@@ -970,7 +982,9 @@ void CGame::Raise(POKERGAME *pMsg)
 					}
 					else if(totCnt == 7) // hidden
 					{
-						CardDeck[pn].NewCardSet( DUMY_CARD); // 4번째 카드 등록
+						CardDeck[pn].NewCardSet( DUMY_CARD ); // 4번째 카드 등록
+						Game.CardDeck[0].CoverCardSet(DUMY_CARD);
+						g_CvCard.bAllowControl = TRUE;
 					}
 				}
 
@@ -1298,10 +1312,10 @@ CString CGame::GetMyName()
 		for(i=3;i<min(nCard,TOTAL_CARD);i++){			
 			aCard[i] = g_Poker.PS[nSNum].nCard[i-2];
 		}*/		
-		for(i=0;i<min(nCard,TOTAL_CARD);i++){
+		for(i=0;i<3;i++){
 			aCard[i] = CardDeck[0].GetCardNo(i);
 		}
-	}
+	}	
 
 	
 	eName    = (SEVEN_CARD)m_SevenCard.GetValue(aCard,nCard, &nVal);
@@ -1344,8 +1358,13 @@ void CGame::OnCardEvent(CARDEVENT *pEvent)
 
 			if(pnum < 0 || pnum >= g_Max_Player) break;
 
-			if(Index <= 6)	CardDeck[pnum].SetFaceUp(Index);
-			
+			if(Index <= 5)	// modefied by jeong - 처음 6장을 보여준다
+				CardDeck[pnum].SetFaceUp(Index);
+			else			// 마지막 장은 숨긴다
+			{
+				//CardDeck[pnum].SetFaceUp(Index);
+				CardDeck[pnum].SetFaceDown(Index);
+			}
 		}
 		break;
 	
@@ -1368,7 +1387,7 @@ void CGame::OnCardEvent(CARDEVENT *pEvent)
 
 			if(pnum < 0 || pnum >= g_Max_Player) break;						
 			
-			CardDeck[pnum].SetChangeCard();			
+			CardDeck[pnum].SetChangeCard();	
 			Sound.Play( SND16 );
 
 		}break;
@@ -1377,8 +1396,7 @@ void CGame::OnCardEvent(CARDEVENT *pEvent)
 			int pnum = pEvent->Option;
 			int Index = pEvent->Option2;
 
-			if(pnum < 0 || pnum >= g_Max_Player) break;		
-			
+			if(pnum < 0 || pnum >= g_Max_Player) break;	
 			if(g_RI.ChangeCardStep == 1 )//1컷
 			{
 				if(Index <= 1 ){

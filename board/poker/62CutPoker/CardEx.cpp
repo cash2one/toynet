@@ -67,5 +67,6 @@ void CCardEx::Draw( BOOL bFold)
 		bSelect = FALSE;
 	}		
 
-	if(bChangeCard)pPage->PutSprAuto(xp-3, yp-3, &FocusSpr, 11);
+	if(bChangeCard)
+		pPage->PutSprAuto(xp-3, yp-3, &FocusSpr, 11);
 }

@@ -209,6 +209,7 @@ extern int g_MyPN;				// 나의 플레이어 번호(0-2)
 extern int g_MastPN;			// 방장의 플레이어 번호(0-2)
 extern ROOMINFO g_RI;			// 방 정보 구조체
 extern CPlayScr PlayScr[MAX_PLAYER];		// 플레이어 스크린 클래스
+extern CCoverCard g_CvCard;
 extern CDisplay Display;		// 디스플레이 모드 변경 클래스
 extern BOOL g_bChangeCardStage;		// 카드 바꾸기
 //////////////////////////

@@ -123,6 +123,8 @@ void CCardDeck::Reset()
 	bWindCardEnd = FALSE;
 
 	for(int i =0; i < SELECT_TOTALCARD; i++) Card[i].Clear();
+
+	CoverCard.Clear();
 }
 
 // 새로운 카드 셋팅
@@ -143,8 +145,18 @@ void CCardDeck::NewCardSet(int cardNum)
 	Card[TotalCardNum].SetPos(Xp+TotalCardNum*16, NewYp);
 
 	TotalCardNum++;
+	
 }
 
+// 히든 카드를 숨길 카드 셋팅 - jeong
+void CCardDeck::CoverCardSet(int cardNum)
+{
+	if(TotalCardNum < 0 || TotalCardNum >= SELECT_TOTALCARD+1) return;// 숨길카드를 위한 체크 
+	
+	CoverCard.Init(pPage, cardNum, PNum); // PNum 소유자
+	CoverCard.bShow = FALSE;
+	CoverCard.bFront = FALSE;
+}
 
 // 첫부분에서 카드 위치좌표 셋 !! 폴드시 어둡게 그린다.
 void CCardDeck::Draw( BOOL bFold) 
@@ -153,7 +165,16 @@ void CCardDeck::Draw( BOOL bFold)
 	{
 		Card[i].Draw( bFold );
 	}
+
+	if ( TotalCardNum == SELECT_TOTALCARD )
+		CoverDraw( g_CvCard.nYpMove );
 }
+
+void CCardDeck::CoverDraw( int nYp ) 
+{
+	CoverCard.Draw( nYp );
+}
+
 
 
 // 좌표값을 준다
@@ -173,7 +194,6 @@ void CCardDeck::DrawXY()
 		Card[i].DrawXY(Xp+cnt*14, NewYp);
 		cnt++;
 	}
-
 }
 
 BOOL CCardDeck::GetFace(int index)
@@ -261,7 +281,7 @@ BOOL CCardDeck::SetCardPosition(int index,int pnum,int changenum,int num,int del
 	cpt.x = Card[index].Xp;
 	cpt.y = Card[index].Yp;
 	Card[index].m_move.SetCurPos(cpt);
-	
+
 	bWindCardEnd = TRUE;
 
 	CPoint pt;
@@ -288,7 +308,7 @@ void CCardDeck::SetChangeCard()
 	if(g_RI.ChangeCardStep == 2)
 	{	
 		int sp = Game.GetServPNum_ByPN(PNum);
-
+		
 		for(int i = 0; i < 6; i++){
 			if(DUMY_CARD == Card[i].CardNo && i == m_returnChangeCardIndex)
 			{
@@ -338,7 +358,10 @@ void CCardDeck::SetChangeCard()
 		Card[5].CardNo = m_returnCardNum;		
 		Card[5].StraightMoveTo(pt, 10*3, 18*3, 0);			
 		// 플레이 넘버,인덱스 값
-		Card[5].SetEvent(EVENT_CHANGESET_ONEFLYEND, PNum, 5 );		
+		Card[5].SetEvent(EVENT_CHANGESET_ONEFLYEND, PNum, 5 );	
+		
+
+
 
 		for(i = 0 ; i < 4;i++){
 			g_Poker.PS[sp].nCard[i] = Card[i+2].CardNo;
@@ -406,7 +429,7 @@ void CCardDeck::SetChangeCard()
 			cpt.x = 368;
 			cpt.y = 40;
 			Card[5].m_move.SetCurPos(cpt);
-			
+
 			Card[5].bFront = FALSE;
 			Card[5].CardNo = m_returnCardNum;		
 			Card[5].StraightMoveTo(pt, 10*3, 18*3, 0);			

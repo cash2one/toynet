@@ -180,6 +180,7 @@ BOOL g_bAdminUser = FALSE;  // [관리자 모드 작업]
 
 CPlayScr PlayScr[MAX_PLAYER];			// 플레이어 스크린 클래스
 CDisplay Display;						// 디스플레이 모드 변경 클래스
+CCoverCard g_CvCard;
 BOOL g_bChangeCardStage;		// 카드 바꾸기
 ////////////////
 
