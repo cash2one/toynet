@@ -1,0 +1,1189 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+// Generated Help ID header file
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.hm"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\62CutPokerServer.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
+    "#include ""l.kor\\afxdb.rc""           // Database resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\아이콘.ico"
+IDR_TETRISTYPE          ICON    DISCARDABLE     "res\\62CutPokerServerDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "파일(&F)"
+    BEGIN
+        MENUITEM "접속 거부(&D)",               ID_FILE_CONNECTDENY
+        MENUITEM "종료(&X)",                    ID_APP_EXIT
+    END
+    POPUP "보기(&V)"
+    BEGIN
+        MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "환경 설정(&C)",               ID_VIEW_CONFIG
+        MENUITEM "게임 옵션(&G)",               ID_VIEW_CONFIG2
+        MENUITEM "채널 설정(&H)",               ID_VIEW_CONFIG3
+        MENUITEM "이벤트 설정(&E)",             ID_VIEW_CONFIGEVENT
+        MENUITEM SEPARATOR
+        MENUITEM "잭팟/로그 설정(&J)",          ID_VIEW_CONFIG4
+        MENUITEM "Setup Admin User",            IDM_SET_ADMIN
+        MENUITEM "대화저장 아이디목록",         IDM_SET_CAPTUREID
+        MENUITEM "유저위치정보 목록",           IDM_SET_SEARCH
+        MENUITEM "통계기록",                    ID_VIEW_CONFIGSA
+    END
+    POPUP "도구(&T)"
+    BEGIN
+        MENUITEM "사용자 DB 쓰레드 강제 종료",  ID_TOOL_FORCETERMINATEDBTHREAD
+
+    END
+    POPUP "도움말(&H)"
+    BEGIN
+        MENUITEM "62CutPokerServer 정보(&A)...", ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 215, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "62CutPokerServer 정보"
+FONT 9, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "62CutPokerServer",IDC_STATIC,40,10,97,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2000 Netmarble Inc.",IDC_STATIC,40,25,119,
+                    8
+    DEFPUSHBUTTON   "확인",IDOK,153,7,50,14,WS_GROUP
+END
+
+IDD_62CUTPOKERSERVER_FORM DIALOGEX 0, 0, 330, 304
+STYLE WS_CHILD
+FONT 9, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_DISCTARGETID,231,58,50,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "강제종료",IDC_BUTTON_FORCEDISCONNECT,286,58,35,12
+    EDITTEXT        IDC_EDIT_DELROOMNO,231,74,21,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "방 강제 삭제",IDC_BUTTON_FORCEDELROOM,260,74,61,12
+    EDITTEXT        IDC_EDIT_SENDSERVERMSG,174,107,147,13,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL
+    CONTROL         "일반 텍스트로 보내기",IDC_RADIO_SENDTEXT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,175,127,81,8
+    CONTROL         "메세지 박스로 보내기",IDC_RADIO_SENDMSGBOX,"Button",
+                    BS_AUTORADIOBUTTON,175,139,81,8
+    CONTROL         "텍스트 + 메세지 박스",IDC_RADIO_SENDMSGBOTH,"Button",
+                    BS_AUTORADIOBUTTON,175,151,81,8
+    PUSHBUTTON      "Send",IDC_BUTTON_SENDSERVERMSG,271,132,36,19
+    PUSHBUTTON      "Set",IDC_BUTTON_SETLOGINMSG,99,212,38,12
+    EDITTEXT        IDC_EDIT_LOGINMSG,7,226,320,27,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+    LTEXT           "IP",IDC_STATIC_IP,68,97,86,10,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    LTEXT           "DNS",IDC_STATIC_DNS,68,109,86,10,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    LTEXT           "PORT",IDC_STATIC_PORT,68,121,32,10,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    RTEXT           "IP Adress:",IDC_STATIC,24,97,39,9,SS_CENTERIMAGE
+    RTEXT           "DNS :",IDC_STATIC,24,109,39,9,SS_CENTERIMAGE
+    RTEXT           "PORT :",IDC_STATIC,24,122,39,9,SS_CENTERIMAGE
+    GROUPBOX        "Host Server Information",IDC_STATIC,7,86,156,50
+    LTEXT           "0명",IDC_STATIC_TOTALUSER,57,150,50,8
+    LTEXT           "Total User :",IDC_STATIC,11,150,41,8,SS_CENTERIMAGE
+    GROUPBOX        "Server State",IDC_STATIC,6,138,157,47
+    LTEXT           "Server Name?",IDC_STATIC_SERVERNAME,70,46,84,10,
+                    SS_CENTERIMAGE,WS_EX_STATICEDGE
+    RTEXT           "Server Name:",IDC_STATIC,12,46,51,9,SS_CENTERIMAGE
+    LTEXT           "Game Code?",IDC_STATIC_GAMECODE,70,57,33,10,
+                    SS_CENTERIMAGE,WS_EX_STATICEDGE
+    RTEXT           "Game Code:",IDC_STATIC,12,57,51,9,SS_CENTERIMAGE
+    LTEXT           "Server Code?",IDC_STATIC_SERVERCODE,70,69,33,10,
+                    SS_CENTERIMAGE,WS_EX_STATICEDGE
+    RTEXT           "Server Code:",IDC_STATIC,12,69,51,9,SS_CENTERIMAGE
+    GROUPBOX        "Host Server Information",IDC_STATIC,7,34,156,50
+    GROUPBOX        "Send message for all user",IDC_STATIC,172,96,156,68
+    LTEXT           "Timing Information",IDC_STATIC_TEST,11,162,144,8
+    LTEXT           "MaxSocket :  MaxUser:  MaxRoom:",IDC_STATIC_MAXSTATE,9,
+                    4,228,9,SS_CENTERIMAGE
+    LTEXT           "Server Login Message :",IDC_STATIC,7,214,80,8
+    LTEXT           "강제종료 대상ID",IDC_STATIC,175,60,52,10
+    GROUPBOX        "Server Management",IDC_STATIC,172,33,156,60
+    LTEXT           "삭제할 방번호",IDC_STATIC,175,76,52,10
+    LTEXT           "접속 허용중 ▶",IDC_STATIC_CONNECTSTATE,112,150,47,8,
+                    SS_CENTERIMAGE
+    LTEXT           "버려진 DB쓰레드 개수 :",IDC_STATIC,175,44,75,8
+    LTEXT           "0",IDC_STATIC_DISCARDNUM,255,44,9,8
+    CTEXT           "Static",IDC_EDIT_STATE,7,269,319,26,0,WS_EX_STATICEDGE
+    LTEXT           "Server Status :",IDC_STATIC,7,257,50,8
+    PUSHBUTTON      "현재 잭팟 머니 보기",IDC_BUTTON_JACKPOT,252,167,68,14
+    GROUPBOX        "Auto Send Message for all User and Close the Server",
+                    IDC_STATIC,7,188,321,22
+    CONTROL         "30분후",IDC_RADIO_EXIT30,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,13,197,36,11
+    CONTROL         "10분후",IDC_RADIO_EXIT10,"Button",BS_AUTORADIOBUTTON,53,
+                    197,36,11
+    CONTROL         "5분후",IDC_RADIO_EXIT5,"Button",BS_AUTORADIOBUTTON,93,
+                    197,36,11
+    CONTROL         "3분후",IDC_RADIO_EXIT3,"Button",BS_AUTORADIOBUTTON,133,
+                    197,36,11
+    CONTROL         "1분후",IDC_RADIO_EXIT1,"Button",BS_AUTORADIOBUTTON,173,
+                    197,36,11
+    CONTROL         "30초후",IDC_RADIO_EXIT30S,"Button",BS_AUTORADIOBUTTON,
+                    213,197,36,11
+    PUSHBUTTON      "OK",IDC_BUTTON_EXITOK,258,196,25,11
+    PUSHBUTTON      "Cancel",IDC_BUTTON_EXITCANCEL,289,196,25,11
+    EDITTEXT        IDC_EDIT_MSCODE,287,4,41,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Access deny user",IDC_BTN_DENYUSER,264,41,62,13
+    EDITTEXT        IDC_EDIT_AGENTCONNECT,232,19,96,12,ES_CENTER | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Timing Information",IDC_STATIC_TEST2,11,174,144,8
+    EDITTEXT        IDC_EDIT_BLOG,97,19,62,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "이벤트 상황 보기",IDC_BUTTON_EVENTSTATE,174,167,68,14
+    EDITTEXT        IDC_EDIT_BSSO,7,19,83,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_BEVENT,166,19,62,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY
+END
+
+IDD_DIALOG_MSG DIALOG DISCARDABLE  0, 0, 270, 48
+STYLE DS_LOCALEDIT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE
+FONT 9, "MS Sans Serif"
+BEGIN
+    CTEXT           "Static",IDC_STATIC_MSG,9,18,251,12,SS_CENTERIMAGE
+END
+
+IDD_SETCOLUMN_DIALOG DIALOG DISCARDABLE  0, 0, 175, 139
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "선택된 컬럼값을 모두 바꾸기"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,34,116,50,17
+    PUSHBUTTON      "Cancel",IDCANCEL,90,117,50,16
+    EDITTEXT        IDC_EDIT_VALUE,39,26,108,12,ES_AUTOHSCROLL
+    LTEXT           "설정값 :",IDC_STATIC,6,27,26,9,SS_CENTERIMAGE
+    LTEXT           "알수 없음",IDC_STATIC_COLUMNNAME,39,10,110,9
+    LTEXT           "컬럼명 :",IDC_STATIC,6,9,26,9,SS_CENTERIMAGE
+    CONTROL         "자동 인덱스",IDC_CHECK_AUTOINDEX,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,55,48,10
+    GROUPBOX        "",IDC_STATIC,13,66,137,42
+    LTEXT           "시작 값 :",IDC_STATIC,21,76,37,9,SS_CENTERIMAGE
+    LTEXT           "자리 수 (0=없음):",IDC_STATIC,22,91,56,9,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_STARTVAL,91,75,45,11,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CIPHER,91,90,45,11,ES_AUTOHSCROLL
+END
+
+IDD_SETCHANINFO_DIALOG DIALOG DISCARDABLE  0, 0, 174, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "채널 정보 편집"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,38,82,50,17
+    PUSHBUTTON      "Cancel",IDCANCEL,94,83,50,16
+    EDITTEXT        IDC_EDIT_CHANNAME,51,9,108,12,ES_AUTOHSCROLL
+    LTEXT           "채널명 :",IDC_STATIC,6,10,26,9,SS_CENTERIMAGE
+    LTEXT           "게임종류 :",IDC_STATIC,5,25,36,9,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_GAMEKIND,51,24,22,12,ES_AUTOHSCROLL
+    LTEXT           "허용 등급 :",IDC_STATIC,5,41,36,9,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_LIMIT1,51,39,22,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_LIMIT2,91,40,22,12,ES_AUTOHSCROLL
+    CTEXT           "-",IDC_STATIC,77,41,8,9,SS_CENTERIMAGE
+    LTEXT           "등급 :",IDC_STATIC,5,56,36,9,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_GRADE,51,55,22,12,ES_AUTOHSCROLL
+END
+
+IDD_CONFIG3_DIALOG DIALOG DISCARDABLE  0, 0, 439, 305
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "채널 설정"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,150,274,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,206,274,50,14
+    CONTROL         "입장 제한 없음",IDC_RADIO_EINTERLIMITMODE0,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,16,32,83,10
+    CONTROL         "등급별 입장 제한 (등급 기준: 0-14)",
+                    IDC_RADIO_EINTERLIMITMODE1,"Button",BS_AUTORADIOBUTTON,
+                    16,46,131,10
+    CONTROL         "List1",IDC_LIST_CHANINFO,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,203,83,224,
+                    174
+    GROUPBOX        "[입장 제한]",IDC_STATIC,7,6,189,99
+    CONTROL         "로그인시 등급 제한 :",IDC_CHECK_LOGINLIMIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,27,58,78,10
+    CONTROL         "채널 입장시 등급 제한 (채널별 등급 제한에 따름)",
+                    IDC_CHECK_CHANLIMIT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,27,86,162,10
+    EDITTEXT        IDC_EDIT_LOGINLIMIT1,120,70,18,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT_LOGINLIMIT2,148,70,18,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "까지",IDC_STATIC,175,72,16,8
+    CTEXT           "-",IDC_STATIC,138,72,8,8,SS_CENTERIMAGE
+    LTEXT           "[채널별 설정 정보] - 복수 선택 편집 가능",IDC_STATIC,
+                    205,10,131,8
+    PUSHBUTTON      "선택항목 편집",IDC_BUTTON_SELEDIT,365,7,61,13,BS_FLAT
+    LTEXT           "컬럼 클릭시 선택된 모든 항목의 컬럼을 한번에 수정 가능",
+                    IDC_STATIC,205,24,185,8
+    GROUPBOX        "금액 제한",IDC_STATIC,11,122,180,69
+    LTEXT           "☞ 중 수",IDC_STATIC,17,147,60,9
+    LTEXT           "☞ 고 수",IDC_STATIC,17,161,60,9
+    LTEXT           "☞ 도 신",IDC_STATIC,17,175,60,9
+    EDITTEXT        IDC_EDIT_HALF,84,145,101,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_FULL,84,159,101,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_GOD,84,173,101,12,ES_RIGHT | ES_AUTOHSCROLL
+    GROUPBOX        "Level",IDC_STATIC,11,195,181,56
+    LTEXT           "☞ Midium Level",IDC_STATIC,16,207,61,9
+    LTEXT           "☞ High Level",IDC_STATIC,16,219,60,9
+    LTEXT           "☞ God Level",IDC_STATIC,16,231,59,9
+    EDITTEXT        IDC_EDIT_LEVEL1,84,203,101,12,ES_CENTER | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_LEVEL2,84,217,101,12,ES_CENTER | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_LEVEL3,84,233,101,12,ES_CENTER | ES_AUTOHSCROLL
+    GROUPBOX        "SevenPoker Configure",IDC_STATIC,7,112,190,149
+    LTEXT           "[Grade]",IDC_STATIC,205,37,185,8
+    LTEXT           "0: 자유 1: 초보  2: 중수  3: 고수  4: 도신  default: 자유  ",
+                    IDC_STATIC,205,50,185,8
+    CONTROL         "Example Server ( 테스트 서버)",IDC_CHECK_EXAM,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,17,125,8
+    EDITTEXT        IDC_EDIT_LOGINLIMITGRADE,93,70,14,12,ES_AUTOHSCROLL
+    LTEXT           "[Grade](등급)",IDC_STATIC,39,72,47,8
+    LTEXT           "☞ 초 보",IDC_STATIC,17,134,60,9
+    EDITTEXT        IDC_EDIT_CHBO,84,132,101,12,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "[인원수]",IDC_STATIC,205,61,185,8
+    LTEXT           "0 : 방만들기우선  1 : 5인용  2 : 6인용",IDC_STATIC,205,
+                    74,185,8
+END
+
+IDD_CAPTURE_DIG DIALOG DISCARDABLE  0, 0, 123, 255
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "대화 저장"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Save",IDOK,19,228,39,14
+    PUSHBUTTON      "Cancel",IDCANCEL,65,228,39,14
+    LTEXT           "대상 ID :",IDC_STATIC,16,32,28,8
+    EDITTEXT        IDC_EDIT_ID,59,30,51,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Add",IDC_BUTTON_ADD,15,45,39,14
+    PUSHBUTTON      "Delete",IDC_BUTTON_DELETE,68,45,39,14
+    CONTROL         "List1",IDC_LIST_USER,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,10,63,103,132
+    CONTROL         "사용 유무",IDC_CHECK_CAP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,91,10
+    LTEXT           "총인원 :",IDC_STATIC,14,201,28,8
+    LTEXT           "수",IDC_STATIC_COUNT,47,201,31,8
+END
+
+IDD_SEARCH_DIG DIALOG DISCARDABLE  0, 0, 123, 255
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "위치 저장"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Save",IDOK,19,228,39,14
+    PUSHBUTTON      "Cancel",IDCANCEL,65,228,39,14
+    LTEXT           "대상 ID :",IDC_STATIC,16,32,28,8
+    EDITTEXT        IDC_EDIT_ID,59,30,51,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Add",IDC_BUTTON_ADD,15,45,39,14
+    PUSHBUTTON      "Delete",IDC_BUTTON_DELETE,68,45,39,14
+    CONTROL         "List1",IDC_LIST_USER,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,10,63,103,132
+    CONTROL         "사용 유무",IDC_CHECK_CAP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,91,10
+    LTEXT           "총인원 :",IDC_STATIC,14,201,28,8
+    LTEXT           "수",IDC_STATIC_COUNT,47,201,31,8
+END
+
+IDD_CONFIG_EVENT DIALOG DISCARDABLE  0, 0, 239, 313
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "게임 이벤트 설정 옵션"
+FONT 9, "굴림"
+BEGIN
+    GROUPBOX        "",IDC_STATIC,5,13,229,268
+    CONTROL         "이벤트를 실행합니다.",IDC_CHECK_RUNEVENT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,14,82,10
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_STARTDATE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_APPCANPARSE | 
+                    DTS_LONGDATEFORMAT | WS_TABSTOP,116,35,100,13
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_ENDDATE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_APPCANPARSE | 
+                    DTS_LONGDATEFORMAT | WS_TABSTOP,116,55,100,13
+    LTEXT           "이벤트 시작일(당일 0시부터)",IDC_STATIC,22,38,90,8
+    LTEXT           "이벤트 종료일(당일 24시까지)",IDC_STATIC,19,58,94,8
+    DEFPUSHBUTTON   "OK",IDOK,65,291,50,15
+    PUSHBUTTON      "Cancel",IDCANCEL,122,291,50,15
+    EDITTEXT        IDC_EDIT_EVENTTICKETNUM,116,74,40,12,ES_AUTOHSCROLL | 
+                    NOT WS_VISIBLE | WS_DISABLED
+    LTEXT           "할당된 티켓 수",IDC_STATIC,41,76,47,8,NOT WS_VISIBLE | 
+                    WS_DISABLED
+    CONTROL         "지정한 시간에는 이벤트 없음:",IDC_CHECK_NOEVENTTIME,
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | 
+                    WS_TABSTOP,15,108,104,10
+    EDITTEXT        IDC_EDIT_NOEVENTSTARTHOUR,122,107,14,12,ES_AUTOHSCROLL | 
+                    NOT WS_VISIBLE | WS_DISABLED
+    LTEXT           "(시)부터",IDC_STATIC,139,109,27,8,NOT WS_VISIBLE | 
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT_NOEVENTHOUR,170,107,16,12,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE | WS_DISABLED
+    LTEXT           "(시간)동안",IDC_STATIC,188,109,34,8,NOT WS_VISIBLE | 
+                    WS_DISABLED
+    GROUPBOX        "",IDC_STATIC,10,95,219,33
+    LTEXT           "최소 유저 수(미달하는 경우 이벤트 발생 없음) : ",
+                    IDC_STATIC,19,134,151,8,NOT WS_VISIBLE | WS_DISABLED
+    EDITTEXT        IDC_EDIT_MINUSERNUM,179,131,28,12,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE | WS_DISABLED
+    EDITTEXT        IDC_EDIT_EVENTNOTICE,13,192,214,42,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_WANTRETURN
+    LTEXT           "채널 입장 공지",IDC_STATIC,14,181,47,8
+    EDITTEXT        IDC_EDIT_ROOMEVENTNOTICE,13,251,214,22,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_WANTRETURN
+    LTEXT           "게임방 입장 공지",IDC_STATIC,14,240,54,8
+    CONTROL         "이벤트 기간 종료시 자동으로 이벤트 중지",
+                    IDC_CHECK_AUTOEVENTEND,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,159,162,10
+    GROUPBOX        "",IDC_STATIC,9,148,220,27
+END
+
+IDD_DLG_ADMINMAN DIALOG DISCARDABLE  0, 0, 187, 213
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "관리자 모드 (관리자 아이디와 아이피 일대일)"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "저장하기",IDOK,97,184,39,14
+    PUSHBUTTON      "취소",IDCANCEL,141,184,39,14
+    LTEXT           "ID :",IDC_STATIC,7,101,12,8
+    EDITTEXT        IDC_EDIT_ID,33,99,51,12,ES_AUTOHSCROLL
+    CONTROL         "List1",IDC_LIST_ADMIN,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,7,7,173,84
+    EDITTEXT        IDC_EDIT_GRADE,33,114,51,12,ES_AUTOHSCROLL
+    LTEXT           "Grade :",IDC_STATIC,7,116,25,8
+    PUSHBUTTON      "추가",IDC_BUTTON_ADD,135,100,31,14
+    PUSHBUTTON      "삭제",IDC_BUTTON_DEL,135,119,31,14
+    PUSHBUTTON      "관리자 아이디 전송",IDC_BTN_ADMININFOSEND,105,149,74,15,
+                    WS_DISABLED
+    LTEXT           "현재 접속한 관리자 수",IDC_STATIC,7,152,72,8,
+                    WS_DISABLED
+    RTEXT           "0",1038,81,152,12,8,WS_DISABLED
+    CONTROL         "IPAddress1",IDC_IPADDRESS1,"SysIPAddress32",WS_TABSTOP,
+                    33,130,96,12
+    LTEXT           "IP :",IDC_STATIC,7,132,12,8
+END
+
+IDD_CONFIG_DIALOG DIALOG DISCARDABLE  0, 0, 411, 491
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Configuration"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,37,443,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,109,444,50,14
+    LTEXT           "Server Name",IDC_STATIC,16,16,46,8,SS_CENTERIMAGE
+    LTEXT           "Game Code",IDC_STATIC,16,30,45,8,SS_CENTERIMAGE
+    LTEXT           "Server Code",IDC_STATIC,108,31,45,8,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_SERVERNAME,70,14,134,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_GAMECODE,70,28,29,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SERVERCODE,154,29,29,12,ES_AUTOHSCROLL
+    LTEXT           "Server Port",IDC_STATIC,16,44,43,8,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_SERVERPORT,70,42,29,12,ES_AUTOHSCROLL
+    GROUPBOX        "Server Configuration",IDC_STATIC,6,4,209,56
+    GROUPBOX        "메인 유저DB 설정",IDC_STATIC,208,75,199,53
+    LTEXT           "DSN",IDC_STATIC,215,86,29,8
+    EDITTEXT        IDC_EDIT_USERDB_DSN,248,85,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,215,99,29,8
+    EDITTEXT        IDC_EDIT_USERDB_TABLE,248,98,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,215,113,29,8
+    EDITTEXT        IDC_EDIT_USERDB_UID,248,111,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,315,113,29,8
+    EDITTEXT        IDC_EDIT_USERDB_PASS,346,111,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    GROUPBOX        "게임 DB 설정",IDC_STATIC,1,76,199,53
+    LTEXT           "DSN",IDC_STATIC,6,88,29,8
+    EDITTEXT        IDC_EDIT_GAMEDB_DSN,41,88,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,6,102,29,8
+    EDITTEXT        IDC_EDIT_GAMEDB_TABLE,41,100,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,6,116,29,8
+    EDITTEXT        IDC_EDIT_GAMEDB_UID,41,114,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,106,116,29,8
+    EDITTEXT        IDC_EDIT_GAMEDB_PASS,139,114,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    GROUPBOX        "불량 아이디 신고 DB 설정",IDC_STATIC,206,197,199,53
+    LTEXT           "DSN",IDC_STATIC,213,208,29,8
+    EDITTEXT        IDC_EDIT_BADUSERDB_DSN,246,208,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,213,222,29,8
+    EDITTEXT        IDC_EDIT_BADUSERDB_TABLE,246,220,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,213,236,29,8
+    EDITTEXT        IDC_EDIT_BADUSERDB_UID,246,234,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,313,236,29,8
+    EDITTEXT        IDC_EDIT_BADUSERDB_PASS,344,234,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    GROUPBOX        "접속자 현황 DB 설정",IDC_STATIC,206,255,199,53
+    LTEXT           "DSN",IDC_STATIC,213,266,29,8
+    EDITTEXT        IDC_EDIT_STATUSDB_DSN,246,266,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,213,280,29,8
+    EDITTEXT        IDC_EDIT_STATUSDB_TABLE,246,278,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,213,294,29,8
+    EDITTEXT        IDC_EDIT_STATUSDB_UID,246,292,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,313,294,29,8
+    EDITTEXT        IDC_EDIT_STATUSDB_PASS,344,292,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    GROUPBOX        "Avatar DB 설정",IDC_STATIC,208,133,199,53
+    LTEXT           "DSN",IDC_STATIC,215,145,29,8
+    EDITTEXT        IDC_EDIT_AVATARDB_DSN,248,145,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,215,159,29,8
+    EDITTEXT        IDC_EDIT_AVATARDB_TABLE,248,157,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,215,173,29,8
+    EDITTEXT        IDC_EDIT_AVATARDB_UID,248,171,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,315,173,29,8
+    EDITTEXT        IDC_EDIT_AVATARDB_PASS,346,171,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_MSCODE,153,42,60,57,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Language",IDC_STATIC,109,43,34,12
+    GROUPBOX        "Item DB 설정",IDC_STATIC,1,134,199,53
+    LTEXT           "DSN",IDC_STATIC,6,144,29,8
+    EDITTEXT        IDC_EDIT_ITEMDB_DSN,41,144,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,6,158,29,8
+    EDITTEXT        IDC_EDIT_ITEMDB_TABLE,41,156,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,6,172,29,8
+    EDITTEXT        IDC_EDIT_ITEMDB_UID,41,170,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,106,172,29,8
+    EDITTEXT        IDC_EDIT_ITEMDB_PASS,139,170,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "Max Money :",IDC_STATIC,227,46,49,10
+    EDITTEXT        IDC_EDIT_MAXPMONEY,277,44,86,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | WS_DISABLED
+    CONTROL         "(스페셜) (자유등급) 서버 입장제한에서만 사용한다",
+                    IDC_CHECK_ITEM,"Button",BS_AUTOCHECKBOX | WS_DISABLED | 
+                    WS_TABSTOP,227,8,183,10
+    CONTROL         "비밀방",IDC_CHECK_SCRET,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,227,19,33,11
+    CONTROL         "점프 아이템",IDC_CHECK_JUMP,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,227,33,50,10
+    GROUPBOX        "Premium DB 설정",IDC_STATIC,206,312,199,53
+    LTEXT           "DSN",IDC_STATIC,213,324,29,8
+    EDITTEXT        IDC_EDIT_PREMIUMDB_DSN,246,324,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,213,338,29,8
+    EDITTEXT        IDC_EDIT_PREMIUMDB_TABLE,246,336,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,213,352,29,8
+    EDITTEXT        IDC_EDIT_PREMIUMDB_UID,246,350,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,313,352,29,8
+    EDITTEXT        IDC_EDIT_PREMIUMDB_PASS,345,350,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    GROUPBOX        "Premium IP DB 설정",IDC_STATIC,1,198,199,53
+    LTEXT           "DSN",IDC_STATIC,6,210,29,8
+    EDITTEXT        IDC_EDIT_PREMIPDB_DSN,41,210,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,6,224,29,8
+    EDITTEXT        IDC_EDIT_PREMIPDB_TABLE,41,222,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,6,238,29,8
+    EDITTEXT        IDC_EDIT_PREMIPDB_UID,41,236,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,106,238,29,8
+    EDITTEXT        IDC_EDIT_PREMIPDB_PASS,139,236,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    GROUPBOX        "LogRecord DB 설정",IDC_STATIC,206,368,199,53
+    LTEXT           "DSN",IDC_STATIC,213,380,29,8
+    EDITTEXT        IDC_EDIT_LOGREC_DSN,246,380,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,213,394,29,8
+    EDITTEXT        IDC_EDIT_LOGREC_TABLE,246,392,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,213,408,29,8
+    EDITTEXT        IDC_EDIT_LOGREC_UID,246,406,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,313,408,29,8
+    EDITTEXT        IDC_EDIT_LOGREC_PASS,345,406,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    CONTROL         "Use",IDC_CHECK_LOG,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,375,380,24,10
+    GROUPBOX        "Event DB 설정",IDC_STATIC,1,254,199,53
+    LTEXT           "DSN",IDC_STATIC,6,264,29,8
+    EDITTEXT        IDC_EDIT_EVENT_DSN,41,264,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,6,278,29,8
+    EDITTEXT        IDC_EDIT_EVENT_TABLE,41,276,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,6,292,29,8
+    EDITTEXT        IDC_EDIT_EVENT_UID,41,290,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,106,292,29,8
+    EDITTEXT        IDC_EDIT_EVENT_PASS,139,290,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    CONTROL         "Use",IDC_CHECK_EVENT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,171,264,24,10
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,2,63,403,1
+    GROUPBOX        "Statistics DB 설정(통계)",IDC_STATIC,2,311,199,53
+    LTEXT           "DSN",IDC_STATIC,9,323,29,8
+    EDITTEXT        IDC_EDIT_STATIST_DSN,42,323,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,9,337,29,8
+    EDITTEXT        IDC_EDIT_STATIST_TABLE,42,335,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,9,351,29,8
+    EDITTEXT        IDC_EDIT_STATIST_UID,42,349,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,109,351,29,8
+    EDITTEXT        IDC_EDIT_STATIST_PASS,141,349,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    CONTROL         "Use",IDC_CHECK_STATIST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,173,323,24,10
+    GROUPBOX        "PreUserLimitMLog DB 설정(통계)",IDC_STATIC,206,425,199,
+                    53
+    LTEXT           "DSN",IDC_STATIC,213,437,29,8
+    EDITTEXT        IDC_EDIT_PREUSERMLLOG_DSN,246,437,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,213,451,29,8
+    EDITTEXT        IDC_EDIT_PREUSERMLLOG_TABLE,246,449,128,12,
+                    ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,213,465,29,8
+    EDITTEXT        IDC_EDIT_PREUSERMLLOG_UID,246,463,57,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PREUSERMLLOG_PASS,345,463,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    CONTROL         "Use",IDC_CHECK_PREUSERMLLOG,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,377,437,24,10
+    GROUPBOX        "AllinChargeDB(로그)",IDC_STATIC,3,369,196,53
+    LTEXT           "DSN",IDC_STATIC,9,383,29,8
+    EDITTEXT        IDC_EDIT_ALLINCHARGE_DSN,39,380,128,12,ES_AUTOHSCROLL
+    LTEXT           "테이블명",IDC_STATIC,9,394,29,8
+    EDITTEXT        IDC_EDIT_ALLINCHARGE_TABLE,39,392,128,12,ES_AUTOHSCROLL
+    LTEXT           "유저ID",IDC_STATIC,9,408,29,8
+    EDITTEXT        IDC_EDIT_ALLINCHARGE_UID,39,404,57,12,ES_AUTOHSCROLL
+    LTEXT           "패스워드",IDC_STATIC,105,408,29,8
+    EDITTEXT        IDC_EDIT_ALLINCHARGE_PASS,137,406,57,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    CONTROL         "Use",IDC_CHECK_ALLIN,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,173,380,24,10
+END
+
+IDD_STARTUP_DIALOG DIALOG DISCARDABLE  0, 0, 223, 185
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "서버 스타트업"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "서버 시작",IDOK,54,164,50,17
+    PUSHBUTTON      "종  료",IDCANCEL,112,165,50,16
+    EDITTEXT        IDC_EDIT_INFO,4,20,209,75,ES_MULTILINE | ES_WANTRETURN | 
+                    WS_VSCROLL | WS_HSCROLL | NOT WS_TABSTOP
+    GROUPBOX        "서버 환경",IDC_STATIC,0,7,219,154
+    PUSHBUTTON      "환경 설정",IDC_BUTTON_CONFIG,10,101,53,13
+    PUSHBUTTON      "게임 옵션",IDC_BUTTON_CONFIG2,84,101,53,13
+    PUSHBUTTON      "채널 설정",IDC_BUTTON_CONFIG3,11,123,53,13
+    CONTROL         "시작시 접속 코드 검색 및 초기화",
+                    IDC_CHECK_INITCONNECTSTATUS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,66,147,117,10
+    PUSHBUTTON      "잭팟/로그 설정",IDC_BUTTON_CONFIG4,156,101,53,13
+    PUSHBUTTON      "이벤트 설정",IDC_BUTTON_EVENT,84,124,53,13
+    PUSHBUTTON      "통계기록",IDC_BUTTON_SA,156,123,53,13
+END
+
+IDD_CONFIG2_DIALOG DIALOGEX 0, 0, 403, 321
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "게임 옵션"
+FONT 9, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,277,275,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,335,275,50,14
+    EDITTEXT        IDC_EDIT_NOTICEURL,47,20,189,13,ES_AUTOHSCROLL
+    LTEXT           "공지URL",IDC_STATIC,6,22,35,8
+    EDITTEXT        IDC_EDIT_MAXUSER,46,200,39,12,ES_AUTOHSCROLL
+    LTEXT           "접속 제한",IDC_STATIC,7,201,35,8
+    LTEXT           "명(?-??)",IDC_STATIC_MAXUSER,90,202,48,8
+    EDITTEXT        IDC_EDIT_DBTHREADNUM,44,230,39,12,ES_AUTOHSCROLL
+    LTEXT           "DB Thread",IDC_STATIC,5,232,35,8
+    EDITTEXT        IDC_EDIT_LOGINDBQUENUM,188,231,32,12,ES_AUTOHSCROLL
+    LTEXT           "개",IDC_STATIC,85,233,9,8
+    LTEXT           "개",IDC_STATIC,222,233,8,8
+    LTEXT           "허용 DB Que",IDC_STATIC,141,233,42,8
+    CONTROL         "각 작업 완료후 DB Close",IDC_CHECK_DBCLOSE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,51,247,101,10
+    EDITTEXT        IDC_EDIT_BANNERURL1,47,37,189,13,ES_AUTOHSCROLL
+    LTEXT           "로비배너URL",IDC_STATIC,3,39,41,8
+    EDITTEXT        IDC_EDIT_BANNERURL2,47,53,189,13,ES_AUTOHSCROLL
+    LTEXT           "게임(충전)",IDC_STATIC,3,55,34,8
+    EDITTEXT        IDC_EDIT_PROFILEURL,47,69,189,13,ES_AUTOHSCROLL
+    LTEXT           "Profile URL",IDC_STATIC,5,71,36,8,0,0,HIDC_STATIC
+    LTEXT           "채널 공지:",IDC_STATIC,4,5,40,8
+    EDITTEXT        IDC_EDIT_SERVERINFO,47,3,189,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_LOCATIONURL,47,87,189,13,ES_AUTOHSCROLL
+    LTEXT           "위치URL",IDC_STATIC,4,89,37,8
+    LTEXT           "http://www.netmarble.net + (""게임베너 충전, 프로필 상점 URL"")",
+                    IDC_STATIC,7,183,221,8
+    EDITTEXT        IDC_EDIT_ITEMURL,47,103,189,13,ES_AUTOHSCROLL
+    LTEXT           "아이템URL",IDC_STATIC,4,107,37,8
+    EDITTEXT        IDC_EDIT_ITEMHELPURL,47,119,189,13,ES_AUTOHSCROLL
+    LTEXT           "도움말URL",IDC_STATIC,4,121,37,8
+    GROUPBOX        "GameDB Thread",IDC_STATIC,1,216,236,43
+    GROUPBOX        "LogRecDB Thread",IDC_STATIC,1,266,237,47
+    EDITTEXT        IDC_EDIT_DBTHREADNUM2,43,282,39,12,ES_AUTOHSCROLL
+    LTEXT           "DB Thread",IDC_STATIC,4,284,35,8
+    EDITTEXT        IDC_EDIT_LOGINDBQUENUM2,187,283,32,12,ES_AUTOHSCROLL
+    LTEXT           "개",IDC_STATIC,84,285,10,8
+    LTEXT           "개",IDC_STATIC,221,285,8,8
+    LTEXT           "허용 DB Que",IDC_STATIC,140,285,42,8
+    CONTROL         "각 작업 완료후 DB Close",IDC_CHECK_DBCLOSE2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,50,299,101,10
+    LTEXT           "방 입장시 같은 IP(앞3자리) 허용 제한 ",IDC_STATIC,254,
+                    161,123,8
+    EDITTEXT        IDC_EDIT_SAMEIPLIMIT,254,173,31,12,ES_AUTOHSCROLL
+    LTEXT           "명(0:제한없음)",IDC_STATIC_MAXUSER2,291,175,48,8
+    EDITTEXT        IDC_EDIT_TNOTIC,246,14,146,118,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL
+    LTEXT           "타이틀 공지 : 최대 500자",IDC_STATIC,246,2,117,9
+    CONTROL         "맥어드레스 검사 ",IDC_CHECK_MACADDR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,254,193,123,11
+    GROUPBOX        "입장제한(어뷰저 방지)",IDC_STATIC,245,145,146,66
+    EDITTEXT        IDC_EDIT_LEADERSJOIN,47,136,189,13,ES_AUTOHSCROLL
+    LTEXT           "리더스 URL",IDC_STATIC,4,139,37,8
+    LTEXT           "캐쉬충전URL",IDC_STATIC,2,158,42,8
+    EDITTEXT        IDC_EDIT_CASHURL,47,154,189,13,ES_AUTOHSCROLL
+END
+
+IDD_CONFIG_DIALOG_JACKPOT DIALOG DISCARDABLE  0, 0, 378, 249
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "JackPot Money"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,144,224,33,14
+    PUSHBUTTON      "Cancel",IDCANCEL,196,224,33,14
+    LTEXT           "JackPot Money :",IDC_STATIC,21,60,56,9
+    EDITTEXT        IDC_EDIT_JACKPOT,80,59,99,12,ES_RIGHT | ES_AUTOHSCROLL
+    GROUPBOX        "JackPot Money Setting",IDC_STATIC,15,46,173,52
+    LTEXT           "!!! 주의 OK 버튼을 누르면 값이 변경됩니다.\r(게임중 변경가능)",
+                    IDC_STATIC,19,77,159,16
+    GROUPBOX        "채널별 잭팟셋팅",IDC_STATIC,15,110,358,107
+    EDITTEXT        IDC_EDIT_JACKPOT_1,46,131,72,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_2,46,144,72,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_3,46,157,72,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_4,46,170,72,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_5,46,183,72,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    CTEXT           "초보",IDC_STATIC,18,131,25,9
+    CTEXT           "자유",IDC_STATIC,18,183,25,9
+    CTEXT           "중수",IDC_STATIC,18,144,25,9
+    CTEXT           "도신",IDC_STATIC,18,170,25,9
+    CTEXT           "고수",IDC_STATIC,18,157,25,9
+    LTEXT           "!!!재시작 해야함.(기본 잭팟머니)",IDC_STATIC,17,201,102,
+                    8
+    CONTROL         "잭팟없음",IDC_RADIO_JACKPOT,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,20,17,51,9
+    CONTROL         "잭팟적용",IDC_RADIO_JACKPOT1,"Button",
+                    BS_AUTORADIOBUTTON,20,30,51,9
+    GROUPBOX        "적립비율 [1 ~ 30]",IDC_STATIC,123,117,68,96
+    LTEXT           "게임비 * 1 / ",IDC_STATIC,128,131,38,8
+    EDITTEXT        IDC_EDIT_RATIO_CHOBO,168,131,20,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    LTEXT           "게임비 * 1 / ",IDC_STATIC,128,144,38,8
+    EDITTEXT        IDC_EDIT_RATIO_JUNGSU,168,144,20,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    LTEXT           "게임비 * 1 / ",IDC_STATIC,128,157,38,8
+    EDITTEXT        IDC_EDIT_RATIO_GOSU,168,157,20,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    LTEXT           "게임비 * 1 / ",IDC_STATIC,128,170,38,8
+    EDITTEXT        IDC_EDIT_RATIO_DOSIN,168,170,20,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    LTEXT           "게임비 * 1 / ",IDC_STATIC,128,183,38,8
+    EDITTEXT        IDC_EDIT_RATIO_FREE,168,183,20,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    LTEXT           "!!!재시작 해야함.",IDC_STATIC,131,202,58,8
+    GROUPBOX        "상금비율(로티)",IDC_STATIC,195,117,57,97
+    LTEXT           "!!! 0 은 상금 없다. ",IDC_STATIC,283,101,59,8
+    LTEXT           "잭팟*1/",IDC_STATIC,200,131,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,200,144,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,200,157,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,200,170,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,200,183,25,8
+    EDITTEXT        IDC_EDIT_JACKPOT_CHOBO,226,131,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_JUNGSU,227,144,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_GOSU,227,157,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_DOSIN,227,170,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_FREE,227,183,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    LTEXT           "!!실시간 적용",IDC_STATIC,199,202,50,8
+    GROUPBOX        "게임 기록 유무(실시간 적용)",IDC_STATIC,199,19,173,72
+    CONTROL         "로그 기록을 남긴다.",IDC_CHECK_BLOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,226,35,110,12
+    EDITTEXT        IDC_EDIT_LOGRANGE,227,57,32,12,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "(단위) 억 ",IDC_STATIC,269,59,90,8
+    LTEXT           "기록 허용범위 최소 1억  ~  최대 10000000(1000조)",
+                    IDC_STATIC,202,77,165,8
+    GROUPBOX        "상금비율(스티)",IDC_STATIC,253,116,57,97
+    LTEXT           "잭팟*1/",IDC_STATIC,258,131,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,258,144,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,258,157,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,258,170,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,258,183,25,8
+    EDITTEXT        IDC_EDIT_JACKPOT_CHOBOS,285,131,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_JUNGSUS,285,144,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_GOSUS,285,157,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_DOSINS,285,170,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_FREES,285,183,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    LTEXT           "!!실시간 적용",IDC_STATIC,257,201,50,8
+    GROUPBOX        "상금비율(포카)",IDC_STATIC,313,116,57,97
+    LTEXT           "잭팟*1/",IDC_STATIC,319,131,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,319,144,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,319,157,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,319,170,25,8
+    LTEXT           "잭팟*1/",IDC_STATIC,319,183,25,8
+    EDITTEXT        IDC_EDIT_JACKPOT_CHOBOF,344,131,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_JUNGSUF,344,144,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_GOSUF,344,157,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_DOSINF,344,170,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_JACKPOT_FREEF,344,183,24,12,ES_CENTER | 
+                    ES_AUTOHSCROLL
+    LTEXT           "!!실시간 적용",IDC_STATIC,318,202,50,8
+END
+
+IDD_DIALOG_CONFIGSA DIALOGEX 0, 0, 281, 237
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "게임 통계/ 총액제한"
+FONT 9, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,36,216,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,109,216,50,14
+    LTEXT           "!!! 환경설정 DB셋팅과 같이 사용한다.",IDC_STATIC,11,19,
+                    129,8
+    GROUPBOX        "리더스 총액 제한",IDC_STATIC,7,63,267,150
+    GROUPBOX        "통계기록",IDC_STATIC,7,7,177,41
+    CONTROL         "총액제한",IDC_CHECK_LIMIT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,78,48,9
+    EDITTEXT        IDC_EDIT_NORMAL,105,93,77,13,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "일반 사용자 :",IDC_STATIC,28,95,72,8
+    EDITTEXT        IDC_EDIT_LEADERS,105,109,77,13,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "리더스 사용자 :",IDC_STATIC,28,110,72,8
+    EDITTEXT        IDC_EDIT_LEADERSPLUS,105,125,77,13,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    LTEXT           "리더스플러스 사용자 :",IDC_STATIC,28,127,72,8
+    RTEXT           "원",IDC_STATIC_NOR,194,95,73,13,0,WS_EX_CLIENTEDGE | 
+                    WS_EX_STATICEDGE
+    RTEXT           "원",IDC_STATIC_LEADERS,194,110,73,13,0,WS_EX_CLIENTEDGE | 
+                    WS_EX_STATICEDGE
+    RTEXT           "원",IDC_STATIC_LEADERSP,194,125,73,13,0,
+                    WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+    CONTROL         "통계기록 데이터를 남긴다",IDC_CHECK_SAVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,31,105,13
+    CONTROL         "수호천사 아이템",IDC_CHECK_SAFEANGEL,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,13,150,71,12
+    LTEXT           "최소복구머니 :",IDC_STATIC,17,168,72,8
+    LTEXT           "최대복구머니 :",IDC_STATIC,16,185,72,8
+    EDITTEXT        IDC_EDIT_SAFEMIN,103,165,77,13,ES_RIGHT | ES_AUTOHSCROLL
+    RTEXT           "원",IDC_STATIC_SAFEMIN,192,167,73,13,0,WS_EX_CLIENTEDGE | 
+                    WS_EX_STATICEDGE
+    EDITTEXT        IDC_EDIT_SAFEMAX,102,186,77,13,ES_RIGHT | ES_AUTOHSCROLL
+    RTEXT           "원",IDC_STATIC_SAFEMAX,191,188,73,13,0,WS_EX_CLIENTEDGE | 
+                    WS_EX_STATICEDGE
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "62CutPokerServer MFC 응용 프로그램\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "62CutPokerServer\0"
+            VALUE "LegalCopyright", "Copyright (C) 2001\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "62CutPokerServer.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "62CutPokerServer 응용 프로그램\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 204
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_62CUTPOKERSERVER_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 328
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 301
+    END
+
+    IDD_SETCOLUMN_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 174
+    END
+
+    IDD_SETCHANINFO_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 173
+    END
+
+    IDD_CONFIG3_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 437
+    END
+
+    IDD_CAPTURE_DIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 116
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 248
+    END
+
+    IDD_SEARCH_DIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 116
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 248
+    END
+
+    IDD_DLG_ADMINMAN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 206
+    END
+
+    IDD_CONFIG_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+    END
+
+    IDD_STARTUP_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 219
+    END
+
+    IDD_CONFIG2_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 400
+    END
+
+    IDD_CONFIG_DIALOG_JACKPOT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 377
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 246
+    END
+
+    IDD_DIALOG_CONFIGSA, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 274
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 230
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_CONFIG_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO_MSCODE, 0x403, 7, 0
+0x4f4b, 0x4552, 0x4e41, "\000" 
+    IDC_COMBO_MSCODE, 0x403, 8, 0
+0x4e45, 0x4c47, 0x5349, 0x0048, 
+    IDC_COMBO_MSCODE, 0x403, 9, 0
+0x414a, 0x4150, 0x454e, 0x4553, "\000" 
+    IDC_COMBO_MSCODE, 0x403, 8, 0
+0x4843, 0x4e49, 0x5345, 0x0045, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "Windows 소켓 초기화에 실패하였습니다."
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "62CutPokerServer\n\n62CutPoker\n\n\\62CutPokerServer.Document\n62CutPoker Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "7 Poker Server"
+    AFX_IDS_IDLEMESSAGE     "준비"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "새 문서를 작성합니다\n새 파일"
+    ID_FILE_OPEN            "기존 문서를 엽니다\n열기"
+    ID_FILE_CLOSE           "현재 열린 문서를 닫습니다\n닫기"
+    ID_FILE_SAVE            "현재 열린 문서를 저장합니다\n저장"
+    ID_FILE_SAVE_AS         "현재 열린 문서를 다른 이름으로 저장합니다\n다른 이름으로 저장"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "프로그램 정보와 버전 정보, 저작권 정보를 표시합니다\n정보"
+    ID_APP_EXIT             "응용 프로그램을 종료하기 위해 문서를 저장할 것인지 묻습니다\n종료"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE2       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE3       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE4       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE5       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE6       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE7       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE8       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE9       "이 문서를 엽니다"
+    ID_FILE_MRU_FILE10      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE11      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE12      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE13      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE14      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE15      "이 문서를 엽니다"
+    ID_FILE_MRU_FILE16      "이 문서를 엽니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "다음 창으로 전환합니다\n다음 창"
+    ID_PREV_PANE            "이전 창으로 전환합니다\n이전 창"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "현재 열린 창을 나눕니다\n나누기"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "선택 부분을 지웁니다\n지우기"
+    ID_EDIT_CLEAR_ALL       "모든 것을 지웁니다\n모두 지우기"
+    ID_EDIT_COPY            "선택 부분을 복사하여 클립보드에 넣습니다\n복사"
+    ID_EDIT_CUT             "선택 부분을 잘라내어 클립보드에 넣습니다\n잘라내기"
+    ID_EDIT_FIND            "지정한 문자열을 찾습니다\n찾기"
+    ID_EDIT_PASTE           "클립보드의 내용을 붙여 넣습니다\n붙여넣기"
+    ID_EDIT_REPEAT          "마지막으로 실행한 동작을 반복합니다\n반복"
+    ID_EDIT_REPLACE         "지정한 문자열을 다른 문자열로 바꿉니다\n바꾸기"
+    ID_EDIT_SELECT_ALL      "문서 전체를 선택합니다\n전체 선택"
+    ID_EDIT_UNDO            "마지막으로 한 동작을 취소합니다\n실행 취소"
+    ID_EDIT_REDO            "이전에 취소한 동작을 다시 수행합니다\n다시 실행"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_STATUS_BAR      "상태 표시줄을 표시하거나 감춥니다\n상태 표시줄 전환"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "창의 크기를 변경합니다"
+    AFX_IDS_SCMOVE          "창의 위치를 변경합니다"
+    AFX_IDS_SCMINIMIZE      "창을 아이콘으로 줄여서 표시합니다"
+    AFX_IDS_SCMAXIMIZE      "창을 최대 크기로 확장합니다"
+    AFX_IDS_SCNEXTWINDOW    "다음 문서 창으로 전환합니다"
+    AFX_IDS_SCPREVWINDOW    "이전 문서 창으로 전환합니다"
+    AFX_IDS_SCCLOSE         "현재 열린 창을 닫고 문서를 저장할 것인지를 묻습니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "창을 원래 크기로 복원합니다"
+    AFX_IDS_SCTASKLIST      "작업 목록을 활성화합니다"
+    ID_FILE_CONNECTDENY     "사용자의 접속을 거부/허용합니다\n접속 거부"
+    ID_TOOL_FORCETERMINATEDBTHREAD 
+                            "사용자  종료하여 다시 시작합니다.\n 사용자 DB 쓰레드 강제 종료"
+    ID_VIEW_CONFIG2         "게임 옵션을 설정합니다. \n게임 옵션"
+    ID_VIEW_CONFIG3         "채널 환경을 설정합니다.\n채널 설정"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_CONFIG          "서버의 환경 옵션을 설정합니다.\n환경설정"
+    ID_VIEW_CONFIGEVENT     "이벤트를 설정합니다.\n이벤트 설정"
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE 18, 1
+#pragma code_page(949)
+#endif //_WIN32
+#include "res\62CutPokerServer.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.kor\afxres.rc"          // Standard components
+#include "l.kor\afxdb.rc"           // Database resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

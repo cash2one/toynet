@@ -1,0 +1,327 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+// Generated Help ID header file
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.hm"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\NMServerAgent.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\NMServerAgent.ico"
+IDI_NETMARBLE_LOGO      ICON    DISCARDABLE     "res\\marblelogo.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 162, 71
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About NMServerAgent"
+FONT 9, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,21
+    LTEXT           "NMServerAgent Version 1.0",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 2002 Netamrble",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,54,47,50,14,WS_GROUP
+END
+
+IDD_CONNECT DIALOGEX 0, 0, 187, 129
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "서버에 접속하기"
+FONT 9, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "접속하기",IDOK,34,102,50,19
+    PUSHBUTTON      "취소",IDCANCEL,95,101,50,19
+    LTEXT           "접속서버명 : ",IDC_STATIC,7,43,48,8
+    COMBOBOX        IDC_COMBO_LIST,65,41,116,128,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "서버 리스트 만들기",IDC_BUTTON_MAKE_LIST,7,7,174,25
+    EDITTEXT        IDC_EDIT_SRV_INFO,8,63,173,31,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+END
+
+IDD_SRV_LIST DIALOG DISCARDABLE  0, 0, 275, 221
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "서버 리스트 만들기"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "저장하기",IDOK,81,180,50,19
+    PUSHBUTTON      "취소",IDCANCEL,144,180,50,19
+    CONTROL         "List1",IDC_LIST_SRV,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_AUTOARRANGE | WS_BORDER | WS_TABSTOP,
+                    7,60,260,116
+    GROUPBOX        "리스트 정보",IDC_STATIC,7,5,260,49
+    LTEXT           "서버명 : ",IDC_STATIC,17,19,28,8
+    LTEXT           "IP : ",IDC_STATIC,30,37,14,8
+    LTEXT           "Port : ",IDC_STATIC,177,37,20,8
+    EDITTEXT        IDC_EDIT1,46,15,122,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,46,34,122,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,199,34,62,14,ES_CENTER | ES_AUTOHSCROLL
+    PUSHBUTTON      "추가",IDC_BUTTON_MAKE,176,15,36,13
+    PUSHBUTTON      "수정",IDC_BUTTON_EDIT,219,15,36,13
+    LTEXT           "추가, 수정 후 저장하기 버튼을 눌러야 적용이 됩니다.",
+                    IDC_STATIC,59,206,170,9
+END
+
+IDD_NMSERVERAGENT_DIALOG DIALOGEX 0, 0, 467, 263
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | 
+    WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "NMServerAgent 세븐포커2 (중복접속, 관리자 권한설정)"
+FONT 9, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "접속(관리)",IDC_BUTTON_CONNECT,300,36,47,17
+    EDITTEXT        IDC_EDIT_ID,300,109,47,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "아이디찾기",IDC_BUTTON_FIND,300,127,47,17
+    PUSHBUTTON      "아이디종료",IDC_BUTTON_DISCONNECT,300,147,47,17
+    COMBOBOX        IDC_COMBO_ULIST,357,8,72,265,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "중복허용",IDC_CHECK_DCON,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,370,226,37,10
+    CONTROL         "List1",IDC_LIST_SRV,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_AUTOARRANGE | WS_BORDER | 
+                    WS_TABSTOP,6,6,285,117
+    CONTROL         "List2",IDC_LIST_USER,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,357,24,99,198
+    CONTROL         "",IDC_RICHEDITLIST,"RICHEDIT",ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE | WS_BORDER | WS_TABSTOP,5,126,286,95
+    PUSHBUTTON      "히스토리 저장",IDC_BUTTON_SAVE,300,178,47,17
+    PUSHBUTTON      "종료하기",IDCANCEL,409,227,47,17
+    ICON            IDR_MAINFRAME,IDC_STATIC,17,227,20,20
+    GROUPBOX        "",IDC_STATIC,3,0,461,259
+    PUSHBUTTON      "자동접속",IDC_BUTTON_AUTO,300,16,47,17
+    PUSHBUTTON      "접속끊기",IDC_BUTTON_ALLDIS,300,57,47,17,0,0,
+                    HIDC_BUTTON_ALLDIS
+    RTEXT           "잭팟상금",IDC_STATIC_JACKPOT,171,227,118,11,WS_BORDER,
+                    WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+    CONTROL         "모든 서버 잭팟금액 통일",IDC_CHECK_AVERAGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,59,227,92,8
+    LTEXT           "메세지",IDC_STATIC_AUTO_MSG,59,244,181,9
+    RTEXT           "Queue카운드",IDC_STATIC_QUEUE,295,227,23,11,0,
+                    WS_EX_CLIENTEDGE
+    PUSHBUTTON      "관리자모드",IDC_BUTTON_ADMIN,300,198,47,17
+    GROUPBOX        "서버관리",IDC_STATIC,295,4,56,78,BS_CENTER
+    GROUPBOX        "유저관리",IDC_STATIC,295,97,57,74,BS_CENTER
+END
+
+IDD_DLG_ADMINMAN DIALOG DISCARDABLE  0, 0, 187, 213
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "관리자 모드 (관리자 아이디와 아이피 일대일)"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "저장하기",IDOK,97,184,39,14
+    PUSHBUTTON      "취소",IDCANCEL,141,184,39,14
+    LTEXT           "ID :",IDC_STATIC,7,101,12,8
+    EDITTEXT        IDC_EDIT_ID,33,99,51,12,ES_AUTOHSCROLL
+    CONTROL         "List1",IDC_LIST_ADMIN,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,7,7,173,84
+    EDITTEXT        IDC_EDIT_GRADE,33,114,51,12,ES_AUTOHSCROLL
+    LTEXT           "Grade :",IDC_STATIC,7,116,25,8
+    PUSHBUTTON      "추가",IDC_BUTTON_ADD,135,100,31,14
+    PUSHBUTTON      "삭제",IDC_BUTTON_DEL,135,119,31,14
+    PUSHBUTTON      "관리자 아이디 전송",IDC_BTN_ADMININFOSEND,105,149,74,15
+    LTEXT           "현재 접속한 관리자 수",IDC_STATIC,7,152,72,8
+    RTEXT           "0",IDC_STATIC_COUNT,81,152,12,8
+    CONTROL         "IPAddress1",IDC_IPADDRESS1,"SysIPAddress32",WS_TABSTOP,
+                    33,130,96,12
+    LTEXT           "IP :",IDC_STATIC,7,132,12,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041204b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "NMServerAgent MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "NMServerAgent\0"
+            VALUE "LegalCopyright", "Copyright (C) 2002\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "NMServerAgent.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "NMServerAgent Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_POPMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "MAKELIST"
+    BEGIN
+        MENUITEM "리스트에서 제거하기",         IDC_MENU_DEL
+    END
+    POPUP "SERVERLIST"
+    BEGIN
+        MENUITEM "접속 끊기",                   IDC_MENU_DISCONNECT
+    END
+    POPUP "RICHEDIT"
+    BEGIN
+        MENUITEM "복사",                        IDC_MENU_COPY
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_NMSERVERAGENT_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 465
+    END
+
+    IDD_DLG_ADMINMAN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 206
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About NMServerAgent..."
+    IDP_SOCKETS_INIT_FAILED "Windows sockets initialization failed."
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\NMServerAgent.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

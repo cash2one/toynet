@@ -1,0 +1,20 @@
+
+⊙ 로그 기록 일시: date[04/24/03] time[11:33:19]
+LogRecordDB 에러 - AddNewGameDB Update (ID=c1) : 이 필드의 Required 속성이 True로 설정되어 있으므로 'LogRecordDB.Win_ID' 필드에 Null 값을 포함할 수 없습니다. 이 필드에 값을 입력하십시오.
+
+
+⊙ 로그 기록 일시: date[04/24/03] time[11:33:22]
+LogRecordDB 에러 - AddNewGameDB Update (ID=a1) : 이 필드의 Required 속성이 True로 설정되어 있으므로 'LogRecordDB.Win_ID' 필드에 Null 값을 포함할 수 없습니다. 이 필드에 값을 입력하십시오.
+
+
+⊙ 로그 기록 일시: date[04/24/03] time[11:36:23]
+LogRecordDB 에러 - AddNewGameDB Update (ID=c1) : 이 필드의 Required 속성이 True로 설정되어 있으므로 'LogRecordDB.Win_ID' 필드에 Null 값을 포함할 수 없습니다. 이 필드에 값을 입력하십시오.
+
+
+⊙ 로그 기록 일시: date[04/24/03] time[11:37:28]
+LogRecordDB 에러 - AddNewGameDB Update (ID=c1) : 이 필드의 Required 속성이 True로 설정되어 있으므로 'LogRecordDB.Win_ID' 필드에 Null 값을 포함할 수 없습니다. 이 필드에 값을 입력하십시오.
+
+
+⊙ 로그 기록 일시: date[04/24/03] time[11:40:39]
+LogRecordDB 에러 - AddNewGameDB Update (ID=a1) : 이 필드의 Required 속성이 True로 설정되어 있으므로 'LogRecordDB.Win_ID' 필드에 Null 값을 포함할 수 없습니다. 이 필드에 값을 입력하십시오.
+

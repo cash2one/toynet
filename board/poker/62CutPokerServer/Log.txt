@@ -1,0 +1,965 @@
+
+⊙ 로그 기록 일시: date[04/23/03] time[17:09:05]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/24/03] time[10:30:06]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/24/03] time[10:47:51]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/24/03] time[11:29:20]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/24/03] time[11:33:54]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/24/03] time[18:47:56]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/24/03] time[18:53:53]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/24/03] time[19:05:54]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/25/03] time[10:42:34]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/25/03] time[10:54:50]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:41:11]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:41:18]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:41:46]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:43:50]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:45:43]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:45:55]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:49:22]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:49:31]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:49:36]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:49:58]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:51:35]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/26/03] time[21:52:04]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:09:38]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:35:44]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:46:50]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:48:17]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:49:05]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:49:05]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:49:31]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:49:31]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:50:02]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:50:02]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:50:26]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:50:26]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:50:26]
+로그 리록용 DB 에러카운트 허용치 초과로 DB컨넥션을 Close함
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:50:26]
+로그 리록용 DB 에러카운트 허용치 초과로 DB컨넥션을 Close함
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:50:50]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:50:50]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:51:14]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:51:14]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:55:54]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:57:23]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[10:57:23]
+LogRecordDB 에러 - AddNewGameDB Open : 조건식의 데이터 형식이 일치하지 않습니다.
+
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:15:22]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:21:09]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:33:54]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:39:39]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:43:26]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:44:24]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:44:32]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:44:44]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:45:03]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:49:25]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:49:52]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:50:42]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:50:53]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:51:20]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:51:37]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:51:58]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:52:34]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:52:43]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:54:11]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[11:59:57]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[12:01:00]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[12:01:07]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[12:27:28]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[12:28:00]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[12:28:09]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[14:24:47]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[14:26:04]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[15:36:02]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[15:44:01]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[18:29:47]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[18:34:12]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/28/03] time[18:34:28]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/29/03] time[11:06:04]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/29/03] time[11:23:17]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/29/03] time[14:17:36]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/29/03] time[23:35:21]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/29/03] time[23:36:52]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/29/03] time[23:37:30]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/29/03] time[23:40:03]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/29/03] time[23:48:19]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:02:10]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:03:07]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:03:17]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:06:33]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:06:42]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:06:59]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:07:09]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:08:22]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:09:24]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:09:48]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:11:18]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:11:39]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:11:47]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:13:04]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:13:19]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[00:13:32]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[04/30/03] time[09:23:25]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/02/03] time[09:44:30]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/02/03] time[09:47:01]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/03/03] time[00:26:07]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/03/03] time[00:29:45]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[16:36:24]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[16:38:11]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[16:43:19]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:13:46]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:16:26]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:17:25]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:21:11]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:24:56]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:25:04]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:26:04]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:37:44]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:45:28]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:48:02]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:57:52]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[17:59:02]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[18:07:56]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[18:12:04]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[18:14:36]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[18:20:32]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[18:28:25]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[18:30:15]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[18:31:14]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[18:34:05]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/09/03] time[18:50:21]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/10/03] time[00:43:58]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/10/03] time[00:48:15]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/10/03] time[00:49:03]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/10/03] time[00:49:33]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/10/03] time[09:58:49]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/10/03] time[09:59:24]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/10/03] time[10:00:35]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/12/03] time[10:21:21]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/12/03] time[10:23:00]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/15/03] time[17:45:23]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/25/03] time[20:55:55]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/25/03] time[21:16:21]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/25/03] time[21:27:03]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/25/03] time[21:28:33]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/25/03] time[21:34:33]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[05/27/03] time[08:45:37]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[11:43:37]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[12:04:07]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[12:08:22]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[12:11:25]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[16:30:33]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[16:30:40]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[16:34:54]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[16:35:00]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[16:35:10]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[16:35:36]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[16:36:18]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[16:38:53]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[17:34:17]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[17:36:20]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[20:46:46]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[20:54:13]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[20:55:17]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[21:15:22]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/02/03] time[21:16:35]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/07/03] time[10:29:30]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/07/03] time[10:30:03]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/09/03] time[11:23:25]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/09/03] time[11:24:57]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/09/03] time[11:25:43]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/09/03] time[11:28:54]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/09/03] time[11:29:49]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/09/03] time[11:31:22]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/09/03] time[11:33:16]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/09/03] time[11:34:30]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/09/03] time[11:39:02]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/09/03] time[11:41:41]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/09/03] time[11:44:49]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/12/03] time[14:36:22]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/12/03] time[14:53:11]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/12/03] time[16:38:14]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/13/03] time[11:28:29]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/13/03] time[14:51:43]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/13/03] time[14:59:27]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/13/03] time[15:04:32]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[12:00:48]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[12:05:41]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[13:36:46]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[13:42:58]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[15:02:25]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[15:19:49]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[17:12:32]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[17:31:27]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[17:47:49]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[17:58:49]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[18:16:28]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[18:35:19]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[18:37:46]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[18:49:01]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[19:27:03]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/14/03] time[19:55:55]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/16/03] time[09:58:39]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/16/03] time[12:00:48]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/16/03] time[12:26:57]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/16/03] time[13:35:13]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/16/03] time[14:28:32]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/17/03] time[17:15:01]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/17/03] time[17:21:42]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/20/03] time[17:59:45]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/23/03] time[10:37:14]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/23/03] time[10:41:14]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/23/03] time[10:52:23]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/23/03] time[10:59:51]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/23/03] time[11:01:11]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/23/03] time[11:03:18]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/23/03] time[14:55:20]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/23/03] time[14:59:46]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/23/03] time[15:39:09]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/24/03] time[11:03:37]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/24/03] time[17:47:07]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/24/03] time[18:06:20]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/24/03] time[18:25:46]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/25/03] time[13:40:32]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/25/03] time[14:44:03]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/25/03] time[15:47:45]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/25/03] time[17:09:29]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/25/03] time[17:21:52]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/25/03] time[17:27:13]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/25/03] time[17:28:13]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/25/03] time[17:42:45]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/25/03] time[17:58:12]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/26/03] time[14:18:26]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/26/03] time[14:40:45]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/26/03] time[15:33:24]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/26/03] time[17:35:15]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/26/03] time[17:38:07]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/26/03] time[17:48:44]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/26/03] time[23:24:16]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/27/03] time[12:09:40]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/30/03] time[02:36:41]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/30/03] time[10:41:21]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[06/30/03] time[10:47:02]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[07/07/03] time[18:25:41]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[07/07/03] time[18:26:55]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[07/07/03] time[18:31:20]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[07/07/03] time[18:55:29]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[07/31/03] time[11:41:22]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[07/31/03] time[11:48:12]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[07/31/03] time[13:44:01]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[07/31/03] time[15:31:57]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[07/31/03] time[15:47:24]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[08/06/03] time[14:12:32]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[08/06/03] time[14:32:48]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[08/07/03] time[15:30:58]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[08/07/03] time[15:46:40]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[08/07/03] time[15:49:05]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[08/07/03] time[17:20:49]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[08/13/03] time[12:30:33]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[08/13/03] time[16:57:39]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[09/16/03] time[10:50:58]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[09/16/03] time[10:55:56]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/01/03] time[18:23:13]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/01/03] time[18:53:33]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/01/03] time[18:57:02]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/01/03] time[19:02:14]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/01/03] time[19:03:22]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/02/03] time[13:51:17]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/02/03] time[14:23:03]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/02/03] time[14:24:21]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/02/03] time[14:27:25]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/04/03] time[10:22:08]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/04/03] time[10:37:40]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/04/03] time[10:38:06]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/04/03] time[10:40:49]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/04/03] time[10:47:44]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/08/03] time[18:31:46]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/08/03] time[18:52:45]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/09/03] time[10:35:27]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/09/03] time[10:36:13]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/09/03] time[17:45:50]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/10/03] time[12:27:16]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/10/03] time[14:05:41]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/11/03] time[10:12:54]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/11/03] time[10:19:41]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/11/03] time[10:57:01]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/13/03] time[10:19:38]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/13/03] time[11:49:01]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/13/03] time[13:35:51]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/13/03] time[14:20:33]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[10:04:27]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[10:36:33]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[10:36:48]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[11:07:25]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[11:17:21]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[11:41:35]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[11:51:04]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[12:03:22]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[13:51:23]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[14:03:17]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[14:08:55]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[14:33:33]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[14:35:07]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[14:36:37]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[14:36:59]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[14:38:30]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[14:44:00]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[14:48:27]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/14/03] time[14:49:12]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/15/03] time[10:00:56]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/15/03] time[10:12:15]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/15/03] time[10:45:35]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/15/03] time[14:23:11]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/15/03] time[14:49:11]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/15/03] time[14:59:17]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/15/03] time[15:03:00]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/15/03] time[15:05:02]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/15/03] time[15:54:45]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/15/03] time[16:02:31]
+ 서버 가동 - GameCode=42, ServerCode=1
+
+⊙ 로그 기록 일시: date[10/16/03] time[10:05:18]
+ 서버 가동 - GameCode=42, ServerCode=1
