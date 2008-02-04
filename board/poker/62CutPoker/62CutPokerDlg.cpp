@@ -1651,6 +1651,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 	// 2003 06 23
 	case SV_ALLCHANINFO: // 모든 채널 정보
 		{
+			/*
 			CSV_ALLCHANINFO msg;
 			msg.Get(lpData, TotSize);
 
@@ -1668,6 +1669,11 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 
 			// 메시지 창 닫음
 			g_pTitleDlg->m_MsgDlg.OnOK();
+			*/
+			
+			CSV_ASK_ENTERCHAN aemsg;
+			aemsg.Set(0);
+			SockMan.SendData(g_MainSrvSID, aemsg.pData, aemsg.GetTotalSize());
 
 		} break;
 
