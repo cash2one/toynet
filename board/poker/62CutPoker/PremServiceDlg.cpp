@@ -60,12 +60,14 @@ BOOL CPremServiceDlg::OnInitDialog()
 	CDialogCtrlReposition CtrlRepos;
 	CtrlRepos.Reposition(m_hWnd);
 
-	char avatardir[MAX_PATH] = {0,};
-	GetBaseAvatarDir(avatardir, MAX_PATH-1);
+	//char avatardir[MAX_PATH] = {0,};
+	char avatardir[MAX_PATH] = "Avatar";
+	//GetBaseAvatarDir(avatardir, MAX_PATH-1);
 
 	// 비트맵 모양으로 다이얼로그 리전을 설정
 	CMyBitmap Back;
 	CString fname;
+	//fname.Format("%s\\Common\\image\\PremBack.bmp", avatardir);
 	fname.Format("%s\\Common\\image\\PremBack.bmp", avatardir);
 	if(Back.LoadBitmapFile(fname)) {
 		m_BmpRegion.SetWindowRgn(m_hWnd, (HBITMAP)Back, RGB(255,0,255));
@@ -109,8 +111,10 @@ void CPremServiceDlg::OnPaint()
 	cdc.CreateCompatibleDC(&dc);
 	if(cdc.m_hDC == NULL) return;
 
-	char avatardir[MAX_PATH] = {0,};
-	GetBaseAvatarDir(avatardir, MAX_PATH-1);
+	//char avatardir[MAX_PATH] = {0,};
+	char avatardir[MAX_PATH] = "Avatar";
+
+	//GetBaseAvatarDir(avatardir, MAX_PATH-1);
 
 	CMyBitmap Back;
 	CString fname;

@@ -213,7 +213,7 @@ BOOL C62CutPokerDlg::OnInitDialog()
 	SetWindowText(str);
 
 	// 아바타 디스플레이 모듈 초기화
-	InitAvatarModule();
+	//InitAvatarModule();
 
 	// 접속 메세지 표기
 	m_ConnectMsgDlg.MsgBox(0, "메인서버에 접속중입니다");
@@ -294,8 +294,9 @@ BOOL C62CutPokerDlg::OnInitDialog()
 #endif
 
 	// 욕설 필터링 데이터 읽기
-	char strbuf[1024] = {0,};
-	GetBaseAvatarDir(strbuf, 1023);
+	//char strbuf[1024] = {0,};
+	char strbuf[1024] = "Avatar";
+	//GetBaseAvatarDir(strbuf, 1023);
 	CString filterfile = strbuf;
 	filterfile += "\\filter.bcd";
 	if(!BadChat.Open(filterfile)) {
@@ -3386,8 +3387,9 @@ void C62CutPokerDlg::BrowserMove(LPCTSTR targeturl)
 
 	#if(0) // 기존 방식(사용 안함)				
 		// 아바타 모듈 기본 폴더 얻기
-		char strbuf[1024] = {0,}; 
-		GetBaseAvatarDir(strbuf, 1023); 
+		//char strbuf[1024] = {0,}; 
+		char strbuf[1024] = "Avatar"; 
+		//GetBaseAvatarDir(strbuf, 1023); 
 
 		// 브라우저 제어 프로그램
 		CString exeName = strbuf; 
