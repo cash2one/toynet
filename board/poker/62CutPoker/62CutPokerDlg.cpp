@@ -214,6 +214,10 @@ BOOL C62CutPokerDlg::OnInitDialog()
 
 	// 아바타 디스플레이 모듈 초기화
 	//InitAvatarModule();
+	//InitAvatarModule_ForTest("E:\\work\\board\\poker\\_BIN\\Client", "E:\\work\\board\\poker\\_BIN\\Client\\AvatarDisplay.dll");
+	InitAvatarModule_ForTest(".\\Avatar", ".\\Avatar\\AvatarDisplay.dll");
+
+
 
 	// 접속 메세지 표기
 	m_ConnectMsgDlg.MsgBox(0, "메인서버에 접속중입니다");
