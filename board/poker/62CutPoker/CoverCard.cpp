@@ -40,6 +40,10 @@ void CCoverCard::Clear()
 	CCard::Clear();
 	bSelect = FALSE;
 	bChangeCard = FALSE;
+	bButtonDown = FALSE;
+	bButtonMove = FALSE;
+	bBUttonUp = FALSE;
+	bDraw = FALSE;
 }
 
 void CCoverCard::Reset()
@@ -50,6 +54,7 @@ void CCoverCard::Reset()
 	bAllowControl = FALSE;
 	bButtonDown = FALSE;
 	bButtonMove = FALSE;
+	bBUttonUp = FALSE;
 	bDraw = FALSE;
 }
 
@@ -73,7 +78,7 @@ void CCoverCard::Draw( int nYp )
 BOOL CCoverCard::OnLButtonUp(int xp, int yp)
 {
 	const int nOopenGap = 40;
-	if( bAllowControl && Game.FlyWindCard == FALSE )
+	if( bAllowControl && Game.FlyWindCard == FALSE && bButtonMove == TRUE )
 	{
 		if ( nYpMove > nLimitYp + nOopenGap)
 		{
