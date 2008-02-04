@@ -129,6 +129,10 @@ SOURCE=.\CharView.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\CoverCard.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\GameDlg.cpp
 # End Source File
 # Begin Source File
@@ -162,6 +166,10 @@ SOURCE=.\62CutPokerDlg.h
 # Begin Source File
 
 SOURCE=.\CharView.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\CoverCard.h
 # End Source File
 # Begin Source File
 
