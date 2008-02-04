@@ -1312,7 +1312,7 @@ CString CGame::GetMyName()
 		for(i=3;i<min(nCard,TOTAL_CARD);i++){			
 			aCard[i] = g_Poker.PS[nSNum].nCard[i-2];
 		}*/		
-		for(i=0;i<3;i++){
+		for(i=0;i<min(nCard,TOTAL_CARD);i++){
 			aCard[i] = CardDeck[0].GetCardNo(i);
 		}
 	}	
