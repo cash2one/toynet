@@ -28,6 +28,10 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CLOSE()
 	ON_COMMAND(ID_FILE_CONNECTDENY, OnFileConnectdeny)
 	ON_COMMAND(ID_TOOL_FORCETERMINATEDBTHREAD, OnToolForceterminatedbthread)	
+	ON_WM_WINDOWPOSCHANGING()
+	ON_WM_DESTROY()
+	ON_MESSAGE(WM_TRAYICON_MSG, TrayIconMsg)
+	ON_WM_SYSCOMMAND()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -332,3 +336,72 @@ void CMainFrame::Connectdeny()
 }
 
 
+
+void CMainFrame::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos) 
+{
+	CFrameWnd::OnWindowPosChanging(lpwndpos);
+	
+	// TODO: Add your message handler code here
+	//m_bIsTrayIcon = FALSE;
+	//RegistTrayIcon();
+	//ShowWindow(SW_HIDE);
+	//lpwndpos->flags &= ~SWP_SHOWWINDOW;
+}
+
+void CMainFrame::RegistTrayIcon()
+{
+	NOTIFYICONDATA  nid;
+	nid.cbSize = sizeof(nid);
+	nid.hWnd = m_hWnd; // 메인 윈도우 핸들
+	nid.uID = IDR_MAINFRAME;  // 아이콘 리소스 ID
+	nid.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP; // 플래그 설정
+	nid.uCallbackMessage = WM_TRAYICON_MSG; // 콜백메시지 설정
+	nid.hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME); // 아이콘 로드 
+
+	char strTitle[256];
+	GetWindowText(strTitle, sizeof(strTitle)); // 캡션바에 출력된 문자열 얻음
+	lstrcpy(nid.szTip, strTitle); 
+	Shell_NotifyIcon(NIM_ADD, &nid);
+	SendMessage(WM_SETICON, (WPARAM)TRUE, (LPARAM)nid.hIcon);
+	m_bIsTrayIcon = TRUE;
+
+}
+
+void CMainFrame::OnDestroy() 
+{
+	CFrameWnd::OnDestroy();
+	
+	// TODO: Add your message handler code here
+	if(m_bIsTrayIcon) // 현재 트레이 아이콘으로 설정되었는지 확인 
+	 {
+		  NOTIFYICONDATA  nid;
+		  nid.cbSize = sizeof(nid);
+		  nid.hWnd = m_hWnd; // 메인 윈도우 핸들
+		  nid.uID = IDR_MAINFRAME;
+
+		  // 작업 표시줄(TaskBar)의 상태 영역에 아이콘을 삭제한다.
+		  Shell_NotifyIcon(NIM_DELETE, &nid);
+	 }	
+}
+
+LRESULT CMainFrame::TrayIconMsg(WPARAM wParam, LPARAM lParam)
+{
+	if(lParam == WM_LBUTTONDBLCLK)
+	{  
+		ShowWindow(SW_SHOW);
+	}
+
+	return true;
+
+}
+
+void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam) 
+{
+	// TODO: Add your message handler code here and/or call default
+	if(nID == SC_MINIMIZE)
+	{ 
+		ShowWindow(SW_HIDE);
+	}
+	else
+		CFrameWnd::OnSysCommand(nID, lParam);
+}

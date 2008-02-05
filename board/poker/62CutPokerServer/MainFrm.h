@@ -8,7 +8,7 @@
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
-
+#define  WM_TRAYICON_MSG WM_USER + 1
 class CMainFrame : public CFrameWnd
 {
 protected: // create from serialization only
@@ -44,13 +44,20 @@ protected:  // control bar embedded members
 
 // Generated message map functions
 protected:
+	bool m_bIsTrayIcon;
 	//{{AFX_MSG(CMainFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();
 	afx_msg void OnFileConnectdeny();
 	afx_msg void OnToolForceterminatedbthread();
+	afx_msg void OnWindowPosChanging(WINDOWPOS FAR* lpwndpos);
+	afx_msg void OnDestroy();
+	afx_msg LRESULT TrayIconMsg( WPARAM wParam, LPARAM lParam ); 
+	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+private:
+	void RegistTrayIcon();
 };
 
 /////////////////////////////////////////////////////////////////////////////

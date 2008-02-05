@@ -10,6 +10,8 @@
 /////////////////////////////////////////////////////////////////////////////
 // CStartUpDlg dialog
 
+#define  WM_TRAYICON_MSG WM_USER + 1
+
 class CStartUpDlg : public CDialog
 {
 // Construction
@@ -33,6 +35,8 @@ public:
 
 // Implementation
 protected:
+	void TrayIconMsg(WPARAM wParam, LPARAM lParam);
+	bool m_bIsTrayIcon;
 
 	// Generated message map functions
 	//{{AFX_MSG(CStartUpDlg)
@@ -45,8 +49,13 @@ protected:
 	afx_msg void OnButtonConfig4();
 	afx_msg void OnButtonEvent(); // ### [이벤트 티켓] ###
 	afx_msg void OnButtonSa();	  // [ 통계기록 ]
+	afx_msg void OnWindowPosChanging(WINDOWPOS FAR* lpwndpos);
+	afx_msg void OnDestroy();
+	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+private:
+	void RegistTrayIcon();
 };
 
 //{{AFX_INSERT_LOCATION}}
