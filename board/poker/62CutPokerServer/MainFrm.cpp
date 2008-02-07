@@ -342,6 +342,7 @@ void CMainFrame::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	CFrameWnd::OnWindowPosChanging(lpwndpos);
 	
 	// TODO: Add your message handler code here
+	// 트레이 변경시 - jeong
 	//m_bIsTrayIcon = FALSE;
 	//RegistTrayIcon();
 	//ShowWindow(SW_HIDE);

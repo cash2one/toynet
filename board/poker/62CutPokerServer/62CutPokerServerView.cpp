@@ -967,7 +967,7 @@ BOOL C62CutPokerServerView::ProcessPacket(int sid, CMySocket *pSocket, char* lpd
 			// MsgData.AuthCookie			: 인증 쿠키(주의! NULL로 끝나지 않는다)
 			// MsgData.DataCookie			: 데이터 쿠키(주의! NULL로 끝나지 않는다)
 
-
+			/* - jeong
 			// [서버 에이전트 작업] 
 			if(g_nAgentIndex == -1 && strcmp(MsgData.pAL->ID,CONNECT_ID)!=0)
 			{
@@ -978,6 +978,7 @@ BOOL C62CutPokerServerView::ProcessPacket(int sid, CMySocket *pSocket, char* lpd
 				ShowState(_T("에이전트 종료로 인하여 사용자의 접속을 거부합니다." ));
 				break;
 			}
+			*/
 			
 			// 접속자 제한 인원 초과
 			if(RealUser >= Cfg2.MaxUser || RealUser >= MAX_USER-1) {
@@ -990,9 +991,9 @@ BOOL C62CutPokerServerView::ProcessPacket(int sid, CMySocket *pSocket, char* lpd
 
 
 			////////////////////////////////////////////////////////////////////////////////////////
-			// [서버 에이전트 작업] : 접속을 허락한다!!
-			if(strcmp(MsgData.pAL->ID,CONNECT_ID)==0 && strcmp(MsgData.pAL->Pass,CONNECT_PASS)==0)
-			{
+			// [서버 에이전트 작업] : 접속을 허락한다!!   //에이전트 제거 - jeong
+			//if(strcmp(MsgData.pAL->ID,CONNECT_ID)==0 && strcmp(MsgData.pAL->Pass,CONNECT_PASS)==0)
+			//{
 
 				// 비어있는 사용자 번호 검색
 				int unum = -1;
@@ -1087,8 +1088,8 @@ BOOL C62CutPokerServerView::ProcessPacket(int sid, CMySocket *pSocket, char* lpd
 
 				// 인원수 증가 시켜야 되지 않을까?????????
 				RealUser++;
-				break;
-			}
+				//break;				//에이전트 제거 - jeong
+			//}
 
 			// [SSO 작업] - 블럭 전체 수정(GetTotNum과 로그인 거부 메시지가 바뀌었음)
 			// DB처리량 과다로 접속 불가
