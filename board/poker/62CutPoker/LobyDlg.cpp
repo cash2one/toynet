@@ -1364,18 +1364,20 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 	bmp.TransDraw(dc.m_hDC, ax, ay+23, 15, 15, 15*g_MyInfo.UI.nIcon, 0, RGB(255,0,255));
 	bmp.DeleteObject();
 
-
-	// 아이디 찍기
+	/*	deleted by jeong
 	CString str;
 	CFont* pOldFont = dc.SelectObject(&Font1);
+	
+	// 아이디 찍기 
 	dc.SetTextColor(RGB(255,255,255));
 	rect.SetRect(0,0,200,80);
 	rect.OffsetRect(658, ay+3);
 	str.Format("ID : %s", g_MyInfo.UI.ID);// ### [ 관전기능 ] ###	
-	dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);		
+	//dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);		
 	rect.OffsetRect(0, 20);
 	str.Format(g_StrMan.Get(_T("LEVEL")));	
-	dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);
+	//dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);
+	
 
 	// ### [ 관전기능 ] ###
 	rect.OffsetRect(0, 30);
@@ -1407,6 +1409,7 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 	cdc.DeleteDC();
 	Back.DeleteObject();
 	m_CharView.SetCharacter(&g_MyInfo.UI);// ### [ 관전기능 ] ###
+	*/
 }
 
 BOOL CLobyDlg::OnEraseBkgnd(CDC* pDC) 

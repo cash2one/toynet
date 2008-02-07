@@ -184,8 +184,10 @@ public:
 	void SetWindCardEnd(BOOL bFirst=FALSE);
 	void GetCardNum(int pCard[],enum SEVEN_CARD eName, int nVal);
 	void CastChip(int pnum, INT64 nMarble, int sdelay = 0);
+	void CastChipEx(int pnum, INT64 nMarble, int sdelay = 0);
 	
 	void CastChipJackPot(int pnum, INT64 nMarble, int sdelay = 0);
+	
 	
 	void PreDrawCastedChip(BYTE *pChipCnt);
 	void AddChip(INT64 nMoney);

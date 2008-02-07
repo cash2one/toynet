@@ -128,6 +128,7 @@ void CRefuseInviteDlg::OnPaint()
 	rt.SetRect(0,0,247,22);
 	rt.OffsetRect(16,42);
 	dc.DrawText(szID,&rt, DT_LEFT | DT_WORDBREAK);
+	
 	//거절 내용
 	rt.SetRect(0,0,203,40);
 	rt.OffsetRect(61,72);
@@ -137,6 +138,7 @@ void CRefuseInviteDlg::OnPaint()
 	h = NULL;
 	cdc.DeleteDC();
 	Font1.DeleteObject();
+	
 	
 	// Do not call CDialog::OnPaint() for painting messages
 }

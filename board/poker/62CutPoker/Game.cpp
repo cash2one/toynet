@@ -452,7 +452,7 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 			g_Poker.RU[i].nRealBat = BetMoney;
 
 			// 기본 배팅 칩을 던짐
-			CastChip(pn, BetMoney, 1); // 여기서의 10은 단위다!!
+			CastChipEx(pn, BetMoney, 1); // 여기서의 10은 단위다!!
 			StartUserNum++;
 		}
 	}
@@ -711,8 +711,9 @@ void CGame::Card_Distribute()
 	
 	POINT pt;  // 스타트
 	POINT pt1; // 스타트 위치
-	pt1.x = 368;
-	pt1.y = 40;
+	pt1.x = 200;
+	pt1.y = 240;	// 카드 날리는 위치 변경 - jeong
+	//pt1.y = 40;
 	FlyWindCard = TRUE;		// 카드 날리는 중
 	CCard* pLastCard = NULL;// 마지막 카드
 
@@ -1009,7 +1010,7 @@ void CGame::Raise(POKERGAME *pMsg)
 		if(g_Poker.LastStyle == -1 )
 		{
 			INT64 nRaiseBat = GetRaiseBat();
-			CastChip(pn, nRaiseBat);//g_Poker.nRaiseBat);
+			CastChipEx(pn, nRaiseBat);//g_Poker.nRaiseBat);
 			g_pGameView->SetBtnState();
 
 // ######   지연  #######
@@ -1028,13 +1029,13 @@ void CGame::Raise(POKERGAME *pMsg)
 				//if(g_Poker.RU[LastPlayer].nReCall > 0)
 				//{
 					INT64 nRaiseBat = GetRaiseBat();
-					CastChip(bet, nRaiseBat);//g_Poker.nRaiseBat);
+					CastChipEx(bet, nRaiseBat);//g_Poker.nRaiseBat);
 				//}
 			}
 			else
 			{
 				INT64 nRaiseBat = GetRaiseBat();
-				CastChip(bet, nRaiseBat);//g_Poker.nRaiseBat);
+				CastChipEx(bet, nRaiseBat);//g_Poker.nRaiseBat);
 			}
 			//CastChip(bet, g_Poker.nRaiseBat);
 		}
@@ -1184,7 +1185,7 @@ void CGame::EndWindCard()
 				int bet = GetPNum_ByServPN(g_Poker.LastPlayer);
 				
 				INT64 nRaiseBat = GetRaiseBat();
-				CastChip(bet, nRaiseBat);//g_Poker.nRaiseBat);
+				CastChipEx(bet, nRaiseBat);//g_Poker.nRaiseBat);
 			}
 		}
 
@@ -1583,7 +1584,8 @@ void CGame::CastChip(int pnum, INT64 nMarble, int sdelay)
 	if(marble>=1) {cn[0]=(int)(marble/1); marble%=1;}
 
 	int sx=0, sy=0;
-	
+
+
 	if(g_RI.bPlayer == 0) {
 		
 		switch(pnum)
@@ -1608,8 +1610,6 @@ void CGame::CastChip(int pnum, INT64 nMarble, int sdelay)
 		default : return;
 		}
 	}
-	
-
 
 	int nowchip=0;
 	for(int i=MAX_CHIPCNT-1; i>=0; i--)//6
@@ -1637,6 +1637,7 @@ void CGame::CastChip(int pnum, INT64 nMarble, int sdelay)
 							stx = g_pGameView->m_betpage_x+25;		 // 위치 
 							sty = g_pGameView->m_betpage_y+22;
 						}
+
 						
 						int w =	  g_pGameView->m_diameter;		 // 지름
 						int radius = w/2;
@@ -1668,6 +1669,7 @@ void CGame::CastChip(int pnum, INT64 nMarble, int sdelay)
 					//	int ty = BETPAGE_Y+20+rand()%135; // 226 
 						tx = g_pGameView->m_betpage_x+CAST_CHIP_OFFSET_XP+rand()%(g_pGameView->m_betpagesize_x-45); // 259 크기
 						ty = g_pGameView->m_betpage_y+CAST_CHIP_OFFSET_YP+rand()%(g_pGameView->m_betpagesize_y-45); // 226 
+						
 					}
 
 					m_Chip[n].SetChip(i, kind);
@@ -1682,6 +1684,161 @@ void CGame::CastChip(int pnum, INT64 nMarble, int sdelay)
 
 }
 
+void CGame::CastChipEx(int pnum, INT64 nMarble, int sdelay)		// CastChipEx - created by jeong
+{
+	if(pnum < 0 || pnum >= g_Max_Player) return;
+
+	INT64 marble = nMarble;
+	int cn[MAX_CHIPCNT]={0,};//7
+
+
+	if(marble >= 50000000 && marble <= 2000000000) // 5천만 ~ 20억
+	{
+		if(marble>=100000000) {cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
+		if(marble>=10000000) {cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
+	}
+	else if( marble >= 2000000000 && marble <= 50000000000) // 20억 ~ 500억
+	{
+		if(marble>=1000000000) {cn[14]=(int)(marble/1000000000); marble%=1000000000;} // 10억
+		if(marble>=500000000) {cn[13]=(int)(marble/500000000); marble%=500000000;} // 5억
+		
+		if(marble>=100000000) {cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
+		if(marble>=10000000) {cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
+	}
+	else if( marble >= 50000000000 && marble <= 200000000000) // 500억 ~ 2000억
+	{
+		if(marble>=10000000000) {cn[15]=(int)(marble/10000000000); marble%=10000000000;} // 100억
+		if(marble>=1000000000) {cn[14]=(int)(marble/1000000000); marble%=1000000000;} // 10억
+		if(marble>=500000000) {cn[13]=(int)(marble/500000000); marble%=500000000;} // 5억
+		
+		if(marble>=100000000) {cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
+		if(marble>=10000000) {cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
+	}
+	else if(marble > 200000000000 ) // 2000억 ~
+	{
+		if(marble>=100000000000) {cn[16]=(int)(marble/100000000000); marble%=100000000000;} // 1000억
+		
+		if(marble>=10000000000) {cn[15]=(int)(marble/10000000000); marble%=10000000000;} // 100억
+		if(marble>=1000000000) {cn[14]=(int)(marble/1000000000); marble%=1000000000;} // 10억
+		if(marble>=500000000) {cn[13]=(int)(marble/500000000); marble%=500000000;} // 5억
+		if(marble>=100000000) {cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
+		if(marble>=10000000) {cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
+	}
+
+	if(marble>=1000000) {cn[10]=(int)(marble/1000000); marble%=1000000;} //100 만
+	if(marble>=100000) {cn[9]=(int)(marble/100000); marble%=100000;}
+	if(marble>=10000) {cn[8]=(int)(marble/10000); marble%=10000;}
+	if(marble>=5000) {cn[7]=(int)(marble/5000); marble%=5000;}
+	if(marble>=1000) {cn[6]=(int)(marble/1000); marble%=1000;}
+	if(marble>=500) {cn[5]=(int)(marble/500); marble%=500;}
+	if(marble>=100) {cn[4]=(int)(marble/100); marble%=100;}
+	if(marble>=50) {cn[3]=(int)(marble/50); marble%=50;}
+	if(marble>=10) {cn[2]=(int)(marble/10); marble%=10;}
+	if(marble>=5) {cn[1]=(int)(marble/5); marble%=5;}
+	if(marble>=1) {cn[0]=(int)(marble/1); marble%=1;}
+
+	int sx=0, sy=0;
+
+	// AI 배팅 시작점
+	const int nAIBetOffsetX = 400;
+	const int nAIBetOffsetY = 150;
+
+	if(g_RI.bPlayer == 0) {
+		
+		switch(pnum)
+		{
+			case 0: sx=400; sy=450; break; 
+			default: 
+				sx=nAIBetOffsetX; sy=nAIBetOffsetY;
+			break;
+		}
+	}
+	else {
+		switch(pnum)
+		{
+			case 0: sx=400; sy=450; break; 
+			default: 
+				sx=nAIBetOffsetX; sy=nAIBetOffsetY;
+			break;
+		}
+	}
+	
+	const int nbetpage_x = 320;
+	const int nbetpage_y = 190;
+
+	int nowchip=0;
+	for(int i=MAX_CHIPCNT-1; i>=0; i--)//6
+	{
+		for(int j=0; j<cn[i]; j++) 
+		{
+			for(int n=nowchip; n<MAX_CHIP; n++)
+			{
+				nowchip = n;
+				if(m_Chip[n].bLive == FALSE)
+				{
+					int kind = abs(rand()%3);
+					
+
+					int stx = 0;		 // 위치 
+					int sty = 0;
+					int tx, ty;
+
+					if(g_RI.bPlayer == 0) {
+						if(g_RI.bPlayer == 0) {
+							stx = nbetpage_x;		 // 위치 
+							sty = nbetpage_y;
+						}
+						else {
+							stx = nbetpage_x;		 // 위치 
+							sty = nbetpage_y;
+						}
+						
+						const int nDiameter = 80;
+						int w =	  g_pGameView->m_diameter-nDiameter;		 // 지름
+						int radius = w/2;
+						int erad = radius-20;// 효과
+						
+						int cx = stx + radius;
+						int cy = sty + radius;
+						
+						
+						
+						for(;;) {
+							tx = stx+rand()%w;
+							ty = sty+rand()%w;
+							
+							int xp = tx - cx;
+							int yp = ty - cy;
+							
+							if(xp*xp + yp*yp < erad*erad) {
+								break;
+							}
+							
+							if(xp*xp + yp*yp < radius*radius) {
+								if(rand()%5 == 0) break;
+							}
+						}
+						
+									
+					} else {
+					//	int tx = BETPAGE_X+15+rand()%220; // 259 크기
+					//	int ty = BETPAGE_Y+20+rand()%135; // 226 
+						tx = nbetpage_x+rand()%(nbetpage_x-10); // 259 크기
+						ty = nbetpage_y+rand()%(nbetpage_y-10); // 226 
+						
+					}
+					
+					m_Chip[n].SetChip(i, kind);
+					m_Chip[n].SetPos(sx, sy);
+					m_Chip[n].SetMove(tx, ty, sdelay);
+					break;
+				}
+			}
+			if(n == MAX_CHIP) return;//100
+		}
+	}
+
+}
 
 // 잭팟용 추가
 void CGame::CastChipJackPot(int pnum, INT64 nMarble, int sdelay)
@@ -1829,6 +1986,7 @@ void CGame::CastChipJackPot(int pnum, INT64 nMarble, int sdelay)
 	}
 
 }
+
 
 
 // 타이머 그래프

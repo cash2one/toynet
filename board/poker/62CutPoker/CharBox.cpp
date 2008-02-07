@@ -66,10 +66,14 @@ void CCharBox::Init(CWnd *pWnd, CPage *ppage, int defpos)
 	//	m_cardxp[1] = m_xp[1] +87 ; m_cardyp[1] = m_yp[1]+38;
 		break;
 		
-		//좌측
+		//좌측		// AI 캐릭터 위치 변경 - jeong
 	case 1:
-		m_xp[0] = 2; m_yp[0] = 239;
-		m_charxp[0] = m_xp[0]+5; m_charyp[0] = m_yp[0]+26;
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+		m_xp[0] = 275; m_yp[0] = 60;
+		m_charxp[0] = m_xp[0]+163; m_charyp[0] = m_yp[0]-10;
 	//	m_cardxp[0] = m_xp[0]+81; m_cardyp[0] = m_yp[0];
 		
 		
@@ -77,6 +81,7 @@ void CCharBox::Init(CWnd *pWnd, CPage *ppage, int defpos)
 	//	m_charxp[1] = m_xp[1]+8; m_charyp[1] = m_yp[1]+26;
 	//	m_cardxp[1] = m_xp[1]+81; m_cardyp[1] = m_yp[1];
 		break;
+	/*
 	case 2:
 		m_xp[0] = 2; m_yp[0] = 71;
 		m_charxp[0] = m_xp[0]+5; m_charyp[0] = m_yp[0]+26;
@@ -118,6 +123,7 @@ void CCharBox::Init(CWnd *pWnd, CPage *ppage, int defpos)
 	//	m_charxp[1] = m_xp[1]+184; m_charyp[1] = m_yp[1]+26;
 	//	m_cardxp[1] = m_xp[1]-174; m_cardyp[1] = m_yp[1];
 		break;
+	*/
 	}
 		
 	
@@ -313,11 +319,15 @@ void CCharBox::draw_5user(CDC *pDC)
 	{
 		if(Game.WinnerPNum == Play[PNum].ServPNum || Game.LowWinnerPNum == Play[PNum].ServPNum )
 		{
+		
 			if((Game.GameCnt/25)%2  == 0) {
-				if(PNum == 0) pPage->PutSprAuto(Xp , Yp , &FocusSpr, 0 );
+				if(PNum == 0) 
+					pPage->PutSprAuto(Xp , Yp , &FocusSpr, 0 );
 			//	else if(PNum < 3) pPage->PutSprAuto(Xp , Yp , &FocusSpr, 1 );
-				else pPage->PutSprAuto(Xp , Yp , &FocusSpr, 1 );
+				else 
+					pPage->PutSprAuto(270, 30, &FocusSpr, 1 );		// 승리시 깜박 금색줄 출력위치 조정 - modefied by jeong
 			}
+		
 			
 		}
 	}
@@ -338,6 +348,7 @@ void CCharBox::draw_5user(CDC *pDC)
 	int y = Yp;
 	
 	//////////////////////////////////////////////////////////////////////////////////////////
+	/*		deleted by jeong
 	// 레벨
 	int level = Play[PNum].UI.nIcon;
 	CMyBitmap bmp;
@@ -373,8 +384,9 @@ void CCharBox::draw_5user(CDC *pDC)
 //	pDC->TextOut(idx+1, idy, str);
 //	pDC->TextOut(idx, idy+1, str);
 //	pDC->SetTextColor(RGB(10, 10, 10));
-	pDC->SetTextColor(RGB(172,252,255));
+	//pDC->SetTextColor(RGB(172,252,255));
 	pDC->TextOut(idx, idy, str);
+	*/
 	
 	CRect rect;
 	CString strM = "";
@@ -500,18 +512,23 @@ void CCharBox::draw_5user(CDC *pDC)
 	//	rect.OffsetRect(0, 23);
 	//	pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
 	} 
-	else if( PNum < 3)	{
+	else //if( PNum < 3)	 상대방금액을 아바타 아래로 위치변경 - modefied by jeong 
+	{
 		pDC->SetTextColor(RGB(172,252,255));
 		rect.SetRect(0,0,180,14);
-		rect.OffsetRect(x+56, y+7);
+		//rect.OffsetRect(x+56, y+7);				
+		//rect.OffsetRect(398, 180);				
+		rect.OffsetRect(310, 170);				
 		pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
 	}
+	/*
 	else {
 		pDC->SetTextColor(RGB(172,252,255));
 		rect.SetRect(0,0,180,14);
 		rect.OffsetRect(x+10, y+7);
 		pDC->DrawText(strM, &rect, DT_LEFT | DT_WORDBREAK);
 	}
+	*/
 
 	// ### [ 중복된 IP가 ] ###
 	if(Play[PNum].MyIpCheck >= 0)
@@ -530,7 +547,8 @@ void CCharBox::draw_5user(CDC *pDC)
 //		else pPage->PutSprAuto(Xp+180, Yp+20, &EtcSpr, (Game.GameCnt/10)%4);
 //	}
 	
-	// 방장 마크 그리기
+	/*
+	// 방장 마크 그리기		// 삭제 - jeong
 	if(strcmp(g_RI.ID, Play[PNum].UI.ID)==0)
 	{
 		if( g_RI.bSuperMaster ) {
@@ -544,6 +562,7 @@ void CCharBox::draw_5user(CDC *pDC)
 			else pPage->PutSprAuto(Xp+168, Yp+20, &EtcSpr, (Game.GameCnt/10)%4);
 		}
 	}
+	*/
 
 }
 

@@ -56,12 +56,25 @@ void CCardDeck::Init(CPage *ppage, int pnum)
 
 	//		m_xp[1] = 358; m_yp[1] = 471;
 		} break;
+	case 1:			// AI 카드 위치 변경 - jeong
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+		{
+			m_xp[0] = 275; m_yp[0] = 60;
+			
+			//	m_xp[1] = 87;m_yp[1] = 275;
+		} break;
+	}
+	/*
 	case 1:
 		{
 			m_xp[0] = 83; m_yp[0] = 263;
 
 		//	m_xp[1] = 87;m_yp[1] = 275;
 		} break;
+	
 
 	case 2:
 		{
@@ -92,6 +105,7 @@ void CCardDeck::Init(CPage *ppage, int pnum)
 	//		m_xp[1] = 543; m_yp[1] = 275;
 		} break;
 	}
+	*/
 
 	carddeck_changeinitpos();
 }

@@ -211,10 +211,14 @@ BOOL CResultHi::OnInitDialog()
 	TimeCnt = 0;
 
 	// [수호천사] 2004.07.08 
-	if(m_nItemByeUse == 0) TimeCnt = 3 ;
-	else TimeCnt = 5;
+	//if(m_nItemByeUse == 0) TimeCnt = 3 ;
+	//else TimeCnt = 5;
+
+	// 승패결과창 대기시간 - jeong
+	TimeCnt = 7;
 	
 	/*
+
 	RECT rc1;
 	GetWindowRect( &rc1 );
 	rc1.right = rc1.left + 346;
@@ -277,10 +281,12 @@ void CResultHi::OnPaint()
 //	bmp.TransDraw(dc.m_hDC, ax-4, ay, 15, 15, 15*level, 0, RGB(255,0,255));
 //	bmp.DeleteObject();
 	dc.SetBkMode(TRANSPARENT);
-	// 아이디 찍기
+	/*
+	// 아이디 찍기 deleted by jeong
 	dc.SelectObject(&Font1);
 	dc.SetTextColor(RGB(0,0,0));
 	//dc.TextOut(ax, ay+20, UI.ID);
+	*/
 
 	CRect rt;
 

@@ -260,10 +260,12 @@ void CRoomInfoDlg::OnPaint()
 		bmp.TransDraw(dc.m_hDC, ax, ay, 15, 15, 15*level, 0, RGB(255,0,255));
 	
 		dc.SetBkMode(TRANSPARENT);
-		// ¾ÆÀÌµð Âï±â
+		/*
+		// ¾ÆÀÌµð Âï±â	deleted by jeong
 		ay+=2;
 		dc.SelectObject(&Font1);
 		dc.TextOut(ax+18, ay, m_GI.Ui[i].ID);
+		*/
 
 		// ½Â·ü °è»ê
 		int totnum = m_GI.Ui[i].WinNum + m_GI.Ui[i].LooseNum;

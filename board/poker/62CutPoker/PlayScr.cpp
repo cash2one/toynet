@@ -1047,7 +1047,8 @@ void CPlayScr::draw_5user(CDC *pDC)
 		// ### [ 관전기능 ] ###	
 		
 		if(!g_MyObserver &&  PNum == 0 && Play[0].JoinState == 1 && Play[0].nOpenTotal > 0 
-			&& !Game.FlyWindCard) //&& g_Poker.nState != RSTATE_CHANGECARD )  //카드 날라갈떄는 그리지 않는다.	
+			&& !Game.FlyWindCard && !g_CvCard.bAllowControl )	// 쪼이기시 족보 보여주지 않음 - jeong
+			//&& g_Poker.nState != RSTATE_CHANGECARD )  //카드 날라갈떄는 그리지 않는다.	
 		{ // 나의 카드 족보
 			CString str = "";
 			str = Game.GetMyName();
@@ -1539,7 +1540,8 @@ void CPlayScr::draw_6user(CDC *pDC)
 
 		// ###### 카드 족보  ######
 		// ### [ 관전기능 ] ###
-		if(!g_MyObserver &&  PNum == 0 && Play[0].JoinState == 1 && Play[0].nOpenTotal > 0 && !Game.FlyWindCard)  //카드 날라갈떄는 그리지 않는다.
+		if(!g_MyObserver &&  PNum == 0 && Play[0].JoinState == 1 && Play[0].nOpenTotal > 0 && !Game.FlyWindCard
+			&& !g_CvCard.bAllowControl )	// 쪼이기시 족보 보여주지 않음 - jeong
 		{ // 나의 카드 족보
 			CString str = "";
 			str = Game.GetMyName();

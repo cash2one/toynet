@@ -174,11 +174,13 @@ void CProfileDlg::OnPaint()
 	bmp.DeleteObject();
 
 	dc.SetBkMode(TRANSPARENT);
-	
-	// 아이디 찍기
+
+	/*
+	// 아이디 찍기	deleted by jeong
 	dc.SelectObject(&Font1);
 	dc.SetTextColor(RGB(0,0,0));
 	dc.TextOut(ax+17, ay+2, UI.ID);
+	*/
 
 	if(UI.PMoney < 0) UI.PMoney = 0;
 	CString str;
