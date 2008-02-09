@@ -1360,8 +1360,8 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 
 	CMyBitmap bmp;
 	bmp.LoadBitmap(IDB_LEVEL15);
-	// ### [ 관전기능 ] ###
-	bmp.TransDraw(dc.m_hDC, ax, ay+23, 15, 15, 15*g_MyInfo.UI.nIcon, 0, RGB(255,0,255));
+	// ### [ 관전기능 ] ###  deleted by jeong
+	//bmp.TransDraw(dc.m_hDC, ax, ay+23, 15, 15, 15*g_MyInfo.UI.nIcon, 0, RGB(255,0,255));
 	bmp.DeleteObject();
 
 	/*	deleted by jeong

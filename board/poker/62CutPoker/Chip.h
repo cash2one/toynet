@@ -30,6 +30,7 @@ public:
 
 	// 칩 상태
 	BOOL bLive;			// 칩이 살아있는가?
+	BOOL bStack;		// 칩이 쌓여 있는가?		- added by jeong
 	BOOL bMove;			// 이동중인가?
 	BOOL bEvent;		// 이벤트가 있는가?
 
@@ -58,6 +59,7 @@ public:
 	void SetPos(int tx, int ty);
 	void SetMove(int tx, int ty, int sdelay=0, int edelay=0, int speed=-1);
 	void Draw();
+	void SetStack( bool b ) { bStack = b; }
 };
 
 #endif // !defined(AFX_CHIP_H__A37227E1_8E37_11D4_97A4_0050BF0FBE67__INCLUDED_)

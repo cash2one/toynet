@@ -60,6 +60,7 @@ void CChip::Reset()
 	MoveEndSnd = NULL;
 
 	bLive = FALSE;
+	bStack = FALSE;
 	ChipNo = 0;
 	Kind = 0;
 	SprNo = 0;

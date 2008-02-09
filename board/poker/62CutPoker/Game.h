@@ -31,6 +31,8 @@
 #define MAX_CHIP 100
 #define MAX_CHIPCNT 17//13 // 칩 종류
 
+#define MAX_STACK_OFFSETY 320
+
 enum
 {
 	RSTATE_NONE = 0,			// 아무상태도 아님(대기중)	
@@ -88,6 +90,7 @@ public:
 	// [ 칩 ]
 	INT64      m_RMoney;
 	CChip m_Chip[MAX_CHIP];
+	CChip m_ChipEx[MAX_CHIP];
 
 	// [ 카드 이벤트 에러시 ]
 	BOOL bWindCardEnd;
@@ -126,10 +129,13 @@ public:
 	int  m_ncur_selectcard;
 	int  m_nchange_card;
 
-
+	// 축적된 배팅 Y 좌표
+	int m_nStackY[MAX_CHIPCNT];
+	int m_cn[MAX_CHIPCNT];
 
 
 public:
+	void StackChip();
 	
 	int GetViewMyrule(enum SEVEN_CARD eName);
 	void SetChangeViewTabBtn(BOOL bView=FALSE);

@@ -55,6 +55,7 @@ BOOL CResultFindIdDlg::OnInitDialog()
 	CDialogCtrlReposition CtrlRepos;
 	CtrlRepos.Reposition(m_hWnd);
 
+	
 	m_OkBtn.Init(122,101,"image\\commonbtn\\Btn_ok.bmp", 4);
 	
 	RECT rc1;

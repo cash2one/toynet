@@ -66,13 +66,13 @@ void CCharBox::Init(CWnd *pWnd, CPage *ppage, int defpos)
 	//	m_cardxp[1] = m_xp[1] +87 ; m_cardyp[1] = m_yp[1]+38;
 		break;
 		
-		//좌측		// AI 캐릭터 위치 변경 - jeong
+	// AI 캐릭터 위치 변경 - jeong
 	case 1:
 	case 2:
 	case 3:
 	case 4:
 	case 5:
-		m_xp[0] = 275; m_yp[0] = 60;
+		m_xp[0] = 275; m_yp[0] = 54;
 		m_charxp[0] = m_xp[0]+163; m_charyp[0] = m_yp[0]-10;
 	//	m_cardxp[0] = m_xp[0]+81; m_cardyp[0] = m_yp[0];
 		
@@ -325,7 +325,7 @@ void CCharBox::draw_5user(CDC *pDC)
 					pPage->PutSprAuto(Xp , Yp , &FocusSpr, 0 );
 			//	else if(PNum < 3) pPage->PutSprAuto(Xp , Yp , &FocusSpr, 1 );
 				else 
-					pPage->PutSprAuto(270, 30, &FocusSpr, 1 );		// 승리시 깜박 금색줄 출력위치 조정 - modefied by jeong
+					pPage->PutSprAuto(270, 24, &FocusSpr, 1 );		// 승리시 깜박 금색줄 출력위치 조정 - modefied by jeong
 			}
 		
 			
@@ -400,7 +400,8 @@ void CCharBox::draw_5user(CDC *pDC)
 	strM = NumberToOrientalString(roundingoff);
 	strM +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
 
-	if(PNum == 0) {
+	if(PNum == 0) 
+	{
 		//pDC->SetTextColor(RGB(23, 175, 214));
 		// 나의 금액
 		rect.SetRect(0,0,200,14);
@@ -518,7 +519,7 @@ void CCharBox::draw_5user(CDC *pDC)
 		rect.SetRect(0,0,180,14);
 		//rect.OffsetRect(x+56, y+7);				
 		//rect.OffsetRect(398, 180);				
-		rect.OffsetRect(310, 170);				
+		rect.OffsetRect(310, 34);				
 		pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
 	}
 	/*

@@ -17,6 +17,7 @@
 // CResultHi dialog
 
 #define RESULTHI_TIMER 1300
+#define MAX_WAIT_RESULT 7;			//Variant For waiting Result - jeong
 
 class CResultHi : public CDialog
 {

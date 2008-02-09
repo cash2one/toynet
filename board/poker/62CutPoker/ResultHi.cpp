@@ -124,10 +124,10 @@ BOOL CResultHi::OnInitDialog()
 
 	}
 	else {
-		Back.LoadBitmapFile(".\\image\\Gameover\\result_otherwin.bmp");
-		m_winner_kind = 2 ;
+		Back.LoadBitmapFile(".\\image\\Gameover\\result_otherwin.bmp");		// Result design will be changed - jeong
+		m_winner_kind = 2;
 
-		m_CloseBtn.Init(131, 304,".\\image\\commonbtn\\Btn_ok.bmp",4);
+		//m_CloseBtn.Init(131, 304,".\\image\\commonbtn\\Btn_ok.bmp",4);
 		
 		// [수호천사] 2004.07.08 
 		// 현재 시간을 얻어서 서버의 시간으로 변환
@@ -139,11 +139,12 @@ BOOL CResultHi::OnInitDialog()
 		BOOL rtn = GameItem_IsUsingItem(g_MyGameItem, ITEM_SCODE_SAFEGUARDANGEL, &bExist, &st);
 		if( bExist ) {
 			m_nItemByeUse = 1;
-			m_SafeBtn.Init(238,290,".\\image\\GameOver\\Btn_Use.bmp",4); // 사용하기
+			//m_SafeBtn.Init(238,290,".\\image\\GameOver\\Btn_Use.bmp",4); // 사용하기
 		}
 		else {
 			m_nItemByeUse = 2;
-			m_SafeBtn.Init(238,290,".\\image\\GameOver\\Btn_Bye.bmp",4); // 구매하기
+			//m_SafeBtn.Init(238,290,".\\image\\GameOver\\Btn_Bye.bmp",4); // 구매하기
+	
 		}
 	}
 
@@ -215,7 +216,7 @@ BOOL CResultHi::OnInitDialog()
 	//else TimeCnt = 5;
 
 	// 승패결과창 대기시간 - jeong
-	TimeCnt = 7;
+	TimeCnt = MAX_WAIT_RESULT;
 	
 	/*
 
@@ -290,12 +291,14 @@ void CResultHi::OnPaint()
 
 	CRect rt;
 
+
 	if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0 ){
 		rt.SetRect(13,217,13+92,217+21);
 	}
 	else{
 		rt.SetRect(12,206,12+92,206+21);
 	}
+
 	
 
 	dc.DrawText(UI.ID, &rt, DT_CENTER | DT_WORDBREAK);
@@ -360,7 +363,7 @@ void CResultHi::OnPaint()
 			str1.Format("-%s",str2);
 			dc.DrawText(str1, &rt, DT_RIGHT | DT_WORDBREAK);
 
-			
+			/*
 			//수호천사 제한 머니
 			CString limitm;
 			CRect limitrt;
@@ -368,6 +371,7 @@ void CResultHi::OnPaint()
 			limitm = "기본 18억원 ~ 최대 45억원";
 			limitrt.SetRect(35,333,180+35,333+13);
 			dc.DrawText(limitm, &limitrt, DT_CENTER | DT_WORDBREAK);
+			*/
 		}
 
 
@@ -415,6 +419,7 @@ void CResultHi::OnPaint()
 			str1.Format("-%s",str2);
 			dc.DrawText(str1, &rt, DT_RIGHT | DT_WORDBREAK);
 
+			/*
 			//수호천사 제한 머니
 			CString limitm;
 			CRect limitrt;
@@ -422,6 +427,7 @@ void CResultHi::OnPaint()
 			limitm = "기본 18억원 ~ 최대 45억원";
 			limitrt.SetRect(35,333,180+35,333+13);
 			dc.DrawText(limitm, &limitrt, DT_CENTER | DT_WORDBREAK);
+			*/
 
 		}
 
@@ -436,7 +442,7 @@ void CResultHi::OnPaint()
 	
 	//	m_Str1 = "로얄 스트레이트 양아치 2";
 		ax = 139;
-		ay = 70;
+		ay = 68;			// 족보 결과출력 좌표 - modifed by jeong
 		CRect rect;
 		rect.SetRect(0,0,160,14);
 		if(m_Str1!=""){
@@ -568,3 +574,45 @@ void CResultHi::OnButtonSafeangel()
 	}
 	CDialog::OnOK();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

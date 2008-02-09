@@ -71,7 +71,11 @@ void CGame::Init(CPage *ppage, CPage *pbatpage)
 	for(int i=0; i<MAX_PLAYER; i++) {
 		CardDeck[i].Init(pPage, i); // 카드덱
 	}
-	for( i=0; i<MAX_CHIP; i++) m_Chip[i].Init(ppage, pbatpage);
+	for( i=0; i<MAX_CHIP; i++) 
+	{
+		m_Chip[i].Init(ppage, pbatpage);
+		m_ChipEx[i].Init(ppage, pbatpage);
+	}
 }
 
 // 게임 오버시 
@@ -138,7 +142,11 @@ void CGame::ResetGame()
 	// 배팅 칩 게임판을 지운다
 	g_pGameView->BatPage.PutSprAuto(0, 0, g_pGameView->m_pgamebackspr, 1);
 	m_JackPotActive = 0;
-	for(i=0; i<MAX_CHIP; i++) m_Chip[i].Reset();
+	for(i=0; i<MAX_CHIP; i++) 
+	{
+		m_Chip[i].Reset();
+		m_ChipEx[i].Reset();
+	}
 
 	ZeroMemory(m_jackpot_winnerid, sizeof(m_jackpot_winnerid));
 	ZeroMemory(&g_Poker, sizeof(g_Poker));
@@ -159,6 +167,8 @@ void CGame::ResetGame()
 
 	m_hpos = NULL;
 
+	for(i=0; i<MAX_CHIPCNT; i++) m_nStackY[i]=MAX_STACK_OFFSETY;
+	
 	// 시작버튼 활성화 
 //	if(strcmp(g_RI.ID,g_MyInfo.UI.ID)==0 && g_RI.UNum == g_MyInfo.UI.UNum 
 //		&& g_RI.NowUserNum < 5 && g_RI.NowUserNum >2 && g_RI.State == 0){		
@@ -232,6 +242,7 @@ void CGame::OnTimer()
 
 	for(i=0; i<MAX_CHIP; i++) {
 		m_Chip[i].OnTimer();
+		m_ChipEx[i].OnTimer();			//Add ChipEx - jeong
 	}
 }
 
@@ -1037,7 +1048,6 @@ void CGame::Raise(POKERGAME *pMsg)
 				INT64 nRaiseBat = GetRaiseBat();
 				CastChipEx(bet, nRaiseBat);//g_Poker.nRaiseBat);
 			}
-			//CastChip(bet, g_Poker.nRaiseBat);
 		}
 		SetBackTime();
 		// 추가
@@ -1689,53 +1699,54 @@ void CGame::CastChipEx(int pnum, INT64 nMarble, int sdelay)		// CastChipEx - cre
 	if(pnum < 0 || pnum >= g_Max_Player) return;
 
 	INT64 marble = nMarble;
-	int cn[MAX_CHIPCNT]={0,};//7
 
+	for( int c=0; c<MAX_CHIPCNT; c++)
+		m_cn[c]=0;
 
 	if(marble >= 50000000 && marble <= 2000000000) // 5천만 ~ 20억
 	{
-		if(marble>=100000000) {cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
-		if(marble>=10000000) {cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
+		if(marble>=100000000) {m_cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
+		if(marble>=10000000) {m_cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
 	}
 	else if( marble >= 2000000000 && marble <= 50000000000) // 20억 ~ 500억
 	{
-		if(marble>=1000000000) {cn[14]=(int)(marble/1000000000); marble%=1000000000;} // 10억
-		if(marble>=500000000) {cn[13]=(int)(marble/500000000); marble%=500000000;} // 5억
+		if(marble>=1000000000) {m_cn[14]=(int)(marble/1000000000); marble%=1000000000;} // 10억
+		if(marble>=500000000) {m_cn[13]=(int)(marble/500000000); marble%=500000000;} // 5억
 		
-		if(marble>=100000000) {cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
-		if(marble>=10000000) {cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
+		if(marble>=100000000) {m_cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
+		if(marble>=10000000) {m_cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
 	}
 	else if( marble >= 50000000000 && marble <= 200000000000) // 500억 ~ 2000억
 	{
-		if(marble>=10000000000) {cn[15]=(int)(marble/10000000000); marble%=10000000000;} // 100억
-		if(marble>=1000000000) {cn[14]=(int)(marble/1000000000); marble%=1000000000;} // 10억
-		if(marble>=500000000) {cn[13]=(int)(marble/500000000); marble%=500000000;} // 5억
+		if(marble>=10000000000) {m_cn[15]=(int)(marble/10000000000); marble%=10000000000;} // 100억
+		if(marble>=1000000000) {m_cn[14]=(int)(marble/1000000000); marble%=1000000000;} // 10억
+		if(marble>=500000000) {m_cn[13]=(int)(marble/500000000); marble%=500000000;} // 5억
 		
-		if(marble>=100000000) {cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
-		if(marble>=10000000) {cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
+		if(marble>=100000000) {m_cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
+		if(marble>=10000000) {m_cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
 	}
 	else if(marble > 200000000000 ) // 2000억 ~
 	{
-		if(marble>=100000000000) {cn[16]=(int)(marble/100000000000); marble%=100000000000;} // 1000억
+		if(marble>=100000000000) {m_cn[16]=(int)(marble/100000000000); marble%=100000000000;} // 1000억
 		
-		if(marble>=10000000000) {cn[15]=(int)(marble/10000000000); marble%=10000000000;} // 100억
-		if(marble>=1000000000) {cn[14]=(int)(marble/1000000000); marble%=1000000000;} // 10억
-		if(marble>=500000000) {cn[13]=(int)(marble/500000000); marble%=500000000;} // 5억
-		if(marble>=100000000) {cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
-		if(marble>=10000000) {cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
+		if(marble>=10000000000) {m_cn[15]=(int)(marble/10000000000); marble%=10000000000;} // 100억
+		if(marble>=1000000000) {m_cn[14]=(int)(marble/1000000000); marble%=1000000000;} // 10억
+		if(marble>=500000000) {m_cn[13]=(int)(marble/500000000); marble%=500000000;} // 5억
+		if(marble>=100000000) {m_cn[12]=(int)(marble/100000000); marble%=100000000;} // 1억
+		if(marble>=10000000) {m_cn[11]=(int)(marble/10000000); marble%=10000000;} // 1000만
 	}
 
-	if(marble>=1000000) {cn[10]=(int)(marble/1000000); marble%=1000000;} //100 만
-	if(marble>=100000) {cn[9]=(int)(marble/100000); marble%=100000;}
-	if(marble>=10000) {cn[8]=(int)(marble/10000); marble%=10000;}
-	if(marble>=5000) {cn[7]=(int)(marble/5000); marble%=5000;}
-	if(marble>=1000) {cn[6]=(int)(marble/1000); marble%=1000;}
-	if(marble>=500) {cn[5]=(int)(marble/500); marble%=500;}
-	if(marble>=100) {cn[4]=(int)(marble/100); marble%=100;}
-	if(marble>=50) {cn[3]=(int)(marble/50); marble%=50;}
-	if(marble>=10) {cn[2]=(int)(marble/10); marble%=10;}
-	if(marble>=5) {cn[1]=(int)(marble/5); marble%=5;}
-	if(marble>=1) {cn[0]=(int)(marble/1); marble%=1;}
+	if(marble>=1000000) {m_cn[10]=(int)(marble/1000000); marble%=1000000;} //100 만
+	if(marble>=100000) {m_cn[9]=(int)(marble/100000); marble%=100000;}
+	if(marble>=10000) {m_cn[8]=(int)(marble/10000); marble%=10000;}
+	if(marble>=5000) {m_cn[7]=(int)(marble/5000); marble%=5000;}
+	if(marble>=1000) {m_cn[6]=(int)(marble/1000); marble%=1000;}
+	if(marble>=500) {m_cn[5]=(int)(marble/500); marble%=500;}
+	if(marble>=100) {m_cn[4]=(int)(marble/100); marble%=100;}
+	if(marble>=50) {m_cn[3]=(int)(marble/50); marble%=50;}
+	if(marble>=10) {m_cn[2]=(int)(marble/10); marble%=10;}
+	if(marble>=5) {m_cn[1]=(int)(marble/5); marble%=5;}
+	if(marble>=1) {m_cn[0]=(int)(marble/1); marble%=1;}
 
 	int sx=0, sy=0;
 
@@ -1769,7 +1780,7 @@ void CGame::CastChipEx(int pnum, INT64 nMarble, int sdelay)		// CastChipEx - cre
 	int nowchip=0;
 	for(int i=MAX_CHIPCNT-1; i>=0; i--)//6
 	{
-		for(int j=0; j<cn[i]; j++) 
+		for(int j=0; j<m_cn[i]; j++) 
 		{
 			for(int n=nowchip; n<MAX_CHIP; n++)
 			{
@@ -1831,6 +1842,7 @@ void CGame::CastChipEx(int pnum, INT64 nMarble, int sdelay)		// CastChipEx - cre
 					m_Chip[n].SetChip(i, kind);
 					m_Chip[n].SetPos(sx, sy);
 					m_Chip[n].SetMove(tx, ty, sdelay);
+					m_Chip[n].SetStack( TRUE );
 					break;
 				}
 			}
@@ -1838,7 +1850,40 @@ void CGame::CastChipEx(int pnum, INT64 nMarble, int sdelay)		// CastChipEx - cre
 		}
 	}
 
+	StackChip();
 }
+
+void CGame::StackChip()	
+{
+	// stack money after betting - jeong
+	int nowchipEx=0;
+	int nStackX=0;
+	const int nStartX=295;
+	for(int i=MAX_CHIPCNT-1; i>=0; i--)//6
+	{
+		for(int j=0; j<m_cn[i]; j++) 
+		{
+			for(int n=nowchipEx; n<MAX_CHIP; n++)
+			{
+				if(m_Chip[n].bStack == TRUE)
+				{
+					int kind = abs(rand()%3);
+
+					nStackX = nStartX + (i*35);				
+					m_nStackY[i] = m_nStackY[i] - 5;
+					
+					m_Chip[n].SetStack( FALSE );
+					//m_ChipEx[n].SetChip(i, kind);
+					m_Chip[n].SetPos(nStackX, m_nStackY[i]);
+					m_Chip[n].SetMove(nStackX, m_nStackY[i], 1);
+					break;
+				}
+			}
+			if(n == MAX_CHIP) return;//100
+		}
+	}
+}
+
 
 // 잭팟용 추가
 void CGame::CastChipJackPot(int pnum, INT64 nMarble, int sdelay)
@@ -2859,8 +2904,6 @@ void CGame::Accept_CreateRoom(CSV_ACCEPT_CREATEROOM *pMsg) // 방만들기 허가
 	g_pGameView->ExitBtn.Enable(TRUE);
 	// ### [ 관전기능 ] ###
 	g_pGameView->SetObserverBtn();
-
-
 }
 
 

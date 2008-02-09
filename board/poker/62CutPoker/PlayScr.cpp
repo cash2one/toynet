@@ -69,6 +69,34 @@ void CPlayScr::Init(CWnd *pWnd, CPage *ppage, int pnum)
 	//	m_AllinYp[2] = 489;			// 올인 글씨
 
 		break;
+	case 1:						
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+		m_xp[0]=0;				m_yp[0]=244;
+		m_rxp[0]=m_xp[0]+86;   m_ryp[0]=m_yp[0]+48;	
+		m_mgx[0]=400;			m_mgy[0]=152;				// 타임바 좌표 변경 - jeong
+		m_msgx[0]=277;			m_msgy[0]=162;
+		//	m_mgx[0]=223;			m_mgy[0]=354;
+		//  m_msgx[0]=85;			m_msgy[0]=373;
+		
+		//6인
+		m_xp[1]=0;				m_yp[1]=252;
+		m_rxp[1]=m_xp[1]+86;   m_ryp[1]=m_yp[1]+48;
+		m_mgx[1]=223;			m_mgy[1]=358;
+		m_msgx[1]=85;			m_msgy[1]=383;
+		
+		m_AllinXp[0] = 95;			// 올인 애니 좌표
+		m_AllinYp[0] = 289;			// 올인 애니 좌표	
+		
+		m_AllinXp[1] = 276;			// 올인 애니 좌표 끝 좌표
+		m_AllinYp[1] = 244;			// 올인 애니 좌표	
+		
+		//	m_AllinXp[2] = 353;			// 올인 글씨
+		//	m_AllinYp[2] = 489;			// 올인 글씨
+		break;
+	/*
 	// 좌측
 	case 1:
 		m_xp[0]=0;				m_yp[0]=244;
@@ -94,6 +122,7 @@ void CPlayScr::Init(CWnd *pWnd, CPage *ppage, int pnum)
 	//	m_AllinYp[2] = 489;			// 올인 글씨
 
 		break;
+	
 	case 2:
 		m_xp[0]=0;				m_yp[0]=75;
 		m_rxp[0]=m_xp[0]+86;   m_ryp[0]=m_yp[0]+48;
@@ -176,6 +205,7 @@ void CPlayScr::Init(CWnd *pWnd, CPage *ppage, int pnum)
 		m_msgx[1]=543;			m_msgy[1]=383;
 
 		break;
+	*/
 	}
 
 	
@@ -1014,7 +1044,11 @@ void CPlayScr::DrawChip()
 	if( Game.m_JackPotActive > 0)
 	{
 		for(int n=0; n<MAX_CHIP; n++) {
-			if(Game.m_Chip[n].bLive) Game.m_Chip[n].Draw();
+			if(Game.m_Chip[n].bLive) 
+			{
+				Game.m_Chip[n].Draw();
+				Game.m_ChipEx[n].Draw();
+			}
 		}
 	}
 }
@@ -1200,6 +1234,9 @@ void CPlayScr::draw_5user(CDC *pDC)
 					
 					}
 					
+					const int nShowBetX = MsgX-100;
+					const int nShowBetY = 162;
+					// 배팅건금액 위치 수정 - jeong
 					if(strTemp!="")
 					{						
 						pDC->SetTextColor(nCmdCol);
@@ -1209,13 +1246,21 @@ void CPlayScr::draw_5user(CDC *pDC)
 						if(PNum == 0) {
 							rect.OffsetRect(MsgX + 35+10, MsgY);
 							pDC->DrawText(strTemp, &rect, DT_LEFT | DT_WORDBREAK);
-						} else if(PNum<3) {
+						} 
+						else 
+						{
+							rect.OffsetRect(nShowBetX, nShowBetY);
+							pDC->DrawText(strTemp, &rect, DT_RIGHT | DT_WORDBREAK);
+						}
+						/*
+						else if(PNum<3) {
 							rect.OffsetRect(MsgX+5, MsgY);
 							pDC->DrawText(strTemp, &rect, DT_LEFT | DT_WORDBREAK);
 						} else {
 							rect.OffsetRect(MsgX + 20-61, MsgY);
 							pDC->DrawText(strTemp, &rect, DT_RIGHT | DT_WORDBREAK);
 						}
+						*/
 					}
 
 					if(strTemp1!="")
@@ -1227,13 +1272,20 @@ void CPlayScr::draw_5user(CDC *pDC)
 						if(PNum == 0) {
 							rect.OffsetRect(MsgX + 35+10, MsgY+15);
 							pDC->DrawText(strTemp1, &rect, DT_LEFT | DT_WORDBREAK);
-						} else if(PNum<3) {
+						} 
+						else {
+							rect.OffsetRect(nShowBetX, nShowBetY+15);
+							pDC->DrawText(strTemp1, &rect, DT_RIGHT | DT_WORDBREAK);
+						}
+						/*
+						else if(PNum<3) {
 							rect.OffsetRect(MsgX+5 , MsgY+15);
 							pDC->DrawText(strTemp1, &rect, DT_LEFT | DT_WORDBREAK);
 						} else {
 							rect.OffsetRect(MsgX + 20-61, MsgY+15);
 							pDC->DrawText(strTemp1, &rect, DT_RIGHT | DT_WORDBREAK);
 						}
+						*/
 					}
 				}
 			}			
@@ -1311,7 +1363,8 @@ void CPlayScr::draw_5user(CDC *pDC)
 			if(PNum == 0 ){
 				pPage->PutSprAuto(482, 86, &EtcBtnSpr, g_RI.ChangeCardStep+16); //바꾸기 횟수를 표시
 			}	
-		}		
+		}
+		
 	}	
 	
 
@@ -1428,6 +1481,7 @@ void CPlayScr::draw_5user(CDC *pDC)
 	if( Game.m_JackPotActive > 0)
 	{
 		DrawChip();
+
 	//	for(int n=0; n<MAX_CHIP; n++) {
 	//		if(Game.m_Chip[n].bLive) Game.m_Chip[n].Draw();
 	//	}
@@ -1579,6 +1633,7 @@ void CPlayScr::draw_6user(CDC *pDC)
 		for(int n=0; n<MAX_CHIP; n++) {//// ### 칩 그리기 ###
 			if(Game.m_Chip[n].bLive) Game.m_Chip[n].Draw();
 		}
+
 
 		// ### 타이머 막대 그리기, 사운드 ###
 		draw_timer_and_soundfx( PNum );

@@ -757,7 +757,8 @@ void CGameView::OnPaint()
 	MemDC.SetBkMode(TRANSPARENT);
 	MemDC.SetTextColor(RGB(255,255,255));
 	if(g_RI.bPlayer==0)
-		MemDC.TextOut(327,72, str);
+		MemDC.TextOut(530,300, str);		// change position of MouseInfo - jeong
+		//MemDC.TextOut(327,72, str);
 	else
 		MemDC.TextOut(20,65, str);
 /*
@@ -1340,7 +1341,7 @@ BOOL CGameView::OnCommand(WPARAM wParam, LPARAM lParam)
 			Sound.Play(SND45);
 		}break;
 		
-	case IDM_START://시작버튼
+	case IDM_START://시작버튼  // jeong
 		{			
 			CCL_ASK_STARTGAME smsg;
 			smsg.Set(g_RI.RoomNum,g_MyInfo.ServPNum,g_MyInfo.UI.ID);
@@ -1871,3 +1872,24 @@ void CGameView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	Game.OnLButtonDblclk(point.x, point.y);
 	CWnd::OnLButtonDblClk(nFlags, point);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

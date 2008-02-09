@@ -6,3 +6,24 @@
 작업사항
 	넷마블 로그 제거 
 
+2008. 2. 1 12:08
+수정자 : 정홍철
+대상파일
+	CardDeck.cpp
+	CharBox.cpp
+	Chip.cpp
+	Chip.h
+	Game.cpp
+	Game.h
+	GameView.cpp
+	LobyDlg.cpp
+	PlayScr.cpp
+	ResultFindIdDlg.cpp
+	ResultHi.cpp
+	ResultHi.h
+작업사항
+	1. 배팅금액별 그래픽 수정
+	2. 결과창 수정작업
+	3. 아바타 및 카드 위치값 Y:-6이동
+	
+
