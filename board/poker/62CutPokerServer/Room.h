@@ -16,7 +16,8 @@
 
 #define MAX_RAISENUM 4
 #define MAX_WINDTIMEOUT 17
-#define MAX_TURNTIMEOUT	19	// ########### ео е╦юс╬ф©Т
+//#define MAX_TURNTIMEOUT	19	// ########### ео е╦юс╬ф©Т
+#define MAX_TURNTIMEOUT	11	// ########### ео е╦юс╬ф©Т		- modifed by jeong
 #define MAX_SELECTTIMEOUT 15
 
 #define TOTAL_CARDNUM 52 //ця д╚╣Е╪Ж
