@@ -72,7 +72,7 @@ void CCharBox::Init(CWnd *pWnd, CPage *ppage, int defpos)
 	case 3:
 	case 4:
 	case 5:
-		m_xp[0] = 275; m_yp[0] = 54;
+		m_xp[0] = 278; m_yp[0] = 54;
 		m_charxp[0] = m_xp[0]+163; m_charyp[0] = m_yp[0]-10;
 	//	m_cardxp[0] = m_xp[0]+81; m_cardyp[0] = m_yp[0];
 		
