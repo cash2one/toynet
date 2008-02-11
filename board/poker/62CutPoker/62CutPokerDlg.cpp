@@ -209,7 +209,7 @@ BOOL C62CutPokerDlg::OnInitDialog()
 
 	CString str;
 	float gamever = (float)VERSION/100; 
-	str.Format("넷마블 7 Ver%2.2f", gamever);
+	str.Format("Good Boy 7 Poker Ver%2.2f", gamever);
 	SetWindowText(str);
 
 	// 아바타 디스플레이 모듈 초기화
@@ -316,7 +316,7 @@ BOOL C62CutPokerDlg::OnInitDialog()
 
 	CDesktopIconMan icon;
 	// CString ProgName, CString url, CString ShortcutName, CString Desc
-	icon.Check( "NetmarbleNewPoker", "http://www.netmarble.net", "NewPoker", "넷마블 NewPoker" );
+	icon.Check( "Good Boy 7 Poker", "http://www.goodboy7poker.com", "NewPoker", "Good Boy 7 Poker" );
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -648,7 +648,7 @@ void C62CutPokerDlg::ChangeView(int vnum)
 	case 0:
 		{
 			float gamever = (float)VERSION/100; 
-			str.Format("%s Ver%2.2f - [%s]",g_StrMan.Get(_T("GAME_TITLE")), gamever, g_ServerName);
+			str.Format("%s Ver%2.2f - [%s]","Good Boy 7 Poker", gamever, g_ServerName);
 			SetWindowText(str);
 			bFirstLoby = TRUE;
 			g_pTitleDlg->m_TitleMsg = str;
@@ -660,7 +660,7 @@ void C62CutPokerDlg::ChangeView(int vnum)
 	case 1: 
 		{
 			float gamever = (float)VERSION/100; 
-			str.Format("%s Ver%2.2f",g_StrMan.Get(_T("GAME_TITLE")), gamever);
+			str.Format("%s Ver%2.2f","Good Boy 7 Poker", gamever);
 			SetWindowText(str);
 		} break;
 	case 2: 
@@ -669,9 +669,10 @@ void C62CutPokerDlg::ChangeView(int vnum)
 			m_LobyDlg.m_ChatViewEdit.SetWindowText("");
 			m_LobyDlg.m_SendEdit.SetWindowText("");
 
-			// 메인 타이틀 수정
+			// 메인 타이틀 수정 - jeong
 			float gamever = (float)VERSION/100; 
-			str.Format("%s Ver%2.2f - [%s]", g_StrMan.Get(_T("GAME_TITLE")), gamever, g_ChannelName);
+			//str.Format("%s Ver%2.2f - [%s]", g_StrMan.Get(_T("GAME_TITLE")), gamever, g_ChannelName);
+			str.Format("%s Ver%2.2f - [%s]", "Good Boy 7 Poker", gamever, g_ChannelName);
 			g_pLobyDlg->m_LobyMsg=str;
 			
 
@@ -735,10 +736,11 @@ void C62CutPokerDlg::ChangeView(int vnum)
 		
 		if(g_RI.GameKind == 2) style = g_StrMan.Get(_T("FULL"));
 		else if(g_RI.GameKind == 1) style = g_StrMan.Get(_T("HALF"));
+		
 		else style = g_StrMan.Get(_T("QUATER"));
 		CString str;
 		str.Format(g_StrMan.Get(_T("ROOM_TITLE")),
-			g_StrMan.Get(_T("GAME_TITLE")), g_ChannelName, g_RI.RoomNum, g_RI.Title, g_RI.ID,style,
+			"Good Boy 7 Poker", g_ChannelName, g_RI.RoomNum, g_RI.Title, g_RI.ID,style,
 			g_RI.Secret==0?g_StrMan.Get(_T("L_OPEN")):g_StrMan.Get(_T("L_PASS")), g_StrMan.Get(_T("WHISNO")));
 		SetWindowText(str);
 		/////////////////////////
@@ -1176,7 +1178,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			g_TmpJackPotMoney = g_JackPotMoney;		//
 		
 			//######################################
-			CString str ="http://www.netmarble.net";
+			CString str ="http://www.goodboy7poker.com";
 			g_BannerURL2 = str;
 			g_BannerURL2 += msg.SI->BannerURL2;
 			//######################################
@@ -2289,7 +2291,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			// 후에 변경할것
 			CString str;
 			str.Format(g_StrMan.Get(_T("ROOM_TITLE")),
-				g_StrMan.Get(_T("GAME_TITLE")), g_ChannelName, g_RI.RoomNum, g_RI.Title, g_RI.ID,style,rlevel,
+				"Good Boy 7 Poker", g_ChannelName, g_RI.RoomNum, g_RI.Title, g_RI.ID,style,rlevel,
 				g_RI.Secret==0?g_StrMan.Get(_T("L_OPEN")):g_StrMan.Get(_T("L_PASS")),g_StrMan.Get(_T("WHISNO")) );
 			SetWindowText(str);
 
@@ -3284,7 +3286,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 				
 				CString str;
 				str.Format(g_StrMan.Get(_T("ROOM_TITLE")),
-					g_StrMan.Get(_T("GAME_TITLE")), g_ChannelName, g_RI.RoomNum, g_RI.Title, g_RI.ID,style,
+					"Good Boy 7 Poker", g_ChannelName, g_RI.RoomNum, g_RI.Title, g_RI.ID,style,
 					g_RI.Secret==0?g_StrMan.Get(_T("L_OPEN")):g_StrMan.Get(_T("L_PASS")), g_StrMan.Get(_T("WHISNO") ));
 				SetWindowText(str);
 				
@@ -3367,13 +3369,13 @@ void C62CutPokerDlg::OnLButtonDown(UINT nFlags, CPoint point)
 void C62CutPokerDlg::CreateShortCut()
 {
 	// 프로그램 이름
-	LPCTSTR strProgName = "NetmarbleNewPoker";
+	LPCTSTR strProgName = "Good Boy 7 Poker";
 	// URL
-	LPCSTR pszURL = "http://www.netmarble.net/Game/main_new1.asp?game=NewPoker";//"http://NewPoker.netmarble.net";
+	LPCSTR pszURL = "http://www.goodboy7poker.com";//"http://NewPoker.netmarble.net";
 	// 바로가기 이름
-	LPCSTR pszlnkName = "뉴포커";
+	LPCSTR pszlnkName = "NewPoker";
 	// 바로가기 설명
-	LPCSTR szDescription = "넷마블 NewPoker (NewPoker)\n홈페이지로 이동합니다.";
+	LPCSTR szDescription = "Good Boy 7 Poker (NewPoker)\n홈페이지로 이동합니다.";
 	
 
 	CRegKey Key;

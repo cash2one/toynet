@@ -791,7 +791,7 @@ void CGameView::OnPaint()
 
 		MemDC.SetTextColor( RGB(255, 255, 255) );
 		MemDC.TextOut( 110, 8, m_titlestr );
-	
+		
 	//	if(g_RI.bSuperMaster) {
 	//		// ½´ÆÛ¹æÀÌ¸é ½´ÆÛ¹æÀÓÀ» º¸¿©ÁÜ
 	//		Page.PutSprAuto(540, 40, g_pGameView->m_pgamebackspr, 11+(Game.GameCnt/8)%5);
