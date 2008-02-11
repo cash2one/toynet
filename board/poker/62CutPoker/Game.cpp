@@ -1850,7 +1850,7 @@ void CGame::CastChipEx(int pnum, INT64 nMarble, int sdelay)		// CastChipEx - cre
 		}
 	}
 
-	StackChip();
+	//StackChip();
 }
 
 void CGame::StackChip()	
