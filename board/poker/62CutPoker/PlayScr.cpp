@@ -1426,17 +1426,20 @@ void CPlayScr::draw_5user(CDC *pDC)
 		}
 	}
 
-	// 콜 금액 표시 해준다 
+	// 콜 금액 표시 해준다			- jeong
 	if(g_Poker.nState == RSTATE_STARTGAME && Play[0].PlayState == 1 && Game.CurPlayer == Play[0].ServPNum)
 	{
 		INT64 Callmoney =  Game.GetRaiseBat();
 		if(Callmoney > 0 )
 		{			
-			pDC->SelectObject(g_pGameView->Font1);
+			pDC->SelectObject(g_pGameView->Font2);
 			CString callmstr;
-			callmstr.Format("%I64d 원",Callmoney);
+			callmstr.Format("콜금액:%I64d원",Callmoney);
 			CRect rt;
-			rt.SetRect(323,396,206+323,13+396);
+			const int nXp = 323;
+			const int nYp = 416;
+			//rt.SetRect(323,396,206+323,13+396);
+			rt.SetRect(nXp,nYp,206+nXp,13+nYp);
 			pDC->DrawText(callmstr,&rt,DT_RIGHT);
 			pDC->SelectObject(g_pGameView->Font2);
 		}				

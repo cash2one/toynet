@@ -1117,10 +1117,22 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 				al.AuthCookieLen = g_AuthCookie.GetLength();
 				al.DataCookieLen = g_DataCookie.GetLength();
 
+				
+
 				// 로그인 메세지를 보낸다
 				CSV_ASK_LOGIN lgimsg;
+				al.bAIPlayer = FALSE;
 				lgimsg.Set(&al, (char*)(LPCTSTR)g_AuthCookie, (char*)(LPCTSTR)g_DataCookie);
 				SockMan.SendData(g_MainSrvSID, lgimsg.pData, lgimsg.GetTotalSize());
+
+				/*
+				CSV_ASK_LOGIN lgimsgAI;
+				strcpy( al.ID, "cccc" );
+				al.bAIPlayer = TRUE;
+				lgimsgAI.Set(&al, (char*)(LPCTSTR)g_AuthCookie, (char*)(LPCTSTR)g_DataCookie);
+				SockMan.SendData(g_MainSrvSID, lgimsgAI.pData, lgimsgAI.GetTotalSize());
+				*/
+				
 			}
 
 /*
@@ -1189,7 +1201,13 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			m_ConnectMsgDlg.OnOK();
 
 			// 사용자 정보 설정
-			Play[0].SetNewPlayer(&msg.LI->UI);
+			if ( !msg.LI->UI.bAIPlayer )
+				Play[0].SetNewPlayer(&msg.LI->UI);
+			else
+			{
+				Play[1].SetNewPlayer(&msg.LI->UI);
+				break;
+			}
 
 			// ### [ 관전기능 ] ###
 			g_MyInfo.SetNewPlayer(&msg.LI->UI);
@@ -2596,7 +2614,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 				m_GameItemDlg.SafeClose();
 				// [수호천사] 2004.07.08
 				CNewAskChargeDlg BigDlg;
-				BigDlg.DoModal();	
+				//BigDlg.DoModal();				- 오링창 deleted by jeong
 			}
 			if(*msg.Kind == 30)//게임 시작 카운트를 보내줌
 			{
