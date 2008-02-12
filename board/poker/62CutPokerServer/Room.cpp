@@ -827,7 +827,7 @@ void CRoom::OnGlobalGameTimer()
 					{
 						if( i == winner)
 						{							
-							str.Format("%d초 후에 게임이 자동 시작합니다.   시작버튼을 눌러주세요",num);
+							str.Format("%d초 후에 게임이 자동 시작합니다.",num);	// 시작 메세지 변경 - jeong
 							smsg.Set(30, (char*)str.operator LPCTSTR());
 							SendMsgTo(Ui[i].ID,smsg.pData,smsg.GetTotalSize());
 						}						
