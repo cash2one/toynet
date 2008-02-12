@@ -366,7 +366,8 @@ BOOL CGame::OnRButtonDown(int xp,int yp)
 	g_BgMode++;
 	if(g_BgMode > 2)g_BgMode = 0;
 
-	g_pMainDlg->Reload_spritefile();
+	//g_pMainDlg->Reload_spritefile(); softpark
+
 	//g_pGameView->m_pgamebackspr = &GameBackSpr;
 	//g_pGameView->BatPage.PutSprAuto(0, 0, g_pGameView->m_pgamebackspr, 1);			// 배팅 칩 게임판을 지운다
 	

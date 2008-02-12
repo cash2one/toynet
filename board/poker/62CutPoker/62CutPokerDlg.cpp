@@ -1678,6 +1678,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 	// 2003 06 23
 	case SV_ALLCHANINFO: // 모든 채널 정보
 		{
+			
 			/*
 			CSV_ALLCHANINFO msg;
 			msg.Get(lpData, TotSize);

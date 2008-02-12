@@ -139,22 +139,22 @@ BOOL CCreateRoomDlg::OnInitDialog()
 	// 콤보박스 초기화
 	bSecret=0;
 	m_SecretCombo.SetCurSel(0);
-	nMaxNum=g_Max_Player;
-	m_MaxNum.SetCurSel(2);
+	nMaxNum=2;//g_Max_Player;
+	m_MaxNum.SetCurSel(0);
 	m_LevelCombo.SetCurSel(0);
 	m_Pass.Format("");
 
 	rt.SetRect(207, 98,278,116);
 	GetDlgItem(IDC_EDIT_ROOMPASS)->MoveWindow(rt);
 
-	GameKind=0;
+	GameKind=1;
 	m_GameKindCombo.SetCurSel(0);
 	rt.SetRect(74,70,143,88);
 	m_GameKindCombo.MoveWindow(rt);
 	rt = NULL;
 	// 추가 기본 초이스 방
-	FormKind = 0;
-	m_FormKindCombo.SetCurSel(0);
+	FormKind = 1;
+	m_FormKindCombo.SetCurSel(1);
 //	m_FormKindCombo.EnableWindow(FALSE);
 
 
@@ -167,12 +167,12 @@ BOOL CCreateRoomDlg::OnInitDialog()
 		GetDlgItem(IDC_RADIO_USERCOUNT6)->EnableWindow(FALSE);
 		
 		m_MaxNum.ResetContent();
-		m_MaxNum.AddString("3");
-		m_MaxNum.AddString("4");
-		m_MaxNum.AddString("5");
+		m_MaxNum.AddString("2");
+		//m_MaxNum.AddString("4");
+		//m_MaxNum.AddString("5");
 		
 		nMaxNum=MAX_PLAYER-1/*g_Max_Player*/;
-		m_MaxNum.SetCurSel(2);
+		m_MaxNum.SetCurSel(0);
 	} else {
 		m_bPlayer = 1;
 		m_nPlayer = 1;
@@ -552,10 +552,13 @@ void CCreateRoomDlg::OnSelchangeComboMaxnum()
 {
 	// TODO: Add your control notification handler code here
 	if(m_nPlayer==0) {
-		if(m_MaxNum.GetCurSel()==0) nMaxNum = 3;
+		if(m_MaxNum.GetCurSel()==0) nMaxNum = 2;//3;
+			else nMaxNum = 2;
+		/*
 		else if(m_MaxNum.GetCurSel()==1) nMaxNum = 4;
 		else if(m_MaxNum.GetCurSel()==2) nMaxNum = 5;
 		else nMaxNum = 5;
+		*/
 	}
 	else {
 		if(m_MaxNum.GetCurSel()==0) nMaxNum = 4;
