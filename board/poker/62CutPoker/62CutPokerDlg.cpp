@@ -1,4 +1,4 @@
-// 62CutPokerDlg.cpp : implementation file
+RegistTrayIcon// 62CutPokerDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -282,6 +282,7 @@ BOOL C62CutPokerDlg::OnInitDialog()
 //###버그를잡아라
 #ifdef _DEBUG
 
+
 	CLoginDlg LoginDlg;
 	if(LoginDlg.DoModal()==IDOK) {
 		g_LoginID = LoginDlg.m_ID;
@@ -294,6 +295,7 @@ BOOL C62CutPokerDlg::OnInitDialog()
 		m_ConnectMsgDlg.OnCancel();
 		return FALSE;
 	}
+	
 
 #endif
 
@@ -2524,7 +2526,8 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			if(*msg.Kind==11)
 				str.Format("[개인공지]\n%s", chat.operator LPCTSTR());
 			else
-				str.Format("[서버 알림]\n%s", chat.operator LPCTSTR());
+				str.Format("%s", chat.operator LPCTSTR());			// 메세지 변경 - jeong
+				//str.Format("[서버 알림]\n%s", chat.operator LPCTSTR());
 
 			int Kind = *msg.Kind;
 

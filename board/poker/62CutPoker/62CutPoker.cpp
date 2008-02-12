@@ -56,7 +56,7 @@ BOOL C62CutPokerApp::InitInstance()
 	//	SendMessage(hWnd, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
 		::SetForegroundWindow(hWnd);
 		::CloseHandle(hImHere);
-		AfxMessageBox("이미 다른 넷마블 프로그램이 실행중입니다");
+		AfxMessageBox("이미 다른 Good Boy 7 Poker 프로그램이 실행중입니다");
 		return FALSE;
 	}
 #endif
@@ -71,8 +71,8 @@ BOOL C62CutPokerApp::InitInstance()
 	// 명령행 인자가 하나도 없으면 프로그램 종료
 	if(cmdInfo.m_nShellCommand==0)
 	{
-		int rtn=AfxMessageBox("이 프로그램은 넷마블 홈페이지에서\n실행해야만 올바르게 작동합니다.\n지금 홈페이지로 이동하시겠습니까?", MB_YESNO);
-		if(rtn==IDYES) ::ShellExecute(NULL, "open", "http://www.netmarble.net/", NULL, NULL, SW_SHOWNORMAL);
+		int rtn=AfxMessageBox("이 프로그램은 Good Boy 7 Poker 홈페이지에서\n실행해야만 올바르게 작동합니다.\n지금 홈페이지로 이동하시겠습니까?", MB_YESNO);
+		if(rtn==IDYES) ::ShellExecute(NULL, "open", "http://www.goodboy7poker.com/", NULL, NULL, SW_SHOWNORMAL);
 		return FALSE;
 	}
 #endif

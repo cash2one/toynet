@@ -62,7 +62,7 @@ void CCardDeck::Init(CPage *ppage, int pnum)
 	case 4:
 	case 5:
 		{
-			m_xp[0] = 275; m_yp[0] = 54;
+			m_xp[0] = 277; m_yp[0] = 54;
 			
 			//	m_xp[1] = 87;m_yp[1] = 275;
 		} break;

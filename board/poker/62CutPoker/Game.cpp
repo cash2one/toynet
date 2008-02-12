@@ -3485,7 +3485,7 @@ void CGame::User_OutRoom(CSV_USEROUTROOM *pMsg) // 유저가 방에서 나감 알림
 	//시작버튼 
 	if(strcmp(g_RI.ID,g_MyInfo.UI.ID)==0 && g_RI.UNum == g_MyInfo.UI.UNum 
 		&& g_RI.NowUserNum <3 && g_RI.State == 0 ){
-		g_pGameView->GameStartBtn.Show(FALSE);		
+		g_pGameView->GameStartBtn.Show(FALSE);
 	}
 	/*
 	if(g_RI.NowUserNum <3 && g_RI.State == 0)
@@ -3496,9 +3496,6 @@ void CGame::User_OutRoom(CSV_USEROUTROOM *pMsg) // 유저가 방에서 나감 알림
 	}
 	*/
 }
-
-
-
 
 // bPaticipation = TRUE  관전 -> 참여
 // bPaticipation = FALSE 참여 -> 관전
@@ -4065,7 +4062,7 @@ int CGame::GetViewMyrule(enum SEVEN_CARD eName)
 	return myValue;	
 }
 
-void CGame::OnStartButtonActive(int spnum,char * id,int bactive) // 시작버튼 활성화 
+void CGame::OnStartButtonActive(int spnum,char * id,int bactive) // 시작버튼 활성화 -jeong
 {
 	if(spnum < 0 || spnum > g_Max_Player)return;
 	if(strlen(id) <= 0)return;
@@ -4074,7 +4071,7 @@ void CGame::OnStartButtonActive(int spnum,char * id,int bactive) // 시작버튼 활�
 		if(g_MyInfo.ServPNum != spnum) return;
 		if(strcmp(g_MyInfo.UI.ID,id) != 0)return;
 		
-		g_pGameView->GameStartBtn.Show(TRUE);
+		g_pGameView->GameStartBtn.Show(FALSE);		// TRUE->FALSE 자동시작 - jeong
 	}
 	else 
 	{
