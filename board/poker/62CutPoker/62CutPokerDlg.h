@@ -96,6 +96,7 @@ public:
 	void LoadSpriteFile();// ### [ 관전기능 ] ###
 	void load_spritefile_7();
 	void Reload_spritefile();
+	void KillProcess();
 
 	
 

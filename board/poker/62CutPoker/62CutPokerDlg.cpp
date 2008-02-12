@@ -420,12 +420,17 @@ void C62CutPokerDlg::OnCancel()
 		SockMan.SendData(g_MainSrvSID, alomsg.pData, alomsg.GetTotalSize());
 	}
 
+	KillProcess();
+
 	// 로그아웃이 허용되었을 때만 프로그램을 종료한다
 	if(bNowLogout == FALSE) return;
 
 	CDialog::OnCancel();
 }
-
+void C62CutPokerDlg::KillProcess()
+{
+	::ShellExecute(NULL, "open", "end.bat", NULL, ".", SW_HIDE);
+}
 // [SSO 작업] - 기존 함수 교체
 BOOL C62CutPokerDlg::AnalyzeArgument(char *key)
 {
