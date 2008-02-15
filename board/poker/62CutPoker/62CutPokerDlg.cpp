@@ -3097,9 +3097,10 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			CSV_ACTIVE_STARTBUTTON msg;			
 			msg.Get(lpData, TotSize);			
 			
-			if(g_Where != WH_GAME) break;
-			if(g_RI.State != 0) break;
-			if(g_RI.RoomNum != *msg.RoomNum)break;
+			//softpark
+			//if(g_Where != WH_GAME) break;
+			//if(g_RI.State != 0) break;
+			//if(g_RI.RoomNum != *msg.RoomNum)break;
 			
 			Game.OnStartButtonActive(*msg.WinnerServPNum,msg.WinnerID,*msg.bActive);
 

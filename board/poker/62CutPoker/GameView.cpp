@@ -1702,7 +1702,7 @@ void CGameView::gameview_changeinitpos()
 		m_betpagesize_y = 248;
 	}
 	//버튼 이미지
-	pagebutton_init();
+	//pagebutton_init();
 }
 
 // 화면좌표 변경

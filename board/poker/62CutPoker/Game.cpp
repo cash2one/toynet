@@ -4069,14 +4069,16 @@ void CGame::OnStartButtonActive(int spnum,char * id,int bactive) // 시작버튼 활�
 	if(strlen(id) <= 0)return;
 	
 	if(bactive == 1){
+		/* softpark 양쪽에 다 뜨게. .. ai 가 참여 한경우. 시작 버튼이 ai 쪽에 떠버리면 곤란.
 		if(g_MyInfo.ServPNum != spnum) return;
 		if(strcmp(g_MyInfo.UI.ID,id) != 0)return;
+		*/
+		g_pGameView->GameStartBtn.Show(TRUE);		// TRUE->FALSE 자동시작 - jeong -> softpark 다시 true
 		
-		g_pGameView->GameStartBtn.Show(FALSE);		// TRUE->FALSE 자동시작 - jeong
 	}
 	else 
 	{
-		g_pGameView->GameStartBtn.Show(FALSE);
+		g_pGameView->GameStartBtn.Show(TRUE);//FALSE); 
 	}
 }
 
