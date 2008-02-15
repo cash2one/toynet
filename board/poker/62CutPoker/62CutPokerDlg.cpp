@@ -1130,7 +1130,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 
 				// 로그인 메세지를 보낸다
 				CSV_ASK_LOGIN lgimsg;
-				al.bAIPlayer = FALSE;
+				//al.bAIPlayer = FALSE;
 				lgimsg.Set(&al, (char*)(LPCTSTR)g_AuthCookie, (char*)(LPCTSTR)g_DataCookie);
 				SockMan.SendData(g_MainSrvSID, lgimsg.pData, lgimsg.GetTotalSize());
 
@@ -1210,13 +1210,15 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			m_ConnectMsgDlg.OnOK();
 
 			// 사용자 정보 설정
-			if ( !msg.LI->UI.bAIPlayer )
+			//if ( !msg.LI->UI.bAIPlayer )
 				Play[0].SetNewPlayer(&msg.LI->UI);
+			/*
 			else
 			{
 				Play[1].SetNewPlayer(&msg.LI->UI);
 				break;
 			}
+			*/
 
 			// ### [ 관전기능 ] ###
 			g_MyInfo.SetNewPlayer(&msg.LI->UI);
