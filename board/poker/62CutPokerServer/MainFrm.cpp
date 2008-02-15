@@ -343,10 +343,10 @@ void CMainFrame::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	
 	// TODO: Add your message handler code here
 	// 트레이 변경시 - jeong
-	m_bIsTrayIcon = FALSE;
-	RegistTrayIcon();
+	//m_bIsTrayIcon = FALSE;
+	//RegistTrayIcon();
 	//ShowWindow(SW_HIDE);
-	lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	//lpwndpos->flags &= ~SWP_SHOWWINDOW;
 }
 
 void CMainFrame::RegistTrayIcon()
@@ -401,7 +401,7 @@ void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)
 	// TODO: Add your message handler code here and/or call default
 	if(nID == SC_MINIMIZE)
 	{ 
-		ShowWindow(SW_HIDE);
+		//ShowWindow(SW_HIDE);
 	}
 	else
 		CFrameWnd::OnSysCommand(nID, lParam);

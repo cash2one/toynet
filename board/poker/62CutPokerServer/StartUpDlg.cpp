@@ -172,9 +172,9 @@ void CStartUpDlg::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	// TODO: Add your message handler code here
 	//m_bIsTrayIcon = FALSE;
 	//RegistTrayIcon();
-	lpwndpos->flags &= ~SWP_SHOWWINDOW;
-	g_pMainView->bNowStartUpDlg = FALSE;
-	CDialog::OnOK();
+	//lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	//g_pMainView->bNowStartUpDlg = FALSE;
+	//CDialog::OnOK();
 }
 
 void CStartUpDlg::RegistTrayIcon()

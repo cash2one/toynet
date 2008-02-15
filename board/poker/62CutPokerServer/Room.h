@@ -195,6 +195,9 @@ public:
 	BANISHVOTEINFO BVI;
 	SMALLROOMINFO m_SRi;		   // 방정보 변경용
 
+	//ai
+	BOOL bAi_;
+
 public:
 	void LogRecordFunc(int unum, int pnum);
 

@@ -120,6 +120,8 @@ void CRoom::Clear()
 	for(int i=0; i<m_Max_Player; i++) {
 		Ps[i].nCheckIp = -1; // $$$  기본값 -1
 	}
+
+	bAi_ = TRUE;
 }
 
 int CRoom::GetPNum(char* id)
@@ -302,6 +304,7 @@ BOOL CRoom::OnUserEnterRoom(USERINFO *pUI, int pnum, int myindex, int sndFxKind)
 
 	// 게임 시작 카운터 가동 (시작버튼 삽입)
 	
+	/* softpark 버튼 나오게 수정
 	if(GameState==RSTATE_NONE && bRestartCnt==FALSE && Ri.NowUserNum == Ri.MaxUserNum)
 	{
 		bRestartCnt=TRUE;
@@ -311,13 +314,18 @@ BOOL CRoom::OnUserEnterRoom(USERINFO *pUI, int pnum, int myindex, int sndFxKind)
 	else if(GameState==RSTATE_NONE && bRestartCnt==FALSE && Ri.NowUserNum >= MIN_PLAYER && Ri.NowUserNum < Ri.MaxUserNum)
 	{
 		bRestartCnt=TRUE;
+	*/
 		RestartCnt=0;
 		// 시작버튼 
 		int nPrimer    = GetPrimer(); // 선구하기
 		CSV_ACTIVE_STARTBUTTON startmsg;
 		startmsg.Set(this->Ri.RoomNum,nPrimer,Ui[nPrimer].ID,1);
-		SendMsgTo(Ui[nPrimer].ID,startmsg.pData,startmsg.GetTotalSize());
-	}	
+
+		if (bAi_)
+			SendMsgToAll(startmsg.pData,startmsg.GetTotalSize()); //softpark 모두 띄우게.
+		else
+			SendMsgTo(Ui[nPrimer].ID,startmsg.pData,startmsg.GetTotalSize()); 
+	//}	
 	return TRUE;
 }
 
@@ -3974,23 +3982,28 @@ void CRoom::SendReset()
 		}
 	}
 
+	/* softpark 무조건 game start 버튼 뜨게.
 	if(GameState==RSTATE_NONE && bRestartCnt==FALSE && Ri.NowUserNum == Ri.MaxUserNum)
 	{
 		bRestartCnt=TRUE;
 		RestartCnt=3;	
 		return;
-	}
+	}*/
 
 	// 게임리셋 명령을 전송한후 재시작카운트 시동 //softpark
-	if(GameState==RSTATE_NONE && bRestartCnt==FALSE && Ri.NowUserNum >= MIN_PLAYER && Ri.NowUserNum < Ri.MaxUserNum){//시작버튼 관련	
-		bRestartCnt=TRUE;
+	//if(GameState==RSTATE_NONE && bRestartCnt==FALSE && Ri.NowUserNum >= MIN_PLAYER && Ri.NowUserNum < Ri.MaxUserNum){//시작버튼 관련	
+		//bRestartCnt=TRUE; softpark 요걸 막아줘야 자동 실행 안된다.
 		RestartCnt=0;
 		// 시작버튼 
 		int nPrimer    = GetPrimer(); // 선구하기
 		CSV_ACTIVE_STARTBUTTON startmsg;
 		startmsg.Set(this->Ri.RoomNum,nPrimer,Ui[nPrimer].ID,1);
-		SendMsgTo(Ui[nPrimer].ID,startmsg.pData,startmsg.GetTotalSize());
-	}
+		if (bAi_)
+			SendMsgToAll(startmsg.pData,startmsg.GetTotalSize()); //softpark 모두 띄우게.
+		else
+			SendMsgTo(Ui[nPrimer].ID,startmsg.pData,startmsg.GetTotalSize()); 
+			
+	//}
 }
 
 
@@ -4188,7 +4201,11 @@ void CRoom::Participation(int unum, int pnum, int sndFxKind)
 		int nPrimer    = GetPrimer(); // 선구하기
 		CSV_ACTIVE_STARTBUTTON startmsg;
 		startmsg.Set(this->Ri.RoomNum,nPrimer,Ui[nPrimer].ID,1);
-		SendMsgTo(Ui[nPrimer].ID,startmsg.pData,startmsg.GetTotalSize());
+
+		if (bAi_)
+			SendMsgToAll(startmsg.pData,startmsg.GetTotalSize()); //softpark 모두 띄우게.
+		else
+			SendMsgTo(Ui[nPrimer].ID,startmsg.pData,startmsg.GetTotalSize()); 
 	}
 	// 모든 사용자에게 방정보가 변경되었음을 알리고 사용자 정보가 갱신됨을 알림
 	
