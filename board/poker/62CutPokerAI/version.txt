@@ -1,0 +1,61 @@
+2008. 2. 12
+수정자 : 정홍철
+대상파일
+	62CutPoker.cpp
+	CardDeck.cpp
+	Game.cpp
+	62CutPokerDlg.cpp
+	62CutPokerDlg.h
+작업사항
+	변경된 UI에 맞게 카드 좌표 이동
+	시작버튼 숨김
+	서버관련 메세지 숨김
+	프로세스종료 함수 추가
+#############################################################################
+2008. 2. 11
+수정자 : 정홍철
+대상파일
+	Game.cpp
+	62CutPokerDlg.cpp
+	PlayScr.cpp
+	CharBox.cpp
+	DesktopIconMan.cpp
+	GameView.cpp
+작업사항
+	1. 돈뿌리는걸로 롤백
+	2. 오링창 막음
+	3. 콜금액 좌표 이동
+	4. 변경된 UI에 맞게 아바타 좌표 이동
+	5. 윈도우 타이틀명 변경 ( 넷마블 -> Good Boy 7 Poker )
+#############################################################################
+2008. 2. 1 12:08
+수정자 : 정홍철
+대상파일
+	CardDeck.cpp
+	CharBox.cpp
+	Chip.cpp
+	Chip.h
+	Game.cpp
+	Game.h
+	GameView.cpp
+	LobyDlg.cpp
+	PlayScr.cpp
+	ResultFindIdDlg.cpp
+	ResultHi.cpp
+	ResultHi.h
+작업사항
+	1. 배팅금액별 그래픽 수정
+	2. 결과창 수정작업
+	3. 아바타 및 카드 위치값 Y:-6이동
+#####################################################
+2008. 2. 9 16:24 
+수정자 : 정홍철
+대상파일
+	.\image\Loby\LobyBack.bmp
+	.\image\Title\TitleBack.bmp
+작업사항
+	넷마블 로그 제거 
+
+
+	
+

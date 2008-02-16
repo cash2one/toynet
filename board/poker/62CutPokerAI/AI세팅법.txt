@@ -1,0 +1,27 @@
+
+#### BIN 폴더 세팅 #######
+1. _BIN폴더안에서 AI폴더 생성
+2. _BIN\Client폴더안에 모든 파일 복사 후 AI폴더에 붙여넣기
+3. AI폴더안에 있는 NewPoker_Debug.exe를 NewPokerAI_Debug.exe로 이름 변경
+
+
+
+#### 62CutPokerAI 프로젝트 세팅 #######
+디렉토리 구조
+board
+	- _BIN
+	- 62CutPoker
+	- 62CutPokerAI
+	- 62CutPokerServer
+
+1. 62CutPokerAI.zip를 62CutPoker상위에서 압축해제
+2. 62CutPoker폴더안에 있는 모든 서브폴더들(config, data, FolderLib...단 Debug폴더제외) 
+   복사후 62CutPokerAI폴더에 붙여넣기
+
+
+
+
+##### AI프로그램 사용순서 #######
+1. 서버 구동
+2. 일반 NewPoker_Debug.exe 구동 -> 로그인 -> 방생성
+3. NewPokerAI_Debug.exe 구동 (자동으로 로그인/방생성/플레이 구동)
