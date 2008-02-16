@@ -28,6 +28,7 @@
 #include "BadChatMan.h"
 #include "DialogCtrlReposition.h"
 #include "WebProfileDlg.h"
+#include "MiniDlg.h"
 
 #include "NMSTRMAN.h"
 #include "AdminMessageDlg.h"
@@ -251,6 +252,8 @@ char* GetStrJob(int num);
 class CGame;
 extern CGame Game;
 extern CWhisperDlg g_WhisperDlg;
+
+extern CMiniDlg g_Mini;
 
 // [세븐포커] 레벨 머니제한
 //extern POKERSET g_POKERSET;

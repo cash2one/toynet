@@ -70,3 +70,9 @@ void CCardEx::Draw( BOOL bFold)
 	if(bChangeCard)
 		pPage->PutSprAuto(xp-3, yp-3, &FocusSpr, 11);
 }
+
+
+void CCardEx::DrawForMini( BOOL bFold)
+{
+	CCard::Draw();
+}

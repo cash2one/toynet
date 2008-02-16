@@ -256,7 +256,7 @@ void CCard::Draw( BOOL bFold)
 	if( bFold )
 		pPage->PutSprAuto(xp, yp, &BigCardSpr, sprno, GLOW, 28);//,RGBmix(0,10,10));
 	else
-		pPage->PutSprAuto(xp, yp, &BigCardSpr, sprno);	
+		pPage->PutSprAuto(xp, yp, &BigCardSpr, sprno);
 }
 
 

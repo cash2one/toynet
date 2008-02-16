@@ -27,6 +27,7 @@ public:
 	void SetChangeCardCheck(BOOL flg){bChangeCard = flg;}
 
 	void Draw( BOOL bFold = FALSE );
+	void DrawForMini( BOOL bFold);
 
 };
 

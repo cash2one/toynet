@@ -203,6 +203,7 @@ int CGameView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 
 	Game.Init(&Page, &BatPage);
+	g_Mini.InitPage(&Page);
 	
 		
 	////////////////////////////////////////////////////////////////////////

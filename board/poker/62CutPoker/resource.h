@@ -284,6 +284,7 @@
 #define IDC_CURSOR1                     388
 #define IDD_DIG_LIMITMONEY              408
 #define IDD_DIALOG_LIMITCONFIRM         409
+#define IDD_DLG_MINIGAME                417
 #define IDC_EDIT_ID                     1000
 #define IDC_RICHEDIT_CHATVIEW           1000
 #define IDC_EDIT_PASS                   1001
@@ -464,6 +465,8 @@
 #define IDC_BTN_OPTION_FEMALE3          1087
 #define IDC_LIST2                       1092
 #define IDC_BUTTON_SAFEANGEL            1093
+#define IDC_BUTTON1                     1095
+#define IDC_BUTTON3                     1098
 #define IDC_MENUUSERINFO                32771
 #define IDC_MENU_ADM_USERINFO           32771
 #define IDC_MENUSENDWHISPHER            32772
@@ -487,9 +490,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        417
+#define _APS_NEXT_RESOURCE_VALUE        418
 #define _APS_NEXT_COMMAND_VALUE         32781
-#define _APS_NEXT_CONTROL_VALUE         1094
+#define _APS_NEXT_CONTROL_VALUE         1099
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

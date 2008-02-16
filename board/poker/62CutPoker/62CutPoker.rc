@@ -747,6 +747,14 @@ FONT 9, "MS Sans Serif"
 BEGIN
 END
 
+IDD_DLG_MINIGAME DIALOG DISCARDABLE  0, 0, 456, 399
+STYLE WS_POPUP
+FONT 10, "System"
+BEGIN
+    PUSHBUTTON      "Hi",IDC_BUTTON1,381,289,47,15
+    PUSHBUTTON      "Low",IDC_BUTTON2,382,314,47,17
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -967,6 +975,14 @@ BEGIN
         RIGHTMARGIN, 180
         TOPMARGIN, 7
         BOTTOMMARGIN, 93
+    END
+
+    IDD_DLG_MINIGAME, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 449
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 392
     END
 END
 #endif    // APSTUDIO_INVOKED

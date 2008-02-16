@@ -241,6 +241,7 @@ char* GetStrJob(int num)
 
 CGame Game;
 CWhisperDlg g_WhisperDlg;
+CMiniDlg g_Mini;
 
 
 // [세븐포커] 레벨 머니제한

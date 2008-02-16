@@ -17,6 +17,7 @@
 
 #include "AdminTitleDlg.h"// [관리자 모드 작업]
 #include "ResultHi.h"
+#include "MiniDlg.h"
 //#include "SelCardDlg.h"
 //#include "SelCardChoiceDlg.h"
 //#include "Oring.h"
@@ -845,6 +846,7 @@ void CLobyDlg::OnButtonCreateroom()
 		iAccessRoomState=0;
 		g_Wait = FALSE;
 	}
+	
 }
 
 void CLobyDlg::OnRclickListRoom(NMHDR* pNMHDR, LRESULT* pResult) 
