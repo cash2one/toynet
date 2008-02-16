@@ -1,0 +1,295 @@
+// MiniDlg.cpp : implementation file
+//
+
+#include "stdafx.h"
+#include "MiniDlg.h"
+#include "SysUtil.h"
+#include "Global.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+// CMiniDlg dialog
+
+
+CMiniDlg::CMiniDlg(CWnd* pParent /*=NULL*/)
+	: CDialog(CMiniDlg::IDD, pParent)
+{
+	//{{AFX_DATA_INIT(CMiniDlg)
+		// NOTE: the ClassWizard will add member initialization here
+	//}}AFX_DATA_INIT
+
+	//pPage = NULL;
+}
+
+
+void CMiniDlg::DoDataExchange(CDataExchange* pDX)
+{
+	CDialog::DoDataExchange(pDX);
+	//{{AFX_DATA_MAP(CMiniDlg)
+		// NOTE: the ClassWizard will add DDX and DDV calls here
+	//}}AFX_DATA_MAP
+}
+
+
+BEGIN_MESSAGE_MAP(CMiniDlg, CDialog)
+	//{{AFX_MSG_MAP(CMiniDlg)
+	ON_WM_PAINT()
+	ON_WM_TIMER()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_DESTROY()
+	ON_WM_LBUTTONUP()
+	ON_BN_CLICKED(IDC_BUTTON1, OnButtonHi)
+	ON_BN_CLICKED(IDC_BUTTON2, OnButtonLow)
+	//}}AFX_MSG_MAP
+END_MESSAGE_MAP()
+
+/////////////////////////////////////////////////////////////////////////////
+// CMiniDlg message handlers
+
+BOOL CMiniDlg::OnInitDialog() 
+{
+	CDialog::OnInitDialog();
+	
+	// TODO: Add extra initialization here
+	if(GameBackSpr.Load(".\\data\\Mini\\x2gameback.spr", 555)==FALSE) AfxMessageBox("x2gameback.spr 파일을 읽을 수 없습니다");
+	if(StartBtnSpr.Load(".\\data\\Mini\\StartBtn.spr", 555)==FALSE) AfxMessageBox("StartBtn.spr 파일을 읽을 수 없습니다");
+	if(EndBtnSpr.Load(".\\data\\Mini\\EndBtn.spr", 555)==FALSE) AfxMessageBox("EndBtn.spr 파일을 읽을 수 없습니다");
+
+
+	// 다이얼로그 컨트롤 포지션과 위치 재정렬
+	CDialogCtrlReposition CtrlRepos;
+	CtrlRepos.Reposition(m_hWnd);
+
+
+	// 폰트 생성
+	if(Font1.m_hObject == NULL)
+	Font1.CreateFont(12,0,0,0,
+		//FW_NORMAL,
+		FW_BOLD,
+		FALSE,FALSE,
+		0,
+		//ANSI_CHARSET,
+		DEFAULT_CHARSET,
+		OUT_DEFAULT_PRECIS,
+		CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY,
+		DEFAULT_PITCH | FF_SWISS,
+		"굴림");
+
+	if(Font2.m_hObject == NULL)
+	Font2.CreateFont(12,0,0,0,
+		FW_NORMAL,
+		FALSE,FALSE,
+		0,
+		//ANSI_CHARSET,
+		DEFAULT_CHARSET,
+		OUT_DEFAULT_PRECIS,
+		CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY,
+		DEFAULT_PITCH | FF_SWISS,
+		"굴림");
+
+	CenterWindow(g_pGameView->GetOwner());	
+
+
+	SetTimer(MINIGAME_TIMER , 55 , NULL);
+
+	m_MnGame.InitGame();
+
+	
+	return TRUE;  // return TRUE unless you set the focus to a control
+	              // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void CMiniDlg::OnPaint() 
+{
+	CPaintDC dc(this); // device context for painting
+	
+	// TODO: Add your message handler code here
+	// 더블 버퍼링용 메모리 DC 생성
+	CDC MemDC;
+	MemDC.CreateCompatibleDC(&dc);
+
+	// 메모리DC에 버퍼용 비트맵 핸들을 선택
+	MemDC.SelectObject(Page.hBmp);
+
+	Page.PutSprAuto(0, 0, &GameBackSpr, 0);
+
+	const int nXpBtn = MINISTART_OFFSET_X;
+	const int nYpBtn = MINISTART_OFFSET_Y;
+	Page.PutSprAuto(MINISTART_OFFSET_X, MINISTART_OFFSET_Y, &StartBtnSpr, 0);
+	Page.PutSprAuto(MINISTOP_OFFSET_X, MINISTOP_OFFSET_Y, &EndBtnSpr, 0);
+
+	m_MnGame.Draw();
+
+	
+	// 마우스 좌표 체크
+	POINT mpos;
+	GetCursorPos(&mpos);
+	ScreenToClient(&mpos);
+	CString str;
+	str.Format("Mouse (%d, %d)", mpos.x, mpos.y);
+	MemDC.SelectObject(&Font2);
+	MemDC.SetBkMode(TRANSPARENT);
+	MemDC.SetTextColor(RGB(255,255,255));
+	MemDC.TextOut(100,100, str);		
+
+	CRect rt;
+	// Win Money
+	int nWinMoney = m_MnGame.GetWinMoney();
+	CString Winmstr;
+	str = NumberToOrientalString(nWinMoney);
+	Winmstr.Format("%s원",str);
+	
+	const int nXp = 150;
+	const int nYp = 480;
+	rt.SetRect(nXp,nYp,206+nXp,13+nYp);
+	MemDC.DrawText(Winmstr,&rt,DT_RIGHT);
+
+	// Win Money
+	int nBankMoney = m_MnGame.GetBankMoney();
+
+	CString Bankmstr;
+	str = NumberToOrientalString(nBankMoney);					
+	Bankmstr.Format("%s원",str);
+
+	const int nXp2 = 150;
+	const int nYp2 = 508;
+	rt.SetRect(nXp2,nYp2,206+nXp2,13+nYp2);
+	MemDC.DrawText(Bankmstr,&rt,DT_RIGHT);
+
+	CRect rect;
+	GetClientRect(&rect);
+
+	dc.BitBlt(0, 0, rect.right, rect.bottom, &MemDC, 0, 0, SRCCOPY);
+	// 부분 갱신 플래그 해제
+//	bSetInvalidate = FALSE;
+	MemDC.DeleteDC();
+	// Do not call CDialog::OnPaint() for painting messages
+}
+
+
+void CMiniDlg::InitPage(CPage *ppage)
+{
+	//pPage = ppage;
+	Page.Init(GAMEVIEW_WIDTH, GAMEVIEW_HEIGHT, 16);
+
+	m_MnGame.Init( &Page );
+
+	m_rcStartBtn.SetRect(MINISTART_OFFSET_X, MINISTART_OFFSET_Y, MINISTART_OFFSET_X+170, MINISTART_OFFSET_Y+50);
+
+	m_rcStopBtn.SetRect(MINISTOP_OFFSET_X, MINISTOP_OFFSET_Y, MINISTOP_OFFSET_X+170, MINISTOP_OFFSET_Y+50);
+}
+
+void CMiniDlg::OnTimer(UINT nIDEvent) 
+{
+	// TODO: Add your message handler code here and/or call default
+	
+	m_MnGame.OnTimer();
+
+	Invalidate(FALSE);
+	
+	CDialog::OnTimer(nIDEvent);
+}
+
+void CMiniDlg::OnLButtonDown(UINT nFlags, CPoint point) 
+{
+	// TODO: Add your message handler code here and/or call default
+	if( m_rcStartBtn.PtInRect(point) )
+		g_Mini.SendMessage(WM_COMMAND, IDM_MINI_START, 0);
+
+	if( m_rcStopBtn.PtInRect(point) )
+		g_Mini.SendMessage(WM_COMMAND, IDM_MINI_STOP, 0);
+
+
+	CDialog::OnLButtonDown(nFlags, point);
+}
+
+void CMiniDlg::OnDestroy() 
+{
+	CDialog::OnDestroy();
+	
+	// TODO: Add your message handler code here
+	KillTimer( MINIGAME_TIMER );
+	
+}
+
+void CMiniDlg::OnLButtonUp(UINT nFlags, CPoint point) 
+{
+	// TODO: Add your message handler code here and/or call default
+	
+	CDialog::OnLButtonUp(nFlags, point);
+}
+
+void CMiniDlg::OnButtonHi() 
+{
+	// TODO: Add your control notification handler code here
+	int nResult = m_MnGame.CheckWinGame( 1 );
+	m_MnGame.SetGameResult( nResult );
+	
+}
+
+void CMiniDlg::OnButtonLow() 
+{
+	// TODO: Add your control notification handler code here
+	int nResult = m_MnGame.CheckWinGame( 0 );
+	m_MnGame.SetGameResult( nResult );
+	
+}
+
+void CMiniDlg::OnButtonMiniStop() 
+{
+	// TODO: Add your control notification handler code here
+	if( m_MnGame.GetGameResult() == 0 )
+		m_MnGame.StopGame();
+	else if ( m_MnGame.GetGameResult() == 1 )
+		m_MnGame.DefeatGame();
+	else if ( m_MnGame.GetGameResult() == 2 )
+		m_MnGame.PreCardGame();
+	
+}
+
+void CMiniDlg::OnButtonMiniStart() 
+{
+	// TODO: Add your control notification handler code here
+	//m_MnGame.IsGame();
+	g_Mini.SendMessage(WM_COMMAND, IDM_MINI_START, 0);
+	
+}
+
+BOOL CMiniDlg::OnCommand(WPARAM wParam, LPARAM lParam) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	switch(wParam)
+	{
+		case IDM_MINI_START:
+		{
+			m_MnGame.IsGame();
+		}
+		break;
+
+		case IDM_MINI_STOP:
+		{
+			PushStopBtn();
+		}
+		break;
+	}
+
+	
+	return CDialog::OnCommand(wParam, lParam);
+}
+
+void CMiniDlg::PushStopBtn()
+{
+	if( m_MnGame.GetGameResult() == 0 )
+		m_MnGame.StopGame();
+	else if ( m_MnGame.GetGameResult() == 1 )
+		m_MnGame.DefeatGame();
+	else if ( m_MnGame.GetGameResult() == 2 )
+		m_MnGame.PreCardGame();
+}
