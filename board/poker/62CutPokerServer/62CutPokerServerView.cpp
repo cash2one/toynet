@@ -3249,6 +3249,9 @@ if(g_pMainView->Cfg.bLogUseDB)
 				// 타임아웃 카운트 증가
 				pUserVal->iTimeOutCnt++;
 
+				// 타임아웃 금지 - jeong
+				pUserVal->iTimeOutCnt = 0;
+
 				// 3초전에 미리 타임아웃을 알림
 				if(pUserVal->iTimeOutCnt == MAX_TIMEOUT-3)
 				{

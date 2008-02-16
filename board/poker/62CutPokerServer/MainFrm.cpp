@@ -345,7 +345,6 @@ void CMainFrame::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	// 트레이 변경시 - jeong
 	//m_bIsTrayIcon = FALSE;
 	//RegistTrayIcon();
-	//ShowWindow(SW_HIDE);
 	//lpwndpos->flags &= ~SWP_SHOWWINDOW;
 }
 
