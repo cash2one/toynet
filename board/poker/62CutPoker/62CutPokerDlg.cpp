@@ -1756,6 +1756,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			// 대기실로 이동
 			g_Where = WH_LOBY;
 			ChangeView(2);
+			return 1;
 			m_LobyDlg.m_SendEdit.SetFocus();
 			CString str;
 			str.Format(g_StrMan.Get(_T("WELCOME")), Play[0].UI.ID);

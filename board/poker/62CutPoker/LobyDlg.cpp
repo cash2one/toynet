@@ -136,13 +136,13 @@ BOOL CLobyDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	// TODO: Add extra initialization here
-
 	// 다이얼로그 컨트롤 포지션과 위치 재정렬
 	CDialogCtrlReposition CtrlRepos;
 	CtrlRepos.Reposition(m_hWnd);
 	
 
 	// 버튼 초기화
+	/*
 	m_LogoutBtn.Init(33, 40, ".\\image\\Loby\\LBtn_channel.bmp", 4); // 채널변경
 	m_RoomInfoBtn.Init(163, 40, ".\\image\\Loby\\LBtn_roominfo.bmp", 4);
 	m_EnterRoomBtn.Init(293, 40, ".\\image\\Loby\\LBtn_enterroom.bmp", 4);
@@ -156,8 +156,9 @@ BOOL CLobyDlg::OnInitDialog()
 	m_btnChoice.Init(573, 561, ".\\image\\Loby\\choice.bmp", 4); // 채널변경
 	m_btnAllKind.Init(623, 540, ".\\image\\Loby\\allkind.bmp", 4); // 채널변경
 
-
+*/
 	m_QuickStart.Init(661,539,".\\image\\Loby\\LBtn_go.bmp", 4);
+	/*
 	m_CaptureBtn.Init(536+31, 3, ".\\image\\Loby\\LBtn_Capture.bmp", 4); //화면캡쳐
 	m_ItemBagBtn.Init(565+31, 3, "image\\Loby\\btn_gameitem.bmp", 4);	// [게임 아이템 작업]
 	m_Option.Init( 664,3,".\\image\\Loby\\LBtn_option.bmp", 4);
@@ -188,28 +189,35 @@ BOOL CLobyDlg::OnInitDialog()
 	m_SendEdit.iUse = 0;
 
 	// 캐릭터 뷰 생성
+	*/
 	CRect rc;
+	
+	/*
 	rc.SetRect(0, 0, 75, 125);
 	//rc.SetRect(0, 0, 80, 130);
 	rc.OffsetRect(574, 391);
 	m_CharView.Create(this, rc, 0, 2443);
+	*/
 
 	
 	// [ 세븐 포커 ] 잭팟 테스트 241 40
 	rc.SetRect(0, 0, 241, 40);	
 	rc.OffsetRect(557 , 37);
 
+
 	/*
 	// [ 세븐 포커 ] 잭팟 테스트
 	rc.SetRect(0, 0, 213, 19);
 	rc.OffsetRect(567 , 52);
 	*/
+	
 	m_JackPotBox.Create(this, rc, 1, 1223);
 
 	////////////////////////////////////////////////////
 	////////////////////////////////////////////////////
 	// ### [ 대기실 리스트 관련 ] ###
 
+	/*
 	rc.SetRect( 0, 0, 528, 253 );//17
 	rc.OffsetRect( 19, 94 );
 	m_RoomView.Create( this, rc, 2000, 0 );
@@ -217,10 +225,12 @@ BOOL CLobyDlg::OnInitDialog()
 
 //	m_ItemBagBtn.EnableWindow(FALSE); // 게임아이템
 
+	
 	m_ChoiceKind = 0 ;
 	m_btnAllKind.EnableWindow(FALSE);
 	m_btnNormal.EnableWindow(TRUE);	
 	m_btnChoice.EnableWindow(TRUE);
+	*/
 	
 
 	////////////////////////////////////////////////////
