@@ -1190,34 +1190,35 @@ void CGameView::AISelectBetMode()
 	//int nWaitTime = rand() % 8;
 	//Sleep(nWaitTime*1000);
 
-	//OnBtnFold();
-	
-	if( m_bAllin )
-	{
-		OnAllInBtn();
-	}
-	else if( m_bBDDa )
+	int nBetChoice = rand()%5;
+
+	if( m_bBDDa && nBetChoice == 0 )
 	{
 		OnBtnDda();
+		return;
 	}
-	else if ( m_bBMax )
+	else if ( m_bBMax && nBetChoice == 1 )
 	{
 		OnBtnMax();
+		return;
 	}
-	else if ( m_bBCall )
+	else if ( m_bBCall &&  nBetChoice == 2 )
 	{
 		OnBtnCall();
+		return;
 	}
-	else if ( m_bBCheck )
+	else if ( m_bBCheck && nBetChoice == 3)
 	{
 		OnBtnCheck();
+		return;
 	}
-	else if ( m_bBPing )
+	else if ( m_bBPing && nBetChoice == 4 )
 	{
 		OnBtnPing();
+		return;
 	}
 	else
-		OnBtnFold();
+		AISelectBetMode();
 
 	return;
 }
