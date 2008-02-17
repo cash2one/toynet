@@ -4082,11 +4082,12 @@ void CGame::OnStartButtonActive(int spnum,char * id,int bactive) // 시작버튼 활�
 		if(strcmp(g_MyInfo.UI.ID,id) != 0)return;
 		*/
 		g_pGameView->GameStartBtn.Show(TRUE);		// TRUE->FALSE 자동시작 - jeong -> softpark 다시 true
-
+		g_pGameView->GameQuitBtn.Show(TRUE);
 	}
 	else 
 	{
-		g_pGameView->GameStartBtn.Show(TRUE);//FALSE); 
+		g_pGameView->GameStartBtn.Show(FALSE);
+		g_pGameView->GameQuitBtn.Show(FALSE);
 	}
 
 	if(spnum == 0 && !Game.bCreateRoom )								// 자기자신이 승리시 - jeong

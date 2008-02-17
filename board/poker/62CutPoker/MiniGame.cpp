@@ -51,7 +51,9 @@ void CMiniGame::Reset()
 	m_nLimitXp[2] = 368;
 	m_nLimitXp[3] = 491;
 
-	m_nGameContinue = 0;
+	m_nGameContinue = -1;
+
+	m_nWinGame = -1;
 
 	for(int i =0; i < MINI_TOTALCARD; i++) Card[i].Clear();
 
@@ -66,15 +68,15 @@ void CMiniGame::ResetMoney()
 // 새로운 카드 셋팅
 void CMiniGame::NewCardSet(int cardNum)
 {
-	if(TotalCardNum < 0 || TotalCardNum >= MINI_TOTALCARD) return;// ###[8포커]###
+	if(TotalCardNum < 0 ) return;// ###[8포커]###
 	
 	Card[TotalCardNum].Init(pPage, cardNum, 0);
 	Card[TotalCardNum].bShow = TRUE;
 
-	Card[TotalCardNum].SetPos(m_nXp+TotalCardNum*123, m_nYp);
+	Card[TotalCardNum].SetPos(m_nXp+TotalCardNum*CARD_GAP_SIZE, m_nYp);
 
 	POINT pt;
-	pt.x = 700;
+	pt.x = 800;
 	pt.y = 250;
 	SetCardCurPos(TotalCardNum, pt);
 
@@ -97,23 +99,26 @@ BOOL CMiniGame::GetFace(int index)
 // 카드의 앞면
 void CMiniGame::SetFaceUp(int index)
 {
-	if(index < 0 || index >= MINI_TOTALCARD) return;
+	if(index < 0 || index >= TotalCardNum) return;
 	Card[index].bFront = TRUE;
 }
 
 // 카드의 뒷면 
 void CMiniGame::SetFaceDown(int index)
 {
-	if(index < 0 || index >= MINI_TOTALCARD) return;
+	if(index < 0 || index >= TotalCardNum) return;
 	Card[index].bFront = FALSE;
 }
 
 void CMiniGame::OnTimer()
 {
-	MoveCard(0);
-	MoveCard(1);
-	MoveCard(2);
-	MoveCard(3);
+	if( m_bPlayGame || m_bMoveCard )
+	{
+		if( m_nMoveIndex >= TotalCardNum )
+			m_nMoveIndex = m_nNextGame;
+
+			MoveCard(m_nMoveIndex);
+	}
 }
 
 void CMiniGame::MoveCard(int nIndex )
@@ -126,10 +131,20 @@ void CMiniGame::MoveCard(int nIndex )
 		pt.x -= MOVE_RAGE_X;
 	else
 	{
-		pt.x = m_nLimitXp[nIndex];
+		pt.x = m_nLimitXp[nIndex-m_nNextGame];
 		SetCardCurPos(nIndex, pt);
-		if( nIndex != 3)
+
+		if( nIndex != (TotalCardNum-1) )
 			SetFaceUp(nIndex);
+
+		m_nMoveIndex++;
+
+		if( m_bMoveCard )
+			Sound.Play(SND16);
+
+		if( TotalCardNum == m_nMoveIndex )
+			m_bMoveCard = FALSE;
+		
 		return;
 	}
 	
@@ -141,7 +156,7 @@ bool CMiniGame::CheckCardOutRage(int nIndex)
 	POINT pt;
 	pt = GetCardCurPos(nIndex);
 
-	if( m_nLimitXp[nIndex] <= (pt.x-MOVE_RAGE_X) )
+	if( m_nLimitXp[nIndex-m_nNextGame] <= (pt.x-MOVE_RAGE_X) )
 		return FALSE;
 	else
 		return TRUE;
@@ -162,21 +177,53 @@ POINT CMiniGame::GetCardCurPos(int nIndex )
 void CMiniGame::InitGame()
 {
 	ResetMoney();
-	//PreCardGame();
+	PreCardGame();
 
 	m_bPlayGame = FALSE;
+	m_nMoveIndex = 0;
+	m_nNextGame = 0;
+
+	g_Mini.bInitGame = TRUE;
 }
 
 void CMiniGame::PreCardGame()
 {
 	Reset();
 	PreCardSet();	
+	m_bMoveCard = TRUE;
+}
+
+void CMiniGame::NextCardGame()
+{
+	InitWinGame();
+	
+	int nCardNum;
+	
+	nCardNum = LoopToCheckCardNum(TotalCardNum);
+	NewCardSet(nCardNum);
+
+	m_nNextGame++;
+	ChangeCardPosition();
+	m_bMoveCard = TRUE;
+	m_nMoveIndex = m_nNextGame;
+	m_nGameContinue = -1;
+}
+
+void CMiniGame::ChangeCardPosition()
+{
+	int nChangedXp;
+	for(int i = 0; i<TotalCardNum; i++)
+	{
+		nChangedXp = Card[i].SXp - m_nNextGame*CARD_GAP_SIZE;
+
+		Card[i].SetPos(nChangedXp, m_nYp);
+	}
 }
 
 void CMiniGame::PreCardSet()
 {
 	int nCardNum;
-	for( int i=0; i<MINI_TOTALCARD; i++ )
+	for( int i=0; i<4; i++ )
 	{
 		nCardNum = LoopToCheckCardNum(i);
 		NewCardSet(nCardNum);
@@ -225,7 +272,7 @@ bool CMiniGame::CompareCardNum(int nIndex, int nCardNum)
 	else
 		return FALSE;
 
-	return FALSE;
+	return TRUE;
 }
 
 
@@ -234,7 +281,7 @@ bool CMiniGame::CompareCardNum(int nIndex, int nCardNum)
 // 2: Draw
 int CMiniGame::CheckCardRank()
 {
-	int nCardNum = Card[3].CardNo;
+	int nCardNum = Card[TotalCardNum-1].CardNo;
 
 	nCardNum = nCardNum%13;
 
@@ -255,7 +302,7 @@ int CMiniGame::CheckWinGame(int nSelectRank)
 {
 	int nResultRank = CheckCardRank();
 
-	SetFaceUp(3);
+	SetFaceUp(TotalCardNum-1);
 
 	m_bPlayGame = FALSE;
 
@@ -272,8 +319,18 @@ void CMiniGame::SetGameResult(int nGameContinue)
 {
 	m_nGameContinue = nGameContinue;
 
+	m_nWinCnt = 0;
+	m_nLoseCnt = 0;
+
 	if( m_nGameContinue == 0 )
+	{
 		RaiseMoney();
+		m_nWinGame = 0;
+	}
+	else if( m_nGameContinue == 1 )
+		m_nWinGame = 1;
+	else if( m_nGameContinue == 2 )
+		m_nWinGame = -1;
 }
 
 int CMiniGame::GetGameResult()
@@ -296,7 +353,7 @@ void CMiniGame::IsGame()
 	if( m_nGameContinue == 1)			//Lose
 		DefeatGame();
 	else
-		PreCardGame();
+		NextCardGame();
 }
 
 void CMiniGame::StopGame()
@@ -309,7 +366,7 @@ void CMiniGame::StopGame()
 		g_MyInfo.UI.PMoney += m_nBankMoney;
 	}
 
-	g_Mini.SendMessage(WM_CLOSE,0,0);
+	//g_Mini.SendMessage(WM_CLOSE,0,0);
 }
 
 void CMiniGame::DefeatGame()
@@ -317,7 +374,31 @@ void CMiniGame::DefeatGame()
 	g_Mini.SendMessage(WM_CLOSE,0,0);
 }
 
+void CMiniGame::OnGameKey(int nVKey)
+{
+	int nResult;
 
+	if( m_bMoveCard )
+		return;
+
+	switch(nVKey)
+	{
+		case VK_INSERT:
+		{
+			nResult = CheckWinGame( 1 );
+			SetGameResult( nResult );
+			Sound.Play(SND45);
+		}
+		break;
+		case VK_DELETE:
+		{
+			nResult = CheckWinGame( 0 );
+			SetGameResult( nResult );
+			Sound.Play(SND45);
+		}
+		break;
+	}
+}
 
 
 

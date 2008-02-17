@@ -53,6 +53,12 @@ void CCharBox::Init(CWnd *pWnd, CPage *ppage, int defpos)
 	m_width[1] = 75;
 	m_height[1] = 119;
 
+	//캐릭 인덱스 랜덤선택 - jeong	
+	srand(time(NULL));
+	m_nCharIndex[0] = rand() % 5;			// 남성캐릭
+	m_nCharIndex[1] = rand() % 5;
+	m_nCharIndex[1] = m_nCharIndex[1] + 5; //여성캐릭
+
 	switch(defpos)
 	{
 	case 0:
@@ -73,7 +79,7 @@ void CCharBox::Init(CWnd *pWnd, CPage *ppage, int defpos)
 	case 4:
 	case 5:
 		m_xp[0] = 278; m_yp[0] = 54;
-		m_charxp[0] = m_xp[0]+163; m_charyp[0] = m_yp[0]-10;
+		m_charxp[0] = m_xp[0]+175; m_charyp[0] = m_yp[0]-10;
 	//	m_cardxp[0] = m_xp[0]+81; m_cardyp[0] = m_yp[0];
 		
 		
@@ -305,6 +311,15 @@ void CCharBox::Draw(CDC *pDC)
 		draw_6user(pDC);
 }
 
+void CCharBox::ResultCharDraw(CPage *pRPage, int nPlayerNum)
+{
+	if( nPlayerNum == 0 )
+		pRPage->PutSprAuto(30, 30, &AvaSpr, m_nCharIndex[0]);
+	else
+		pRPage->PutSprAuto(30, 30, &AvaSpr, m_nCharIndex[1]);
+	
+}
+
 void CCharBox::draw_5user(CDC *pDC) 
 {
 	if( !PlayScr[0].bGameOver )
@@ -336,12 +351,22 @@ void CCharBox::draw_5user(CDC *pDC)
 	pDC->SelectObject(&Font2);
 	CString str= "";
 
+	
+	// 캐릭터 그리기 - jeong
 
-	// 캐릭터 그리기
+	if( PNum == 0 )
+		pPage->PutSprAuto(CharXp, CharYp, &AvaSpr, m_nCharIndex[0]);
+	else
+		pPage->PutSprAuto(CharXp, CharYp, &AvaSpr, m_nCharIndex[1]);
+
+	/*
 	if(PNum < 3)
 		Play[PNum].Avatar.Draw(CharXp, CharYp, pPage->width, pPage->height, (WORD*)pPage->lpBit, pPage->lPitch, TRUE);
 	else
 		Play[PNum].Avatar.Draw(CharXp, CharYp, pPage->width, pPage->height, (WORD*)pPage->lpBit, pPage->lPitch, FALSE);
+	*/
+	
+
 
 	// 유저 위치정보
 	int x = Xp;
@@ -520,7 +545,7 @@ void CCharBox::draw_5user(CDC *pDC)
 		//rect.OffsetRect(x+56, y+7);				
 		//rect.OffsetRect(398, 180);				
 		rect.OffsetRect(310, 34);				
-		pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
+		//pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
 	}
 	/*
 	else {

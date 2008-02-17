@@ -5,9 +5,10 @@
 
 #include "CardEx.h"
 
-#define MINI_TOTALCARD 4
-#define MOVE_RAGE_X 30
+#define MINI_TOTALCARD 20
+#define MOVE_RAGE_X 40
 #define DRAW_CARD_INDEX 6
+#define CARD_GAP_SIZE 123
 
 class CMiniGame
 {
@@ -61,7 +62,24 @@ public:
 	bool		IsPlayGame() { return m_bPlayGame; }
 
 	void		RaiseMoney();
-	
+	void		NextCardGame();
+
+	void		ChangeCardPosition();
+	void		OnGameKey(int nVKey);
+
+	int			GetWinGame() { return m_nWinGame; }
+	void		InitWinGame() { m_nWinGame = -1; }
+
+	void		PlusWinCnt() { m_nWinCnt++; }
+	void		PlusLoseCnt() { m_nLoseCnt++; }
+
+	int			GetWinCnt() { return m_nWinCnt; }
+	int			GetLoseCnt() { return m_nLoseCnt; }
+
+	void		InitWinLoseCnt() { m_nWinCnt = 0; m_nLoseCnt = 0; }
+
+	int			GetGameContinue() { return m_nGameContinue;}
+	bool		GetMoveCard() { return m_bMoveCard; }
 	
 private:
 	
@@ -93,6 +111,17 @@ private:
 
 	int		m_nGameContinue;
 	bool	m_bPlayGame;
+
+	int		m_nMoveIndex;
+	bool	m_bMoveCard;
+
+	int		m_nNextGame;
+
+	int		m_nWinGame;					// -1:None 0:Win 1:Lose 
+
+	// Grphic Count
+	int		m_nWinCnt;
+	int		m_nLoseCnt;
 };
 
 #endif

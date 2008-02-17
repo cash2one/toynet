@@ -118,7 +118,10 @@ BOOL CResultHi::OnInitDialog()
 	else if(Play[0].ServPNum == Game.WinnerPNum) {
 		Back.LoadBitmapFile(".\\image\\Gameover\\result_mywin.bmp");
 		m_winner_kind = 1;
-		
+
+		// 캐릭터 인덱스0 저장(결과창) - jeong
+		m_CharView.CharNum = g_pGameView->CharBox[0].m_nCharIndex[0];
+
 		// ShowCard
 	//	if(WinCase == 0) m_ShowCardBtn.ShowWindow(SW_SHOW);[62]
 
@@ -126,6 +129,9 @@ BOOL CResultHi::OnInitDialog()
 	else {
 		Back.LoadBitmapFile(".\\image\\Gameover\\result_otherwin.bmp");		// Result design will be changed - jeong
 		m_winner_kind = 2;
+
+		// 캐릭터 인덱스1 저장(결과창) - jeong
+		m_CharView.CharNum = g_pGameView->CharBox[0].m_nCharIndex[1];
 
 		//m_CloseBtn.Init(131, 304,".\\image\\commonbtn\\Btn_ok.bmp",4);
 		
@@ -453,6 +459,8 @@ void CResultHi::OnPaint()
 		}
 	}
 
+	
+
 //	str.Format("획득한 금액의 %d%%가 게임비로 적립됩니다.", pGO.nPercent);
 //	dc.SetTextColor(RGB(43,140,185));
 //	dc.TextOut(55, 208, str.operator LPCTSTR());
@@ -467,7 +475,16 @@ void CResultHi::OnPaint()
 */
 	
 
-	m_CharView.SetCharacter(&UI);
+	//m_CharView.SetCharacter(&UI);
+	// 캐릭터 인덱스 저장(결과창) - jeong
+	/*
+	if ( Play[0].ServPNum == Game.WinnerPNum )
+		m_CharView.CharNum = g_pGameView->CharBox[0].m_nCharIndex[0];
+	else
+		m_CharView.CharNum = g_pGameView->CharBox[0].m_nCharIndex[1];
+	*/
+	
+	
 	
 	cdc.DeleteDC();
 	

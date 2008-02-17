@@ -128,7 +128,8 @@ void CCharView::OnPaint()
 				Page.PutSprAuto(0, 0, &CharBackSpr, 0);
 
 			//Page.PutSprAuto(30,15, &LCharSpr, CharNum);
-			Avatar.Draw(2, 0, Page.width, Page.height, (WORD*)Page.lpBit, Page.lPitch, TRUE);
+			Page.PutSprAuto(10, 0, &AvaSpr, CharNum);
+			//Avatar.Draw(2, 0, Page.width, Page.height, (WORD*)Page.lpBit, Page.lPitch, TRUE);
 		}
 		break;
 	case 6:

@@ -3616,8 +3616,10 @@ void C62CutPokerDlg::LoadSpriteFile()
 	
 
 	// 게임 진행 관련 이미지 
-	if(GameStartBtnSpr.Load(".\\data\\StartBtn.spr", 555)==FALSE) AfxMessageBox("StartBtn.spr 파일을 읽을 수 없습니다");
-	if(X2StartBtnSpr.Load(".\\data\\Mini\\StartBtn.spr", 555)==FALSE) AfxMessageBox("X2Btn.spr 파일을 읽을 수 없습니다");
+	if(GameStartBtnSpr.Load(".\\data\\MainStartBtn.spr", 555)==FALSE) AfxMessageBox("MainStartBtn.spr 파일을 읽을 수 없습니다");
+	if(GameQuitBtnSpr.Load(".\\data\\Mini\\endBtn.spr", 555)==FALSE) AfxMessageBox("endBtn.spr 파일을 읽을 수 없습니다");
+	if(X2StartBtnSpr.Load(".\\data\\Mini\\bonusG.spr", 555)==FALSE) AfxMessageBox("bonusG.spr 파일을 읽을 수 없습니다");
+	if(AvaSpr.Load(".\\data\\aba.spr", 555)==FALSE) AfxMessageBox("aba.spr 파일을 읽을 수 없습니다");
 	if(AllinBtnSpr.Load(".\\data\\Allinbtn.spr", 555)==FALSE) AfxMessageBox("AllinBtn.spr 파일을 읽을 수 없습니다");
 	if(DieBtnSpr.Load(".\\data\\FoldBtn.spr", 555)==FALSE) AfxMessageBox("DieBtn.spr 파일을 읽을 수 없습니다");
 	if(CheckBtnSpr.Load(".\\data\\CheckBtn.spr", 555)==FALSE) AfxMessageBox("CheckBtn.spr 파일을 읽을 수 없습니다");
@@ -3636,7 +3638,7 @@ void C62CutPokerDlg::LoadSpriteFile()
 //	if(SortSpr.Load(".\\data\\sortbtn.spr", 555)==FALSE) AfxMessageBox("sortbtn.spr.spr 파일을 읽을 수 없습니다");
 
 	///	
-	if(EtcBtnSpr.Load(".\\data\\EtcBtn.spr", 555)==FALSE) AfxMessageBox("EtcBtn.spr 파일을 읽을 수 없습니다");
+	//if(EtcBtnSpr.Load(".\\data\\EtcBtn.spr", 555)==FALSE) AfxMessageBox("EtcBtn.spr 파일을 읽을 수 없습니다");
 	if(EtcSpr.Load(".\\data\\Etc.spr", 555)==FALSE) AfxMessageBox("Etc.spr 파일을 읽을 수 없습니다");
 	///////////////////////////////////////////////////////////////////////////
 	if(BigCardSpr.Load(".\\data\\BigCard.spr", 555)==FALSE) AfxMessageBox("BigCard.spr 파일을 읽을 수 없습니다");

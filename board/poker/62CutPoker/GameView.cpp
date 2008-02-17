@@ -273,12 +273,17 @@ void CGameView::pagebutton_init()
 		MasterBtn.Init(this, &Page, 675, 451, &RoomMasterSpr, 0,IDM_MASTER);
 		BanishvoteBtn.Init(this, &Page, 736, 451, &BanishVoteSpr, 0,IDM_BANISHVOTE);
 
-		GameStartBtn.Init(this, &Page, 306, 298, &GameStartBtnSpr, 0,IDM_START);//시작버튼
+		GameStartBtn.Init(this, &Page, 280, 298, &GameStartBtnSpr, 0,IDM_START);//시작버튼
 		GameStartBtn.Show(FALSE);
 
-		X2StartBtn.Init(this, &Page, 306, 200, &X2StartBtnSpr, 0,IDM_X2);
+		GameQuitBtn.Init(this, &Page, 400, 285, &GameQuitBtnSpr, 0,IDM_EXIT);
+		GameQuitBtn.Show(FALSE);
+		GameQuitBtn.m_Width = 178;
+		GameQuitBtn.m_Height = 44;
+
+		X2StartBtn.Init(this, &Page, 280, 250, &X2StartBtnSpr, 0,IDM_X2);
 		X2StartBtn.Show(FALSE);
-		X2StartBtn.m_Width = 178;
+		X2StartBtn.m_Width = 100;
 		X2StartBtn.m_Height = 44;
 
 
@@ -397,6 +402,7 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 			if(m_bAllin)AllInBtn.OnMouseMove(mxp, myp);//올인
 
 			GameStartBtn.OnMouseMove(mxp, myp);//시작버튼
+			GameQuitBtn.OnMouseMove(mxp, myp);
 			X2StartBtn.OnMouseMove(mxp, myp);
 
 			MasterBtn.OnMouseMove(mxp, myp);
@@ -567,6 +573,7 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 				MaxBtn.OnLButtonDown(mxp, myp);
 				if(m_bAllin)AllInBtn.OnLButtonDown(mxp, myp);//올인
 				GameStartBtn.OnLButtonDown(mxp, myp);//시작버튼
+				GameQuitBtn.OnLButtonDown(mxp, myp);//시작버튼
 				X2StartBtn.OnLButtonDown(mxp, myp);//시작버튼
 			}
 
@@ -614,7 +621,7 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 //			SortBtn.OnLButtonUp(mxp, myp);
 			
 			
-			if(bLClick) {
+			if(bLClick == TRUE) {
 				
 				bLClick = FALSE;
 				// 게임 진행관련 버튼
@@ -626,6 +633,7 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 				MaxBtn.OnLButtonUp(mxp, myp);
 				if(m_bAllin)AllInBtn.OnLButtonUp(mxp, myp);//올인
 				GameStartBtn.OnLButtonUp(mxp, myp);//시작버튼
+				GameQuitBtn.OnLButtonUp(mxp, myp);
 				X2StartBtn.OnLButtonUp(mxp, myp);
 				
 			}	
@@ -708,6 +716,7 @@ void CGameView::OnPaint()
 		Page.PutSprAuto(306, 296, &EtcBtnSpr, 19,10,10);
 		//Page.PutSprAuto(306, 200, &EtcBtnSpr, 19,10,10);
 		GameStartBtn.Draw(&MemDC); //시작버튼		
+		GameQuitBtn.Draw(&MemDC);
 		X2StartBtn.Draw(&MemDC);		
 	}
 
@@ -1359,16 +1368,22 @@ BOOL CGameView::OnCommand(WPARAM wParam, LPARAM lParam)
 			SockMan.SendData(g_MainSrvSID, smsg.pData, smsg.GetTotalSize());
 			Sound.Play(SND45);	
 			GameStartBtn.Show(FALSE);
+			GameQuitBtn.Show(FALSE);
 			X2StartBtn.Show(FALSE);
 		}break;
 
 		
-	case IDM_X2:// jeong
+	case IDM_X2:// IDM_X2 - jeong
 		{			
 			Sound.Play(SND45);	
 
 			//if( Play[0].ServPNum == Game.WinnerPNum )
 			g_Mini.DoModal();
+	}break;
+
+	case IDM_QUIT:// jeong
+		{			
+
 	}break;
 
 /*	

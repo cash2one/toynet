@@ -58,8 +58,10 @@ BOOL CMiniDlg::OnInitDialog()
 	
 	// TODO: Add extra initialization here
 	if(GameBackSpr.Load(".\\data\\Mini\\x2gameback.spr", 555)==FALSE) AfxMessageBox("x2gameback.spr 파일을 읽을 수 없습니다");
-	if(StartBtnSpr.Load(".\\data\\Mini\\StartBtn.spr", 555)==FALSE) AfxMessageBox("StartBtn.spr 파일을 읽을 수 없습니다");
-	if(EndBtnSpr.Load(".\\data\\Mini\\EndBtn.spr", 555)==FALSE) AfxMessageBox("EndBtn.spr 파일을 읽을 수 없습니다");
+	if(InitBtnSpr.Load(".\\data\\Mini\\StartBtn.spr", 555)==FALSE) AfxMessageBox("StartBtn.spr 파일을 읽을 수 없습니다");
+	if(StartBtnSpr.Load(".\\data\\Mini\\continue.spr", 555)==FALSE) AfxMessageBox("continue.spr 파일을 읽을 수 없습니다");
+	if(EndBtnSpr.Load(".\\data\\Mini\\Gstop.spr", 555)==FALSE) AfxMessageBox("Gstop.spr 파일을 읽을 수 없습니다");
+	if(FocusSpr.Load(".\\data\\Focus.spr", 555)==FALSE) AfxMessageBox("Focus.spr 파일을 읽을 수 없습니다");
 
 
 	// 다이얼로그 컨트롤 포지션과 위치 재정렬
@@ -99,8 +101,9 @@ BOOL CMiniDlg::OnInitDialog()
 
 	SetTimer(MINIGAME_TIMER , 55 , NULL);
 
-	m_MnGame.InitGame();
-
+	X2Cnt = 0;
+	CloseGameCnt = 0;
+	bInitGame = FALSE;
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -121,9 +124,9 @@ void CMiniDlg::OnPaint()
 	Page.PutSprAuto(0, 0, &GameBackSpr, 0);
 
 	m_MnGame.Draw();
-
-	X2PlayBtn.Draw(&MemDC); 
-	X2EndBtn.Draw(&MemDC);
+	
+	FucButtonDraw(&MemDC);
+	FocusEffectDraw(&Page);
 
 	
 	// 마우스 좌표 체크
@@ -180,14 +183,20 @@ void CMiniDlg::InitPage(CPage *ppage)
 	m_MnGame.Init( &Page );
 
 	// 버튼 초기화
+	X2InitBtn.Init(this, &Page, MINISTART_OFFSET_X, MINISTART_OFFSET_Y-12, &InitBtnSpr, 0,IDM_MINI_INIT);
+	X2InitBtn.Show(TRUE);
+	X2InitBtn.m_Width = 178;
+	X2InitBtn.m_Height = 44;
+
+	// 버튼 초기화
 	X2PlayBtn.Init(this, &Page, MINISTART_OFFSET_X, MINISTART_OFFSET_Y, &StartBtnSpr, 0,IDM_MINI_START);
 	X2PlayBtn.Show(TRUE);
-	X2PlayBtn.m_Width = 178;
+	X2PlayBtn.m_Width = 100;
 	X2PlayBtn.m_Height = 44;
 
 	X2EndBtn.Init(this, &Page, MINISTOP_OFFSET_X, MINISTOP_OFFSET_Y, &EndBtnSpr, 0,IDM_MINI_STOP);
 	X2EndBtn.Show(TRUE);
-	X2EndBtn.m_Width = 178;
+	X2EndBtn.m_Width = 100;
 	X2EndBtn.m_Height = 44;
 
 }
@@ -199,6 +208,8 @@ void CMiniDlg::OnTimer(UINT nIDEvent)
 	m_MnGame.OnTimer();
 
 	Invalidate(FALSE);
+
+	X2Cnt++;
 	
 	CDialog::OnTimer(nIDEvent);
 }
@@ -257,6 +268,12 @@ BOOL CMiniDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 			PushStopBtn();
 		}
 		break;
+
+		case IDM_MINI_INIT:
+		{
+			m_MnGame.InitGame();
+		}
+		break;
 	}
 
 	
@@ -293,8 +310,15 @@ LRESULT CMiniDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			mxp = LOWORD(lParam);
 			myp = HIWORD(lParam);
-			X2PlayBtn.OnMouseMove(mxp, myp);
-			X2EndBtn.OnMouseMove(mxp, myp);
+
+			if( !bInitGame )
+				X2InitBtn.OnMouseMove(mxp, myp);
+
+			if( m_MnGame.GetGameContinue() == 0 || m_MnGame.GetGameContinue() == 2)
+			{
+				X2PlayBtn.OnMouseMove(mxp, myp);
+				X2EndBtn.OnMouseMove(mxp, myp);
+			}
 		}
 		break;
 
@@ -302,8 +326,15 @@ LRESULT CMiniDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			mxp = LOWORD(lParam);
 			myp = HIWORD(lParam);
-			X2PlayBtn.OnLButtonDown(mxp, myp);
-			X2EndBtn.OnLButtonDown(mxp, myp);
+
+			if( !bInitGame )
+				X2InitBtn.OnLButtonDown(mxp, myp);
+
+			if( m_MnGame.GetGameContinue() == 0 || m_MnGame.GetGameContinue() == 2)
+			{
+				X2PlayBtn.OnLButtonDown(mxp, myp);
+				X2EndBtn.OnLButtonDown(mxp, myp);
+			}
 		}
 		break;
 
@@ -311,8 +342,20 @@ LRESULT CMiniDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			mxp = LOWORD(lParam);
 			myp = HIWORD(lParam);
-			X2PlayBtn.OnLButtonUp(mxp, myp);
-			X2EndBtn.OnLButtonUp(mxp, myp);
+			if( !bInitGame )
+			{
+				X2InitBtn.OnLButtonUp(mxp, myp);
+				Sound.Play(SND45);
+			}
+			
+			if( m_MnGame.GetGameContinue() == 0 || m_MnGame.GetGameContinue() == 2)
+			{
+				X2PlayBtn.OnLButtonUp(mxp, myp);
+				X2EndBtn.OnLButtonUp(mxp, myp);
+				Sound.Play(SND45);
+			}
+
+
 		}
 		break;
 
@@ -326,4 +369,66 @@ LRESULT CMiniDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	
 	return CDialog::WindowProc(message, wParam, lParam);
+}
+
+BOOL CMiniDlg::PreTranslateMessage(MSG* pMsg) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	if(pMsg->message == WM_KEYDOWN) 
+	{
+		if(pMsg->wParam == VK_INSERT || pMsg->wParam == VK_DELETE)
+		{
+			m_MnGame.OnGameKey(pMsg->wParam);
+			return TRUE;
+		}
+	}
+	
+	return CDialog::PreTranslateMessage(pMsg);
+}
+
+void CMiniDlg::FocusEffectDraw(CPage *pPage)
+{
+	if( m_MnGame.GetWinGame() == -1)
+		return;
+
+	const int nXp = 320;
+	const int nYp = 390;
+	const int nWaitCnt = 12;
+	const int nShowTimes = 35;				// 3 times
+
+	if( m_MnGame.GetWinGame() == 0 )
+	{
+		if((X2Cnt/nWaitCnt)%2  == 0 && m_MnGame.GetWinCnt() < nShowTimes )
+		{
+			pPage->PutSprAuto(nXp , nYp , &FocusSpr, 5 );
+			m_MnGame.PlusWinCnt();
+		}
+	}
+	else if( m_MnGame.GetWinGame() == 1 )
+	{
+		if((X2Cnt/nWaitCnt)%2  == 0 && m_MnGame.GetLoseCnt() < nShowTimes)
+		{
+			pPage->PutSprAuto(nXp , nYp , &FocusSpr, 6 );
+			m_MnGame.PlusLoseCnt();
+
+			CloseGameCnt++;
+
+			if( CloseGameCnt > 32 )
+				SendMessage(WM_CLOSE,0,0);
+		}		
+	}
+	else
+		m_MnGame.InitWinLoseCnt();
+}
+
+void CMiniDlg::FucButtonDraw(CDC *pDC)
+{
+	if( !bInitGame )
+		X2InitBtn.Draw(pDC);
+
+	if( m_MnGame.GetWinGame() == 0 || m_MnGame.GetGameContinue() == 2 )
+	{
+		X2PlayBtn.Draw(pDC);
+		X2EndBtn.Draw(pDC);
+	}
 }

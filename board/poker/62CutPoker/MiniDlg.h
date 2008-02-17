@@ -22,14 +22,16 @@
 
 #define MINIGAME_TIMER 100
 
+
 #define IDM_MINI_START	(WM_USER+6110)
 #define IDM_MINI_STOP	(WM_USER+6111)
+#define IDM_MINI_INIT	(WM_USER+6112)
 
-#define MINISTART_OFFSET_X 110
-#define MINISTART_OFFSET_Y 520
+#define MINISTART_OFFSET_X 370
+#define MINISTART_OFFSET_Y 480
 
-#define MINISTOP_OFFSET_X 310
-#define MINISTOP_OFFSET_Y 520
+#define MINISTOP_OFFSET_X 480
+#define MINISTOP_OFFSET_Y 480
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,9 +42,12 @@ class CMiniDlg : public CDialog
 public:
 	void				InitPage(CPage *ppage);
 	void				PushStopBtn();
+	void				FucButtonDraw(CDC *pDC);
+	void				FocusEffectDraw(CPage *pPage);
 
 public:
 	CMiniGame			m_MnGame;
+	bool				bInitGame;
 	
 // Construction
 public:
@@ -57,6 +62,8 @@ public:
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMiniDlg)
+	public:
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
@@ -88,12 +95,18 @@ private:
 	CMyBitmap			Back;
 	CFont				Font1, Font2;
 
+	xSprite				InitBtnSpr;
 	xSprite				StartBtnSpr;
 	xSprite				EndBtnSpr;
 	xSprite				GameBackSpr;
+	xSprite				FocusSpr;
 
+	CGraphButton		X2InitBtn;
 	CGraphButton		X2PlayBtn;
 	CGraphButton		X2EndBtn;
+
+	int					X2Cnt;
+	int					CloseGameCnt;
 };
 
 //{{AFX_INSERT_LOCATION}}

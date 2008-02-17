@@ -33,6 +33,9 @@ public:
 
 	int PNum;
 	BOOL bClick;
+
+	int m_nCharIndex[2];
+
 public:
 	CCharBox();
 	virtual ~CCharBox();
@@ -51,6 +54,7 @@ public:
 	BOOL OnLButtonUp(int x, int y);
 	BOOL OnMouseMove(int x, int y);
 	void Draw(CDC *pDC);
+	void ResultCharDraw(CPage *pRPage, int nPlayerNum);
 };
 
 #endif // !defined(AFX_CHARBOX_H__F560D681_2133_11D4_97A5_0050BF0FBE67__INCLUDED_)

@@ -54,6 +54,7 @@
 
 
 // 게임 진행 관련
+#define IDM_QUIT			(WM_USER+7096)
 #define IDM_X2				(WM_USER+7097)
 #define IDM_START			(WM_USER+7098) // 시작 버튼
 #define IDM_ALLIN			(WM_USER+7099)
@@ -132,6 +133,7 @@ public:
 
 	// 게임진행 버튼 클래스
 	CGraphButton	GameStartBtn;
+	CGraphButton	GameQuitBtn;
 	CGraphButton	X2StartBtn;
 	CGraphButton	DieBtn;
 	CGraphButton	CheckBtn;
