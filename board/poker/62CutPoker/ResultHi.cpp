@@ -241,13 +241,7 @@ void CResultHi::OnOK()
 {
 	// TODO: Add extra validation here
 	Sound.Play(SND45);
-
-	if( Play[0].ServPNum == Game.WinnerPNum )
-	{
-		g_Mini.m_MnGame.SetWinMoney(pGO.nWinMoney);
-		g_Mini.DoModal();
-	}
-		
+	
 	CDialog::OnOK();
 }
 

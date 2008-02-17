@@ -2558,6 +2558,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 					if(strcmp(g_RI.ID,g_MyInfo.UI.ID)==0 && g_RI.UNum == g_MyInfo.UI.UNum
 						&& g_RI.NowUserNum <3 && g_RI.State == 0){
 						g_pGameView->GameStartBtn.Show(FALSE);
+						g_pGameView->X2StartBtn.Show(FALSE);
 					}
 				}
 				break;
@@ -3615,6 +3616,7 @@ void C62CutPokerDlg::LoadSpriteFile()
 
 	// 게임 진행 관련 이미지 
 	if(GameStartBtnSpr.Load(".\\data\\StartBtn.spr", 555)==FALSE) AfxMessageBox("StartBtn.spr 파일을 읽을 수 없습니다");
+	if(X2StartBtnSpr.Load(".\\data\\Mini\\StartBtn.spr", 555)==FALSE) AfxMessageBox("X2Btn.spr 파일을 읽을 수 없습니다");
 	if(AllinBtnSpr.Load(".\\data\\Allinbtn.spr", 555)==FALSE) AfxMessageBox("AllinBtn.spr 파일을 읽을 수 없습니다");
 	if(DieBtnSpr.Load(".\\data\\FoldBtn.spr", 555)==FALSE) AfxMessageBox("DieBtn.spr 파일을 읽을 수 없습니다");
 	if(CheckBtnSpr.Load(".\\data\\CheckBtn.spr", 555)==FALSE) AfxMessageBox("CheckBtn.spr 파일을 읽을 수 없습니다");

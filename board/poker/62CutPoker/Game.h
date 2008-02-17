@@ -63,6 +63,7 @@ public:
 
 	int No1PosPNum;
 	int MyPosPNum;
+	BOOL bCreateRoom;		// Create Room - jeong
 
 	// 타이머 카운트
 	int TotalTurnCnt;

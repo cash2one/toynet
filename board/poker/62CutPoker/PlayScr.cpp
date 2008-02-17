@@ -54,7 +54,8 @@ void CPlayScr::Init(CWnd *pWnd, CPage *ppage, int pnum)
 
 		//7인
 		m_xp[1]=257;			m_yp[1]=422;
-		m_rxp[1]=m_xp[1]+104;   m_ryp[1]=m_yp[1]+78;
+		//m_rxp[1]=m_xp[1]+104;   m_ryp[1]=m_yp[1]+78;
+		m_rxp[1]=300;   m_ryp[1]=300;
 		m_mgx[1]=322;			m_mgy[1]=400;
 		m_msgx[1]=358;			m_msgy[1]=428;
 
@@ -252,6 +253,8 @@ void CPlayScr::Reset()
 	PlayStartTick = timeGetTime();
 	//m_AllinCnt = 0;			// 올인 애닉 관련 타임 변수 
 	m_AllinAniStartTime = 0;
+
+	g_CvCard.bAllowControl = FALSE;
 }
 
 
@@ -1080,9 +1083,7 @@ void CPlayScr::draw_5user(CDC *pDC)
 		// ###### 카드 족보  ######
 		// ### [ 관전기능 ] ###	
 		
-		if(!g_MyObserver &&  PNum == 0 && Play[0].JoinState == 1 && Play[0].nOpenTotal > 0 
-			&& !Game.FlyWindCard && !g_CvCard.bAllowControl )	// 쪼이기시 족보 보여주지 않음 - jeong
-			//&& g_Poker.nState != RSTATE_CHANGECARD )  //카드 날라갈떄는 그리지 않는다.	
+		if(!g_MyObserver &&  PNum == 0 && Play[0].JoinState == 1 && Play[0].nOpenTotal > 0 && g_Poker.nState != RSTATE_CHANGECARD && !Game.FlyWindCard)
 		{ // 나의 카드 족보
 			CString str = "";
 			str = Game.GetMyName();
@@ -1094,7 +1095,8 @@ void CPlayScr::draw_5user(CDC *pDC)
 					CRect rect;
 					rect.SetRect(0,0,160,14);
 					rect.OffsetRect(MsgX, Yp+167);
-					pDC->DrawText(str, &rect, DT_CENTER | DT_WORDBREAK);					
+					if( !g_CvCard.bAllowControl )				// 쪼이기시 족보 보여주지 않음 - jeong
+						pDC->DrawText(str, &rect, DT_CENTER | DT_WORDBREAK);
 
 					if( Game.bViewTab ) {
 						int rule = Game.MyHighRule;
@@ -1150,18 +1152,18 @@ void CPlayScr::draw_5user(CDC *pDC)
 					{
 						case 1: 
 							{
-								strTemp.Format("다이");
+								//strTemp.Format("다이");
 								nCmdCol = RGB(200,200,200); 
 							} break; // 다이
 						case 2:
 							{
-								strTemp.Format("체크");
+								//strTemp.Format("체크");
 								nCmdCol = RGB(0,255,0); 
 							}break; // 체크
 						case 3: 
 							{
 								if(g_Poker.RU[nSNum].nReCall <= 0)
-									strTemp.Format("콜"); 
+									strTemp.Format(""); 
 								else
 								{
 									roundingoff = g_Poker.RU[nSNum].nReCall;
@@ -1395,12 +1397,9 @@ void CPlayScr::draw_5user(CDC *pDC)
 					pPage->PutSprAuto(RXp-16, RYp+15, &FocusSpr, 5); // 하이
 				}
 				else{
-					if( PNum < 3){
-						pPage->PutSprAuto(RXp-3, RYp+15, &FocusSpr, 5); // 하이
-					}
-					else{
-						pPage->PutSprAuto(RXp+22, RYp+15, &FocusSpr, 5); // 하이
-					}
+					
+					pPage->PutSprAuto(WIN_OFFSET_X, WIN_OFFSET_Y, &FocusSpr, 5); // 하이
+					
 				}		
 			} 
 		}
@@ -1415,12 +1414,9 @@ void CPlayScr::draw_5user(CDC *pDC)
 					pPage->PutSprAuto(RXp-16, RYp+15, &FocusSpr, 6); // 하이
 				}
 				else{
-					if( PNum < 3){
-						pPage->PutSprAuto(RXp-3, RYp+15, &FocusSpr, 6); // 하이
-					}
-					else{
-						pPage->PutSprAuto(RXp+22, RYp+15, &FocusSpr, 6); // 하이
-					}
+
+					pPage->PutSprAuto(WIN_OFFSET_X, WIN_OFFSET_Y, &FocusSpr, 6); // 하이
+					
 				}			
 			}
 		}
@@ -1616,6 +1612,7 @@ void CPlayScr::draw_6user(CDC *pDC)
 						int rule = Game.MyHighRule;
 						if(rule > 1 && rule < 20)
 						{	
+
 							// 2 ~ 13
 							if(rule >= 13)
 								rule =  0;

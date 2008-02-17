@@ -57,6 +57,11 @@ public:
 	int			GetBankMoney() { return m_nBankMoney; }
 	int			GetWinMoney() { return m_nWinMoney; }
 	void		SetWinMoney(int nMoney) { m_nWinMoney = nMoney; }
+
+	bool		IsPlayGame() { return m_bPlayGame; }
+
+	void		RaiseMoney();
+	
 	
 private:
 	
@@ -87,6 +92,7 @@ private:
 	int		m_nWinMoney;
 
 	int		m_nGameContinue;
+	bool	m_bPlayGame;
 };
 
 #endif

@@ -57,6 +57,8 @@ CGame::CGame()
 
 	bViewTab   = FALSE;
 	nChatRuleMessage = 0;
+	
+	bCreateRoom = FALSE;
 }
 
 CGame::~CGame()
@@ -397,6 +399,7 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 	g_RI.State = 1;
 
 	g_pGameView->GameStartBtn.Show(FALSE);
+	g_pGameView->X2StartBtn.Show(FALSE);
 
 	// 서버, 클라이언트 각각 선언하여 별도로 사용한다.
 	ZeroMemory(&g_Poker, sizeof(g_Poker));
@@ -516,6 +519,8 @@ void CGame::OnGameOver(GAMEOVERRESULT *pGOR)
 	int bJackpot = pGOR->bJackPot;
 
 	g_TmpJackPotMoney = pGOR->JackPotMoney;
+
+	g_Mini.m_MnGame.SetWinMoney(pGOR->nWinMoney);		// 승리 금액 추가 - jeong
 
 	for(int i=0; i<g_Max_Player; i++)
 	{
@@ -2858,7 +2863,8 @@ void CGame::Accept_CreateRoom(CSV_ACCEPT_CREATEROOM *pMsg) // 방만들기 허가
 {
 	if(g_Where!=WH_LOBY) return;
 	
-	g_RI.GameKind = pMsg->RI->GameKind;
+	//g_RI.GameKind = pMsg->RI->GameKind;
+	g_RI.GameKind = 0;						// 하프방으로 강제 수정 - jeong
 	g_pGameView->all_change_initpos(pMsg->RI->bPlayer);// 5,7 인용
 	// 초기화
 	Game.ResetGame();
@@ -2876,6 +2882,7 @@ void CGame::Accept_CreateRoom(CSV_ACCEPT_CREATEROOM *pMsg) // 방만들기 허가
 	
 	Game.No1PosPNum = 0;
 	Game.MyPosPNum = 0;
+	bCreateRoom = TRUE;
 	
 	// 서버측 플레이어 번호 지정
 	for(i=0; i<g_Max_Player; i++)	{ Play[i].ServPNum = i; }
@@ -3487,6 +3494,7 @@ void CGame::User_OutRoom(CSV_USEROUTROOM *pMsg) // 유저가 방에서 나감 알림
 	if(strcmp(g_RI.ID,g_MyInfo.UI.ID)==0 && g_RI.UNum == g_MyInfo.UI.UNum 
 		&& g_RI.NowUserNum <3 && g_RI.State == 0 ){
 		g_pGameView->GameStartBtn.Show(FALSE);
+		g_pGameView->X2StartBtn.Show(FALSE);
 	}
 	/*
 	if(g_RI.NowUserNum <3 && g_RI.State == 0)
@@ -4074,12 +4082,19 @@ void CGame::OnStartButtonActive(int spnum,char * id,int bactive) // 시작버튼 활�
 		if(strcmp(g_MyInfo.UI.ID,id) != 0)return;
 		*/
 		g_pGameView->GameStartBtn.Show(TRUE);		// TRUE->FALSE 자동시작 - jeong -> softpark 다시 true
-		
+
 	}
 	else 
 	{
 		g_pGameView->GameStartBtn.Show(TRUE);//FALSE); 
 	}
+
+	if(spnum == 0 && !Game.bCreateRoom )								// 자기자신이 승리시 - jeong
+		g_pGameView->X2StartBtn.Show(TRUE);
+	else
+		g_pGameView->X2StartBtn.Show(FALSE);
+
+	Game.bCreateRoom = FALSE;
 }
 
 // [수호천사] 2004.07.09

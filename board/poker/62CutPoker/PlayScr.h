@@ -14,6 +14,8 @@
 #include "UserStruct.h"
 #include "xAniMan.h"
 
+#define WIN_OFFSET_X 288
+#define WIN_OFFSET_Y 93
 
 class CPlayScr  
 {

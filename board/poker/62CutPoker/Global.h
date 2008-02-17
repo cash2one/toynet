@@ -101,6 +101,7 @@ extern xSprite MinimizeBtnSpr;  // 최소화
 
 // 게임진행 관련 버튼
 extern xSprite GameStartBtnSpr;
+extern xSprite X2StartBtnSpr;
 extern xSprite AllinBtnSpr;
 extern xSprite DieBtnSpr;
 extern xSprite CheckBtnSpr;

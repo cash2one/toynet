@@ -125,6 +125,8 @@ void CGameDlg::ExitGame()
 		SockMan.SendData(g_MainSrvSID, aormsg.pData, aormsg.GetTotalSize());
 		g_Wait = TRUE;
 	}
+
+	Game.bCreateRoom = FALSE;			//  Out Room  - jeong
 }
 
 void CGameDlg::SetResetGameTimer()

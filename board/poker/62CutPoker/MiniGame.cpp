@@ -54,6 +54,7 @@ void CMiniGame::Reset()
 	m_nGameContinue = 0;
 
 	for(int i =0; i < MINI_TOTALCARD; i++) Card[i].Clear();
+
 }
 
 void CMiniGame::ResetMoney()
@@ -161,7 +162,9 @@ POINT CMiniGame::GetCardCurPos(int nIndex )
 void CMiniGame::InitGame()
 {
 	ResetMoney();
-	PreCardGame();
+	//PreCardGame();
+
+	m_bPlayGame = FALSE;
 }
 
 void CMiniGame::PreCardGame()
@@ -252,7 +255,9 @@ int CMiniGame::CheckWinGame(int nSelectRank)
 {
 	int nResultRank = CheckCardRank();
 
-	SetFaceUp(3); 
+	SetFaceUp(3);
+
+	m_bPlayGame = FALSE;
 
 	if(nResultRank == 2)
 		return 2;
@@ -266,6 +271,9 @@ int CMiniGame::CheckWinGame(int nSelectRank)
 void CMiniGame::SetGameResult(int nGameContinue)
 {
 	m_nGameContinue = nGameContinue;
+
+	if( m_nGameContinue == 0 )
+		RaiseMoney();
 }
 
 int CMiniGame::GetGameResult()
@@ -273,19 +281,21 @@ int CMiniGame::GetGameResult()
 	return m_nGameContinue;
 }
 
-
-// Save Money
+void CMiniGame::RaiseMoney()
+{
+	m_nBankMoney = m_nWinMoney + m_nBankMoney;
+	m_nWinMoney = m_nWinMoney * 2;
+}
 void CMiniGame::IsGame()
 {
-	if( m_nGameContinue == 0 )				//Win
-	{
-		m_nBankMoney = m_nWinMoney + m_nBankMoney;
-		m_nWinMoney = m_nWinMoney * 2;
-		PreCardGame();
-	}
-	else if( m_nGameContinue == 1)			//Lose
+	if( m_bPlayGame == TRUE )
+		return;
+
+	m_bPlayGame = TRUE;
+
+	if( m_nGameContinue == 1)			//Lose
 		DefeatGame();
-	else if( m_nGameContinue == 2)			//Draw
+	else
 		PreCardGame();
 }
 
@@ -298,8 +308,6 @@ void CMiniGame::StopGame()
 		// 개인정보의 캐쉬에 저장 - jeong
 		g_MyInfo.UI.PMoney += m_nBankMoney;
 	}
-
-
 
 	g_Mini.SendMessage(WM_CLOSE,0,0);
 }

@@ -259,7 +259,7 @@ void CGameView::pagebutton_init()
 		DadangkBtn.Init(this, &Page, 638, 538, &DadangkBtnSpr, 0, IDM_DADANG);
 		
 
-		if(g_RI.GameKind == 1) // 1이면 하프 , 0이면 쿼터
+		if(g_RI.GameKind == 0) // 1이면 하프 , 0이면 쿼터
 		MaxBtn.Init(this, &Page, 716, 538, &MaxBtnSpr, 1, IDM_MAX); // 쿼터
 		else 
 		MaxBtn.Init(this, &Page, 716, 538, &MaxBtnSpr, 0, IDM_MAX); // 하프
@@ -275,6 +275,12 @@ void CGameView::pagebutton_init()
 
 		GameStartBtn.Init(this, &Page, 306, 298, &GameStartBtnSpr, 0,IDM_START);//시작버튼
 		GameStartBtn.Show(FALSE);
+
+		X2StartBtn.Init(this, &Page, 306, 200, &X2StartBtnSpr, 0,IDM_X2);
+		X2StartBtn.Show(FALSE);
+		X2StartBtn.m_Width = 178;
+		X2StartBtn.m_Height = 44;
+
 
 	} else {
 		m_pcarddeckspr = &BigCardSpr;
@@ -391,6 +397,7 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 			if(m_bAllin)AllInBtn.OnMouseMove(mxp, myp);//올인
 
 			GameStartBtn.OnMouseMove(mxp, myp);//시작버튼
+			X2StartBtn.OnMouseMove(mxp, myp);
 
 			MasterBtn.OnMouseMove(mxp, myp);
 			BanishvoteBtn.OnMouseMove(mxp, myp);
@@ -560,6 +567,7 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 				MaxBtn.OnLButtonDown(mxp, myp);
 				if(m_bAllin)AllInBtn.OnLButtonDown(mxp, myp);//올인
 				GameStartBtn.OnLButtonDown(mxp, myp);//시작버튼
+				X2StartBtn.OnLButtonDown(mxp, myp);//시작버튼
 			}
 
 		}
@@ -618,6 +626,7 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 				MaxBtn.OnLButtonUp(mxp, myp);
 				if(m_bAllin)AllInBtn.OnLButtonUp(mxp, myp);//올인
 				GameStartBtn.OnLButtonUp(mxp, myp);//시작버튼
+				X2StartBtn.OnLButtonUp(mxp, myp);
 				
 			}	
 			//////////////////////
@@ -697,8 +706,9 @@ void CGameView::OnPaint()
 	if(GameStartBtn.GetButtonState() > -1)
 	{
 		Page.PutSprAuto(306, 296, &EtcBtnSpr, 19,10,10);
-	//	Page.PutSprAuto(316, 305, &EtcBtnSpr, 19,10,10);
+		//Page.PutSprAuto(306, 200, &EtcBtnSpr, 19,10,10);
 		GameStartBtn.Draw(&MemDC); //시작버튼		
+		X2StartBtn.Draw(&MemDC);		
 	}
 
 //	MasterBtn.Draw(&MemDC);
@@ -1349,7 +1359,17 @@ BOOL CGameView::OnCommand(WPARAM wParam, LPARAM lParam)
 			SockMan.SendData(g_MainSrvSID, smsg.pData, smsg.GetTotalSize());
 			Sound.Play(SND45);	
 			GameStartBtn.Show(FALSE);
+			X2StartBtn.Show(FALSE);
 		}break;
+
+		
+	case IDM_X2:// jeong
+		{			
+			Sound.Play(SND45);	
+
+			//if( Play[0].ServPNum == Game.WinnerPNum )
+			g_Mini.DoModal();
+	}break;
 
 /*	
 	/////////////////////////////////////////////////////////////////////////////////////////
@@ -1769,10 +1789,16 @@ void CGameView::OnAutoBatBtn()
 	if(GameStartBtn.GetButtonState() > -1 && g_RI.State == 0)
 	SendMessage(WM_COMMAND,IDM_START,0);
 
+	if(X2StartBtn.GetButtonState() > -1 && g_RI.State == 0)
+	SendMessage(WM_COMMAND,IDM_X2,0);
+
 #else if
 
 	if(GameStartBtn.GetButtonState() > -1 && g_RI.State == 0)
 	SendMessage(WM_COMMAND,IDM_START,0);
+
+	if(X2StartBtn.GetButtonState() > -1 && g_RI.State == 0)
+	SendMessage(WM_COMMAND,IDM_X2,0);
 
 	if(!m_bBPing && !m_bBCheck && !m_bBCall && !m_bBMax && !m_bBDDa)return;
 	int LastPnum = g_Poker.LastPlayer;			

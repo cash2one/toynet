@@ -45,6 +45,7 @@ BEGIN_MESSAGE_MAP(CMiniDlg, CDialog)
 	ON_WM_LBUTTONUP()
 	ON_BN_CLICKED(IDC_BUTTON1, OnButtonHi)
 	ON_BN_CLICKED(IDC_BUTTON2, OnButtonLow)
+	ON_WM_MOUSEMOVE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -94,14 +95,13 @@ BOOL CMiniDlg::OnInitDialog()
 		DEFAULT_PITCH | FF_SWISS,
 		"굴림");
 
-	CenterWindow(g_pGameView->GetOwner());	
-
+	CenterWindow(g_pGameView->GetOwner());
 
 	SetTimer(MINIGAME_TIMER , 55 , NULL);
 
 	m_MnGame.InitGame();
 
-	
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -120,12 +120,10 @@ void CMiniDlg::OnPaint()
 
 	Page.PutSprAuto(0, 0, &GameBackSpr, 0);
 
-	const int nXpBtn = MINISTART_OFFSET_X;
-	const int nYpBtn = MINISTART_OFFSET_Y;
-	Page.PutSprAuto(MINISTART_OFFSET_X, MINISTART_OFFSET_Y, &StartBtnSpr, 0);
-	Page.PutSprAuto(MINISTOP_OFFSET_X, MINISTOP_OFFSET_Y, &EndBtnSpr, 0);
-
 	m_MnGame.Draw();
+
+	X2PlayBtn.Draw(&MemDC); 
+	X2EndBtn.Draw(&MemDC);
 
 	
 	// 마우스 좌표 체크
@@ -181,9 +179,17 @@ void CMiniDlg::InitPage(CPage *ppage)
 
 	m_MnGame.Init( &Page );
 
-	m_rcStartBtn.SetRect(MINISTART_OFFSET_X, MINISTART_OFFSET_Y, MINISTART_OFFSET_X+170, MINISTART_OFFSET_Y+50);
+	// 버튼 초기화
+	X2PlayBtn.Init(this, &Page, MINISTART_OFFSET_X, MINISTART_OFFSET_Y, &StartBtnSpr, 0,IDM_MINI_START);
+	X2PlayBtn.Show(TRUE);
+	X2PlayBtn.m_Width = 178;
+	X2PlayBtn.m_Height = 44;
 
-	m_rcStopBtn.SetRect(MINISTOP_OFFSET_X, MINISTOP_OFFSET_Y, MINISTOP_OFFSET_X+170, MINISTOP_OFFSET_Y+50);
+	X2EndBtn.Init(this, &Page, MINISTOP_OFFSET_X, MINISTOP_OFFSET_Y, &EndBtnSpr, 0,IDM_MINI_STOP);
+	X2EndBtn.Show(TRUE);
+	X2EndBtn.m_Width = 178;
+	X2EndBtn.m_Height = 44;
+
 }
 
 void CMiniDlg::OnTimer(UINT nIDEvent) 
@@ -199,13 +205,6 @@ void CMiniDlg::OnTimer(UINT nIDEvent)
 
 void CMiniDlg::OnLButtonDown(UINT nFlags, CPoint point) 
 {
-	// TODO: Add your message handler code here and/or call default
-	if( m_rcStartBtn.PtInRect(point) )
-		g_Mini.SendMessage(WM_COMMAND, IDM_MINI_START, 0);
-
-	if( m_rcStopBtn.PtInRect(point) )
-		g_Mini.SendMessage(WM_COMMAND, IDM_MINI_STOP, 0);
-
 
 	CDialog::OnLButtonDown(nFlags, point);
 }
@@ -242,26 +241,6 @@ void CMiniDlg::OnButtonLow()
 	
 }
 
-void CMiniDlg::OnButtonMiniStop() 
-{
-	// TODO: Add your control notification handler code here
-	if( m_MnGame.GetGameResult() == 0 )
-		m_MnGame.StopGame();
-	else if ( m_MnGame.GetGameResult() == 1 )
-		m_MnGame.DefeatGame();
-	else if ( m_MnGame.GetGameResult() == 2 )
-		m_MnGame.PreCardGame();
-	
-}
-
-void CMiniDlg::OnButtonMiniStart() 
-{
-	// TODO: Add your control notification handler code here
-	//m_MnGame.IsGame();
-	g_Mini.SendMessage(WM_COMMAND, IDM_MINI_START, 0);
-	
-}
-
 BOOL CMiniDlg::OnCommand(WPARAM wParam, LPARAM lParam) 
 {
 	// TODO: Add your specialized code here and/or call the base class
@@ -286,10 +265,65 @@ BOOL CMiniDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 
 void CMiniDlg::PushStopBtn()
 {
+	if( m_MnGame.IsPlayGame() )
+		return;
+
 	if( m_MnGame.GetGameResult() == 0 )
 		m_MnGame.StopGame();
 	else if ( m_MnGame.GetGameResult() == 1 )
 		m_MnGame.DefeatGame();
 	else if ( m_MnGame.GetGameResult() == 2 )
 		m_MnGame.PreCardGame();
+}
+
+void CMiniDlg::OnMouseMove(UINT nFlags, CPoint point) 
+{
+	// TODO: Add your message handler code here and/or call default
+	
+	CDialog::OnMouseMove(nFlags, point);
+}
+
+LRESULT CMiniDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	short mxp, myp;
+	switch(message)
+	{
+		case WM_MOUSEMOVE :
+		{
+			mxp = LOWORD(lParam);
+			myp = HIWORD(lParam);
+			X2PlayBtn.OnMouseMove(mxp, myp);
+			X2EndBtn.OnMouseMove(mxp, myp);
+		}
+		break;
+
+		case WM_LBUTTONDOWN :
+		{
+			mxp = LOWORD(lParam);
+			myp = HIWORD(lParam);
+			X2PlayBtn.OnLButtonDown(mxp, myp);
+			X2EndBtn.OnLButtonDown(mxp, myp);
+		}
+		break;
+
+		case WM_LBUTTONUP :
+		{
+			mxp = LOWORD(lParam);
+			myp = HIWORD(lParam);
+			X2PlayBtn.OnLButtonUp(mxp, myp);
+			X2EndBtn.OnLButtonUp(mxp, myp);
+		}
+		break;
+
+		case WM_CLOSE :
+		{
+			g_pGameView->X2StartBtn.Show(FALSE);
+			m_MnGame.Reset();
+		}
+		break;
+
+	}
+	
+	return CDialog::WindowProc(message, wParam, lParam);
 }

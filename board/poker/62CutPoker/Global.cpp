@@ -51,6 +51,7 @@ xSprite MinimizeBtnSpr;  // 최소화
 
 // 게임진행 관련 버튼
 xSprite GameStartBtnSpr;
+xSprite X2StartBtnSpr;
 xSprite AllinBtnSpr;
 xSprite DieBtnSpr;
 xSprite CheckBtnSpr;

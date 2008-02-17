@@ -18,6 +18,7 @@
 
 #include "Ime.h"
 #include "Graphic.h"
+#include "GraphButton.h"
 
 #define MINIGAME_TIMER 100
 
@@ -59,6 +60,7 @@ public:
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
+	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -77,8 +79,7 @@ protected:
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnButtonHi();
 	afx_msg void OnButtonLow();
-	afx_msg void OnButtonMiniStart();
-	afx_msg void OnButtonMiniStop();
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -91,8 +92,8 @@ private:
 	xSprite				EndBtnSpr;
 	xSprite				GameBackSpr;
 
-	CRect				m_rcStartBtn;
-	CRect				m_rcStopBtn;
+	CGraphButton		X2PlayBtn;
+	CGraphButton		X2EndBtn;
 };
 
 //{{AFX_INSERT_LOCATION}}
