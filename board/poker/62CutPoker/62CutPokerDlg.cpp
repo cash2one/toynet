@@ -284,6 +284,7 @@ BOOL C62CutPokerDlg::OnInitDialog()
 
 
 	CLoginDlg LoginDlg;
+	LoginDlg.m_ID = "bbbb";					// 플레이어 로그인 - jeong
 	if(LoginDlg.DoModal()==IDOK) {
 		g_LoginID = LoginDlg.m_ID;
 		g_LoginPass = LoginDlg.m_Pass;
@@ -3675,6 +3676,9 @@ void C62CutPokerDlg::LoadSpriteFile()
 	//애니파일 (올인)
 	
 	if(AllinAniSpr.Load(".\\data\\AllinAni.spr", 555)==FALSE) AfxMessageBox("AllinAni.spr 파일을 읽을 수 없습니다");
+
+	// Insert Coin
+	if(InsertCoinSpr.Load(".\\data\\insertcoin.spr", 555)==FALSE) AfxMessageBox("insertcoin.spr 파일을 읽을 수 없습니다");
 
 
 	

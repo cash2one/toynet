@@ -60,12 +60,16 @@ BOOL CLoginDlg::OnInitDialog()
 
 	g_Where = WH_FIRST;
 
-	m_ID = g_LoginID;
+	//m_ID = g_LoginID;					// 로그인ID 주석 - jeong
 	m_Pass = g_LoginPass;
 	m_ServerIP = g_ServIP;
 	m_ServerPort = g_ServPort;
 
+	//UpdateData(FALSE);
+
+	// 자동로그인 - jeong
 	UpdateData(FALSE);
+	CDialog::OnOK();
 
 	GetDlgItem(IDC_EDIT_ID)->SetFocus();
 	

@@ -118,6 +118,7 @@ BEGIN_MESSAGE_MAP(CLobyDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_NORMAL, OnButtonNormal)
 	ON_BN_CLICKED(IDC_BUTTON_CHOICE, OnButtonChoice)
 	ON_BN_CLICKED(IDC_BUTTON_ALLKIND, OnButtonAllkind)
+	ON_WM_TIMER()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 /*
@@ -238,6 +239,9 @@ BOOL CLobyDlg::OnInitDialog()
 
 	////////////////////////////////////////////////////
 	////////////////////////////////////////////////////
+
+	m_nLobyCnt = 0;
+	SetTimer(LOBY_TIMER , 1000 , NULL);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -1007,6 +1011,8 @@ void CLobyDlg::OnDestroy()
 	
 	// TODO: Add your message handler code here
 	Back.DeleteObject();
+
+	KillTimer( LOBY_TIMER );
 }
 
 void CLobyDlg::OnRclickListUser(NMHDR* pNMHDR, LRESULT* pResult) 
@@ -1386,6 +1392,18 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 	//bmp.TransDraw(dc.m_hDC, ax, ay+23, 15, 15, 15*g_MyInfo.UI.nIcon, 0, RGB(255,0,255));
 	bmp.DeleteObject();
 
+
+	// Draw Insert Coin  - jeong
+	CMyBitmap bmpInsertCoin;
+	bmpInsertCoin.LoadBitmapFile(".\\image\\insertcoin.bmp");	
+
+	if(bmpInsertCoin.m_hObject == NULL) return;
+
+	if(m_nLobyCnt%2  == 0 )
+		bmpInsertCoin.TransDraw(dc.m_hDC, 300, 400, 230, 35, 0, 0, RGB(248,0,248));
+
+	bmpInsertCoin.DeleteObject();
+
 	/*	deleted by jeong
 	CString str;
 	CFont* pOldFont = dc.SelectObject(&Font1);
@@ -1693,3 +1711,12 @@ void CLobyDlg::OnButtonChoice() //바로 가기 설정 choice
 }
 
 
+
+void CLobyDlg::OnTimer(UINT nIDEvent) 
+{
+	// TODO: Add your message handler code here and/or call default
+	Invalidate(FALSE);
+	m_nLobyCnt++;
+	
+	CDialog::OnTimer(nIDEvent);
+}

@@ -124,6 +124,7 @@ extern xSprite RoomMasterSpr;
 extern xSprite BanishVoteSpr;
 extern xSprite SortSpr;
 extern xSprite AllinAniSpr;
+extern xSprite InsertCoinSpr;
 
 ////////////////////////////////////////////////////////////////
 //extern xSprite BigNumSpr;		// 큰 숫자 스프라이트

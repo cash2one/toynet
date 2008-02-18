@@ -24,6 +24,8 @@
 /////////////////////////////////////////////////////////////////////////////
 // CLobyDlg dialog
 
+#define LOBY_TIMER 101
+
 class CLobyDlg : public CDialog
 {
 // Construction
@@ -52,6 +54,8 @@ public:
 	BOOL m_bFullScr;
 
 	int  m_ChoiceKind;//0: all 1 :normal 2: choice 
+
+	int	 m_nLobyCnt;
 	
 	//////////////////////////////////////////////////
 	// ### [ 대기실 리스트 관련 ] ###
@@ -168,6 +172,7 @@ protected:
 	afx_msg void OnButtonNormal();
 	afx_msg void OnButtonChoice();
 	afx_msg void OnButtonAllkind();
+	afx_msg void OnTimer(UINT nIDEvent);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

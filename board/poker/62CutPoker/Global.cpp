@@ -74,6 +74,7 @@ xSprite RoomMasterSpr;
 xSprite BanishVoteSpr;
 xSprite SortSpr;
 xSprite AllinAniSpr;
+xSprite InsertCoinSpr;
 /////////////////////////////////////////////////////////////////
 xSprite EtcSpr;				// 기타
 xSprite OringCharSpr;	// 파산

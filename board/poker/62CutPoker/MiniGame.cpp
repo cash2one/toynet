@@ -222,11 +222,11 @@ void CMiniGame::ChangeCardPosition()
 
 void CMiniGame::PreCardSet()
 {
-	int nCardNum;
+	int nCardNum = rand()%(DUMY_CARD-1);;
 	for( int i=0; i<4; i++ )
 	{
-		nCardNum = LoopToCheckCardNum(i);
 		NewCardSet(nCardNum);
+		nCardNum = LoopToCheckCardNum(i+1);
 	}
 }
 
@@ -239,7 +239,7 @@ int CMiniGame::LoopToCheckCardNum(int nIndex)
 
 		if( nCardNum != DUMY_CARD )
 		{
-				return nCardNum;
+			return nCardNum;
 		}
 		else
 			continue;
@@ -262,7 +262,7 @@ int CMiniGame::CheckDuplicatedCardNum(int nIndex)
 		}
 	}
 
-	return nCardNum;
+	return DUMY_CARD;
 }
 
 bool CMiniGame::CompareCardNum(int nIndex, int nCardNum)
@@ -368,9 +368,9 @@ void CMiniGame::StopGame()
 	if( m_nGameContinue == 0 )
 	{
 		m_nBankMoney = m_nWinMoney + m_nBankMoney;
-
-		// 개인정보의 캐쉬에 저장 - jeong
-		g_MyInfo.UI.PMoney += m_nBankMoney;
+		//g_MyInfo.UI.PMoney += m_nBankMoney;
+		// 서버에 돈 저장해야 함.
+		Play[0].UI.PMoney += m_nBankMoney;
 	}
 
 	g_Mini.SendMessage(WM_CLOSE,0,0);
