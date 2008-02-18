@@ -184,6 +184,8 @@ void CMiniGame::InitGame()
 	m_nNextGame = 0;
 
 	g_Mini.bInitGame = TRUE;
+
+	m_bBetEnabled = TRUE;
 }
 
 void CMiniGame::PreCardGame()
@@ -207,6 +209,7 @@ void CMiniGame::NextCardGame()
 	m_bMoveCard = TRUE;
 	m_nMoveIndex = m_nNextGame;
 	m_nGameContinue = -1;
+	m_bBetEnabled = TRUE;
 }
 
 void CMiniGame::ChangeCardPosition()
@@ -322,6 +325,8 @@ void CMiniGame::SetGameResult(int nGameContinue)
 	m_nWinCnt = 0;
 	m_nLoseCnt = 0;
 
+	m_bBetEnabled = FALSE; 
+
 	if( m_nGameContinue == 0 )
 	{
 		//½Â¸®
@@ -338,6 +343,8 @@ void CMiniGame::SetGameResult(int nGameContinue)
 		//µå·Î¿ì
 		m_nWinGame = -1;
 	}
+
+	
 }
 
 int CMiniGame::GetGameResult()
@@ -386,6 +393,9 @@ void CMiniGame::OnGameKey(int nVKey)
 	int nResult;
 
 	if( m_bMoveCard )
+		return;
+
+	if( !m_bBetEnabled )
 		return;
 
 	switch(nVKey)

@@ -80,6 +80,9 @@ public:
 
 	int			GetGameContinue() { return m_nGameContinue;}
 	bool		GetMoveCard() { return m_bMoveCard; }
+
+	bool		GetBetEnabled() { return m_bBetEnabled; }
+	void		SetBetEnalbed( bool b) { m_bBetEnabled = b; }
 	
 private:
 	
@@ -122,6 +125,8 @@ private:
 	// Grphic Count
 	int		m_nWinCnt;
 	int		m_nLoseCnt;
+
+	bool	m_bBetEnabled;
 };
 
 #endif
