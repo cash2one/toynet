@@ -273,10 +273,10 @@ void CGameView::pagebutton_init()
 		MasterBtn.Init(this, &Page, 675, 451, &RoomMasterSpr, 0,IDM_MASTER);
 		BanishvoteBtn.Init(this, &Page, 736, 451, &BanishVoteSpr, 0,IDM_BANISHVOTE);
 
-		GameStartBtn.Init(this, &Page, 280, 298, &GameStartBtnSpr, 0,IDM_START);//시작버튼
+		GameStartBtn.Init(this, &Page, 200, 265, &GameStartBtnSpr, 0,IDM_START);//시작버튼
 		GameStartBtn.Show(FALSE);
 
-		GameQuitBtn.Init(this, &Page, 400, 285, &GameQuitBtnSpr, 0,IDM_EXIT);
+		GameQuitBtn.Init(this, &Page, 370, 265, &GameQuitBtnSpr, 0,IDM_EXIT);
 		GameQuitBtn.Show(FALSE);
 		GameQuitBtn.m_Width = 178;
 		GameQuitBtn.m_Height = 44;

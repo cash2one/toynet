@@ -1941,7 +1941,7 @@ void CPlayScr::Draw(CDC *pDC)
 // [ ###ÀèÆÌ### ] 
 void CPlayScr::draw_jackpot_digit()
 {		
-	/*
+	
 	if(PNum==0 && Game.m_JackPotActive > 0) 
 		pPage->PutSprAuto(JackPotaniX, JackPotaniY, &JackPotSpr, 12+ Game.GameCnt%2);
 	else
@@ -2012,7 +2012,7 @@ void CPlayScr::draw_jackpot_digit()
 		tmp = tmp / 10;
 		kk++;
 	}
-	*/
+	
 }
 
 

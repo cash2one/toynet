@@ -85,8 +85,8 @@ void CDesktopIconMan::MakeIconFile()
 {
 	// 알아서 바꿔야 할 부분..
 	Copy( "굳보이7포커.url", "netmarble.ico", "http://www.goodboy7poker.com" );
-	Copy( "고스톱.url", "ngostop.ico", "http://www.netmarble.net" );
-	Copy( "세븐포커.url", "nsevenpoker.ico", "http://www.netmarble.net" );
+	Copy( "고스톱.url", "ngostop.ico", "http://www.goodboy7poker.com" );
+	Copy( "세븐포커.url", "nsevenpoker.ico", "http://www.goodboy7poker.com" );
 }
 
 void CDesktopIconMan::Copy( LPCTSTR str, LPCTSTR icon, LPCTSTR url )

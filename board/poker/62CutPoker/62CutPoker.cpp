@@ -5,6 +5,7 @@
 #include "62CutPoker.h"
 #include "62CutPokerDlg.h"
 #include "Global.h"
+#include "ODBCInst.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -42,6 +43,31 @@ C62CutPokerApp theApp;
 
 static HANDLE hImHere;  // 전역변수로 선언이 되어야만 함
 
+BOOL C62CutPokerApp::SetODBC()
+{
+	#define DNSTYPE              "Microsoft Access Driver (*.mdb)"
+
+	char szPathName[256];
+
+	GetModuleFileName(NULL, szPathName, 256);
+	CString sPathName = szPathName;
+	sPathName = sPathName.Mid(0, sPathName.ReverseFind(TEXT('\\')));
+
+	CString Attribute;
+	CString m_dir = sPathName;
+	CString m_Path = sPathName + CString("\\Netmarble PokerDB.mdb");
+
+	Attribute.Format("DSN=Netmarble PokerDB;DESCRIPTION=FORARCADE;FileType=Access;DataDirectory=%s;DBQ=%s;",m_dir,m_Path);
+
+	if(!SQLConfigDataSource(NULL, ODBC_ADD_DSN, DNSTYPE, Attribute))
+	{
+		AfxMessageBox("데이터 원본 소스(DSN) 설정에 문제가 있습니다.");
+		return FALSE;
+	}
+
+	return TRUE;
+
+}
 BOOL C62CutPokerApp::InitInstance()
 {
 // 릴리즈모드일때만....
@@ -186,6 +212,8 @@ BOOL C62CutPokerApp::InitInstance()
 		} break;
 
 	}
+	//ODBC 설정
+	SetODBC();
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 

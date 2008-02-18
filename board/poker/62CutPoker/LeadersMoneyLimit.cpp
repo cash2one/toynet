@@ -252,7 +252,7 @@ void CLeadersMoneyLimit::OnOK()
 	g_Where = WH_TITLE;
 	Sound.Play(SND45);
 
-	CString str ="http://www.netmarble.net";
+	CString str ="http://www.goodboy7poker.com";
 	if(m_LJ.PremLType==0)
 		g_pMainDlg->BrowserMove( str + m_LJ.LeadersJoinURL ); // ∞°¿‘
 	else

@@ -324,13 +324,20 @@ void CMiniGame::SetGameResult(int nGameContinue)
 
 	if( m_nGameContinue == 0 )
 	{
+		//승리
 		RaiseMoney();
 		m_nWinGame = 0;
+		Sound.Play(SND32);
 	}
-	else if( m_nGameContinue == 1 )
+	else if( m_nGameContinue == 1 ){
+		//패배
 		m_nWinGame = 1;
-	else if( m_nGameContinue == 2 )
+		Sound.Play(SND33);
+	}
+	else if( m_nGameContinue == 2 ){
+		//드로우
 		m_nWinGame = -1;
+	}
 }
 
 int CMiniGame::GetGameResult()
@@ -366,7 +373,7 @@ void CMiniGame::StopGame()
 		g_MyInfo.UI.PMoney += m_nBankMoney;
 	}
 
-	//g_Mini.SendMessage(WM_CLOSE,0,0);
+	g_Mini.SendMessage(WM_CLOSE,0,0);
 }
 
 void CMiniGame::DefeatGame()

@@ -58,7 +58,8 @@ BOOL CMiniDlg::OnInitDialog()
 	
 	// TODO: Add extra initialization here
 	if(GameBackSpr.Load(".\\data\\Mini\\x2gameback.spr", 555)==FALSE) AfxMessageBox("x2gameback.spr 파일을 읽을 수 없습니다");
-	if(InitBtnSpr.Load(".\\data\\Mini\\StartBtn.spr", 555)==FALSE) AfxMessageBox("StartBtn.spr 파일을 읽을 수 없습니다");
+	//if(InitBtnSpr.Load(".\\data\\Mini\\StartBtn.spr", 555)==FALSE) AfxMessageBox("StartBtn.spr 파일을 읽을 수 없습니다");
+	if(InitBtnSpr.Load(".\\data\\StartBtn.spr", 555)==FALSE) AfxMessageBox("StartBtn.spr 파일을 읽을 수 없습니다");
 	if(StartBtnSpr.Load(".\\data\\Mini\\continue.spr", 555)==FALSE) AfxMessageBox("continue.spr 파일을 읽을 수 없습니다");
 	if(EndBtnSpr.Load(".\\data\\Mini\\Gstop.spr", 555)==FALSE) AfxMessageBox("Gstop.spr 파일을 읽을 수 없습니다");
 	if(FocusSpr.Load(".\\data\\Focus.spr", 555)==FALSE) AfxMessageBox("Focus.spr 파일을 읽을 수 없습니다");
@@ -99,11 +100,13 @@ BOOL CMiniDlg::OnInitDialog()
 
 	CenterWindow(g_pGameView->GetOwner());
 
-	SetTimer(MINIGAME_TIMER , 55 , NULL);
+	SetTimer(MINIGAME_TIMER , 30 , NULL);
 
 	X2Cnt = 0;
 	CloseGameCnt = 0;
 	bInitGame = FALSE;
+
+	m_MnGame.InitGame();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -391,8 +394,8 @@ void CMiniDlg::FocusEffectDraw(CPage *pPage)
 	if( m_MnGame.GetWinGame() == -1)
 		return;
 
-	const int nXp = 320;
-	const int nYp = 390;
+	const int nXp = 450;
+	const int nYp = 180;
 	const int nWaitCnt = 12;
 	const int nShowTimes = 35;				// 3 times
 

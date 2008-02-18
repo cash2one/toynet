@@ -57,9 +57,9 @@ BOOL CNewAskChargeDlg::OnInitDialog()
 	Back.LoadBitmapFile(".\\Image\\allintitle.bmp");
 	m_WebControl = new CWebCtrl4New();
 	m_WebControl->Create(NULL,"WebControlWindow",WS_VISIBLE | WS_CHILD,pappos, this, 61327);
-	m_WebControl->Navigate("http://www.netmarble.net/game/gameshop/allin/?gamecode=61");
+	m_WebControl->Navigate("http://www.goodboy7poker.com/game/gameshop/allin/?gamecode=61");
 //	g_ISASKSHOW = TRUE;	// ÀÌ°Ç È«´Ù¸®²¨ ¾Æ¹«°Å³ª ÇØº¸¼À
-	//m_WebControl->Navigate("netmarble.net");
+	//m_WebControl->Navigate("goodboy7poker.com");
 	//m_WebControl->SetBorderNone();
 
 	CenterWindow();

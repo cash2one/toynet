@@ -45,6 +45,7 @@ void CResultHi::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CResultHi)
+	DDX_Control(pDX, ID_MINIGAME, m_MiniGame);
 	DDX_Control(pDX, IDC_BUTTON_SAFEANGEL, m_SafeBtn);
 	DDX_Control(pDX, IDC_BUTTON_SHOWCARD, m_ShowCardBtn);
 	DDX_Control(pDX, IDOK, m_CloseBtn);
@@ -60,6 +61,7 @@ BEGIN_MESSAGE_MAP(CResultHi, CDialog)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_BUTTON_SHOWCARD, OnButtonShowcard)
 	ON_BN_CLICKED(IDC_BUTTON_SAFEANGEL, OnButtonSafeangel)
+	ON_BN_CLICKED(ID_MINIGAME, OnMinigame)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -155,10 +157,12 @@ BOOL CResultHi::OnInitDialog()
 	}
 
 	if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0){
-		m_CloseBtn.Init(134,361,".\\image\\commonbtn\\Btn_ok.bmp",4);
+		m_CloseBtn.Init(110,361,".\\image\\commonbtn\\Btn_ok.bmp",4);
+		m_MiniGame.Init(190,361,".\\image\\commonbtn\\Btn_Yes.bmp",4);
 	}
 	else{
-		m_CloseBtn.Init(134,251,".\\image\\commonbtn\\Btn_ok.bmp",4);
+		m_CloseBtn.Init(110,251,".\\image\\commonbtn\\Btn_ok.bmp",4);
+		m_MiniGame.Init(190,251,".\\image\\commonbtn\\Btn_Yes.bmp",4);
 	}
 
 
@@ -592,44 +596,11 @@ void CResultHi::OnButtonSafeangel()
 	CDialog::OnOK();
 }
 
+void CResultHi::OnMinigame() 
+{
+	// TODO: Add your control notification handler code here
+	Sound.Play(SND45);	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+			//if( Play[0].ServPNum == Game.WinnerPNum )
+	g_Mini.DoModal();
+}

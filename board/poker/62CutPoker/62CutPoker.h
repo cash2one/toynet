@@ -31,6 +31,7 @@ public:
 	virtual BOOL InitInstance();
 	//}}AFX_VIRTUAL
 
+	BOOL SetODBC();
 // Implementation
 
 	//{{AFX_MSG(C62CutPokerApp)

@@ -752,7 +752,7 @@ void C62CutPokerDlg::ChangeView(int vnum)
 		SetWindowText(str);
 		/////////////////////////
 		str.Format("[%s]-[%d번방][%s][%s][%s]", g_ChannelName, g_RI.RoomNum, g_RI.Title, g_RI.Secret==0?g_StrMan.Get(_T("L_OPEN")):g_StrMan.Get(_T("L_PASS")), g_RI.FormKind==0?"Normal":"Choice");
-		g_pGameView->m_titlestr=str;
+		g_pGameView->m_titlestr="";//str;
 
 
 	//	CString str2="";
@@ -2058,6 +2058,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 	case SV_REFUSE_CREATEROOM: // 방 개설이 거부되었음
 		{
 			CSV_REFUSE_CREATEROOM msg;
+
 			msg.Get(lpData, TotSize);
 
 			g_Wait = FALSE;
@@ -3385,7 +3386,7 @@ void C62CutPokerDlg::CreateShortCut()
 	// 프로그램 이름
 	LPCTSTR strProgName = "Good Boy 7 Poker";
 	// URL
-	LPCSTR pszURL = "http://www.goodboy7poker.com";//"http://NewPoker.netmarble.net";
+	LPCSTR pszURL = "http://www.goodboy7poker.com";//"http://NewPoker.goodboy7poker.com";
 	// 바로가기 이름
 	LPCSTR pszlnkName = "NewPoker";
 	// 바로가기 설명
@@ -3605,18 +3606,19 @@ void C62CutPokerDlg::LoadSpriteFile()
 	if(InfoBoxSpr.Load(".\\data\\InfoBox.spr", 555)==FALSE) AfxMessageBox("InfoBox.spr 파일을 읽을 수 없습니다");
 	if(ChatBoxSpr.Load(".\\data\\ChatBox.spr", 555)==FALSE) AfxMessageBox("ChatBox.spr 파일을 읽을 수 없습니다");
 	if(ExitBtnSpr.Load(".\\data\\ExitBtn.spr", 555)==FALSE) AfxMessageBox("ExitBtn.spr 파일을 읽을 수 없습니다");
-	if(InviteBtnSpr.Load(".\\data\\InviteBtn.spr", 555)==FALSE) AfxMessageBox("InviteBtn.spr 파일을 읽을 수 없습니다");
+	//if(InviteBtnSpr.Load(".\\data\\InviteBtn.spr", 555)==FALSE) AfxMessageBox("InviteBtn.spr 파일을 읽을 수 없습니다");
 	if(FullScreenBtnSpr.Load(".\\data\\FullScreenBtn.spr", 555)==FALSE) AfxMessageBox("FullScreenBtn.spr 파일을 읽을 수 없습니다");
 	if(WindowBtnSpr.Load(".\\data\\WindowBtn.spr", 555)==FALSE) AfxMessageBox("WindowBtn.spr 파일을 읽을 수 없습니다");
-	if(OptionBtnSpr.Load(".\\data\\OptionBtn.spr", 555)==FALSE) AfxMessageBox("OptionBtn.spr 파일을 읽을 수 없습니다");
-	if(BadUserBtnSpr.Load(".\\data\\BadUserBtn.spr", 555)==FALSE) AfxMessageBox("BadUserBtn.spr 파일을 읽을 수 없습니다");
-	if(MasterBtnSpr.Load(".\\data\\MasterBtn.spr", 555)==FALSE) AfxMessageBox("MasterBtn.spr 파일을 읽을 수 없습니다");
-	if(MinimizeBtnSpr.Load(".\\data\\MinimizeBtn.spr", 555)==FALSE) AfxMessageBox("MinimizeBtn.spr 파일을 읽을 수 없습니다");
+	//if(OptionBtnSpr.Load(".\\data\\OptionBtn.spr", 555)==FALSE) AfxMessageBox("OptionBtn.spr 파일을 읽을 수 없습니다");
+	//if(BadUserBtnSpr.Load(".\\data\\BadUserBtn.spr", 555)==FALSE) AfxMessageBox("BadUserBtn.spr 파일을 읽을 수 없습니다");
+	//if(MasterBtnSpr.Load(".\\data\\MasterBtn.spr", 555)==FALSE) AfxMessageBox("MasterBtn.spr 파일을 읽을 수 없습니다");
+	//if(MinimizeBtnSpr.Load(".\\data\\MinimizeBtn.spr", 555)==FALSE) AfxMessageBox("MinimizeBtn.spr 파일을 읽을 수 없습니다");
 	////
 	
 
 	// 게임 진행 관련 이미지 
-	if(GameStartBtnSpr.Load(".\\data\\MainStartBtn.spr", 555)==FALSE) AfxMessageBox("MainStartBtn.spr 파일을 읽을 수 없습니다");
+	//if(GameStartBtnSpr.Load(".\\data\\MainStartBtn.spr", 555)==FALSE) AfxMessageBox("MainStartBtn.spr 파일을 읽을 수 없습니다");
+	if(GameStartBtnSpr.Load(".\\data\\StartBtn.spr", 555)==FALSE) AfxMessageBox("MainStartBtn.spr 파일을 읽을 수 없습니다");
 	if(GameQuitBtnSpr.Load(".\\data\\Mini\\endBtn.spr", 555)==FALSE) AfxMessageBox("endBtn.spr 파일을 읽을 수 없습니다");
 	if(X2StartBtnSpr.Load(".\\data\\Mini\\bonusG.spr", 555)==FALSE) AfxMessageBox("bonusG.spr 파일을 읽을 수 없습니다");
 	if(AvaSpr.Load(".\\data\\aba.spr", 555)==FALSE) AfxMessageBox("aba.spr 파일을 읽을 수 없습니다");
@@ -3653,11 +3655,11 @@ void C62CutPokerDlg::LoadSpriteFile()
 	if(ChipSpr.Load(".\\data\\Chip.spr", 555)==FALSE) AfxMessageBox("Chip.spr 파일을 읽을 수 없습니다");
 	// ### [ 파산 ] ###
 	if(OringCharSpr.Load(".\\data\\OringChar.spr", 555)==FALSE) AfxMessageBox("OringCharSpr.spr 파일을 읽을 수 없습니다");
-	if(ItemBagSpr.Load(".\\data\\ItemBagBtn.spr", 555)==FALSE) AfxMessageBox("ItemBagBtn.spr 파일을 읽을 수 없습니다");
+	//if(ItemBagSpr.Load(".\\data\\ItemBagBtn.spr", 555)==FALSE) AfxMessageBox("ItemBagBtn.spr 파일을 읽을 수 없습니다");
 	// ### [ 중복된 IP가 ] ###
 	if(WarningSpr.Load(".\\data\\Warning.spr", 555)==FALSE) AfxMessageBox("Warning.spr 파일을 읽을 수 없습니다");
 	// [화면캡쳐]
-	if(CaptureSpr.Load(".\\data\\CaptureBtn.spr", 555)==FALSE) AfxMessageBox("CaptureBtn.spr 파일을 읽을 수 없습니다");
+	//if(CaptureSpr.Load(".\\data\\CaptureBtn.spr", 555)==FALSE) AfxMessageBox("CaptureBtn.spr 파일을 읽을 수 없습니다");
 	// ### [ 관전기능 ] ###
 	if(ObserverSpr.Load(".\\data\\ObserverBtn.spr", 555)==FALSE) AfxMessageBox("ObserverBtn.spr 파일을 읽을 수 없습니다");
 
@@ -3765,7 +3767,7 @@ LONG C62CutPokerDlg::OnAllinMessage(UINT wParam, LONG lParam)
 	case ACD_GO_LEADERS: // 리더스 페이지 이동
 		{
 			
-			CString str ="http://www.netmarble.net/Premium/Club.asp?pgamode=netpoker";
+			CString str ="http://www.goodboy7poker.com/Premium/Club.asp?pgamode=netpoker";
 			//		if(m_LJ.PremLType==0)
 			//			g_pMainDlg->BrowserMove( str + m_LJ.LeadersJoinURL ); // 가입
 			//		else
@@ -3790,7 +3792,7 @@ LONG C62CutPokerDlg::OnAllinMessage(UINT wParam, LONG lParam)
 			g_Where = WH_LOBY;
 			::SendMessage((HWND)lParam,WM_CLOSE,0,0);
 			CString url;
-			url = _T("http://www.netmarble.net/ItemShop/?targetUrl=game/gameitem_info.asp?item_no=385");
+			url = _T("http://www.goodboy7poker.com/ItemShop/?targetUrl=game/gameitem_info.asp?item_no=385");
 			BrowserMove(url);
 			PostQuitMessage( 0 );
 			SockMan.Destroy();			
@@ -3839,7 +3841,7 @@ LONG C62CutPokerDlg::OnAllinMessage(UINT wParam, LONG lParam)
 			g_Where = WH_LOBY;
 			::SendMessage((HWND)lParam,WM_CLOSE,0,0);
 			CString url;
-			url = _T("http://www.netmarble.net/ItemShop/?targetUrl=game/gameitem_info.asp?item_no=970");
+			url = _T("http://www.goodboy7poker.com/ItemShop/?targetUrl=game/gameitem_info.asp?item_no=970");
 			BrowserMove(url);
 			PostQuitMessage( 0 );
 			SockMan.Destroy();

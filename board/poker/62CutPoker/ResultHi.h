@@ -53,6 +53,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CResultHi)
 	enum { IDD = IDD_DIALOG_RESULTHI };
+	CMyButton	m_MiniGame;
 	CMyButton	m_SafeBtn;
 	CMyButton	m_ShowCardBtn;
 	CMyButton	m_CloseBtn;
@@ -80,6 +81,7 @@ protected:
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnButtonShowcard();
 	afx_msg void OnButtonSafeangel();
+	afx_msg void OnMinigame();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

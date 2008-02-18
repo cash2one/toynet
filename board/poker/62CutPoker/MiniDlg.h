@@ -27,11 +27,11 @@
 #define IDM_MINI_STOP	(WM_USER+6111)
 #define IDM_MINI_INIT	(WM_USER+6112)
 
-#define MINISTART_OFFSET_X 370
-#define MINISTART_OFFSET_Y 480
+#define MINISTART_OFFSET_X 212
+#define MINISTART_OFFSET_Y 390
 
-#define MINISTOP_OFFSET_X 480
-#define MINISTOP_OFFSET_Y 480
+#define MINISTOP_OFFSET_X 322
+#define MINISTOP_OFFSET_Y 390
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -4090,10 +4090,12 @@ void CGame::OnStartButtonActive(int spnum,char * id,int bactive) // 시작버튼 활�
 		g_pGameView->GameQuitBtn.Show(FALSE);
 	}
 
+	/* softpark CResultHi 로 이동.
 	if(spnum == 0 && !Game.bCreateRoom )								// 자기자신이 승리시 - jeong
 		g_pGameView->X2StartBtn.Show(TRUE);
 	else
 		g_pGameView->X2StartBtn.Show(FALSE);
+		*/
 
 	Game.bCreateRoom = FALSE;
 }

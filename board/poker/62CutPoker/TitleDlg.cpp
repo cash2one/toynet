@@ -119,7 +119,7 @@ BOOL CTitleDlg::OnInitDialog()
 	if(!m_pWebCtrl) m_pWebCtrl = new CWebCtrl();
 	m_pWebCtrl->Create(NULL, "WebControl", WS_VISIBLE|WS_CHILD, rc, this, 1321);
 */
-	//m_pWebCtrl->Navigate("http://www.netmarble.net/gamedown/notice/poweral/notice.htm");
+	//m_pWebCtrl->Navigate("http://www.goodboy7poker.com/gamedown/notice/poweral/notice.htm");
 
 	// 위치 알림용 웹 컨트롤 생성(보이지 않는 곳으로 옮겨둠)
 	CRect rc(0,0,80,80);

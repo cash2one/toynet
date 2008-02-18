@@ -222,11 +222,14 @@ BOOL CLobyDlg::OnInitDialog()
 	rc.OffsetRect( 19, 94 );
 	m_RoomView.Create( this, rc, 2000, 0 );
 	m_RoomView.Init( &LobyListBackSpr, &LobyListButtonSpr );	
+	*/
 
+	
 //	m_ItemBagBtn.EnableWindow(FALSE); // 게임아이템
 
 	
 	m_ChoiceKind = 0 ;
+	/*
 	m_btnAllKind.EnableWindow(FALSE);
 	m_btnNormal.EnableWindow(TRUE);	
 	m_btnChoice.EnableWindow(TRUE);
@@ -799,10 +802,11 @@ void CLobyDlg::OnButtonCreateroom()
 	Sound.Play(SND45);
 
 	// ### [ 관전기능 ] ###
-	CCreateRoomDlg dlg(g_MyInfo.UI.nIcon, g_MyInfo.UI.PMoney);// g_MyData.GetMoney());
+	//softpark
+	//CCreateRoomDlg dlg(g_MyInfo.UI.nIcon, g_MyInfo.UI.PMoney);// g_MyData.GetMoney());
 	
 
-	if(dlg.DoModal()==IDOK)
+	//if(dlg.DoModal()==IDOK)
 	{
 		CSV_ASK_CREATEROOM msg;
 		
@@ -810,16 +814,20 @@ void CLobyDlg::OnButtonCreateroom()
 		ZeroMemory(&ri, sizeof(ROOMINFO));
 		// ### [ 관전기능 ] ###
 		ri.UNum = g_MyInfo.UI.UNum;
-		strncpy(ri.Title, dlg.m_RoomTitle.operator LPCTSTR(), 30);
+		//strncpy(ri.Title, dlg.m_RoomTitle.operator LPCTSTR(), 30);
+		strncpy(ri.Title, "ok let's go", 30);
 		strncpy(ri.ID, g_MyInfo.UI.ID, 15);
 		ri.NowUserNum = 1;
-		ri.MaxUserNum = (char)dlg.nMaxNum;
+		ri.MaxUserNum = 2;//(char)dlg.nMaxNum;
 
-		ri.CreateRGrade = dlg.ComboSelCreateRGrade;
+		ri.CreateRGrade = 0;//dlg.ComboSelCreateRGrade;
 		ri.UsernIcon = Play[0].UI.nIcon;
 
 		// 레이즈 설정
-		switch(dlg.Level){
+		//switch(dlg.Level){
+		int lev  = 0;
+		//switch(dlg.Level){
+		switch(lev){
 		case 0:  ri.Level = 0; break;
 		case 1:  ri.Level = 1; break;
 		case 2:  ri.Level = 2; break;
@@ -829,15 +837,15 @@ void CLobyDlg::OnButtonCreateroom()
 
 	//	ri.MaxUserNum = dlg.nMaxNum;
 		ri.RoomNum = 0;
-		ri.Secret = dlg.bSecret;
-		ri.GameKind = dlg.GameKind; // 아템 노템
+		ri.Secret = 0;//dlg.bSecret;
+		ri.GameKind = 0;//dlg.GameKind; // 아템 노템
 		//ri.GameKind = dlg.m_nStyle;
-		if(ri.Secret==TRUE) strncpy(ri.Pass, dlg.m_Pass.operator LPCTSTR(), 4);
+		//if(ri.Secret==TRUE) strncpy(ri.Pass, dlg.m_Pass.operator LPCTSTR(), 4);
 		ri.State = 0;
-		ri.FormKind = dlg.FormKind;
-		ri.bSuperMaster = dlg.m_bSuperRoomMaster;	// [게임 아이템 작업]
+		ri.FormKind = 1;//dlg.FormKind;
+		ri.bSuperMaster = 0;//dlg.m_bSuperRoomMaster;	// [게임 아이템 작업]
 		
-		ri.bPlayer = dlg.m_nPlayer; // 0=5,1=6 		
+		ri.bPlayer = 0;//dlg.m_nPlayer; // 0=5,1=6 		
 
 		// ### [사운드 추가 작업] ###
 		// port(UINT) ->  SndFxKind 변경 
@@ -851,11 +859,13 @@ void CLobyDlg::OnButtonCreateroom()
 		iAccessRoomState=1;
 		g_Wait = TRUE;
 	}
+	/* softpark
 	else
 	{
 		iAccessRoomState=0;
 		g_Wait = FALSE;
 	}
+	*/
 	
 }
 
