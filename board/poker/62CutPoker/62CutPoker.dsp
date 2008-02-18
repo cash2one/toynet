@@ -663,6 +663,26 @@ SOURCE=.\SendEdit.cpp
 SOURCE=.\SendEdit.h
 # End Source File
 # End Group
+# Begin Group "minigame"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\MiniDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MiniDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MiniGame.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\MiniGame.h
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=.\CharBox.cpp
