@@ -218,6 +218,9 @@ BOOL CGameDlg::PreTranslateMessage(MSG* pMsg)
 			CSV_ASK_MONEYINFO aumsg;
 			aumsg.Set(Play[0].UI.UNum, 100);
 			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+
+			if ( Game.bGameStart )
+				Game.GapMoney += 100;
 		}
 
 		// ¸ÞÅ©·Î 

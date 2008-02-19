@@ -76,7 +76,7 @@ void CMiniGame::NewCardSet(int cardNum)
 	Card[TotalCardNum].SetPos(m_nXp+TotalCardNum*CARD_GAP_SIZE, m_nYp);
 
 	POINT pt;
-	pt.x = 800;
+	pt.x = 640;
 	pt.y = 250;
 	SetCardCurPos(TotalCardNum, pt);
 

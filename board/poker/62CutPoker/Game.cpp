@@ -406,6 +406,8 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 	memcpy(g_Poker.PS, pSC->Ps, sizeof(PLAYSTATE)*g_Max_Player);
 	// 게임 시작 플래그 세팅
 	bGameStart = TRUE;
+	// 버그발생으로 인한 돈 세팅 - jeong
+	GapMoney = 0;
 	BOOL bFalse = FALSE;
 	for(int i=0; i<g_Max_Player; i++) {		
 		// 플레이어 스크린 초기화
@@ -713,10 +715,6 @@ void CGame::OnGameOver(GAMEOVERRESULT *pGOR)
 		//카드 렉트 초기화[62]
 		CardDeck[0].ReSetCardRect();
 	}
-
-	// 이긴 금액 세팅 - jeong
-	if(Play[0].ServPNum == WinnerPNum)
-		Play[0].nWinMoney = pGOR->nWinMoney;
 }
 
 void CGame::DoExitSubscript(int bexit)
@@ -737,8 +735,8 @@ void CGame::Card_Distribute()
 	
 	POINT pt;  // 스타트
 	POINT pt1; // 스타트 위치
-	pt1.x = 200;
-	pt1.y = 240;	// 카드 날리는 위치 변경 - jeong
+	pt1.x = 94;
+	pt1.y = 253;	// 카드 날리는 위치 변경 - jeong
 	//pt1.y = 40;
 	FlyWindCard = TRUE;		// 카드 날리는 중
 	CCard* pLastCard = NULL;// 마지막 카드

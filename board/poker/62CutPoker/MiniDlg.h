@@ -87,6 +87,7 @@ protected:
 	afx_msg void OnButtonHi();
 	afx_msg void OnButtonLow();
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnWindowPosChanging(WINDOWPOS FAR* lpwndpos);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

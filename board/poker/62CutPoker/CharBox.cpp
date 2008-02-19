@@ -412,15 +412,17 @@ void CCharBox::draw_5user(CDC *pDC)
 	//pDC->SetTextColor(RGB(172,252,255));
 	pDC->TextOut(idx, idy, str);
 	*/
-	
+
+
 	CRect rect;
 	CString strM = "";
 	pDC->SetTextColor(RGB(244,255,75));
-	// 나의 머니
-	INT64 roundingoff = Play[PNum].UI.PMoney;
 
-	//if(roundingoff >100)
-	//roundingoff = (roundingoff/100)*100;
+	// 나의 머니(Credit)
+	INT64 roundingoff = Play[PNum].PrevMoney-Play[PNum].LoseMoney;
+
+	if( roundingoff < 0 )
+		roundingoff = 0;
 
 	strM = NumberToOrientalString(roundingoff);
 	strM +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
@@ -457,6 +459,7 @@ void CCharBox::draw_5user(CDC *pDC)
 		pDC->DrawText(strWinM, &WinRt, DT_RIGHT | DT_WORDBREAK);
 
 		pDC->SetTextColor(RGB(244,255,75));
+
 		// 나의 금액
 		rect.SetRect(0,0,200,14);
 		rect.OffsetRect(590,411);
@@ -465,11 +468,6 @@ void CCharBox::draw_5user(CDC *pDC)
 		// 총베팅액
 		roundingoff = Game.GetRealBet();
 		
-		//if(roundingoff > 100)
-		//	roundingoff = (roundingoff/100)*100;
-
-
-	//	nTotBat = 99999999999999999;
 		// 총 배팅 금액 
 		int num1 = 0, num2 = 0, num3=0, num4=0;
 		NumberToParse(roundingoff, num1, num2, num3, num4);
@@ -489,15 +487,6 @@ void CCharBox::draw_5user(CDC *pDC)
 
 	
 		pDC->SelectObject(Oldf);
-		/* // 숫자로 그리기
-		if(num1>0) { bZero = TRUE; DrawDigit(0, 1, num1); }
-		rect.OffsetRect(45, 0);
-		if(num2>0 || bZero) { bZero = TRUE; DrawDigit(0, 2, num2); }
-		rect.OffsetRect(45, 0);
-		if(num3>0 || bZero) { bZero = TRUE; DrawDigit(0, 3, num3); }
-		rect.OffsetRect(45, 0);
-		if(num4>0 || bZero) { bZero = TRUE; DrawDigit(0, 4, num4); }
-		*/
 
 		num1 = 0, num2 = 0, num3=0, num4=0;
 		int pnum = Play[PNum].ServPNum;
@@ -506,7 +495,6 @@ void CCharBox::draw_5user(CDC *pDC)
 		if(roundingoff > 100)
 			roundingoff = (roundingoff/100)*100;
 
-	//	nTotBat = 99999000099990000;
 		//추가 배팅 금액 
 		NumberToParse(roundingoff, num1, num2, num3, num4);
 		rect.SetRect(0,0,33,14);
@@ -522,10 +510,8 @@ void CCharBox::draw_5user(CDC *pDC)
 
 		
 		// +- 증가액 표시
-		//pDC->SetTextColor(RGB(23, 175, 214));
-		roundingoff = Play[PNum].UI.PMoney - Play[PNum].PrevMoney;
-		//roundingoff = (roundingoff/100)*100;
-
+		//roundingoff = Play[PNum].UI.PMoney - Play[PNum].PrevMoney;
+		roundingoff = Play[0].BankMoney;
 		strM = NumberToOrientalString(roundingoff);//g_Poker.nTotBat); // 임시 추가
 
 		CString str;

@@ -46,6 +46,9 @@ public:
 	// +- 증가액 표시
 	INT64 PrevMoney;
 
+	INT64 BankMoney;
+	INT64 LoseMoney;
+
 	BOOL bFold;
 	BOOL bHiddenOpen;
 	BOOL m_bSelectCard;

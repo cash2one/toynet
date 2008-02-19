@@ -234,6 +234,8 @@ protected:
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CLobbyListWnd)
+	public:
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	protected:
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	//}}AFX_VIRTUAL

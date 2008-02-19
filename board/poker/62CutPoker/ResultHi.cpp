@@ -124,9 +124,12 @@ BOOL CResultHi::OnInitDialog()
 		// 캐릭터 인덱스0 저장(결과창) - jeong
 		m_CharView.CharNum = g_pGameView->CharBox[0].m_nCharIndex[0];
 
-		// ShowCard
-	//	if(WinCase == 0) m_ShowCardBtn.ShowWindow(SW_SHOW);[62]
+		// 저장 Bank Money(증감) - jeong
+		Play[0].BankMoney = Play[0].BankMoney + pGO.nWinMoney;
 
+		// 이긴 금액 세팅 - jeong
+		if(Play[0].ServPNum == Game.WinnerPNum)
+			Play[0].nWinMoney = pGO.nWinMoney;
 	}
 	else {
 		Back.LoadBitmapFile(".\\image\\Gameover\\result_otherwin.bmp");		// Result design will be changed - jeong
@@ -134,6 +137,20 @@ BOOL CResultHi::OnInitDialog()
 
 		// 캐릭터 인덱스1 저장(결과창) - jeong
 		m_CharView.CharNum = g_pGameView->CharBox[0].m_nCharIndex[1];
+
+		// 잃은 금액 저장 - jeong
+		Play[0].LoseMoney = Play[0].LoseMoney + pGO.Ui[Play[0].ServPNum].LoseMoney;
+
+		INT64 MinusMoney = Play[0].PrevMoney-Play[0].LoseMoney;
+
+		if( MinusMoney < 0)
+		{
+				Play[0].PrevMoney = 0;
+				Play[0].LoseMoney = 0;
+				Play[0].BankMoney += MinusMoney;
+		}
+	
+		// 저장 플레이어 머니(차감) - jeong
 
 		//m_CloseBtn.Init(131, 304,".\\image\\commonbtn\\Btn_ok.bmp",4);
 		
@@ -301,7 +318,6 @@ void CResultHi::OnPaint()
 
 	CRect rt;
 
-
 	if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0 ){
 		rt.SetRect(13,217,13+92,217+21);
 	}
@@ -310,8 +326,8 @@ void CResultHi::OnPaint()
 	}
 
 	
-
-	dc.DrawText(UI.ID, &rt, DT_CENTER | DT_WORDBREAK);
+	// 아이디 출력
+	//dc.DrawText(UI.ID, &rt, DT_CENTER | DT_WORDBREAK);
 
 	
 	CString str ="";
@@ -604,3 +620,24 @@ void CResultHi::OnMinigame()
 			//if( Play[0].ServPNum == Game.WinnerPNum )
 	g_Mini.DoModal();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

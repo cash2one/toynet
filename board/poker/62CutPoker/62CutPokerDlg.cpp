@@ -583,6 +583,7 @@ void C62CutPokerDlg::SetupByConfig()
 
 			g_pLobyDlg->bDontClickSound = TRUE;
 			g_pLobyDlg->SendMessage(WM_COMMAND, IDC_BUTTON_CHANGEDISPLAY);
+			g_Mini.SendMessage(WM_COMMAND, IDC_BUTTON_CHANGEDISPLAY);
 
 			// 풀스크린이 성공하였기때문에 원래값으로 초기화함
 			CFG.bFailToFullScreen = FALSE;
@@ -3677,11 +3678,6 @@ void C62CutPokerDlg::LoadSpriteFile()
 	//애니파일 (올인)
 	
 	if(AllinAniSpr.Load(".\\data\\AllinAni.spr", 555)==FALSE) AfxMessageBox("AllinAni.spr 파일을 읽을 수 없습니다");
-
-	// Insert Coin
-	if(InsertCoinSpr.Load(".\\data\\insertcoin.spr", 555)==FALSE) AfxMessageBox("insertcoin.spr 파일을 읽을 수 없습니다");
-
-
 	
 }
 
@@ -3887,3 +3883,22 @@ LONG C62CutPokerDlg::OnAllinMessage(UINT wParam, LONG lParam)
 	}
 	return TRUE;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

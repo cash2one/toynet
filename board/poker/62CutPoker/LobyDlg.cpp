@@ -243,7 +243,7 @@ BOOL CLobyDlg::OnInitDialog()
 	////////////////////////////////////////////////////
 
 	m_nLobyCnt = 0;
-	SetTimer(LOBY_TIMER , 1000 , NULL);
+	SetTimer(LOBY_TIMER , 55 , NULL);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -803,7 +803,7 @@ void CLobyDlg::OnButtonCreateroom()
 
 		// [수호천사] 2004.07.08
 		CNewAskChargeDlg BigDlg;
-		BigDlg.DoModal();
+		//BigDlg.DoModal();
 		return; 
 	}
 
@@ -1382,19 +1382,6 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 
 	dc.SetBkMode(TRANSPARENT);
 
-	// 승률 계산
-	// ### [ 관전기능 ] ###
-	int winpro = GetWinPro(g_MyInfo.UI.WinNum, g_MyInfo.UI.LooseNum);//, Play[0].UI.DrawNum);
-	int ax = 700, ay = 397;
-
-	// ### [ 관전기능 ] ###
-	g_MyInfo.UI.nIcon = GetPokerLevel(g_MyInfo.UI.PMoney);
-
-	CMyBitmap bmp;
-	bmp.LoadBitmap(IDB_LEVEL15);
-	// ### [ 관전기능 ] ###  deleted by jeong
-	//bmp.TransDraw(dc.m_hDC, ax, ay+23, 15, 15, 15*g_MyInfo.UI.nIcon, 0, RGB(255,0,255));
-	bmp.DeleteObject();
 
 
 	// Draw Insert Coin  - jeong
@@ -1402,9 +1389,12 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 	bmpInsertCoin.LoadBitmapFile(".\\image\\insertcoin.bmp");	
 
 	if(bmpInsertCoin.m_hObject == NULL) return;
-
-	if(m_nLobyCnt%2  == 0 )
-		bmpInsertCoin.TransDraw(dc.m_hDC, 300, 400, 230, 35, 0, 0, RGB(248,0,248));
+	
+	if( Play[0].UI.PMoney < 500 )
+	{
+		if((m_nLobyCnt/20)%2  == 0 )
+			bmpInsertCoin.TransDraw(dc.m_hDC, 300, 550, 230, 35, 0, 0, RGB(248,0,248));
+	}
 
 	bmpInsertCoin.DeleteObject();
 
@@ -1424,7 +1414,12 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 	rect.OffsetRect(560, 525);
 	strM = NumberToOrientalString(g_MyInfo.UI.PMoney);
 	str.Format("%s원", strM);// ### [ 관전기능 ] ###	
-	dc.DrawText(str, &rect, DT_RIGHT | DT_WORDBREAK);		
+	dc.DrawText(str, &rect, DT_RIGHT | DT_WORDBREAK);	
+	
+	rect.SetRect(0,0,200,80);
+	rect.OffsetRect(560, 500);
+	str.Format("[알림] S키를 눌러야 입장 가능");// ### [ 관전기능 ] ###	
+	dc.DrawText(str, &rect, DT_RIGHT | DT_WORDBREAK);
 	/*
 	rect.OffsetRect(0, 20);
 	str.Format(g_StrMan.Get(_T("LEVEL")));	
@@ -1455,12 +1450,13 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 	dc.TextOut(140, 8, m_LobyMsg);
 	/////////////////////////////////////////////////////////
 	dc.SelectObject(pOldFont);
+
+	m_CharView.SetCharacter(&g_MyInfo.UI);// ### [ 관전기능 ] ###
+	*/
 	Font1.DeleteObject();
 	cdc.SelectObject(pOldBmp);
 	cdc.DeleteDC();
 	Back.DeleteObject();
-	m_CharView.SetCharacter(&g_MyInfo.UI);// ### [ 관전기능 ] ###
-	*/
 }
 
 BOOL CLobyDlg::OnEraseBkgnd(CDC* pDC) 
@@ -1755,7 +1751,13 @@ BOOL CLobyDlg::PreTranslateMessage(MSG* pMsg)
 			aumsg.Set(Play[0].UI.UNum, 100);
 			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 		}
+		else if(pMsg->wParam == 'S' || pMsg->wParam == 's')
+		{
+			if( Play[0].UI.PMoney >= 500 )
+				OnButtonQuickstart();
+		}
 	}
+		
 	return CDialog::PreTranslateMessage(pMsg);
 }
 
@@ -1771,6 +1773,48 @@ void CLobyDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	
 	CDialog::OnKeyDown(nChar, nRepCnt, nFlags);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -575,6 +575,8 @@ void CLobbyListWnd::OnPaint()
 	CRect rect;
 	GetWindowRect( &rect );
 	dc.BitBlt( 0, 0, rect.Width(), rect.Height(), &MemDC, 0, 0, SRCCOPY );
+
+	SetFocus();
 }
 
 void CLobbyListWnd::Draw( CDC *pDC )
@@ -1160,3 +1162,24 @@ void CLobbyListWnd::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 
 
+
+BOOL CLobbyListWnd::PreTranslateMessage(MSG* pMsg) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	if(pMsg->message == WM_KEYDOWN) 
+	{
+		if(pMsg->wParam == 'M' || pMsg->wParam == 'm')
+		{
+			// 서버에 플레이어정보 돈 추가  - jeong
+			Play[0].UI.PMoney += 100;
+			Play[0].PrevMoney += 100;
+			g_MyInfo.UI.PMoney  =  Play[0].UI.PMoney; 
+			
+			CSV_ASK_MONEYINFO aumsg;
+			aumsg.Set(Play[0].UI.UNum, 100);
+			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+		}
+	}
+	
+	return CWnd::PreTranslateMessage(pMsg);
+}

@@ -47,6 +47,10 @@ void CPlayer::Clear()
 	// +- 증가액 표시
 	PrevMoney = 0;
 
+	BankMoney = 0;
+	LoseMoney = 0;
+	nWinMoney = 0;
+
 	m_ChangeCardNum = -2; // [62] 바꾼 카드 넘버
 	m_KD_SeleteCard = -1;
 	bChangeWhether = -1;    // 카드를 바꿨는지 아닌지 

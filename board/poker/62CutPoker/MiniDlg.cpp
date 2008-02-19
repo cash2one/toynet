@@ -46,6 +46,7 @@ BEGIN_MESSAGE_MAP(CMiniDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON1, OnButtonHi)
 	ON_BN_CLICKED(IDC_BUTTON2, OnButtonLow)
 	ON_WM_MOUSEMOVE()
+	ON_WM_WINDOWPOSCHANGING()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -100,7 +101,7 @@ BOOL CMiniDlg::OnInitDialog()
 
 	CenterWindow(g_pGameView->GetOwner());
 
-	SetTimer(MINIGAME_TIMER , 30 , NULL);
+	SetTimer(MINIGAME_TIMER , 55 , NULL);
 
 	X2Cnt = 0;
 	CloseGameCnt = 0;
@@ -277,6 +278,11 @@ BOOL CMiniDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 			m_MnGame.InitGame();
 		}
 		break;
+
+		case IDC_BUTTON_CHANGEDISPLAY:
+		{
+		}
+		break;
 	}
 
 	
@@ -443,5 +449,17 @@ void CMiniDlg::FucButtonDraw(CDC *pDC)
 	{
 		X2PlayBtn.Draw(pDC);
 		X2EndBtn.Draw(pDC);
+	}
+}
+
+void CMiniDlg::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos) 
+{
+	CDialog::OnWindowPosChanging(lpwndpos);
+	
+	// TODO: Add your message handler code here
+	if(g_pLobyDlg->m_bFullScr)
+	{
+		CRect rect(0,0,800,600);
+		MoveWindow(rect);
 	}
 }
