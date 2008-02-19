@@ -259,6 +259,7 @@ protected:
 	afx_msg void OnButtonRoominfo();
 	afx_msg void OnButtonEntergame();
 	afx_msg void OnButtonCreateroom();
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

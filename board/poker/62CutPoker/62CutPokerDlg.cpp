@@ -732,7 +732,8 @@ void C62CutPokerDlg::ChangeView(int vnum)
 				g_pLobyDlg->m_ChatViewEdit.AddText(&str, RGB(255,0,0));
 			}
 
-			m_LobyDlg.m_SendEdit.SetFocus();
+			//m_LobyDlg.m_SendEdit.SetFocus();
+			m_LobyDlg.SetFocus();
 			// À½¾Ç ²ô±â
 //			Sound.AllMusicStop();
 		} break;
@@ -766,7 +767,8 @@ void C62CutPokerDlg::ChangeView(int vnum)
 		g_pGameView->ChatBox.ChatViewEdit.SetWindowText(""); // Ã¤ÆÃÃ¢
 		g_pGameView->ChatBox.SendEdit.SetWindowText("");
 		// Æ÷Ä¿½º
-		g_pGameView->SetFocus();
+		g_pLobyDlg->SetFocus();
+		//g_pGameView->SetFocus();
 		m_GameDlg.m_GameView.Reset();
 
 		if(g_RI.bPlayer==0)
@@ -1758,7 +1760,8 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			g_Where = WH_LOBY;
 			ChangeView(2);
 			return 1;
-			m_LobyDlg.m_SendEdit.SetFocus();
+			//m_LobyDlg.m_SendEdit.SetFocus();
+			m_LobyDlg.SetFocus();
 			CString str;
 			str.Format(g_StrMan.Get(_T("WELCOME")), Play[0].UI.ID);
 			str+=g_StrMan.Get(_T("USE_WHIS"));

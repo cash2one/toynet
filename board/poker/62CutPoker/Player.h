@@ -54,6 +54,8 @@ public:
 	int  m_ChangeCardNum;
 	int  m_KD_SeleteCard;	//	KeyDown방향키일때의 값 
 
+	int	 nWinMoney;		// 전판 이긴 돈 - jeong
+
 	CPlayer();
 	virtual ~CPlayer();
 

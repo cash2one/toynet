@@ -777,7 +777,7 @@ void CGameView::OnPaint()
 	MemDC.SetBkMode(TRANSPARENT);
 	MemDC.SetTextColor(RGB(255,255,255));
 	if(g_RI.bPlayer==0)
-		MemDC.TextOut(530,300, str);		// change position of MouseInfo - jeong
+		MemDC.TextOut(600,300, str);		// change position of MouseInfo - jeong
 		//MemDC.TextOut(327,72, str);
 	else
 		MemDC.TextOut(20,65, str);

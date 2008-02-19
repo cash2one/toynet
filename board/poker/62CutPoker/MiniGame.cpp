@@ -375,9 +375,13 @@ void CMiniGame::StopGame()
 	if( m_nGameContinue == 0 )
 	{
 		m_nBankMoney = m_nWinMoney + m_nBankMoney;
-		//g_MyInfo.UI.PMoney += m_nBankMoney;
-		// 서버에 돈 저장해야 함.
+		Play[0].PrevMoney = Play[0].UI.PMoney;
 		Play[0].UI.PMoney += m_nBankMoney;
+		g_MyInfo.UI.PMoney  =  Play[0].UI.PMoney; 
+
+		CSV_ASK_MONEYINFO aumsg;
+		aumsg.Set(Play[0].UI.UNum, m_nBankMoney);
+		SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 	}
 
 	g_Mini.SendMessage(WM_CLOSE,0,0);

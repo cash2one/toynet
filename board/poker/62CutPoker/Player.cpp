@@ -22,6 +22,7 @@ CPlayer::CPlayer()
 	Clear();
 	ServPNum = 0;
 	PNum = 0;
+	nWinMoney = 0;
 }
 
 CPlayer::~CPlayer()

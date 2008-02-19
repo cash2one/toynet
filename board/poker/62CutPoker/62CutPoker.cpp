@@ -59,14 +59,12 @@ BOOL C62CutPokerApp::SetODBC()
 
 	Attribute.Format("DSN=Netmarble PokerDB;DESCRIPTION=FORARCADE;FileType=Access;DataDirectory=%s;DBQ=%s;",m_dir,m_Path);
 
-	// 여기서 링크 에러 - jeong
-	/*
 	if(!SQLConfigDataSource(NULL, ODBC_ADD_DSN, DNSTYPE, Attribute))
 	{
 		AfxMessageBox("데이터 원본 소스(DSN) 설정에 문제가 있습니다.");
 		return FALSE;
 	}
-	*/
+	
 
 	return TRUE;
 

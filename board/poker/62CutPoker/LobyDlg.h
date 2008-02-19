@@ -55,8 +55,7 @@ public:
 
 	int  m_ChoiceKind;//0: all 1 :normal 2: choice 
 
-	int	 m_nLobyCnt;
-	
+	int	 m_nLobyCnt;	
 	//////////////////////////////////////////////////
 	// ### [ 대기실 리스트 관련 ] ###
 	CLobbyListWnd		m_RoomView;		//	방정보
@@ -124,8 +123,11 @@ public:
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CLobyDlg)
+	public:
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -173,6 +175,8 @@ protected:
 	afx_msg void OnButtonChoice();
 	afx_msg void OnButtonAllkind();
 	afx_msg void OnTimer(UINT nIDEvent);
+	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

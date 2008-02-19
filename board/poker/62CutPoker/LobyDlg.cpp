@@ -119,6 +119,8 @@ BEGIN_MESSAGE_MAP(CLobyDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_CHOICE, OnButtonChoice)
 	ON_BN_CLICKED(IDC_BUTTON_ALLKIND, OnButtonAllkind)
 	ON_WM_TIMER()
+	ON_WM_CHAR()
+	ON_WM_KEYDOWN()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 /*
@@ -1404,20 +1406,27 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 
 	bmpInsertCoin.DeleteObject();
 
-	/*	deleted by jeong
+	if( Play[0].UI.PMoney < 500 )
+		m_QuickStart.EnableWindow(FALSE);
+	else
+		m_QuickStart.EnableWindow(TRUE);
+
+	
 	CString str;
+	CString strM="";
 	CFont* pOldFont = dc.SelectObject(&Font1);
 	
 	// 아이디 찍기 
 	dc.SetTextColor(RGB(255,255,255));
 	rect.SetRect(0,0,200,80);
-	rect.OffsetRect(658, ay+3);
-	str.Format("ID : %s", g_MyInfo.UI.ID);// ### [ 관전기능 ] ###	
-	//dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);		
+	rect.OffsetRect(560, 525);
+	strM = NumberToOrientalString(g_MyInfo.UI.PMoney);
+	str.Format("%s원", strM);// ### [ 관전기능 ] ###	
+	dc.DrawText(str, &rect, DT_RIGHT | DT_WORDBREAK);		
+	/*
 	rect.OffsetRect(0, 20);
 	str.Format(g_StrMan.Get(_T("LEVEL")));	
-	//dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);
-	
+	dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);
 
 	// ### [ 관전기능 ] ###
 	rect.OffsetRect(0, 30);
@@ -1720,3 +1729,86 @@ void CLobyDlg::OnTimer(UINT nIDEvent)
 	
 	CDialog::OnTimer(nIDEvent);
 }
+
+LRESULT CLobyDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	
+	return CDialog::WindowProc(message, wParam, lParam);
+}
+
+BOOL CLobyDlg::PreTranslateMessage(MSG* pMsg) 
+{
+	// TODO: Add your specialized code here and/or call the base class	
+	SetFocus();
+	if(pMsg->message == WM_KEYDOWN) 
+	{
+		if(pMsg->wParam == 'M' || pMsg->wParam == 'm')
+		{
+			// 서버에 플레이어정보 돈 추가  - jeong
+			Play[0].UI.PMoney += 100;
+			Play[0].PrevMoney += 100;
+			g_MyInfo.UI.PMoney  =  Play[0].UI.PMoney; 
+			
+			CSV_ASK_MONEYINFO aumsg;
+			aumsg.Set(Play[0].UI.UNum, 100);
+			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+		}
+	}
+	return CDialog::PreTranslateMessage(pMsg);
+}
+
+void CLobyDlg::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
+{
+	// TODO: Add your message handler code here and/or call default
+	CDialog::OnChar(nChar, nRepCnt, nFlags);
+}
+
+void CLobyDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+{
+	// TODO: Add your message handler code here and/or call default
+	
+	CDialog::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

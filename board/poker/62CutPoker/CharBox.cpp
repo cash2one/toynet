@@ -419,15 +419,44 @@ void CCharBox::draw_5user(CDC *pDC)
 	// 나의 머니
 	INT64 roundingoff = Play[PNum].UI.PMoney;
 
-	if(roundingoff >100)
-	roundingoff = (roundingoff/100)*100;
+	//if(roundingoff >100)
+	//roundingoff = (roundingoff/100)*100;
 
 	strM = NumberToOrientalString(roundingoff);
 	strM +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
 
 	if(PNum == 0) 
-	{
-		//pDC->SetTextColor(RGB(23, 175, 214));
+	{	
+		pDC->SetTextColor(RGB(23, 175, 214));
+		// bat
+		CString strBatM = "";
+		CRect BatRt;
+		strBatM = NumberToOrientalString(50);
+		strBatM +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
+		BatRt.SetRect(0,0,200,14);
+		BatRt.OffsetRect(590,340);
+		pDC->DrawText(strBatM, &BatRt, DT_RIGHT | DT_WORDBREAK);
+
+		//pot
+		CString strPotM = "";
+		CRect PotRt;
+		strPotM = NumberToOrientalString(500);
+		strPotM +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
+		PotRt.SetRect(0,0,200,14);
+		PotRt.OffsetRect(590,360);
+		pDC->DrawText(strPotM, &PotRt, DT_RIGHT | DT_WORDBREAK);
+		
+
+		// 이긴 금액 (전판)
+		CString strWinM = "";
+		CRect WinRt;
+		strWinM = NumberToOrientalString(Play[0].nWinMoney);
+		strWinM +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
+		WinRt.SetRect(0,0,200,14);
+		WinRt.OffsetRect(590,385);
+		pDC->DrawText(strWinM, &WinRt, DT_RIGHT | DT_WORDBREAK);
+
+		pDC->SetTextColor(RGB(244,255,75));
 		// 나의 금액
 		rect.SetRect(0,0,200,14);
 		rect.OffsetRect(590,411);
@@ -436,8 +465,8 @@ void CCharBox::draw_5user(CDC *pDC)
 		// 총베팅액
 		roundingoff = Game.GetRealBet();
 		
-		if(roundingoff > 100)
-			roundingoff = (roundingoff/100)*100;
+		//if(roundingoff > 100)
+		//	roundingoff = (roundingoff/100)*100;
 
 
 	//	nTotBat = 99999999999999999;
@@ -495,7 +524,7 @@ void CCharBox::draw_5user(CDC *pDC)
 		// +- 증가액 표시
 		//pDC->SetTextColor(RGB(23, 175, 214));
 		roundingoff = Play[PNum].UI.PMoney - Play[PNum].PrevMoney;
-		roundingoff = (roundingoff/100)*100;
+		//roundingoff = (roundingoff/100)*100;
 
 		strM = NumberToOrientalString(roundingoff);//g_Poker.nTotBat); // 임시 추가
 
@@ -529,7 +558,7 @@ void CCharBox::draw_5user(CDC *pDC)
 		pDC->SetTextColor(RGB(200,252,255));
 		strM+=g_StrMan.Get(_T("DEFAULT_UNIT2"));
 		rect.SetRect(0,0,200,14);
-		rect.OffsetRect(590, 427);
+		rect.OffsetRect(590, 430);
 		pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
 
 		//전적 표시
@@ -817,4 +846,25 @@ void CCharBox::draw_6user(CDC *pDC)
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

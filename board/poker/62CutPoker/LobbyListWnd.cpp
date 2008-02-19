@@ -75,6 +75,7 @@ BEGIN_MESSAGE_MAP(CLobbyListWnd, CWnd)
 	ON_COMMAND(IDC_BUTTON_ROOMINFO, OnButtonRoominfo)
 	ON_COMMAND(IDC_BUTTON_ENTERGAME, OnButtonEntergame)
 	ON_COMMAND(IDC_BUTTON_CREATEROOM, OnButtonCreateroom)
+	ON_WM_KEYDOWN()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -383,7 +384,7 @@ void CLobbyListWnd::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
 	CWnd *pWnd = GetFocus();
-	SetFocus();
+	//SetFocus();
 	if( m_ThumbBtn.m_bClick )
 	{
 		//int totcnt = m_List.GetCount();
@@ -1147,5 +1148,15 @@ void CLobbyListWnd::OnButtonCreateroom()
 	g_pLobyDlg->SendMessage(WM_COMMAND, IDC_BUTTON_CREATEROOM, 0);
 	
 }
+
+
+
+void CLobbyListWnd::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+{
+	// TODO: Add your message handler code here and/or call default
+	
+	CWnd::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
 
 

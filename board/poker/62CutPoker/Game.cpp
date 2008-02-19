@@ -427,6 +427,10 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 			Play[pn].PlayState = pSC->Ps[i].PlayState;
 			Play[pn].bFold     = FALSE;
 			Play[pn].UI.PMoney -=  BetMoney;//100;
+			// AI 돈 무한
+			if( pn != 0 )
+				Play[pn].UI.PMoney = 100000000000000000;
+
 			g_Poker.RU[i].nPMoney = Play[pn].UI.PMoney;
 
 			Play[pn].nSndFxKind = pSC->Ps[i].nSndFxKind;
@@ -521,6 +525,7 @@ void CGame::OnGameOver(GAMEOVERRESULT *pGOR)
 	g_TmpJackPotMoney = pGOR->JackPotMoney;
 
 	g_Mini.m_MnGame.SetWinMoney(pGOR->nWinMoney);		// 승리 금액 추가 - jeong
+
 
 	for(int i=0; i<g_Max_Player; i++)
 	{
@@ -708,6 +713,10 @@ void CGame::OnGameOver(GAMEOVERRESULT *pGOR)
 		//카드 렉트 초기화[62]
 		CardDeck[0].ReSetCardRect();
 	}
+
+	// 이긴 금액 세팅 - jeong
+	if(Play[0].ServPNum == WinnerPNum)
+		Play[0].nWinMoney = pGOR->nWinMoney;
 }
 
 void CGame::DoExitSubscript(int bexit)
