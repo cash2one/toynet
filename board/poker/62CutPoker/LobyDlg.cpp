@@ -256,6 +256,8 @@ void CLobyDlg::OnPaint()
 	// TODO: Add your message handler code here
 	DrawBkgnd(dc);
 
+	SetFocus();
+
 	// Do not call CDialog::OnPaint() for painting messages
 }
 
@@ -1740,7 +1742,6 @@ LRESULT CLobyDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 BOOL CLobyDlg::PreTranslateMessage(MSG* pMsg) 
 {
 	// TODO: Add your specialized code here and/or call the base class	
-	SetFocus();
 	if(pMsg->message == WM_KEYDOWN) 
 	{
 		if(pMsg->wParam == 'M' || pMsg->wParam == 'm')
