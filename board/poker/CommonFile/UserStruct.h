@@ -246,6 +246,13 @@ typedef struct
 	char PremLeadersCode;
 } USERINFO;
 
+// 돈 업데이트
+typedef struct
+{
+	short  UNum;				// 유저 번호
+	INT64  PMoney;		    // 포커 머니
+} MONEYINFO;
+
 typedef struct  // 대기실 사용자 정보 갱신용
 {
 	short UNum;				// 유저 번호

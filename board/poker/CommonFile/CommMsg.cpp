@@ -805,6 +805,25 @@ BOOL CSV_ASK_USERINFO::Get(char* lpdata, int size)
 	return TRUE;
 }
 
+////////// 돈 정보를 업데이트 - jeong
+BOOL CSV_ASK_MONEYINFO::Set(int unum, int nMoney)
+{
+	int msglen = sizeof(*UNum) + sizeof(*UMoney);
+	char* ptemp = SetHeader(SV_ASK_MONEYINFO, msglen);
+	if(ptemp==NULL) {TRACE("CSV_ASK_MONEYINFO::Set() 메모리 할당 에러\n"); return FALSE;}
+	UNum = (int*)SmartCpy(&ptemp, &unum, sizeof(*UNum));
+	UMoney = (int*)SmartCpy(&ptemp, &nMoney, sizeof(*UMoney));
+	return TRUE;
+}
+BOOL CSV_ASK_MONEYINFO::Get(char* lpdata, int size)
+{
+	char* ptemp = GetHeader(lpdata, size);
+	if(ptemp==NULL) {TRACE("SV_ASK_MONEYINFO::Get() 메모리 할당 에러\n"); return FALSE;}
+	UNum = (int*)Jump(&ptemp, sizeof(*UNum));
+	UMoney = (int*)Jump(&ptemp, sizeof(*UMoney));
+	return TRUE;
+}
+
 ////////// 특정 사용자의 정보를 보내줌
 BOOL CSV_USERINFO::Set(USERINFO *pUI)
 {

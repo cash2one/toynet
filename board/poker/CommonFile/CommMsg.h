@@ -85,6 +85,7 @@ enum
 	SV_ASK_ROOMMASTER,		// 특정 방의 방장 정보를 요구
 	SV_ASK_ALLUSERINFO,		// 모든 접속자 목록을 요구
 	SV_ASK_USERINFO,		// 특정 사용자 정보를 요구
+	SV_ASK_MONEYINFO,		// 돈 업데이트 요구 - jeong
 	SV_ASK_CHANGECHAR,		// 사용자 캐릭터를 바꾸기를 요구
 	SV_ASK_CREATEROOM,		// 방 만들기를 요구
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -610,6 +611,19 @@ public:
 	int *UNum;
 	char *ID;
 	BOOL Set(int unum, char* id);
+	BOOL Get(char* lpdata, int size);
+};
+
+/////////// 돈 업데이트 요청 정보
+class CSV_ASK_MONEYINFO : public CCommMsg
+{
+public:
+	CSV_ASK_MONEYINFO() : CCommMsg() {}
+	CSV_ASK_MONEYINFO(char *pRefBuf) : CCommMsg(pRefBuf) {}
+	
+	int *UNum;
+	int *UMoney;
+	BOOL Set(int unum, int nMoney);
 	BOOL Get(char* lpdata, int size);
 };
 
