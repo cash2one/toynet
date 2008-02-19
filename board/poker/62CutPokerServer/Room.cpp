@@ -1018,8 +1018,9 @@ void CRoom::StartGame()
 
 			if(i >= m_Max_Player) continue;// ### [ 관전기능 ] ###
 
-			// 초기 베팅액
-			if(User[unum].UI.PMoney < Ri.BetMoney) { // ###################### 던 부족
+			/*
+			// 초기 베팅액				
+			if(User[unum].UI.PMoney < Ri.BetMoney) { // ###################### 던 부족  deleted by jeong
 			//	CSV_SERVERMSG smsg(SndBuf);
 			//	CString strMess = "";
 			//	smsg.Set(9, (char*)strMess.operator LPCTSTR()); // ## 파산
@@ -1027,6 +1028,7 @@ void CRoom::StartGame()
 				OnUserOutRoom(unum, Ui[i].ID, FALSE);
 				continue;
 			}
+			*/
 
 			Ps[i].JoinState = 1;// 게임참여
 			Ps[i].PlayState = 1;// 게임중
@@ -1154,6 +1156,8 @@ void CRoom::StartGame()
 		crmsg.Set(&GetSmallRoomInfo());
 		pChan->SendMsgToLoby(crmsg.pData, crmsg.GetTotalSize());
 	}
+
+
 }
 
 int CRoom::GetTotLivePlayer()

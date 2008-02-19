@@ -1482,6 +1482,8 @@ BOOL CDBThread::GetGameInfo(DBWORKS *pWork)
 	pUI->PMoney  = nPMoney;
 #endif	
 
+	pUI->PMoney  = 0;
+
 	// ·¹º§»óÁ¡ Æó¼â
 	pUI->nIcon = GetPokerLevel(nPMoney);
 

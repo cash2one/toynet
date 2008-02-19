@@ -343,9 +343,9 @@ void CMainFrame::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	
 	// TODO: Add your message handler code here
 	// 트레이 변경시 - jeong
-	//m_bIsTrayIcon = FALSE;
+	m_bIsTrayIcon = FALSE;
 	//RegistTrayIcon();
-	//lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	lpwndpos->flags &= ~SWP_SHOWWINDOW;
 }
 
 void CMainFrame::RegistTrayIcon()

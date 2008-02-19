@@ -1474,6 +1474,32 @@ BOOL C62CutPokerServerView::ProcessPacket(int sid, CMySocket *pSocket, char* lpd
 			SockMan.SendData(sid, uimsg.pData, uimsg.GetTotalSize());
 		} break;
 
+	case SV_ASK_MONEYINFO: // 돈 정보 업데이트 요청 - jeong
+		{
+			
+			CSV_ASK_MONEYINFO MsgData;
+			MsgData.Get(lpdata, totsize);
+			
+			MONEYINFO TempUI;
+			ZeroMemory(&TempUI, sizeof(MONEYINFO));
+			
+			int unum = *MsgData.UNum;
+			int uMoney = *MsgData.UMoney;
+
+			User[unum].UI.PMoney += uMoney;
+			
+			/*
+			// 잘못된 아이디일경우 빈 사용자 정보를 보내줌
+			if(unum<1 || unum>=MAX_USER) pUI = &TempUI;
+			else if(faststrcmp(User[unum].UI.ID, MsgData.ID) != 0) pUI = &TempUI;
+			else pUI = &User[unum].UI;
+			
+			CSV_USERINFO uimsg(SndBuf);
+			uimsg.Set(pUI);
+			SockMan.SendData(sid, uimsg.pData, uimsg.GetTotalSize());
+			*/
+		} break;
+
 	case SV_ASK_CHANGECHAR: // 캐릭터 바꾸기를 요청
 		{
 			// 유효한 유저가 아니면 처리하지 않음
@@ -2043,6 +2069,11 @@ LONG C62CutPokerServerView::OnDbworkLogin(UINT wParam, LONG lParam)
 	// DB처리 결과로 얻은 사용자 정보 구조체
 	USERINFO ui;
 	memcpy(&ui, &Work.UI, sizeof(USERINFO));
+
+
+	// DB와 상관없이 플레이어의 돈은 무조건 0 - jeong
+	ui.PMoney = 0;
+	//User[0].UI.PMoney = 1000;
 /*
 	// [게임 아이템 작업]
 	if(Work.IDState != 0) {

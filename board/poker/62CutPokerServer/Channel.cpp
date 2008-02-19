@@ -604,13 +604,15 @@ BOOL CChannel::ProcessPacket(int sid, USERVAL *pUserVal, char* lpdata, int totsi
 			else 
 				roombetmoney = m_betmoney_6user;
 
-			if(User[unum].UI.PMoney < roombetmoney) // 가진 마블이 적다면 방을 만들 수 없다
+			/*			
+			if(User[unum].UI.PMoney < roombetmoney) // 가진 마블이 적다면 방을 만들 수 없다 deleted by jeong
 			{
 				CSV_REFUSE_CREATEROOM sndmsg(SndBuf);
 				sndmsg.Set(2); // 방을 생성할 수 없음
 				SockMan.SendData(sid, sndmsg.pData, sndmsg.GetTotalSize());
 				break;
 			}
+			*/
 			
 			int gamekind = MsgData.RI->GameKind;
 			int level = MsgData.RI->Level;
@@ -1108,10 +1110,12 @@ BOOL CChannel::ProcessPacket(int sid, USERVAL *pUserVal, char* lpdata, int totsi
 					// 현재 위치가 대기실이 아니라면
 					if(User[unum].SUI.Position != WH_LOBY) ErrCode = 7;
 				}
+				/*
 				if(ErrCode == 0) {
 					// 머니 가진 돈이 모자라면 입장할 수 없다
 					if(User[unum].UI.PMoney < Room[rnum].Ri.BetMoney) ErrCode=9;
 				}
+				*/
 				
 				int i=0;
 				int pnum = -1;
@@ -1189,6 +1193,7 @@ BOOL CChannel::ProcessPacket(int sid, USERVAL *pUserVal, char* lpdata, int totsi
 					if(Room[rnum].OnUserEnterRoom(&User[unum].UI, pnum, myIpIndex, *MsgData.SndFxKind) == FALSE) ErrCode = 1; // ### [ 중복된 IP가 ] ###
 				}
 
+				
 				// 입장하는데 문제가 있다면 입장을 거부함
 				if(ErrCode != 0) {
 					CSV_REFUSE_ENTERROOM rermsg(SndBuf);
@@ -1196,6 +1201,7 @@ BOOL CChannel::ProcessPacket(int sid, USERVAL *pUserVal, char* lpdata, int totsi
 					SockMan.SendData(sid, rermsg.pData, rermsg.GetTotalSize());
 					break;
 				}
+				
 
 			
 
