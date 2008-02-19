@@ -222,7 +222,6 @@ BOOL CLobyDlg::OnInitDialog()
 	m_btnAllKind.EnableWindow(FALSE);
 	m_btnNormal.EnableWindow(TRUE);	
 	m_btnChoice.EnableWindow(TRUE);
-	
 
 	////////////////////////////////////////////////////
 	////////////////////////////////////////////////////

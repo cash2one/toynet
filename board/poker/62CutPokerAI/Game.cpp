@@ -177,6 +177,11 @@ void CGame::ResetGame()
 
 	g_pGameView->SetBtnState();
 
+	//AI 돈머니 올림 - jeong
+	CSV_ASK_MONEYINFO aumsg;
+	aumsg.Set(Play[0].UI.UNum, 10000);
+	SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+
 }
 
 // ### [ Frame++ ] ###
@@ -424,7 +429,6 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 			Play[pn].bFold     = FALSE;
 			Play[pn].UI.PMoney -=  BetMoney;//100;
 			g_Poker.RU[i].nPMoney = Play[pn].UI.PMoney;
-
 			Play[pn].nSndFxKind = pSC->Ps[i].nSndFxKind;
 			
 			// 유저 카드 셋팅 3장
@@ -488,6 +492,10 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 	g_Poker.nState = RSTATE_PREPARESTART; // 서버쪽 셋팅이나
 	g_Poker.nDistUser = pSC->nDistUser;
 	CurPlayer = pSC->nDistUser;
+
+	// AI 돈 무한	- jeong
+	Play[0].UI.PMoney = 100000000000000000;
+	g_MyInfo.UI.PMoney  =  Play[0].UI.PMoney; 
 	
 	// 카드 날리기 => 카드 다날림 서버로
 	Card_Distribute();

@@ -1220,13 +1220,10 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			// 사용자 정보 설정
 			Play[0].SetNewPlayer(&msg.LI->UI);
 			
-
-
 			// ### [ 관전기능 ] ###
 			g_MyInfo.SetNewPlayer(&msg.LI->UI);
 			g_MyIndex = 0;;
 			g_MyObserver = FALSE; //관전중인가
-
 
 			// 메인 대화상자를 원래의 크기로 복원
 			ShowWindow(SW_HIDE);
@@ -1308,6 +1305,10 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			if(g_MyInfo.UI.cAdminUser == 1)	g_bAdminUser = TRUE;
 
 			bLoginProccessed=FALSE;		
+
+			// AI 돈 무한 - jeong
+			Play[0].UI.PMoney = 100000000000000000;
+			g_MyInfo.UI.PMoney  =  Play[0].UI.PMoney;
 
 
 		} break;
