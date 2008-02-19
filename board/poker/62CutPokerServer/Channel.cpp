@@ -1112,7 +1112,7 @@ BOOL CChannel::ProcessPacket(int sid, USERVAL *pUserVal, char* lpdata, int totsi
 				}
 				/*
 				if(ErrCode == 0) {
-					// 머니 가진 돈이 모자라면 입장할 수 없다
+					// 머니 가진 돈이 모자라면 입장할 수 없다				deleted by jeong
 					if(User[unum].UI.PMoney < Room[rnum].Ri.BetMoney) ErrCode=9;
 				}
 				*/
