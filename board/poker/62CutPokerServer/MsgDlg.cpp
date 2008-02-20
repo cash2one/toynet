@@ -20,6 +20,7 @@ CMsgDlg::CMsgDlg(CWnd* pParent /*=NULL*/)
 {
 	//{{AFX_DATA_INIT(CMsgDlg)
 	m_strMsg = _T("");
+	a = NULL;
 	//}}AFX_DATA_INIT
 }
 
@@ -35,6 +36,7 @@ void CMsgDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CMsgDlg, CDialog)
 	//{{AFX_MSG_MAP(CMsgDlg)
+	ON_WM_WINDOWPOSCHANGING()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -79,4 +81,12 @@ void CMsgDlg::SetMsg(LPCTSTR pstrMsg)
 {
 	m_strMsg = pstrMsg;
 	UpdateData(FALSE);
+}
+
+void CMsgDlg::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos) 
+{
+	CDialog::OnWindowPosChanging(lpwndpos);
+	
+	// TODO: Add your message handler code here
+	lpwndpos->flags &= ~SWP_SHOWWINDOW;
 }

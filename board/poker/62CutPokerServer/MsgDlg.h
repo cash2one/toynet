@@ -22,6 +22,7 @@ public:
 	//{{AFX_DATA(CMsgDlg)
 	enum { IDD = IDD_DIALOG_MSG };
 	CString	m_strMsg;
+	CMsgDlg*	a;
 	//}}AFX_DATA
 
 
@@ -42,6 +43,7 @@ protected:
 	virtual BOOL OnInitDialog();
 	virtual void OnOK();
 	virtual void OnCancel();
+	afx_msg void OnWindowPosChanging(WINDOWPOS FAR* lpwndpos);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

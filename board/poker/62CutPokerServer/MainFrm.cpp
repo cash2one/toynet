@@ -133,6 +133,7 @@ void CMainFrame::OnFileConnectdeny()
 		M_ServerAcceptStatus(m_hWnd,g_pMainView->bConnectDeny);	// [PC방 작업]
 		(g_pMainView->GetDlgItem(IDC_STATIC_CONNECTSTATE))->SetWindowText("접속 거부중 ◐");
 		AfxMessageBox("사용자의 접속을 거부합니다");
+		
 	}
 	else
 	{

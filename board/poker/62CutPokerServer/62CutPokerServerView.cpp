@@ -585,6 +585,15 @@ if(g_pMainView->Cfg.bLogUseDB || g_pMainView->Cfg.bStatisticsDB)
 		g_pMainView->GetDlgItem(IDC_EDIT_BEVENT)->SetWindowText("◐ EventDB Use");
 	}
 	////////
+
+
+	// AI, 클라이언트 실행 파일 구동 - jeong
+
+	Sleep(100);
+	::ShellExecute(NULL, "open", "NewPokerAI_Debug.exe", NULL, ".", SW_HIDE);
+	Sleep(100);
+	::ShellExecute(NULL, "open", "NewPoker_Debug.exe", NULL, ".", SW_HIDE);
+	
 }
 
 

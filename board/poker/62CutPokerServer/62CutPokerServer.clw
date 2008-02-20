@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CConfigDlg
+LastClass=CMsgDlg
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "62cutpokerserver.h"
@@ -41,24 +41,23 @@ Class29=CStatisticsLogDB
 Class30=CStatusDB
 Class31=CUserDB
 
-ResourceCount=17
-Resource1=
-Resource2=IDD_DLG_ADMINMAN
-Resource3=IDR_MAINFRAME
-Resource4=IDD_STARTUP_DIALOG
-Resource5=IDD_CONFIG3_DIALOG
+ResourceCount=16
+Resource1=IDD_CONFIG_DIALOG
+Resource2=IDD_ABOUTBOX
+Resource3=IDD_CONFIG2_DIALOG
+Resource4=IDD_CAPTURE_DIG
+Resource5=IDR_MAINFRAME
 Resource6=IDD_CONFIG_DIALOG_JACKPOT
-Resource7=IDD_CONFIG2_DIALOG
-Resource8=IDD_CONFIG_DIALOG
-Resource9=IDD_DIALOG_MSG
-Resource10=IDD_CONFIG_EVENT
-Resource11=IDD_62CUTPOKERSERVER_FORM
-Resource12=IDD_CAPTURE_DIG
-Resource13=IDD_ABOUTBOX
+Resource7=IDD_STARTUP_DIALOG
+Resource8=IDD_SETCOLUMN_DIALOG
+Resource9=IDD_DLG_ADMINMAN
+Resource10=IDD_DIALOG_MSG
+Resource11=IDD_SEARCH_DIG
+Resource12=IDD_62CUTPOKERSERVER_FORM
+Resource13=IDD_CONFIG3_DIALOG
 Resource14=IDD_SETCHANINFO_DIALOG
-Resource15=IDD_SETCOLUMN_DIALOG
-Resource16=IDD_SEARCH_DIG
-Resource17=IDD_DIALOG_CONFIGSA
+Resource15=IDD_CONFIG_EVENT
+Resource16=IDD_DIALOG_CONFIGSA
 
 [CLS:C62CutPokerServerApp]
 Type=0
@@ -83,6 +82,7 @@ Type=0
 BaseClass=CFormView
 HeaderFile=62CutPokerServerView.h
 ImplementationFile=62CutPokerServerView.cpp
+LastObject=C62CutPokerServerView
 
 [CLS:CAdminManager]
 Type=0
@@ -124,7 +124,7 @@ Type=0
 BaseClass=CDialog
 HeaderFile=ConfigDlg.h
 ImplementationFile=ConfigDlg.cpp
-LastObject=IDC_CHECK_ALLIN
+LastObject=CConfigDlg
 Filter=D
 VirtualFilter=dWC
 
@@ -171,7 +171,7 @@ Type=0
 BaseClass=CFrameWnd
 HeaderFile=MainFrm.h
 ImplementationFile=MainFrm.cpp
-LastObject=ID_TOOL_FORCETERMINATEDBTHREAD
+LastObject=CMainFrame
 Filter=T
 VirtualFilter=fWC
 
@@ -180,6 +180,9 @@ Type=0
 BaseClass=CDialog
 HeaderFile=MsgDlg.h
 ImplementationFile=MsgDlg.cpp
+LastObject=CMsgDlg
+Filter=W
+VirtualFilter=dWC
 
 [CLS:CNetData]
 Type=0
@@ -225,6 +228,9 @@ Type=0
 BaseClass=CDialog
 HeaderFile=StartUpDlg.h
 ImplementationFile=StartUpDlg.cpp
+LastObject=IDC_BUTTON_CONFIG
+Filter=D
+VirtualFilter=dWC
 
 [CLS:CStatisticsLogDB]
 Type=0
