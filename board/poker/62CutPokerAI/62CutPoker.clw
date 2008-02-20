@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CGameDlg
+LastClass=CMsgDlg
 LastTemplate=CProgressCtrl
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "tetris.h"
