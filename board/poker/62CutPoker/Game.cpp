@@ -178,7 +178,6 @@ void CGame::ResetGame()
 //	}
 
 	g_pGameView->SetBtnState();
-
 }
 
 // ### [ Frame++ ] ###
@@ -516,6 +515,8 @@ void CGame::OnGameOver(GAMEOVERRESULT *pGOR)
 	PlayScr[0].bGameOver = TRUE;	// 게임 종료 상태
 //	Sound.AllMusicStop();
 	g_pGameView->SetBtnState();		// 버튼 초기화
+	g_pGameView->m_bShowFirstBtn = FALSE;
+	g_pGameView->m_nBetBtnIndex = 0;
 
 	bOpen = pGOR->bOpen;
 	WinnerPNum= -1;

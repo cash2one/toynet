@@ -82,7 +82,7 @@
 #define UM_WINDCARD_TIMER	(WM_USER+8001)
 
 
-
+#define BET_BTN_TOTAL		6
 
 // Center Position
 extern int g_CX;
@@ -110,8 +110,6 @@ public:
 	// 동기화
 	//CThreadTimer RefreshTimer;
 	CSyncFPS syncfps;
-
-
 
 	BOOL bIsPlay;
 	HCURSOR hCurSel, hCurHand, hCurMove, hCurSize, hCurWait;
@@ -171,6 +169,16 @@ public:
 	xSprite *m_pgamebackspr;
 	xSprite *m_pcarddeckspr;
 
+	// 배팅 버튼 인덱스
+	int m_nBetBtnIndex;
+	int	m_nBetOffSetX[BET_BTN_TOTAL];
+	int	m_nBetOffSetY[BET_BTN_TOTAL];
+	bool m_bBetBtnMouseDown;
+	bool m_bBetBtnEnabled[BET_BTN_TOTAL];
+	int m_nGameViewCnt;
+	bool m_bShowSelectedBtn;
+	bool m_bShowFirstBtn;
+
 	// [ 튤팁 플레그 ]
 	CString m_BtnMsgTip; // 1 다이 2 체크 3 콜 4 핑 5 따당 6 맥스
 	int TipX;
@@ -190,6 +198,10 @@ public:
 
 	BOOL OnReSetResourceFile();
 
+	// 활성화된 배팅버튼
+	int GetBetBtnIndexForLeft(int nIndex );
+	int GetBetBtnIndexForRight(int nIndex );
+	void SetBetBtnEnabled();
 
 
 public:
@@ -208,6 +220,8 @@ public:
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CGameView)
+	public:
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	protected:
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

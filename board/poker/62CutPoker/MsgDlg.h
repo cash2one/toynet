@@ -26,7 +26,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CMsgDlg)
 	enum { IDD = IDD_MSG_DIALOG };
-		// NOTE: the ClassWizard will add data members here
+	CMsgDlg*	kljs;
 	//}}AFX_DATA
 
 
@@ -47,6 +47,7 @@ public:
 	virtual void OnCancel();
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnWindowPosChanging(WINDOWPOS FAR* lpwndpos);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

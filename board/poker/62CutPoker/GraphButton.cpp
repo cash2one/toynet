@@ -167,9 +167,10 @@ void CGraphButton::Draw(CDC *pDC, int opt, int grade )
 	// 버튼 그리기
 	if(m_bEnable==FALSE)
 	{
+		m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 3, opt, grade);
 //		if(m_pSpr->sfhead.TotalSprNum <4) m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * 3 ) + 2, opt, grade );
-		if(m_ButtonCnt <4) m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 2, opt, grade );
-		else m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 3, opt, grade);		//	다운된그림
+		//if(m_ButtonCnt <4) m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 2, opt, grade );
+		//else m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 3, opt, grade);		//	다운된그림
 	}
 	else if(m_bOver==TRUE && m_bClick==FALSE)	m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 1, opt, grade);
 	else if(m_bClick==FALSE) m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 0, opt, grade);

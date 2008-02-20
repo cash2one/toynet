@@ -100,6 +100,12 @@ CGameView::CGameView()
 		
 	m_pgamebackspr = NULL;
 	m_pcarddeckspr = NULL;
+
+	m_nBetBtnIndex = 0;
+	m_bBetBtnMouseDown  = FALSE;
+	m_nGameViewCnt = 0;
+	m_bShowSelectedBtn = FALSE;
+	m_bShowFirstBtn = FALSE;
 }
 
 CGameView::~CGameView()
@@ -230,6 +236,24 @@ int CGameView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_pgamebackspr = &GameBackSpr;
 	m_pcarddeckspr = &BigCardSpr;
 	pagebutton_init();
+
+
+	// 버튼 좌표 초기화 - jeong
+	m_nBetOffSetX[0] = 597;
+	m_nBetOffSetX[1] = 677;
+	m_nBetOffSetX[2] = 749;
+
+	m_nBetOffSetX[3] = 597;
+	m_nBetOffSetX[4] = 677;
+	m_nBetOffSetX[5] = 749;
+
+	m_nBetOffSetY[0] = 506;
+	m_nBetOffSetY[1] = 506;
+	m_nBetOffSetY[2] = 506;
+
+	m_nBetOffSetY[3] = 556;
+	m_nBetOffSetY[4] = 556;
+	m_nBetOffSetY[5] = 556;
 
 	
 
@@ -651,7 +675,42 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 				Game.OnRButtonDown(mxp, myp);
 			}return 1;
 	}
+
+
+	// 게임 진행 관련 버튼 효과	- jeong
+	if( m_bBetBtnMouseDown )
+	{
+		m_bBetBtnMouseDown = FALSE;
+
+		mxp = m_nBetOffSetX[m_nBetBtnIndex];
+		myp = m_nBetOffSetY[m_nBetBtnIndex];
+
+		DieBtn.OnLButtonDown(mxp, myp);
+		CheckBtn.OnLButtonDown(mxp, myp);
+		CallBtn.OnLButtonDown(mxp, myp);
+		PingBtn.OnLButtonDown(mxp, myp);
+		DadangkBtn.OnLButtonDown(mxp, myp);
+		MaxBtn.OnLButtonDown(mxp, myp);
+		if(m_bAllin)AllInBtn.OnLButtonDown(mxp, myp);
+
+		DieBtn.OnLButtonUp(mxp, myp);
+		CheckBtn.OnLButtonUp(mxp, myp);
+		CallBtn.OnLButtonUp(mxp, myp);
+		PingBtn.OnLButtonUp(mxp, myp);
+		DadangkBtn.OnLButtonUp(mxp, myp);
+		MaxBtn.OnLButtonUp(mxp, myp);
+		if(m_bAllin)AllInBtn.OnLButtonUp(mxp, myp);
+	}
 	
+
+	DieBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+	CheckBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+	CallBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+	PingBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+	DadangkBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+	MaxBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+	if(m_bAllin)AllInBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+
 	return CWnd::WindowProc(message, wParam, lParam);
 }
 
@@ -700,16 +759,119 @@ void CGameView::OnPaint()
 	// ### [ 관전기능 ] ###
 	//sInOut_Btn.Draw(&MemDC);
 	//ObserverViewBtn.Draw(&MemDC);
-	
 
 	// 게임 진행관련 버튼
-	DieBtn.Draw(&MemDC);
-	CheckBtn.Draw(&MemDC);
-	CallBtn.Draw(&MemDC);
-	PingBtn.Draw(&MemDC);
-	DadangkBtn.Draw(&MemDC);
-	MaxBtn.Draw(&MemDC);
-	if(m_bAllin)AllInBtn.Draw(&MemDC);//올인
+	if( m_bShowSelectedBtn && m_bShowFirstBtn )
+	{
+		
+		const int nWaitTime = 15;
+		switch( m_nBetBtnIndex )
+		{
+			case 0:
+				if((m_nGameViewCnt/nWaitTime)%2==0)
+					DieBtn.Draw(&MemDC);
+			break;
+			case 1:
+				if((m_nGameViewCnt/nWaitTime)%2==0)
+					CheckBtn.Draw(&MemDC);
+			break;
+			case 2:
+				if((m_nGameViewCnt/nWaitTime)%2==0)
+					CallBtn.Draw(&MemDC);
+				break;
+			case 3:
+				if((m_nGameViewCnt/nWaitTime)%2==0)
+					PingBtn.Draw(&MemDC);
+			break;
+			case 4:
+			if((m_nGameViewCnt/nWaitTime)%2==0)
+					DadangkBtn.Draw(&MemDC);
+			break;
+			case 5:
+			if((m_nGameViewCnt/nWaitTime)%2==0)
+			{
+					MaxBtn.Draw(&MemDC);
+					if(m_bAllin)AllInBtn.Draw(&MemDC);
+			}
+			break;
+		}
+
+		switch( m_nBetBtnIndex )
+		{
+			case 0:
+			{
+				//DieBtn.Draw(&MemDC);
+				CheckBtn.Draw(&MemDC);
+				CallBtn.Draw(&MemDC);
+				PingBtn.Draw(&MemDC);
+				DadangkBtn.Draw(&MemDC);
+				MaxBtn.Draw(&MemDC);
+				if(m_bAllin)AllInBtn.Draw(&MemDC);//올인
+			}
+			break;
+			case 1:
+			{
+				DieBtn.Draw(&MemDC);
+				CallBtn.Draw(&MemDC);
+				PingBtn.Draw(&MemDC);
+				DadangkBtn.Draw(&MemDC);
+				MaxBtn.Draw(&MemDC);
+				if(m_bAllin)AllInBtn.Draw(&MemDC);//올인
+			}
+			break;
+			case 2:
+			{
+				DieBtn.Draw(&MemDC);
+				CheckBtn.Draw(&MemDC);
+				PingBtn.Draw(&MemDC);
+				DadangkBtn.Draw(&MemDC);
+				MaxBtn.Draw(&MemDC);
+				if(m_bAllin)AllInBtn.Draw(&MemDC);//올인
+			}
+			break;
+			case 3:
+			{
+				DieBtn.Draw(&MemDC);
+				CheckBtn.Draw(&MemDC);
+				CallBtn.Draw(&MemDC);
+				DadangkBtn.Draw(&MemDC);
+				MaxBtn.Draw(&MemDC);
+				if(m_bAllin)AllInBtn.Draw(&MemDC);//올인
+			}
+			break;
+			case 4:
+			{
+				DieBtn.Draw(&MemDC);
+				CheckBtn.Draw(&MemDC);
+				CallBtn.Draw(&MemDC);
+				PingBtn.Draw(&MemDC);
+				MaxBtn.Draw(&MemDC);
+				if(m_bAllin)AllInBtn.Draw(&MemDC);//올인
+			}
+			break;
+			case 5:
+			{
+				DieBtn.Draw(&MemDC);
+				CheckBtn.Draw(&MemDC);
+				CallBtn.Draw(&MemDC);
+				PingBtn.Draw(&MemDC);
+				DadangkBtn.Draw(&MemDC);
+			}
+			break;
+
+		}
+	}
+	else
+	{
+		DieBtn.Draw(&MemDC);
+		CheckBtn.Draw(&MemDC);
+		CallBtn.Draw(&MemDC);
+		PingBtn.Draw(&MemDC);
+		DadangkBtn.Draw(&MemDC);
+		MaxBtn.Draw(&MemDC);
+		if(m_bAllin)AllInBtn.Draw(&MemDC);//올인
+	}
+	
 
 	if(GameStartBtn.GetButtonState() > -1)
 	{
@@ -983,9 +1145,14 @@ void CGameView::OnTimer(UINT nIDEvent)
 			//	Game.OnTimer();
 			}
 
+			m_nGameViewCnt++;
 			Invalidate(FALSE); 
 		}
 	}
+
+	//m_nGameViewCnt++;
+	//Invalidate(FALSE); 
+	
 	CWnd::OnTimer(nIDEvent);
 }
 
@@ -1432,6 +1599,8 @@ void CGameView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CGameView::ClearFlag()
 {
 	m_bBPing=m_bBCheck=m_bBCall=m_bBMax=m_bBDDa=m_bAllin=FALSE;
+	//m_nBetBtnIndex = 0;				// 버튼 초기화 - jeong
+	
 }
 	
 
@@ -1453,6 +1622,8 @@ void CGameView::SetBtnState(BOOL bDisable)
 		AllInBtn.Show(FALSE);
 	//	GameStartBtn.Show(FALSE);//시작버튼
 
+		m_bShowSelectedBtn = TRUE;
+
 		return;
 	}
 	
@@ -1462,6 +1633,8 @@ void CGameView::SetBtnState(BOOL bDisable)
 		ClearFlag();
 		//시작버튼 비활성화
 	//	GameStartBtn.Show(FALSE);
+
+		m_bShowSelectedBtn = FALSE;
 
 		int nMyIndex = Play[0].ServPNum;
 		RAISEUSER ru; memset(&ru,0,sizeof(ru));
@@ -1915,23 +2088,90 @@ void CGameView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CWnd::OnLButtonDblClk(nFlags, point);
 }
 
+BOOL CGameView::PreTranslateMessage(MSG* pMsg) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	if(pMsg->message == WM_KEYDOWN) 
+	{
+		if(pMsg->wParam == VK_LEFT)
+		{
+			m_nBetBtnIndex = GetBetBtnIndexForLeft( m_nBetBtnIndex );
+		}
+		else if( pMsg->wParam == VK_RIGHT )
+		{
+			m_nBetBtnIndex = GetBetBtnIndexForRight( m_nBetBtnIndex );
+		}
+		else if( pMsg->wParam == VK_DOWN )
+		{
+			m_bBetBtnMouseDown = TRUE;
+			m_bShowFirstBtn = TRUE;
+		}
+
+	}
+	
+	return CWnd::PreTranslateMessage(pMsg);
+}
+//m_bBPing,m_bBCheck,m_bBCall,m_bBMax,m_bBDDa,m_bAllin;
+void CGameView::SetBetBtnEnabled()
+{
+	for(int i=0; i<BET_BTN_TOTAL; i++)
+		m_bBetBtnEnabled[i] = FALSE;
+
+	m_bBetBtnEnabled[0] = TRUE;
+
+	if( m_bBCheck )
+		m_bBetBtnEnabled[1] = TRUE;
+
+	if( m_bBCall )
+		m_bBetBtnEnabled[2] = TRUE;
+
+	if( m_bBPing )
+		m_bBetBtnEnabled[3] = TRUE;
+
+	if( m_bBDDa )
+		m_bBetBtnEnabled[4] = TRUE;
+
+	if( m_bBMax || m_bAllin )
+		m_bBetBtnEnabled[5] = TRUE;
+}
 
 
+int CGameView::GetBetBtnIndexForLeft(int nIndex )
+{
+	int nFindIndex = nIndex;
+
+	SetBetBtnEnabled();
+
+	while( TRUE )
+	{
+		nFindIndex--;
+		if( nFindIndex < 0 )
+			nFindIndex = BET_BTN_TOTAL-1;
 
 
+		if( m_bBetBtnEnabled[nFindIndex] )
+			return nFindIndex;
+	}
 
+	return nFindIndex;
 
+}
 
+int CGameView::GetBetBtnIndexForRight(int nIndex )
+{
+	int nFindIndex = nIndex;
 
-
-
-
-
-
-
-
-
-
-
-
-
+	SetBetBtnEnabled();
+	
+	while( TRUE )
+	{
+		nFindIndex++;
+		if( nFindIndex > BET_BTN_TOTAL-1 )
+			nFindIndex = 0;
+		
+		if( m_bBetBtnEnabled[nFindIndex] )
+			return nFindIndex;
+	}
+	
+	return nFindIndex;
+}

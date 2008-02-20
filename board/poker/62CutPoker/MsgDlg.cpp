@@ -22,7 +22,7 @@ CMsgDlg::CMsgDlg(CWnd* pParent /*=NULL*/)
 	iMode = 0;
 	hTimerWait = NULL;
 	//{{AFX_DATA_INIT(CMsgDlg)
-		// NOTE: the ClassWizard will add member initialization here
+	kljs = NULL;
 	//}}AFX_DATA_INIT
 }
 
@@ -40,6 +40,7 @@ BEGIN_MESSAGE_MAP(CMsgDlg, CDialog)
 	//{{AFX_MSG_MAP(CMsgDlg)
 	ON_WM_TIMER()
 	ON_WM_LBUTTONDOWN()
+	ON_WM_WINDOWPOSCHANGING()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -165,4 +166,13 @@ void CMsgDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	// TODO: Add your message handler code here and/or call default
 	PostMessage( WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM( point.x, point.y));
 	CDialog::OnLButtonDown(nFlags, point);
+}
+
+void CMsgDlg::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos) 
+{
+	CDialog::OnWindowPosChanging(lpwndpos);
+	
+	// TODO: Add your message handler code here
+	lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	
 }
