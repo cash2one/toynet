@@ -806,13 +806,14 @@ BOOL CSV_ASK_USERINFO::Get(char* lpdata, int size)
 }
 
 ////////// 돈 정보를 업데이트 - jeong
-BOOL CSV_ASK_MONEYINFO::Set(int unum, int nMoney)
+BOOL CSV_ASK_MONEYINFO::Set(int unum, int nMoney, int nPlus)
 {
-	int msglen = sizeof(*UNum) + sizeof(*UMoney);
+	int msglen = sizeof(*UNum) + sizeof(*UMoney) + sizeof(*UPlus);
 	char* ptemp = SetHeader(SV_ASK_MONEYINFO, msglen);
 	if(ptemp==NULL) {TRACE("CSV_ASK_MONEYINFO::Set() 메모리 할당 에러\n"); return FALSE;}
 	UNum = (int*)SmartCpy(&ptemp, &unum, sizeof(*UNum));
 	UMoney = (int*)SmartCpy(&ptemp, &nMoney, sizeof(*UMoney));
+	UPlus = (int*)SmartCpy(&ptemp, &nPlus, sizeof(*UPlus));
 	return TRUE;
 }
 BOOL CSV_ASK_MONEYINFO::Get(char* lpdata, int size)
@@ -821,6 +822,7 @@ BOOL CSV_ASK_MONEYINFO::Get(char* lpdata, int size)
 	if(ptemp==NULL) {TRACE("SV_ASK_MONEYINFO::Get() 메모리 할당 에러\n"); return FALSE;}
 	UNum = (int*)Jump(&ptemp, sizeof(*UNum));
 	UMoney = (int*)Jump(&ptemp, sizeof(*UMoney));
+	UPlus = (int*)Jump(&ptemp, sizeof(*UPlus));
 	return TRUE;
 }
 

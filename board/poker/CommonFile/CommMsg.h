@@ -623,7 +623,8 @@ public:
 	
 	int *UNum;
 	int *UMoney;
-	BOOL Set(int unum, int nMoney);
+	int *UPlus;
+	BOOL Set(int unum, int nMoney, int nPlus);
 	BOOL Get(char* lpdata, int size);
 };
 
