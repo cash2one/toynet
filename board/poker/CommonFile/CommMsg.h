@@ -177,6 +177,8 @@ enum
 
 	SV_ASK_SAFEANGEL,		// [수호천사] 2004.07.08 사용할것이냐 
 	CL_CHARGE_SAFEANGEL,	// [수호천사] 2004.07.08 머니 충전 메시지
+
+	SV_MONEYINFO,			//
 };
 
 // 클라이언트용 메세지 #########################################################
@@ -640,6 +642,18 @@ public:
 	BOOL Get(char* lpdata, int size);
 };
 
+
+/////////// 돈 정보를 보내줌
+class CSV_MONEYINFO : public CCommMsg
+{
+public:
+	CSV_MONEYINFO() : CCommMsg() {}
+	CSV_MONEYINFO(char *pRefBuf) : CCommMsg(pRefBuf) {}
+
+	INT *UMoney;
+	BOOL Set(int nMoney);
+	BOOL Get(char* lpdata, int size);
+};
 /////////// 새로운 사용자가 접속했음을 알린다
 class CSV_NEWUSER : public CCommMsg
 {

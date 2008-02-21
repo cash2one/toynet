@@ -845,6 +845,23 @@ BOOL CSV_USERINFO::Get(char* lpdata, int size)
 	return TRUE;
 }
 
+//////////  돈 정보를 보내줌
+BOOL CSV_MONEYINFO::Set(int nMoney)
+{
+	int msglen = sizeof(nMoney);
+	char* ptemp = SetHeader(SV_MONEYINFO, msglen);
+	if(ptemp==NULL) {TRACE("CSV_MONEYINFO::Set() 메모리 할당 에러\n"); return FALSE;}
+	UMoney = (int*)SmartCpy(&ptemp, &nMoney, sizeof(*UMoney));
+	return TRUE;
+}
+BOOL CSV_MONEYINFO::Get(char* lpdata, int size)
+{
+	char* ptemp = GetHeader(lpdata, size);
+	if(ptemp==NULL) {TRACE("SV_ASK_MONEYINFO::Get() 메모리 할당 에러\n"); return FALSE;}
+	UMoney = (int*)Jump(&ptemp, sizeof(*UMoney));
+	return TRUE;
+}
+
 ////////// 새로운 사용자가 접속하였음
 BOOL CSV_NEWUSER::Set(SMALLUSERINFO *pSUI)
 {
