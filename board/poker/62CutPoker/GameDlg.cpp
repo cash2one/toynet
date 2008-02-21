@@ -210,16 +210,10 @@ BOOL CGameDlg::PreTranslateMessage(MSG* pMsg)
 		// 돈 추가 키 - jeong
 		if(pMsg->wParam == 'M' || pMsg->wParam == 'm')
 		{
-			// 서버에 플레이어정보 돈 추가  - jeong
-			/*			
-			Play[0].UI.PMoney += 100;
-			Play[0].PrevMoney += 100;
-			g_MyInfo.UI.PMoney  =  Play[0].UI.PMoney; 
-			*/
-			
-			
+			// 서버에 플레이어정보 돈 추가  - jeong			
+			Play[0].PrevMoney +=100;			
 			CSV_ASK_MONEYINFO aumsg;
-			aumsg.Set(Play[0].UI.UNum, 100, 1);
+			aumsg.Set(Play[0].UI.UNum, 100, g_RI.RoomNum);
 			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 
 		}

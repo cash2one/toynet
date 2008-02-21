@@ -1909,7 +1909,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			bProccessed = FALSE;
 		} break;
 
-	case SV_MONEYINFO: // µ· Á¤º¸
+	case SV_MONEYINFO:
 		{
 			CSV_MONEYINFO msg;
 			msg.Get(lpData, TotSize);
@@ -1919,7 +1919,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			int nMoney = *msg.UMoney;
 
 			Play[0].UI.PMoney = nMoney;
-			Play[0].PrevMoney = nMoney;
+			//Play[0].PrevMoney = nMoney;
 			g_MyInfo.UI.PMoney = nMoney;
 			
 

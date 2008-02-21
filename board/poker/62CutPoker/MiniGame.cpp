@@ -382,7 +382,7 @@ void CMiniGame::StopGame()
 		Play[0].BankMoney += m_nBankMoney;
 
 		CSV_ASK_MONEYINFO aumsg;
-		aumsg.Set(Play[0].UI.UNum, m_nBankMoney, 1);
+		aumsg.Set(Play[0].UI.UNum, m_nBankMoney, g_RI.RoomNum);
 		SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 	}
 
