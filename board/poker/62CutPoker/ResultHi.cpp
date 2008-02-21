@@ -128,8 +128,7 @@ BOOL CResultHi::OnInitDialog()
 		Play[0].BankMoney = Play[0].BankMoney + pGO.nWinMoney;
 
 		// 이긴 금액 세팅 - jeong
-		if(Play[0].ServPNum == Game.WinnerPNum)
-			Play[0].nWinMoney = pGO.nWinMoney;
+		Play[0].nWinMoney = pGO.nWinMoney;
 	}
 	else {
 		Back.LoadBitmapFile(".\\image\\Gameover\\result_otherwin.bmp");		// Result design will be changed - jeong
@@ -150,7 +149,6 @@ BOOL CResultHi::OnInitDialog()
 				Play[0].BankMoney += MinusMoney;
 		}
 	
-		// 저장 플레이어 머니(차감) - jeong
 
 		//m_CloseBtn.Init(131, 304,".\\image\\commonbtn\\Btn_ok.bmp",4);
 		
@@ -174,8 +172,8 @@ BOOL CResultHi::OnInitDialog()
 	}
 
 	if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0){
-		m_CloseBtn.Init(110,361,".\\image\\commonbtn\\Btn_ok.bmp",4);
-		m_MiniGame.Init(190,361,".\\image\\commonbtn\\Btn_Yes.bmp",4);
+		m_CloseBtn.Init(130,361,".\\image\\commonbtn\\Btn_ok.bmp",4);
+		//m_MiniGame.Init(190,361,".\\image\\commonbtn\\Btn_Yes.bmp",4);
 	}
 	else{
 		m_CloseBtn.Init(110,251,".\\image\\commonbtn\\Btn_ok.bmp",4);
@@ -382,8 +380,8 @@ void CResultHi::OnPaint()
 
 		//	INT64 roundingoff = g_Poker.RU[Play[0].ServPNum].nRealBat;
 			INT64 roundingoff = pGO.Ui[Play[0].ServPNum].LoseMoney;
-			if(roundingoff > 100)
-			roundingoff = (roundingoff/100)*100;
+			//if(roundingoff > 100)
+			//roundingoff = (roundingoff/100)*100;
 
 			str2 = NumberToOrientalString(roundingoff);
 			str1.Format("-%s",str2);
@@ -438,8 +436,8 @@ void CResultHi::OnPaint()
 		//	INT64 roundingoff = g_Poker.RU[Play[0].ServPNum].nRealBat;
 			INT64 roundingoff = pGO.Ui[Play[0].ServPNum].LoseMoney;
 
-			if(roundingoff > 100)
-			roundingoff = (roundingoff/100)*100;
+			//if(roundingoff > 100)
+			//roundingoff = (roundingoff/100)*100;
 
 			str2 = NumberToOrientalString(roundingoff);
 			str1.Format("-%s",str2);
@@ -617,8 +615,11 @@ void CResultHi::OnMinigame()
 	// TODO: Add your control notification handler code here
 	Sound.Play(SND45);	
 
-			//if( Play[0].ServPNum == Game.WinnerPNum )
-	g_Mini.DoModal();
+	//if( Game.m_bShowMiniGame )
+	if( Play[0].ServPNum == Game.WinnerPNum )
+		g_Mini.DoModal();
+
+	OnOK();
 }
 
 

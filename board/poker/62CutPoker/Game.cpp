@@ -405,8 +405,8 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 	memcpy(g_Poker.PS, pSC->Ps, sizeof(PLAYSTATE)*g_Max_Player);
 	// 게임 시작 플래그 세팅
 	bGameStart = TRUE;
-	// 버그발생으로 인한 돈 세팅 - jeong
-	GapMoney = 0;
+
+	
 	BOOL bFalse = FALSE;
 	for(int i=0; i<g_Max_Player; i++) {		
 		// 플레이어 스크린 초기화
@@ -500,6 +500,19 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 	
 	// 카드 날리기 => 카드 다날림 서버로
 	Card_Distribute();
+
+	// 게임비 차감 - jeong
+	Play[0].LoseMoney = Play[0].LoseMoney + 200;
+
+	INT64 MinusMoney = Play[0].PrevMoney-Play[0].LoseMoney;
+
+	if( MinusMoney < 0)
+	{
+			Play[0].PrevMoney = 0;
+			Play[0].LoseMoney = 0;
+			Play[0].BankMoney += MinusMoney;
+	}
+
 }
 
 

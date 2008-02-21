@@ -135,6 +135,8 @@ public:
 	int m_nStackY[MAX_CHIPCNT];
 	int m_cn[MAX_CHIPCNT];
 
+	bool m_bShowMiniGame;
+
 
 public:
 	void StackChip();

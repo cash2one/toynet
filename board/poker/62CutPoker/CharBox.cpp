@@ -79,7 +79,7 @@ void CCharBox::Init(CWnd *pWnd, CPage *ppage, int defpos)
 	case 4:
 	case 5:
 		m_xp[0] = 278; m_yp[0] = 54;
-		m_charxp[0] = m_xp[0]+175; m_charyp[0] = m_yp[0]-15;
+		m_charxp[0] = m_xp[0]+175; m_charyp[0] = m_yp[0]-18;
 	//	m_cardxp[0] = m_xp[0]+81; m_cardyp[0] = m_yp[0];
 		
 		
@@ -464,6 +464,15 @@ void CCharBox::draw_5user(CDC *pDC)
 		rect.SetRect(0,0,200,14);
 		rect.OffsetRect(590,411);
 		pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
+
+		// 실제 돈 (서버)
+		roundingoff = Play[0].UI.PMoney;
+		strM = NumberToOrientalString(roundingoff);
+		rect.SetRect(0,0,200,14);
+		rect.OffsetRect(590,450);
+		pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
+		
+		
 		
 		// 총베팅액
 		roundingoff = Game.GetRealBet();
@@ -539,6 +548,9 @@ void CCharBox::draw_5user(CDC *pDC)
 			pDC->DrawText(str1, &rect, DT_RIGHT | DT_WORDBREAK);
 		}
 		*/
+		
+
+		
 	
 		//배팅 건금액
 		pDC->SetTextColor(RGB(200,252,255));

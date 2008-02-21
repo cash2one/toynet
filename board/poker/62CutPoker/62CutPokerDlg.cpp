@@ -3235,9 +3235,11 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 				
 				Game.m_JackPotActive = msg.pSC->JackPotPlus; // 나의 게임방에서 나왔다.
 				Sound.Play(SND31); // 잭팟 칩소리
+
 			}
 
 			g_TmpJackPotMoney = msg.pSC->NowJackPot;
+			/*
 			if(g_Where != WH_GAME)
 			{							
 				g_pLobyDlg->m_ChatViewEdit.AddText(&str, RGB(0,0,255));
@@ -3246,6 +3248,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			{				
 				g_pGameDlg->m_GameView.ChatBox.AddText(&str,RGB(220,220,0));
 			}
+			*/
 		}
 		break;
 			//### [관리자 모드 작업] ###

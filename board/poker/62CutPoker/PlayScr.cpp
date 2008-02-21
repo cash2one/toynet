@@ -1532,6 +1532,14 @@ void CPlayScr::draw_5user(CDC *pDC)
 				kk++;
 			}
 		}
+
+		// 잭팟이 나올경우 미니 게임 잠시 대기 - jeong
+		Game.m_bShowMiniGame = FALSE;
+		
+	}
+	else
+	{
+		Game.m_bShowMiniGame = TRUE;
 	}
 
 	

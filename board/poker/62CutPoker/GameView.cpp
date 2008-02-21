@@ -1541,12 +1541,16 @@ BOOL CGameView::OnCommand(WPARAM wParam, LPARAM lParam)
 
 		
 	case IDM_X2:// IDM_X2 - jeong
-		{			
+		{	
+			/*
 			Sound.Play(SND45);	
-
 			//if( Play[0].ServPNum == Game.WinnerPNum )
-			g_Mini.DoModal();
-	}break;
+			if( Game.m_bShowMiniGame )
+				g_Mini.DoModal();
+			*/
+
+		}
+	break;
 
 	case IDM_QUIT:// jeong
 		{			

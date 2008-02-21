@@ -236,7 +236,7 @@ void CMiniGame::PreCardSet()
 int CMiniGame::LoopToCheckCardNum(int nIndex)
 {
 	int nCardNum;
-	while( true )
+	for( int i=0; i<DUMY_CARD; i++)
 	{
 		nCardNum = CheckDuplicatedCardNum(nIndex);
 
@@ -248,6 +248,10 @@ int CMiniGame::LoopToCheckCardNum(int nIndex)
 			continue;
 		
 	}
+
+	nCardNum = rand()%(DUMY_CARD-1);
+
+	return nCardNum;
 }
 
 int CMiniGame::CheckDuplicatedCardNum(int nIndex)
@@ -356,6 +360,7 @@ void CMiniGame::RaiseMoney()
 {
 	m_nBankMoney = m_nWinMoney + m_nBankMoney;
 	m_nWinMoney = m_nWinMoney * 2;
+	
 }
 void CMiniGame::IsGame()
 {
@@ -374,13 +379,10 @@ void CMiniGame::StopGame()
 {
 	if( m_nGameContinue == 0 )
 	{
-		m_nBankMoney = m_nWinMoney + m_nBankMoney;
-		Play[0].PrevMoney = Play[0].UI.PMoney;
-		Play[0].UI.PMoney += m_nBankMoney;
-		g_MyInfo.UI.PMoney  =  Play[0].UI.PMoney; 
+		Play[0].BankMoney += m_nBankMoney;
 
 		CSV_ASK_MONEYINFO aumsg;
-		aumsg.Set(Play[0].UI.UNum, m_nBankMoney);
+		aumsg.Set(Play[0].UI.UNum, m_nBankMoney, 1);
 		SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 	}
 
