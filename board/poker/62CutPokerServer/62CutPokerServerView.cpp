@@ -1489,6 +1489,7 @@ BOOL C62CutPokerServerView::ProcessPacket(int sid, CMySocket *pSocket, char* lpd
 			CSV_ASK_MONEYINFO MsgData;
 			MsgData.Get(lpdata, totsize);
 			
+			MONEYINFO *pUI = NULL;
 			MONEYINFO TempUI;
 			ZeroMemory(&TempUI, sizeof(MONEYINFO));
 			
@@ -1496,17 +1497,14 @@ BOOL C62CutPokerServerView::ProcessPacket(int sid, CMySocket *pSocket, char* lpd
 			int uMoney = *MsgData.UMoney;
 
 			User[unum].UI.PMoney += uMoney;
+
 			
-			/*
 			// 잘못된 아이디일경우 빈 사용자 정보를 보내줌
-			if(unum<1 || unum>=MAX_USER) pUI = &TempUI;
-			else if(faststrcmp(User[unum].UI.ID, MsgData.ID) != 0) pUI = &TempUI;
-			else pUI = &User[unum].UI;
-			
-			CSV_USERINFO uimsg(SndBuf);
-			uimsg.Set(pUI);
+			CSV_MONEYINFO uimsg(SndBuf);
+			uimsg.Set(User[unum].UI.PMoney);
 			SockMan.SendData(sid, uimsg.pData, uimsg.GetTotalSize());
-			*/
+		
+
 		} break;
 
 	case SV_ASK_CHANGECHAR: // 캐릭터 바꾸기를 요청
