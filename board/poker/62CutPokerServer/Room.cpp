@@ -1096,7 +1096,7 @@ void CRoom::StartGame()
 				User[unum].Set_init_premoney(); // [수호천사] 2004.07.08
 
 				// 삥값처리 초기베팅액
-				User[unum].UI.PMoney = User[unum].UI.PMoney - Ri.BetMoney;
+				User[unum].UI.PMoney = User[unum].UI.PMoney - Ri.BetMoney -200;			// 기본 게임비 차감 - jeong
 				Ui[i].PMoney = User[unum].UI.PMoney;
 
 				m_Raise.SetUser(i, Ri.BetMoney, Ui[i]); 

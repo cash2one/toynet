@@ -69,7 +69,7 @@ void CChannel::Init(const int cnum)
 		JackPotSaveRatio = g_pMainView->Cfg4.rFree;			// 적립 비율
 		break;
 	case 1: // 초보
-		m_betmoney_5user = 5;
+		m_betmoney_5user = 2;								// 기본 삥값 처리
 		m_betmoney_6user = 100;
 
 		DefaultJackPot = g_pMainView->Cfg4.ChoBo;
