@@ -1909,6 +1909,22 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			bProccessed = FALSE;
 		} break;
 
+	case SV_MONEYINFO: // 돈 정보
+		{
+			CSV_MONEYINFO msg;
+			msg.Get(lpData, TotSize);
+			
+			g_Wait = FALSE;
+
+			int nMoney = *msg.UMoney;
+
+			Play[0].UI.PMoney = nMoney;
+			Play[0].PrevMoney = nMoney;
+			g_MyInfo.UI.PMoney = nMoney;
+			
+
+		} break;
+
 	case SV_NEWUSER: // 새로운 사용자 접속
 		{
 			CSV_NEWUSER msg;
