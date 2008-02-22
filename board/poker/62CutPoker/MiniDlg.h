@@ -13,9 +13,6 @@
 #include "resource.h"
 #include "MiniGame.h"
 
-#include "MyButton.h"
-#include "MyBitmap.h"
-
 #include "Ime.h"
 #include "Graphic.h"
 #include "GraphButton.h"

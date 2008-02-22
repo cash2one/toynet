@@ -9,6 +9,7 @@
 //#include "OptionDlg.h"
 //#include "BanishVoteDlg.h"
 #include "Global.h"
+#include "AdminBtnTestDlg.h"
 
 //#include "stdafx.h"
 //#include "Gostop.h"

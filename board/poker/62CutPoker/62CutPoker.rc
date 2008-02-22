@@ -150,7 +150,7 @@ END
 
 IDD_LOBY_DIALOG DIALOGEX 0, 0, 456, 400
 STYLE WS_CHILD | WS_CLIPCHILDREN | WS_BORDER
-FONT 9, "MS Sans Serif"
+FONT 9, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     EDITTEXT        IDC_EDIT_LOBYSEND,14,343,270,9,ES_MULTILINE | 
                     ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | NOT 
@@ -774,6 +774,32 @@ BEGIN
                     WS_DISABLED
 END
 
+IDD_DLG_ADMIN_BTNTEST DIALOG DISCARDABLE  0, 0, 457, 203
+STYLE WS_POPUP
+FONT 10, "System"
+BEGIN
+    PUSHBUTTON      "Left",IDC_BTN_LEFT,21,52,35,29,BS_FLAT | NOT WS_VISIBLE | 
+                    WS_DISABLED
+    PUSHBUTTON      "Right",IDC_BTN_RIGHT,99,52,35,29,BS_FLAT | NOT 
+                    WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "Select",IDC_BTN_SELECT,60,52,35,29,BS_FLAT | NOT 
+                    WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "Mouse",IDC_BTN_MOUSE,155,30,46,76,BS_FLAT | NOT 
+                    WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "A",IDC_BTN_A,225,33,35,29,BS_FLAT | NOT WS_VISIBLE | 
+                    WS_DISABLED
+    PUSHBUTTON      "B",IDC_BTN_B,272,33,25,29,BS_FLAT | NOT WS_VISIBLE | 
+                    WS_DISABLED
+    PUSHBUTTON      "C",IDC_BTN_C,312,33,35,29,BS_FLAT | NOT WS_VISIBLE | 
+                    WS_DISABLED
+    PUSHBUTTON      "X",IDC_BTN_X,225,89,35,29,BS_FLAT | NOT WS_VISIBLE | 
+                    WS_DISABLED
+    PUSHBUTTON      "Y",IDC_BTN_Y,272,89,25,29,BS_FLAT | NOT WS_VISIBLE | 
+                    WS_DISABLED
+    PUSHBUTTON      "Z",IDC_BTN_Z,312,89,35,29,BS_FLAT | NOT WS_VISIBLE | 
+                    WS_DISABLED
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1002,6 +1028,14 @@ BEGIN
         RIGHTMARGIN, 449
         TOPMARGIN, 7
         BOTTOMMARGIN, 392
+    END
+
+    IDD_DLG_ADMIN_BTNTEST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 450
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 196
     END
 END
 #endif    // APSTUDIO_INVOKED

@@ -80,7 +80,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /subsystem:windows /map /debug /machine:I386 /out:"../_BIN/Client/NewPoker_Debug.exe" /pdbtype:sept /libpath:".\GraphLib" /libpath:"..\CommonFile" /libpath:".\FolderLib" /libpath:".\SoundLib"
+# ADD LINK32 Odbccp32.lib /nologo /subsystem:windows /map /debug /machine:I386 /out:"../_BIN/Client/NewPoker_Debug.exe" /pdbtype:sept /libpath:".\GraphLib" /libpath:"..\CommonFile" /libpath:".\FolderLib" /libpath:".\SoundLib"
 
 !ELSEIF  "$(CFG)" == "62CutPoker - Win32 ReleaseDebug"
 
@@ -125,6 +125,10 @@ SOURCE=.\62CutPokerDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\AdminBtnTestDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\CharView.cpp
 # End Source File
 # Begin Source File
@@ -162,6 +166,10 @@ SOURCE=.\TitleDlg.cpp
 # Begin Source File
 
 SOURCE=.\62CutPokerDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\AdminBtnTestDlg.h
 # End Source File
 # Begin Source File
 

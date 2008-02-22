@@ -1752,6 +1752,12 @@ BOOL CLobyDlg::PreTranslateMessage(MSG* pMsg)
 			if( Play[0].UI.PMoney >= 500 )
 				OnButtonQuickstart();
 		}
+		else if(pMsg->wParam == 'T' || pMsg->wParam == 't')
+		{
+			CAdminBtnTestDlg dlg(this);
+			dlg.DoModal();
+			return 1;
+		}
 	}
 		
 	return CDialog::PreTranslateMessage(pMsg);
