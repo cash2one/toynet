@@ -83,6 +83,7 @@
 
 
 #define BET_BTN_TOTAL		6
+#define START_BTN_TOTAL		2
 
 // Center Position
 extern int g_CX;
@@ -179,6 +180,12 @@ public:
 	bool m_bShowSelectedBtn;
 	bool m_bShowFirstBtn;
 	bool m_bStartShowBtn;
+
+	// 시작 종료 버튼 인덱스
+	int m_nStartBtnIndex;
+	bool m_bStartBtnMouseDown;
+	int	m_nStartOffSetX[START_BTN_TOTAL];
+	int	m_nStartOffSetY[START_BTN_TOTAL];
 
 	// [ 튤팁 플레그 ]
 	CString m_BtnMsgTip; // 1 다이 2 체크 3 콜 4 핑 5 따당 6 맥스

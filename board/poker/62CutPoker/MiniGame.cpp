@@ -342,6 +342,7 @@ void CMiniGame::SetGameResult(int nGameContinue)
 		//패배
 		m_nWinGame = 1;
 		Sound.Play(SND33);
+		DefeatGame();
 	}
 	else if( m_nGameContinue == 2 ){
 		//드로우
@@ -391,6 +392,12 @@ void CMiniGame::StopGame()
 
 void CMiniGame::DefeatGame()
 {
+	Play[0].BankMoney -= m_nPrevWinMoney;
+			
+	CSV_ASK_MONEYINFO aumsg;
+	aumsg.Set(Play[0].UI.UNum, -m_nPrevWinMoney, g_RI.RoomNum);
+	SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+
 	g_Mini.SendMessage(WM_CLOSE,0,0);
 }
 

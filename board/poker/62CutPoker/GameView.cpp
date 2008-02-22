@@ -106,6 +106,9 @@ CGameView::CGameView()
 	m_nGameViewCnt = 0;
 	m_bShowSelectedBtn = FALSE;
 	m_bShowFirstBtn = FALSE;
+
+	m_nStartBtnIndex = 0;
+	m_bStartBtnMouseDown = FALSE;
 }
 
 CGameView::~CGameView()
@@ -255,7 +258,11 @@ int CGameView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_nBetOffSetY[4] = 556;
 	m_nBetOffSetY[5] = 556;
 
-	
+	m_nStartOffSetX[0] = 295;
+	m_nStartOffSetX[1] = 464;
+
+	m_nStartOffSetY[0] = 299;
+	m_nStartOffSetY[1] = 299;
 
 	return 0;
 }
@@ -710,6 +717,25 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 	DadangkBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
 	MaxBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
 	if(m_bAllin)AllInBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+
+
+	// 게임 시작 및 종료 버튼 효과 - jeong
+	GameStartBtn.OnMouseMove( m_nStartOffSetX[m_nStartBtnIndex], m_nStartOffSetY[m_nStartBtnIndex] );
+	GameQuitBtn.OnMouseMove( m_nStartOffSetX[m_nStartBtnIndex], m_nStartOffSetY[m_nStartBtnIndex] );
+
+	if( m_bStartBtnMouseDown )
+	{
+		m_bStartBtnMouseDown = FALSE;
+
+		mxp = m_nStartOffSetX[m_nStartBtnIndex];
+		myp = m_nStartOffSetY[m_nStartBtnIndex];
+
+		GameStartBtn.OnLButtonDown(mxp, myp);
+		GameQuitBtn.OnLButtonDown(mxp, myp);
+
+		GameStartBtn.OnLButtonUp(mxp, myp);
+		GameQuitBtn.OnLButtonUp(mxp, myp);
+	}
 
 	return CWnd::WindowProc(message, wParam, lParam);
 }
@@ -2113,6 +2139,32 @@ BOOL CGameView::PreTranslateMessage(MSG* pMsg)
 			{
 				m_bBetBtnMouseDown = TRUE;
 				m_bShowFirstBtn = TRUE;
+			}
+
+		}
+	}
+
+	if( Game.bGameStart == FALSE )
+	{
+	
+		if(pMsg->message == WM_KEYDOWN ) 
+		{
+			if(pMsg->wParam == VK_LEFT)
+			{	
+				m_nStartBtnIndex--;
+
+				if( m_nStartBtnIndex < 0)
+					m_nStartBtnIndex = 1;
+			}
+			else if( pMsg->wParam == VK_RIGHT )
+			{
+				m_nStartBtnIndex++;
+				if( m_nStartBtnIndex > 1)
+					m_nStartBtnIndex = 0;
+			}
+			else if( pMsg->wParam == VK_DOWN )
+			{
+				m_bStartBtnMouseDown = TRUE;
 			}
 
 		}
