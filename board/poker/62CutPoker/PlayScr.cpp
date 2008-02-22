@@ -211,12 +211,12 @@ void CPlayScr::Init(CWnd *pWnd, CPage *ppage, int pnum)
 
 	
 	//¿Ë∆Ã ∏”¥œ ¡¬«•
-	m_jackpotx[0] = 778; m_jackpoty[0] = 44;
-	m_jackpotx[1] = 782; m_jackpoty[1] = 44;
+	m_jackpotx[0] = 757; m_jackpoty[0] = 95;//778; m_jackpoty[0] = 58;
+	m_jackpotx[1] = 757; m_jackpoty[1] = 95;//782; m_jackpoty[1] = 44;
 
 	// ¿Ë∆Ã bg ¡¬«•
-	m_jackpotanix[0] = 553; m_jackpotaniy[0] = 26;
-	m_jackpotanix[1] = 553; m_jackpotaniy[1] = 26;
+	m_jackpotanix[0] = 553; m_jackpotaniy[0] = 58;//553; m_jackpotaniy[0] = 26;
+	m_jackpotanix[1] = 557; m_jackpotaniy[0] = 58;//553; m_jackpotaniy[1] = 26;
 	
 
 	playscr_changeinitpos();

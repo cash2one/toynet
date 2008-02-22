@@ -41,7 +41,7 @@ public:
 	CString m_LobyMsg;
 
 	// [ ¼¼ºì Æ÷Ä¿ ] ÀèÆÌ Å×½ºÆ®
-	CLevelView m_JackPotBox;
+	//CLevelView m_JackPotBox;
 
 	CImageList m_RoomImage;
 	CImageList m_UserImage;

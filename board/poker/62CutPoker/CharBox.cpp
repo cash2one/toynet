@@ -430,14 +430,6 @@ void CCharBox::draw_5user(CDC *pDC)
 	if(PNum == 0) 
 	{	
 		pDC->SetTextColor(RGB(23, 175, 214));
-		// bat
-		CString strBatM = "";
-		CRect BatRt;
-		strBatM = NumberToOrientalString(50);
-		strBatM +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
-		BatRt.SetRect(0,0,200,14);
-		BatRt.OffsetRect(590,340);
-		pDC->DrawText(strBatM, &BatRt, DT_RIGHT | DT_WORDBREAK);
 
 		//pot
 		CString strPotM = "";
@@ -445,8 +437,19 @@ void CCharBox::draw_5user(CDC *pDC)
 		strPotM = NumberToOrientalString(500);
 		strPotM +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
 		PotRt.SetRect(0,0,200,14);
-		PotRt.OffsetRect(590,360);
+		PotRt.OffsetRect(590,340);
 		pDC->DrawText(strPotM, &PotRt, DT_RIGHT | DT_WORDBREAK);
+
+		// bat
+		CString strBatM = "";
+		CRect BatRt;
+		strBatM = NumberToOrientalString(200);
+		strBatM +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
+		BatRt.SetRect(0,0,200,14);
+		BatRt.OffsetRect(590,360);
+		pDC->DrawText(strBatM, &BatRt, DT_RIGHT | DT_WORDBREAK);
+
+		
 		
 
 		// 이긴 금액 (전판)

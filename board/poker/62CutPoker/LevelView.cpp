@@ -31,6 +31,8 @@ CLevelView::CLevelView()
 	m_nSecondXp = 0;
 
 	ZeroMemory(m_jackpot_digit, sizeof(m_jackpot_digit));
+	//ºñÈ°¼ºÈ­
+	//EnableWindow(FALSE);
 	m_digit_cnt = 0;
 }
 
@@ -91,8 +93,9 @@ void CLevelView::OnPaint()
 	MemDC.SetBkMode(TRANSPARENT);
 	
 
-	Page.PutSprAuto(0, 0, &JackPotSpr, 14);
-	Page.PutSprAuto(10,15, &JackPotBackSpr, 0);
+	//softpark ·Îºñ ÀíÆÌ
+	//Page.PutSprAuto(0, 0, &JackPotSpr, 14);
+	//Page.PutSprAuto(10,15, &JackPotBackSpr, 0);
 
 	// [ ###ÀèÆÌ### ] 
 	INT64 minus = g_TmpJackPotMoney - g_JackPotMoney;
@@ -154,10 +157,13 @@ void CLevelView::OnPaint()
 	//MemDC.TextOut(Xp+150, Yp, str);
 
 
+
+	//softpark ·Îºñ ÀèÆÌ Áö¿ìÀÚ.
 	
 	CRect rect;
 	GetClientRect(&rect);
 	dc.BitBlt(0, 0, rect.right, rect.bottom, &MemDC, 0, 0, SRCCOPY);
+	
 		
 	MemDC.DeleteDC();
 
@@ -257,7 +263,7 @@ void CLevelView::get_jackpotmoney_digit(INT64 Money)
 void CLevelView::draw_digit(int startx)
 {
 
-	int sx = AX;startx;
+	int sx = AX;//startx;
 	int sy = AY;
 	int tmp = 0;
 	int i=0;
@@ -265,7 +271,7 @@ void CLevelView::draw_digit(int startx)
 
 	
 	Page.PutSprAuto(0, 0, &JackPotSpr, 14+ (cnt%7));
-	Page.PutSprAuto(10,15, &JackPotBackSpr, 0);
+	//Page.PutSprAuto(10,15, &JackPotBackSpr, 0);
 
 	cnt++;
 	if(cnt >= 7)cnt = 0;

@@ -214,7 +214,7 @@ BOOL CLobyDlg::OnInitDialog()
 	rc.OffsetRect(567 , 52);
 	*/
 	
-	m_JackPotBox.Create(this, rc, 1, 1223);
+	//m_JackPotBox.Create(this, rc, 1, 1223);
 
 	////////////////////////////////////////////////////
 	////////////////////////////////////////////////////

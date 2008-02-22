@@ -135,7 +135,7 @@ BOOL CTitleDlg::OnInitDialog()
 	// [ 세븐 포커 ] 잭팟 테스트
 	rc.SetRect(0, 0, 241, 40);	
 	rc.OffsetRect(270 , 37);
-	m_JackPotBox.Create(this, rc, 0, 1223);
+	//m_JackPotBox.Create(this, rc, 0, 1223);
 	
 	// 채팅 뷰 리치 에디트 컨트롤 초기화
 	m_ChatViewNotic.SetReadOnly(TRUE);
