@@ -1495,8 +1495,14 @@ BOOL C62CutPokerServerView::ProcessPacket(int sid, CMySocket *pSocket, char* lpd
 			
 			int unum = *MsgData.UNum;
 			int uMoney = *MsgData.UMoney;
+			int uRoomIndex = *MsgData.UPlus;
 
 			User[unum].UI.PMoney += uMoney;
+
+			int uChanIndex = User[unum].ChNum;
+			int nPNum = User[unum].PNum;
+
+			Chan[uChanIndex].Room[uRoomIndex].m_Raise.m_User[nPNum].nPMoney += uMoney;
 
 			
 			// 잘못된 아이디일경우 빈 사용자 정보를 보내줌
