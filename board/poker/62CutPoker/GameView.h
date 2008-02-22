@@ -178,6 +178,7 @@ public:
 	int m_nGameViewCnt;
 	bool m_bShowSelectedBtn;
 	bool m_bShowFirstBtn;
+	bool m_bStartShowBtn;
 
 	// [ 튤팁 플레그 ]
 	CString m_BtnMsgTip; // 1 다이 2 체크 3 콜 4 핑 5 따당 6 맥스

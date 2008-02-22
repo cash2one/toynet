@@ -1628,6 +1628,7 @@ void CGameView::SetBtnState(BOOL bDisable)
 
 		m_bShowSelectedBtn = TRUE;
 
+
 		return;
 	}
 	
@@ -2095,22 +2096,26 @@ void CGameView::OnLButtonDblClk(UINT nFlags, CPoint point)
 BOOL CGameView::PreTranslateMessage(MSG* pMsg) 
 {
 	// TODO: Add your specialized code here and/or call the base class
-	if(pMsg->message == WM_KEYDOWN) 
+	if( !m_bShowSelectedBtn )
 	{
-		if(pMsg->wParam == VK_LEFT)
+	
+		if(pMsg->message == WM_KEYDOWN ) 
 		{
-			m_nBetBtnIndex = GetBetBtnIndexForLeft( m_nBetBtnIndex );
-		}
-		else if( pMsg->wParam == VK_RIGHT )
-		{
-			m_nBetBtnIndex = GetBetBtnIndexForRight( m_nBetBtnIndex );
-		}
-		else if( pMsg->wParam == VK_DOWN )
-		{
-			m_bBetBtnMouseDown = TRUE;
-			m_bShowFirstBtn = TRUE;
-		}
+			if(pMsg->wParam == VK_LEFT)
+			{
+				m_nBetBtnIndex = GetBetBtnIndexForLeft( m_nBetBtnIndex );
+			}
+			else if( pMsg->wParam == VK_RIGHT )
+			{
+				m_nBetBtnIndex = GetBetBtnIndexForRight( m_nBetBtnIndex );
+			}
+			else if( pMsg->wParam == VK_DOWN )
+			{
+				m_bBetBtnMouseDown = TRUE;
+				m_bShowFirstBtn = TRUE;
+			}
 
+		}
 	}
 	
 	return CWnd::PreTranslateMessage(pMsg);
