@@ -398,7 +398,7 @@ void CMiniGame::DefeatGame()
 	aumsg.Set(Play[0].UI.UNum, -m_nPrevWinMoney, g_RI.RoomNum);
 	SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 
-	g_Mini.SendMessage(WM_CLOSE,0,0);
+	//g_Mini.SendMessage(WM_CLOSE,0,0);
 }
 
 void CMiniGame::OnGameKey(int nVKey)
