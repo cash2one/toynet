@@ -1187,8 +1187,9 @@ void CGameView::SetBtnState(BOOL bDisable)
 void CGameView::AISelectBetMode()
 {
 	// 배팅 대기시간 및 추후 알고리즘에 맞게 수정해야 함 - jeong
-	int nWaitTime = rand() % 2;
-	Sleep(nWaitTime*1000);
+	//int nWaitTime = rand() % 2;
+	//Sleep(nWaitTime*1000);
+	Sleep(250);
 
 	int nBetChoice = rand()%5;
 

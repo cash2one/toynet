@@ -179,7 +179,7 @@ void CGame::ResetGame()
 
 	//AI µ·¸Ó´Ï ¿Ã¸² - jeong
 	CSV_ASK_MONEYINFO aumsg;
-	aumsg.Set(Play[0].UI.UNum, 10000, g_RI.RoomNum);
+	aumsg.Set(Play[0].UI.UNum, 100000, g_RI.RoomNum);
 	SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 
 }
