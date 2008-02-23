@@ -614,7 +614,7 @@ void CGame::OnGameOver(GAMEOVERRESULT *pGOR)
 			}
 
 			// ## 파산 ##		// ### [ 관전기능 ] ###
-			if(!g_MyObserver && pnum == 0 && Play[pnum].PrevMoney <=0 ) {		// 파산 머니 기준 수정 - jeong
+			if(!g_MyObserver && pnum == 0 && Play[pnum].UI.PMoney <=0 ) {		
 				Play[pnum].UI.PMoney = 0;
 				Sound.Play( SND30 );
 			}		
