@@ -141,6 +141,7 @@ BOOL CResultHi::OnInitDialog()
 		//Play[0].LoseMoney = Play[0].LoseMoney + pGO.Ui[Play[0].ServPNum].LoseMoney;
 		Play[0].LoseMoney = 0;
 
+		/*
 		if( Play[0].BankMoney >= 0 )
 		{
 			CSV_ASK_MONEYINFO aumsg;
@@ -148,7 +149,6 @@ BOOL CResultHi::OnInitDialog()
 			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 		}
 		
-
 		INT64 MinusMoney = Play[0].PrevMoney-Play[0].LoseMoney;
 
 		if( MinusMoney < 0)
@@ -157,6 +157,7 @@ BOOL CResultHi::OnInitDialog()
 				Play[0].LoseMoney = 0;
 				Play[0].BankMoney += MinusMoney;
 		}
+		*/
 	
 
 		//m_CloseBtn.Init(131, 304,".\\image\\commonbtn\\Btn_ok.bmp",4);
