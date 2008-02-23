@@ -899,7 +899,7 @@ void CGameView::OnPaint()
 	}
 	
 
-	if( Play[0].BankMoney >= 200 || Play[0].PrevMoney >= 200)
+	if( (Play[0].BankMoney + Play[0].PrevMoney) >= 200 )
 	{
 		if(GameStartBtn.GetButtonState() > -1)
 		{
@@ -2163,7 +2163,7 @@ BOOL CGameView::PreTranslateMessage(MSG* pMsg)
 	{
 		if(pMsg->message == WM_KEYDOWN ) 
 		{
-			if( Play[0].BankMoney >= 200 || Play[0].PrevMoney >= 200)
+			if( (Play[0].BankMoney + Play[0].PrevMoney) >= 200 )
 			{
 				if(pMsg->wParam == VK_LEFT)
 				{	

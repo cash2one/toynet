@@ -429,8 +429,8 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 			Play[pn].bFold     = FALSE;
 			Play[pn].UI.PMoney -=  BetMoney;//100;
 			// AI µ· ¹«ÇÑ
-			if( pn != 0 )
-				Play[pn].UI.PMoney = 100000000000000000;
+			//if( pn != 0 )
+			//	Play[pn].UI.PMoney = 100000000000000000;
 
 			g_Poker.RU[i].nPMoney = Play[pn].UI.PMoney;
 
