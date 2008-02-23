@@ -1170,7 +1170,7 @@ BOOL CLobbyListWnd::PreTranslateMessage(MSG* pMsg)
 	{
 		if(pMsg->wParam == 'M' || pMsg->wParam == 'm')
 		{
-			Play[0].UI.PMoney += 100;
+			
 			Play[0].PrevMoney += 100;	
 			CSV_ASK_MONEYINFO aumsg;
 			aumsg.Set(Play[0].UI.UNum, 100, g_RI.RoomNum);
@@ -1180,3 +1180,24 @@ BOOL CLobbyListWnd::PreTranslateMessage(MSG* pMsg)
 	
 	return CWnd::PreTranslateMessage(pMsg);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

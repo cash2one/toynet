@@ -899,13 +899,29 @@ void CGameView::OnPaint()
 	}
 	
 
-	if(GameStartBtn.GetButtonState() > -1)
+	if( Play[0].BankMoney >= 200 || Play[0].PrevMoney >= 200)
 	{
-		//Page.PutSprAuto(306, 296, &EtcBtnSpr, 19,10,10);	// deleted by jeong
-		GameStartBtn.Draw(&MemDC); //시작버튼		
-		GameQuitBtn.Draw(&MemDC);
-		X2StartBtn.Draw(&MemDC);		
+		if(GameStartBtn.GetButtonState() > -1)
+		{
+			//Page.PutSprAuto(306, 296, &EtcBtnSpr, 19,10,10);	// deleted by jeong
+			GameStartBtn.Draw(&MemDC); //시작버튼		
+			GameQuitBtn.Draw(&MemDC);
+			X2StartBtn.Draw(&MemDC);		
+		}
 	}
+	else
+	{
+		if(GameStartBtn.GetButtonState() > -1)
+		{
+			//Page.PutSprAuto(306, 296, &EtcBtnSpr, 19,10,10);	// deleted by jeong	
+			m_bStartShowBtn = 1;
+			//GameStartBtn.Show(FALSE);
+			GameQuitBtn.Draw(&MemDC);
+			X2StartBtn.Draw(&MemDC);		
+		}
+	}
+
+
 
 //	MasterBtn.Draw(&MemDC);
 //	BanishvoteBtn.Draw(&MemDC);
@@ -2145,26 +2161,38 @@ BOOL CGameView::PreTranslateMessage(MSG* pMsg)
 
 	if( Game.bGameStart == FALSE )
 	{
-	
 		if(pMsg->message == WM_KEYDOWN ) 
 		{
-			if(pMsg->wParam == VK_LEFT)
-			{	
-				m_nStartBtnIndex--;
+			if( Play[0].BankMoney >= 200 || Play[0].PrevMoney >= 200)
+			{
+				if(pMsg->wParam == VK_LEFT)
+				{	
+					m_nStartBtnIndex--;
 
-				if( m_nStartBtnIndex < 0)
+					if( m_nStartBtnIndex < 0)
+						m_nStartBtnIndex = 1;
+				}
+				else if( pMsg->wParam == VK_RIGHT )
+				{
+					m_nStartBtnIndex++;
+					if( m_nStartBtnIndex > 1)
+						m_nStartBtnIndex = 0;
+				}
+				else if( pMsg->wParam == VK_DOWN )
+				{
+					m_bStartBtnMouseDown = TRUE;
+				}
+			}
+			else
+			{
+				if( pMsg->wParam == VK_DOWN )
+				{
 					m_nStartBtnIndex = 1;
+					m_bStartBtnMouseDown = TRUE;
+				}
 			}
-			else if( pMsg->wParam == VK_RIGHT )
-			{
-				m_nStartBtnIndex++;
-				if( m_nStartBtnIndex > 1)
-					m_nStartBtnIndex = 0;
-			}
-			else if( pMsg->wParam == VK_DOWN )
-			{
-				m_bStartBtnMouseDown = TRUE;
-			}
+
+
 
 		}
 	}

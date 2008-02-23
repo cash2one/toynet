@@ -304,3 +304,24 @@ BOOL CGameDlg::PreTranslateMessage(MSG* pMsg)
 	}
 	return CDialog::PreTranslateMessage(pMsg);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

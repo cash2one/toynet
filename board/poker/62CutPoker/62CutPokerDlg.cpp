@@ -1919,7 +1919,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			int nMoney = *msg.UMoney;
 
 			Play[0].UI.PMoney = nMoney;
-			//Play[0].PrevMoney = nMoney;
+			//Play[0].PrevMoney = nMoney - Play[0].BankMoney;
 			g_MyInfo.UI.PMoney = nMoney;
 			
 
@@ -3902,6 +3902,27 @@ LONG C62CutPokerDlg::OnAllinMessage(UINT wParam, LONG lParam)
 	}
 	return TRUE;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

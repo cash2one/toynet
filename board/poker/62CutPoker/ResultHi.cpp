@@ -138,7 +138,16 @@ BOOL CResultHi::OnInitDialog()
 		m_CharView.CharNum = g_pGameView->CharBox[0].m_nCharIndex[1];
 
 		// 잃은 금액 저장 - jeong
-		Play[0].LoseMoney = Play[0].LoseMoney + pGO.Ui[Play[0].ServPNum].LoseMoney;
+		//Play[0].LoseMoney = Play[0].LoseMoney + pGO.Ui[Play[0].ServPNum].LoseMoney;
+		Play[0].LoseMoney = 0;
+
+		if( Play[0].BankMoney >= 0 )
+		{
+			CSV_ASK_MONEYINFO aumsg;
+			aumsg.Set(Play[0].UI.UNum, pGO.Ui[Play[0].ServPNum].LoseMoney, g_RI.RoomNum);
+			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+		}
+		
 
 		INT64 MinusMoney = Play[0].PrevMoney-Play[0].LoseMoney;
 
@@ -379,7 +388,8 @@ void CResultHi::OnPaint()
 			rt.SetRect(117,244,117+210,244+17);
 
 		//	INT64 roundingoff = g_Poker.RU[Play[0].ServPNum].nRealBat;
-			INT64 roundingoff = pGO.Ui[Play[0].ServPNum].LoseMoney;
+		//	INT64 roundingoff = pGO.Ui[Play[0].ServPNum].LoseMoney;
+			INT64 roundingoff = 200;
 			//if(roundingoff > 100)
 			//roundingoff = (roundingoff/100)*100;
 
@@ -434,7 +444,8 @@ void CResultHi::OnPaint()
 			rt.SetRect(117,244,117+210,244+17);
 
 		//	INT64 roundingoff = g_Poker.RU[Play[0].ServPNum].nRealBat;
-			INT64 roundingoff = pGO.Ui[Play[0].ServPNum].LoseMoney;
+		//	INT64 roundingoff = pGO.Ui[Play[0].ServPNum].LoseMoney;
+			INT64 roundingoff = 200;
 
 			//if(roundingoff > 100)
 			//roundingoff = (roundingoff/100)*100;
@@ -621,6 +632,27 @@ void CResultHi::OnMinigame()
 
 	OnOK();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

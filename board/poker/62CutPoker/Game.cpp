@@ -502,19 +502,13 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 	Card_Distribute();
 
 	// 게임비 차감 - jeong
-	
-	//Play[0].LoseMoney = Play[0].LoseMoney + 200;
-
-	INT64 MinusMoney = Play[0].PrevMoney-Play[0].LoseMoney;
-
-	if( MinusMoney < 0)
-	{
-			Play[0].PrevMoney = 0;
-			Play[0].LoseMoney = 0;
-			Play[0].BankMoney += MinusMoney;
-	}
-
 	Play[0].PrevMoney -= 200;
+
+	if( Play[0].PrevMoney < 0 )
+	{
+		Play[0].BankMoney += Play[0].PrevMoney;
+	}
+	
 
 	CSV_ASK_MONEYINFO aumsg;
 	aumsg.Set(Play[0].UI.UNum, -200, g_RI.RoomNum);
@@ -4185,3 +4179,24 @@ void CGame::Charge_Safeangel_money(CCL_CHARGE_SAFEANGEL *pMsg)
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

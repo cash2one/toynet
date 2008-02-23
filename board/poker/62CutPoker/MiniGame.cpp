@@ -225,7 +225,8 @@ void CMiniGame::ChangeCardPosition()
 
 void CMiniGame::PreCardSet()
 {
-	int nCardNum = rand()%(DUMY_CARD-1);;
+	srand(time(NULL));
+	int nCardNum = rand()%DUMY_CARD;
 	for( int i=0; i<4; i++ )
 	{
 		NewCardSet(nCardNum);
@@ -238,6 +239,7 @@ int CMiniGame::LoopToCheckCardNum(int nIndex)
 	int nCardNum;
 	for( int i=0; i<DUMY_CARD; i++)
 	{
+		srand(i*time(NULL));
 		nCardNum = CheckDuplicatedCardNum(nIndex);
 
 		if( nCardNum != DUMY_CARD )
@@ -249,27 +251,21 @@ int CMiniGame::LoopToCheckCardNum(int nIndex)
 		
 	}
 
-	nCardNum = rand()%(DUMY_CARD-1);
-
 	return nCardNum;
 }
 
 int CMiniGame::CheckDuplicatedCardNum(int nIndex)
 {
-	int nCardNum = rand()%(DUMY_CARD-1);
+
+	int nCardNum = rand()%DUMY_CARD;
 
 	for( int i=0; i<TotalCardNum; i++)
 	{
-		if( nIndex != i )
-		{
-			if( CompareCardNum( i, nCardNum) )
-				return DUMY_CARD;
-			else
-				return nCardNum;
-		}
+		if( CompareCardNum( i, nCardNum) )
+			return DUMY_CARD;	
 	}
 
-	return DUMY_CARD;
+	return nCardNum;
 }
 
 bool CMiniGame::CompareCardNum(int nIndex, int nCardNum)
@@ -429,6 +425,27 @@ void CMiniGame::OnGameKey(int nVKey)
 		break;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
