@@ -507,6 +507,7 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 	if( Play[0].PrevMoney < 0 )
 	{
 		Play[0].BankMoney += Play[0].PrevMoney;
+		Play[0].PrevMoney = 0;
 	}
 	
 

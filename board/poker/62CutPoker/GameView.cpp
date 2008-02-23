@@ -915,7 +915,6 @@ void CGameView::OnPaint()
 		{
 			//Page.PutSprAuto(306, 296, &EtcBtnSpr, 19,10,10);	// deleted by jeong	
 			m_bStartShowBtn = 1;
-			//GameStartBtn.Show(FALSE);
 			GameQuitBtn.Draw(&MemDC);
 			X2StartBtn.Draw(&MemDC);		
 		}
