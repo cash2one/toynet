@@ -589,9 +589,9 @@ if(g_pMainView->Cfg.bLogUseDB || g_pMainView->Cfg.bStatisticsDB)
 
 	// AI, 클라이언트 실행 파일 구동 - jeong
 
-	Sleep(100);
+	Sleep(50);
 	::ShellExecute(NULL, "open", "NewPokerAI_Debug.exe", NULL, ".", SW_HIDE);
-	Sleep(100);
+	Sleep(1000);
 	::ShellExecute(NULL, "open", "NewPoker_Debug.exe", NULL, ".", SW_HIDE);
 	
 }

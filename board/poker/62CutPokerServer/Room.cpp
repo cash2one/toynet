@@ -1608,6 +1608,14 @@ void CRoom::DoGameOver(BOOL bOpen)
 					gr.Ui[i].LooseNum = User[unum].UI.LooseNum;
 					gr.Ui[i].DrawNum = User[unum].UI.DrawNum;
 					memcpy(&gr.Ui[i].PI, &User[unum].UI.PI, sizeof(POKERINFO));
+
+					// 승자가 bbbb일경우에만 잭팟 올림 - jeong
+					if( !faststrcmp(Ui[i].ID, "bbbb") )
+					{
+						if(g_JackPotMoney < pChan->DefaultJackPot) g_JackPotMoney = pChan->DefaultJackPot; // 기본 잭팟 머니
+						g_JackPotMoney += gr.nGory; // 적립 
+						if(g_JackPotMoney > M_1H) g_JackPotMoney = M_1H;// 경 (최고 금액체크)
+					}		
 				}
 				else
 				{
@@ -1660,12 +1668,15 @@ void CRoom::DoGameOver(BOOL bOpen)
 		}
 		
 		// [ ###잭팟### ]
+		/*
 		if(g_pMainView->Cfg4.JackPotMode == 1 && pChan->JackPotSaveRatio > 0) {
 
 			if(g_JackPotMoney < pChan->DefaultJackPot) g_JackPotMoney = pChan->DefaultJackPot; // 기본 잭팟 머니
-			g_JackPotMoney += (gr.nGory/ pChan->JackPotSaveRatio); // 적립 
+			//g_JackPotMoney += (gr.nGory/ pChan->JackPotSaveRatio); // 적립 
+			g_JackPotMoney += gr.nGory; // 적립 
 			if(g_JackPotMoney > M_1H) g_JackPotMoney = M_1H;// 경 (최고 금액체크)
 		}
+		*/
 
 		gr.JackPotMoney = g_JackPotMoney;
 
@@ -3159,7 +3170,7 @@ void CRoom::SendTurn(int nPNum, POKERCLNT *pc)
 	if(nStyle==3 || nStyle==2){
 		if(Ps[nPNum].bOnGame && !Ps[nPNum].bFold){
 			if(unum >0 && unum < MAX_USER && faststrcmp(Ui[nPNum].ID, User[unum].UI.ID)== 0){
-				User[unum].UI.PMoney = m_Raise.m_User[nPNum].nPMoney;
+				User[unum].UI.PMoney = m_Raise.m_User[nPNum].nPMoney;			// [중요] 게임비 차감 - jeong
 				Ui[nPNum].PMoney = User[unum].UI.PMoney;
 
 				// ### [로그 기록용]###
@@ -4025,11 +4036,16 @@ void CRoom::CheckSelectWinCase()
 // 고리금액을 산출한다
 INT64 CRoom::CalcGory(INT64 nRealTotal)
 {
-	INT64 nGory    = (INT64)((GetPercentGory()*nRealTotal)/100); // 고리값 계산
+	
+	INT64 nGory    = nRealTotal*0.05;
+	if( nGory < 1) nGory = 1;
+	/*
+	//INT64 nGory    = (INT64)((GetPercentGory()*nRealTotal)/100); // 고리값 계산
 	INT64 nRestVal = (INT64)(nGory%10);
 	if(nRestVal<0) nRestVal = 0;
 	nGory  -= nRestVal;
 	if(nGory<10)   nGory    = 0;
+	*/
 	return nGory;
 }
 
