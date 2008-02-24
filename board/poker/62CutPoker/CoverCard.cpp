@@ -148,8 +148,8 @@ void CCoverCard::OnGameKey(int nVKey)
 			{
 				//nMouseOffSetY = nMouseOffSetY + nKeyDownTimes;
 				nMouseOffSetY = nMouseOffSetY + 10;
-				if( nMouseOffSetY > 500 )
-					nMouseOffSetY = 500;
+				if( nMouseOffSetY > 505 )
+					nMouseOffSetY = 505;
 				if( bKeyDown )
 				{
 					OnLButtonDown(nMouseOffSetX, nMouseOffSetY);
