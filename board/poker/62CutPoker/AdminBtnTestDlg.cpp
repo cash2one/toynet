@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "AdminBtnTestDlg.h"
 #include "DialogCtrlReposition.h"
+#include "62CutPokerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -66,6 +67,8 @@ BOOL CAdminBtnTestDlg::OnInitDialog()
 	bBtnX_ = bBtnY_ = bBtnZ_ = 0;
 	bBtnA_ = bBtnB_ = bBtnC_ = 0;
 
+	((C62CutPokerDlg *)AfxGetMainWnd())->m_hSubWindow = m_hWnd;
+	
 	//CenterWindow(g_pGameView->GetOwner());
 
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -93,7 +96,7 @@ void CAdminBtnTestDlg::OnPaint()
 	page_.PutSprAuto(160, 120, &testBtnSpr_, 4+bRight_);
 	
 	//mouse
-	page_.PutSprAuto(270, 100, &testBtnSpr_, 6);
+	page_.PutSprAuto(270, 100, &testBtnSpr_, 6+mouse_);
 
 	
 	//A,B,C
@@ -136,42 +139,47 @@ BOOL CAdminBtnTestDlg::PreTranslateMessage(MSG* pMsg)
 		if (pMsg->message == WM_KEYDOWN)
 			bDown = 1;
 
-		if(pMsg->wParam == 'A' || pMsg->wParam == 'a')
+		if(pMsg->wParam == VK_LEFT || pMsg->wParam == 'a')
 		{
 			bLeft_ = bDown;
 		}
-		else if(pMsg->wParam == 'D' || pMsg->wParam == 'd')
+		else if(pMsg->wParam == VK_RIGHT || pMsg->wParam == 'd')
 		{
 			bRight_ = bDown;
 		}
-		else if(pMsg->wParam == 'S' || pMsg->wParam == 's')
+		else if(pMsg->wParam == VK_DOWN || pMsg->wParam == 's')
 		{
 			bSelect_ = bDown;
 		}
-		else if(pMsg->wParam == 'U' || pMsg->wParam == 'u')
+		else if(pMsg->wParam == VK_INSERT || pMsg->wParam == 'u')
 		{
 			bBtnX_ = bDown;
 		}
-		else if(pMsg->wParam == 'I' || pMsg->wParam == 'i')
+		else if(pMsg->wParam == VK_HOME || pMsg->wParam == 'i')
 		{
 			bBtnY_ = bDown;
 		}
-		else if(pMsg->wParam == 'O' || pMsg->wParam == 'o')
+		else if(pMsg->wParam == VK_PRIOR || pMsg->wParam == 'o')
 		{
 			bBtnZ_ = bDown;
 		}
-		else if(pMsg->wParam == 'J' || pMsg->wParam == 'j')
+		else if(pMsg->wParam == VK_DELETE || pMsg->wParam == 'j')
 		{
 			bBtnA_ = bDown;
 		}
-		else if(pMsg->wParam == 'K' || pMsg->wParam == 'k')
+		else if(pMsg->wParam == VK_END || pMsg->wParam == 'k')
 		{
 			bBtnB_ = bDown;
 		}
-		else if(pMsg->wParam == 'L' || pMsg->wParam == 'l')
+		else if(pMsg->wParam == VK_NEXT || pMsg->wParam == 'l')
 		{
 			bBtnC_ = bDown;
 		}
+		else if(pMsg->wParam == 7 || pMsg->wParam == 'x')
+		{
+			mouse_ = bDown;
+		}
+		
 
 		Invalidate(FALSE);
 	}

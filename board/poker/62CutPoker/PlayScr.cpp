@@ -293,6 +293,7 @@ void CPlayScr::OnGameKey(int nVKey)
 
 	switch(nVKey)
 	{
+	//case 'a':
 	case VK_LEFT:
 	case VK_NUMPAD4:
 		{
@@ -324,6 +325,7 @@ void CPlayScr::OnGameKey(int nVKey)
 
 		} break;
 
+	//case 'd':
 	case VK_RIGHT:
 	case VK_NUMPAD6:
 		{
@@ -371,6 +373,7 @@ void CPlayScr::OnGameKey(int nVKey)
 
 		} break;
 
+	case 7:
 	case VK_UP: // 히튼 카드 보인다
 	case VK_NUMPAD5:
 		{
@@ -456,6 +459,7 @@ void CPlayScr::OnGameKey(int nVKey)
 
 		} break;
 
+	case 's':
 	case VK_DOWN:
 	case VK_NUMPAD2:
 		{
@@ -589,7 +593,7 @@ void CPlayScr::OnGameKey(int nVKey)
 		} break;
 
 	case 33: // VK_PAGE_UP: 
-	case VK_F4:
+	//case VK_F4:
 	case VK_F8:
 		{
 			if(!g_MyObserver && g_bChangeCardStage != TRUE)
@@ -1383,7 +1387,7 @@ void CPlayScr::draw_5user(CDC *pDC)
 			
 			CRect rect;
 			rect.SetRect(0,0,160,14);
-			rect.OffsetRect(MsgX+5, MsgY+5);
+			rect.OffsetRect(MsgX+5, MsgY+5-134);
 			if(str!="") {
 				pDC->DrawText(str, &rect, DT_CENTER | DT_WORDBREAK);
 			}

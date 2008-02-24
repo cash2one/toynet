@@ -134,6 +134,18 @@ public:
 	afx_msg LONG OnAllinMessage(UINT, LONG);// [수호천사] 2004.07.08
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+	//게임기
+public:
+	CComm232 m_clsRS232;
+	HANDLE m_hBaseWindow; //기본 윈도우 (CGameDlg, CLogDlg..)
+	HANDLE m_hSubWindow;  //대화상자 윈도우 - DoModal()로..
+
+	afx_msg long OnCommunication(WPARAM wParam, LPARAM lParam);// 추가 시킨 내용
+	afx_msg long OnKeypadDown(WPARAM wParam, LPARAM lParam);// 추가 시킨 내용
+	afx_msg long OnKeypadUp(WPARAM wParam, LPARAM lParam);// 추가 시킨 내용
+	afx_msg long OnCoinIn(WPARAM wParam, LPARAM lParam);
+	afx_msg long OnCoinOut(WPARAM wParam, LPARAM lParam);
 };
 
 

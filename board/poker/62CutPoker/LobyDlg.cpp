@@ -121,8 +121,16 @@ BEGIN_MESSAGE_MAP(CLobyDlg, CDialog)
 	ON_WM_TIMER()
 	ON_WM_CHAR()
 	ON_WM_KEYDOWN()
+	ON_WM_SHOWWINDOW()
 	//}}AFX_MSG_MAP
+	ON_MESSAGE(WM_COMM_READ , OnCommunication) //추가
+	ON_MESSAGE(WM_COMM_KEYPADDOWN , OnKeypadDown) //추가
+	ON_MESSAGE(WM_COMM_KEYPADUP , OnKeypadUp) //추가
+	ON_MESSAGE(WM_COMM_COININ , OnCoinIn) //추가
+	ON_MESSAGE(WM_COMM_COINOUT , OnCoinOut) //추가
+
 END_MESSAGE_MAP()
+
 /*
 	ON_COMMAND(IDC_MENU_ADM_INROOM, OnMenuAdmInroom)   // 방
 	ON_COMMAND(IDC_MENU_ADM_RENAMEROOM, OnMenuAdmRenameroom)
@@ -243,7 +251,7 @@ BOOL CLobyDlg::OnInitDialog()
 	////////////////////////////////////////////////////
 
 	m_nLobyCnt = 0;
-	SetTimer(LOBY_TIMER , 55 , NULL);
+	SetTimer(LOBY_TIMER , 60 , NULL);
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -1429,7 +1437,7 @@ void CLobyDlg::DrawEffect(CDC& dc)
 BOOL CLobyDlg::OnEraseBkgnd(CDC* pDC) 
 {
 	// TODO: Add your message handler code here and/or call default
-	DrawBkgnd(*pDC);
+	//DrawBkgnd(*pDC);
 	DrawEffect(*pDC);
 	return TRUE;
 
@@ -1693,7 +1701,7 @@ void CLobyDlg::OnTimer(UINT nIDEvent)
 	Invalidate(FALSE);
 	m_nLobyCnt++;
 	
-	CDialog::OnTimer(nIDEvent);
+	//CDialog::OnTimer(nIDEvent);
 }
 
 LRESULT CLobyDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) 
@@ -1715,7 +1723,7 @@ BOOL CLobyDlg::PreTranslateMessage(MSG* pMsg)
 			aumsg.Set(Play[0].UI.UNum, 100, g_RI.RoomNum);
 			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 		}
-		else if(pMsg->wParam == 'S' || pMsg->wParam == 's')
+		else if(pMsg->wParam == VK_DOWN || pMsg->wParam == 'S' || pMsg->wParam == 's')
 		{
 			if( Play[0].UI.PMoney >= 500 )
 				OnButtonQuickstart();
@@ -1744,107 +1752,55 @@ void CLobyDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CDialog::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
+void CLobyDlg::OnShowWindow(BOOL bShow, UINT nStatus) 
+{
+	CDialog::OnShowWindow(bShow, nStatus);
+	
 
+	// TODO: Add your message handler code here
 
+	if (bShow)
+		((C62CutPokerDlg *)AfxGetMainWnd())->m_hBaseWindow = m_hWnd;
+	
+}
 
+long CLobyDlg::OnCommunication(WPARAM wParam, LPARAM lParam)
+{
+	//m_clsRS232.ProcessRcvData();
 
+	return 1;
+}
 
+long CLobyDlg::OnKeypadDown(WPARAM wParam, LPARAM lParam)
+{
 
+	//::PostMessage((HWND)m_clsRS232.hCommWnd, WM_KEYDOWN, GetValFromCom(wParam), lParam);
+	//::PostMessage((HWND)m_hCurWindow, WM_KEYDOWN, GetValFromCom(wParam), lParam);
 
+	return 1;
+}
 
+long CLobyDlg::OnKeypadUp(WPARAM wParam, LPARAM lParam)
+{
+	//::PostMessage((HWND)m_clsRS232.hCommWnd, WM_KEYDOWN, GetValFromCom(wParam), lParam);
+	//::PostMessage((HWND)m_hCurWindow, WM_KEYUP, GetValFromCom(wParam), lParam);
 
+	return 1;
+}
 
+long CLobyDlg::OnCoinIn(WPARAM wParam, LPARAM lParam)
+{
 
 
+	return 1;
+}
 
+// 코인 하나가 배출 되었다는 의미
+long CLobyDlg::OnCoinOut(WPARAM wParam, LPARAM lParam)
+{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	return 1;
+}
 
 
 

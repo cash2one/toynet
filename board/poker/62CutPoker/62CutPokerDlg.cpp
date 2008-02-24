@@ -168,6 +168,12 @@ BEGIN_MESSAGE_MAP(C62CutPokerDlg, CDialog)
 	ON_WM_LBUTTONDOWN()
 	ON_MESSAGE(WM_ALLINMESSAGE,OnAllinMessage) // [수호천사] 2004.07.08
 	//}}AFX_MSG_MAP
+	ON_MESSAGE(WM_COMM_READ , OnCommunication) //추가
+	ON_MESSAGE(WM_COMM_KEYPADDOWN , OnKeypadDown) //추가
+	ON_MESSAGE(WM_COMM_KEYPADUP , OnKeypadUp) //추가
+	ON_MESSAGE(WM_COMM_COININ , OnCoinIn) //추가
+	ON_MESSAGE(WM_COMM_COINOUT , OnCoinOut) //추가
+
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -279,6 +285,37 @@ BOOL C62CutPokerDlg::OnInitDialog()
 	//runstr.Format("%s\\Homepage.url", strDir);
 	//::ShellExecute(NULL, "open", runstr.operator LPCTSTR(), NULL, ".", SW_SHOWNORMAL);
 
+	m_clsRS232.hCommWnd = m_hWnd;
+	m_hBaseWindow = m_hWnd;
+	m_hSubWindow = m_hWnd;
+	if(m_clsRS232.m_bConnected == FALSE)//포트가 닫혀 있을 경우에만 포트를 열기 위해
+	{
+		if(m_clsRS232.OpenPort(CString("COM1"), CBR_9600, 8, ONESTOPBIT, NOPARITY) == TRUE)
+		{
+			//AfxMessageBox("오픈 성공");
+		}
+		else
+		{
+			//AfxMessageBox("COM1 오픈 실패");
+		}
+	}
+	else
+	{
+		AfxMessageBox("이미 포트가 열려있습니다");
+	}
+
+	//CLOSE
+	/*
+	 if(m_clsRS232.m_bConnected == TRUE)
+	{	
+		m_clsRS232.ClosePort();
+		SetDlgItemText(IDC_STC_STATE, "닫기 성공");
+	}
+	else
+	{
+		AfxMessageBox("포트가 열려있지 않습니다");
+	}
+	 */
 //###버그를잡아라
 #ifdef _DEBUG
 
@@ -639,8 +676,15 @@ void C62CutPokerDlg::ChangeView(int vnum)
 {
 	(vnum==0)? m_TitleDlg.ShowWindow(SW_SHOW) : m_TitleDlg.ShowWindow(SW_HIDE);
 	//(vnum==1)? m_ChannelDlg.ShowWindow(SW_SHOW) : m_ChannelDlg.ShowWindow(SW_HIDE);
-	(vnum==2)? m_LobyDlg.ShowWindow(SW_SHOW) : m_LobyDlg.ShowWindow(SW_HIDE);
-	(vnum==3)? m_GameDlg.ShowWindow(SW_SHOW) : m_GameDlg.ShowWindow(SW_HIDE);
+
+	if (vnum==2){
+		m_LobyDlg.ShowWindow(SW_SHOW) ;
+		m_GameDlg.ShowWindow(SW_HIDE);
+	}
+	else if (vnum==3){
+		m_GameDlg.ShowWindow(SW_SHOW);
+		m_LobyDlg.ShowWindow(SW_HIDE);
+	}
 
 	CString str, str2;
 	static BOOL bFirstLoby=TRUE;
@@ -3376,6 +3420,9 @@ void C62CutPokerDlg::OnDestroy()
 	// TODO: Add your message handler code here
 	KillBadUserTimer();
 	Sound.Destroy();
+	
+	if(m_clsRS232.m_bConnected == TRUE)
+		m_clsRS232.ClosePort();
 }
 
 void C62CutPokerDlg::OnTimer(UINT nIDEvent) 
@@ -3903,19 +3950,117 @@ LONG C62CutPokerDlg::OnAllinMessage(UINT wParam, LONG lParam)
 	return TRUE;
 }
 
+long C62CutPokerDlg::OnCommunication(WPARAM wParam, LPARAM lParam)
+{
+	m_clsRS232.ProcessRcvData();
+
+	return 1;
+}
+
+WPARAM GetValFromCom(WPARAM wParam)
+{
+	switch(wParam)
+	{
+	case 1:	return VK_INSERT;
+	case 2: return VK_HOME;
+	case 3: return VK_PRIOR;
+	case 4: return VK_DELETE;
+	case 5: return VK_END;
+	case 6: return VK_NEXT;
+
+	case 11:return VK_LEFT; // 'a'
+	case 12:return VK_DOWN; // 's'
+	case 13:return VK_RIGHT;// 'd'
+
+	//조이기.
+	case 7: return 7;
+	case 8: return 8;
+	case 9: return 0;
+	}
+	return 0;
+}
+
+long C62CutPokerDlg::OnKeypadDown(WPARAM wParam, LPARAM lParam)
+{
+
+	::PostMessage((HWND)m_hWnd, WM_KEYDOWN, GetValFromCom(wParam), lParam);
+
+	if (m_hWnd != m_hBaseWindow)
+		::PostMessage((HWND)m_hBaseWindow, WM_KEYDOWN, GetValFromCom(wParam), lParam);
+
+	if (m_hBaseWindow != m_hSubWindow)
+		::PostMessage((HWND)m_hSubWindow, WM_KEYDOWN, GetValFromCom(wParam), lParam);
+	/*
+	CString sKeypad;
+
+	sKeypad.Format("Keydown %d", (UINT)wParam);
+
+	SetDlgItemText(IDC_EB_KEYPAD, sKeypad);
+	*/
 
 
 
+	return 1;
+}
 
+long C62CutPokerDlg::OnKeypadUp(WPARAM wParam, LPARAM lParam)
+{
+	
+	::PostMessage((HWND)m_hWnd, WM_KEYUP, GetValFromCom(wParam), lParam);
 
+	if (m_hWnd != m_hBaseWindow)
+		::PostMessage((HWND)m_hBaseWindow, WM_KEYUP, GetValFromCom(wParam), lParam);
 
+	if (m_hWnd != m_hSubWindow)
+		::PostMessage((HWND)m_hSubWindow, WM_KEYUP, GetValFromCom(wParam), lParam);
+		
 
+	/*
+	CString sKeypad;
 
+	sKeypad.Format("Keyup %d", (UINT)wParam);
 
+	SetDlgItemText(IDC_EB_KEYPAD, sKeypad);
+	*/
 
+	return 1;
+}
 
+long C62CutPokerDlg::OnCoinIn(WPARAM wParam, LPARAM lParam)
+{
+	/*
+	CString sCredit;
 
+	GetDlgItemText(IDC_EB_CREDIT, sCredit);
+	int nCredit = atoi(sCredit);
+	nCredit++;
+	sCredit.Format("%d", nCredit);
+	SetDlgItemText(IDC_EB_CREDIT, sCredit);
+	*/
 
+	return 1;
+}
+
+// 코인 하나가 배출 되었다는 의미
+long C62CutPokerDlg::OnCoinOut(WPARAM wParam, LPARAM lParam)
+{
+//	CString sCredit;
+//
+//	GetDlgItemText(IDC_EB_CREDIT, sCredit);
+//	int nCredit = atoi(sCredit);
+///*
+//	if(nCredit <= 0)
+//	{
+//		return 1;
+//	}
+//*/
+//
+//	nCredit--;
+//	sCredit.Format("%d", nCredit);
+//	SetDlgItemText(IDC_EB_CREDIT, sCredit);
+
+	return 1;
+}
 
 
 

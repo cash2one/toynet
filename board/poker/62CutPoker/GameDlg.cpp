@@ -49,7 +49,14 @@ BEGIN_MESSAGE_MAP(CGameDlg, CDialog)
 	//{{AFX_MSG_MAP(CGameDlg)
 	ON_WM_TIMER()
 	ON_WM_DESTROY()
+	ON_WM_SHOWWINDOW()
 	//}}AFX_MSG_MAP
+	ON_MESSAGE(WM_COMM_READ , OnCommunication) //추가
+	ON_MESSAGE(WM_COMM_KEYPADDOWN , OnKeypadDown) //추가
+	ON_MESSAGE(WM_COMM_KEYPADUP , OnKeypadUp) //추가
+	ON_MESSAGE(WM_COMM_COININ , OnCoinIn) //추가
+	ON_MESSAGE(WM_COMM_COINOUT , OnCoinOut) //추가
+
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -88,8 +95,8 @@ BOOL CGameDlg::OnInitDialog()
 	// 게임뷰 윈도우 만들기
 	CRect rect(0, 0, GAMEVIEW_WIDTH, GAMEVIEW_HEIGHT);
 	//rect.OffsetRect(3, 60);
-	m_GameView.Create(NULL, "GameView", WS_CHILD | WS_VISIBLE | WS_CLIPCHILDREN, rect, this, 12345);
-	m_GameView.ShowWindow(SW_SHOW);
+	m_GameView.Create(NULL, "GameView", WS_CHILD | /*WS_VISIBLE | */WS_CLIPCHILDREN, rect, this, 12345);
+	//m_GameView.ShowWindow(SW_SHOW);
 	
 
 
@@ -208,6 +215,8 @@ BOOL CGameDlg::PreTranslateMessage(MSG* pMsg)
 	///////////////////////////////////////////////////////////////
 	else if(pMsg->message == WM_KEYDOWN) 
 	{
+		//m_GameView.PostMessage(WM_KEYDOWN, pMsg->wParam, pMsg->lParam);
+		//::PostMessage(m_GameView.m_hWnd, WM_KEYDOWN, pMsg->wParam, pMsg->lParam);
 		// 돈 추가 키 - jeong
 		if(pMsg->wParam == 'M' || pMsg->wParam == 'm')
 		{
@@ -308,23 +317,54 @@ BOOL CGameDlg::PreTranslateMessage(MSG* pMsg)
 	return CDialog::PreTranslateMessage(pMsg);
 }
 
+void CGameDlg::OnShowWindow(BOOL bShow, UINT nStatus) 
+{
+	CDialog::OnShowWindow(bShow, nStatus);
+	
+	//채팅 창이란다. 
+	// TODO: Add your message handler code here
+	//if (bShow)
+	//	((C62CutPokerDlg *)AfxGetMainWnd())->m_hBaseWindow = m_hWnd;
+	//m_GameView.ShowWindow(SW_HIDE);
+	if (bShow)
+		m_GameView.ShowWindow(SW_SHOW);
+	
+}
+
+long CGameDlg::OnCommunication(WPARAM wParam, LPARAM lParam)
+{
+	//m_clsRS232.ProcessRcv채Data();
+
+	return 1;
+}
+
+long CGameDlg::OnKeypadDown(WPARAM wParam, LPARAM lParam)
+{
+
+	///::PostMessage((HWND)m_clsRS232.hCommWnd, WM_KEYDOWN, GetValFromCom(wParam), lParam);
+	//::PostMessage((HWND)m_hCurWindow, WM_KEYDOWN, GetValFromCom(wParam), lParam);
+
+	return 1;
+}
+
+long CGameDlg::OnKeypadUp(WPARAM wParam, LPARAM lParam)
+{
+	//::PostMessage((HWND)m_clsRS232.hCommWnd, WM_KEYDOWN, GetValFromCom(wParam), lParam);
+	//::PostMessage((HWND)m_hCurWindow, WM_KEYUP, GetValFromCom(wParam), lParam);
+
+	return 1;
+}
+
+long CGameDlg::OnCoinIn(WPARAM wParam, LPARAM lParam)
+{
 
 
+	return 1;
+}
 
+// 코인 하나가 배출 되었다는 의미
+long CGameDlg::OnCoinOut(WPARAM wParam, LPARAM lParam)
+{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	return 1;
+}

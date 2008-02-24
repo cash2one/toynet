@@ -269,6 +269,9 @@ BOOL CResultHi::OnInitDialog()
 
 	CenterWindow(g_pGameView->GetOwner());	
 
+	
+	((C62CutPokerDlg *)AfxGetMainWnd())->m_hSubWindow = m_hWnd;
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -635,44 +638,35 @@ void CResultHi::OnMinigame()
 	OnOK();
 }
 
+BOOL CResultHi::PreTranslateMessage(MSG* pMsg) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	
+	if(pMsg->message == WM_KEYDOWN) 
+	{
 
+		if(pMsg->wParam == VK_LEFT)
+		{
+		}
+		else if(pMsg->wParam == VK_LEFT)
+		{
 
+		}
+		else if(pMsg->wParam == VK_RIGHT)
+		{
+			
+		}
+		/*
+		if(pMsg->wParam == VK_INSERT)
+		{
+			OnOK();
+		}
+		else if(pMsg->wParam == VK_HOME)
+		{
+			OnMinigame();
+		}
+		*/
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	return CDialog::PreTranslateMessage(pMsg);
+}

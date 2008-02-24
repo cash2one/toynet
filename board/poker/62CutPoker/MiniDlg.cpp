@@ -107,7 +107,10 @@ BOOL CMiniDlg::OnInitDialog()
 	CloseGameCnt = 0;
 	bInitGame = FALSE;
 
+	((C62CutPokerDlg *)AfxGetMainWnd())->m_hSubWindow = m_hWnd;
+
 	m_MnGame.InitGame();
+	
 
 	m_bMiniBtnMouseDown = FALSE; 
 	m_nMiniBtnIndex = 0;
@@ -424,7 +427,10 @@ BOOL CMiniDlg::PreTranslateMessage(MSG* pMsg)
 		if(pMsg->wParam == VK_INSERT || pMsg->wParam == VK_DELETE)
 		{
 			m_MnGame.OnGameKey(pMsg->wParam);
+			//m_MnGame.IsGame();
 		}
+		else if (pMsg->wParam == VK_HOME)
+			m_MnGame.StopGame();
 		else if(pMsg->wParam == 'M' || pMsg->wParam == 'm')
 		{
 			Play[0].PrevMoney += 100;

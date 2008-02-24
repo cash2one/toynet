@@ -746,7 +746,7 @@ void CGame::DoExitSubscript(int bexit)
 	SockMan.SendData(g_MainSrvSID, esmsg.pData, esmsg.GetTotalSize());
 }
 
-// ### [ Frame++ ] ### *3
+// ### [ Frame++ ] ### *3mmm
 void CGame::Card_Distribute()
 {
 	int delay=0;// Áö¿¬

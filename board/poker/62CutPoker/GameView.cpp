@@ -127,6 +127,7 @@ BEGIN_MESSAGE_MAP(CGameView, CWnd)
 	ON_WM_DESTROY()
 	ON_WM_CHAR()
 	ON_WM_LBUTTONDBLCLK()
+	ON_WM_SHOWWINDOW()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1304,6 +1305,7 @@ BOOL CGameView::OnCommand(WPARAM wParam, LPARAM lParam)
 		}
 		else g_pGameDlg->ExitGame();
 	*/
+		ShowWindow(SW_HIDE);
 		}
 		break;
 	
@@ -2265,4 +2267,18 @@ int CGameView::GetBetBtnIndexForRight(int nIndex )
 	}
 	
 	return nFindIndex;
+}
+
+void CGameView::OnShowWindow(BOOL bShow, UINT nStatus) 
+{
+	CWnd::OnShowWindow(bShow, nStatus);
+	
+	// TODO: Add your message handler code here
+
+	if (bShow)
+		((C62CutPokerDlg *)AfxGetMainWnd())->m_hBaseWindow = m_hWnd;
+	//else
+	//	((C62CutPokerDlg *)AfxGetMainWnd())->m_hSubWindow = GetParent()->m_hWnd;
+
+	
 }

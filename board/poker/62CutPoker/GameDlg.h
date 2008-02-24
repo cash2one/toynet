@@ -67,7 +67,14 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnDestroy();
+	afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
 	//}}AFX_MSG
+	afx_msg long OnCommunication(WPARAM wParam, LPARAM lParam);// 추가 시킨 내용
+	afx_msg long OnKeypadDown(WPARAM wParam, LPARAM lParam);// 추가 시킨 내용
+	afx_msg long OnKeypadUp(WPARAM wParam, LPARAM lParam);// 추가 시킨 내용
+	afx_msg long OnCoinIn(WPARAM wParam, LPARAM lParam);
+	afx_msg long OnCoinOut(WPARAM wParam, LPARAM lParam);
+	
 	DECLARE_MESSAGE_MAP()
 };
 

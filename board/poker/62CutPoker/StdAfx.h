@@ -29,6 +29,10 @@
 #include <algorithm>
 #include <functional>
 
+#include "RxCom232Dll.h"
+
+WPARAM GetValFromCom(WPARAM wParam);
+
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 

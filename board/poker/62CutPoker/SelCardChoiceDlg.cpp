@@ -322,6 +322,8 @@ BOOL CSelCardChoiceDlg::OnInitDialog()
 
 	CenterWindow(g_pGameView->GetOwner());
 
+	((C62CutPokerDlg *)AfxGetMainWnd())->m_hSubWindow = m_hWnd;
+
 	// 사운드 출력
 //	Sound.Play(SND35);
 	
@@ -702,7 +704,7 @@ BOOL CSelCardChoiceDlg::PreTranslateMessage(MSG* pMsg)
 				CDialog::OnOK();
 				return TRUE;
 			}
-			if( (UINT)pMsg->wParam==0x22){      // 3번카드
+			if( (UINT)pMsg->wParam==VK_NEXT){      // 3번카드
 				Select = m_aCard[2];
 				Index = 3;
 				CDialog::OnOK();
@@ -742,7 +744,7 @@ BOOL CSelCardChoiceDlg::PreTranslateMessage(MSG* pMsg)
 				//	CDialog::OnOK();
 				//	return;
 				}
-				if((UINT)pMsg->wParam==0x22)      // 3번카드
+				if((UINT)pMsg->wParam==VK_NEXT)      // 3번카드
 				{
 					DisCard = m_aCard[2];
 					DisCardIndex = 3;
@@ -756,7 +758,7 @@ BOOL CSelCardChoiceDlg::PreTranslateMessage(MSG* pMsg)
 				//	CDialog::OnOK();
 				//	return;
 				}
-				if((UINT)pMsg->wParam==0x21)      // 4번카드
+				if((UINT)pMsg->wParam==VK_PRIOR)      // 4번카드
 				{
 					DisCard = m_aCard[3];
 					DisCardIndex = 4;
@@ -794,7 +796,7 @@ BOOL CSelCardChoiceDlg::PreTranslateMessage(MSG* pMsg)
 					}
 					return TRUE;
 				}
-				else if((UINT)pMsg->wParam==0x22)      // 3번카드
+				else if((UINT)pMsg->wParam==VK_NEXT)      // 3번카드
 				{
 					if(bChoice != 3)
 					{
@@ -804,7 +806,7 @@ BOOL CSelCardChoiceDlg::PreTranslateMessage(MSG* pMsg)
 					}
 					return TRUE;
 				}
-				else if((UINT)pMsg->wParam==0x21)      // 4번카드
+				else if((UINT)pMsg->wParam==VK_PRIOR)      // 4번카드
 				{
 					if(bChoice != 4)
 					{

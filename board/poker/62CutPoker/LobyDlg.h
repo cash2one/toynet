@@ -89,6 +89,7 @@ public:
 	void User_SetItem(int unum, char *id, int winnum, int loosenum, int drawnum, int point, int position, int roomnum, int level );
 	void User_DelItem(int unum, char *id);
 
+
 	//[관리자 모드 작업]
 	int  GetUserNum(CString strID);
 	BOOL CLobyDlg::GetStyleRoomInfo(int rnum, STYLEROOMINFO &sri);
@@ -181,7 +182,14 @@ protected:
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
 	//}}AFX_MSG
+
+	afx_msg long OnCommunication(WPARAM wParam, LPARAM lParam);// 추가 시킨 내용
+	afx_msg long OnKeypadDown(WPARAM wParam, LPARAM lParam);// 추가 시킨 내용
+	afx_msg long OnKeypadUp(WPARAM wParam, LPARAM lParam);// 추가 시킨 내용
+	afx_msg long OnCoinIn(WPARAM wParam, LPARAM lParam);
+	afx_msg long OnCoinOut(WPARAM wParam, LPARAM lParam);
 	DECLARE_MESSAGE_MAP()
 };
 
