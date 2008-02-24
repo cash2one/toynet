@@ -146,19 +146,20 @@ void CCoverCard::OnGameKey(int nVKey)
 		{
 			if( bAllowControl && Game.FlyWindCard == FALSE )
 			{
-				//nMouseOffSetY = nMouseOffSetY + nKeyDownTimes;
-				nMouseOffSetY = nMouseOffSetY + 10;
-				if( nMouseOffSetY > 505 )
-					nMouseOffSetY = 505;
+				/*
+				nMouseOffSetY = nMouseOffSetY + nKeyDownTimes;
 				if( bKeyDown )
 				{
 					OnLButtonDown(nMouseOffSetX, nMouseOffSetY);
 					bKeyDown = FALSE;
 				}
-	
 				OnLButtonMove(nMouseOffSetX, nMouseOffSetY);
-
-				//nKeyDownTimes++;
+				nKeyDownTimes++;
+				*/
+				nMouseOffSetY = 25;
+				bButtonDown = TRUE;
+				OnLButtonMove(nMouseOffSetX, nMouseOffSetY);
+				//OnLButtonUp(nMouseOffSetX, nMouseOffSetY);
 			}	
 		}
 		break;
@@ -181,7 +182,7 @@ void CCoverCard::OnGameKeyUp(int nVKey)
 				OnLButtonUp(nMouseOffSetX, nMouseOffSetY);
 				bKeyDown = TRUE;
 				nKeyDownTimes = 0;
-				nMouseOffSetY = 470;
+				nMouseOffSetY = 0;
 			}
 		}
 		break;
