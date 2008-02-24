@@ -570,12 +570,15 @@ void CCharBox::draw_5user(CDC *pDC)
 	} 
 	else //if( PNum < 3)	 상대방금액을 아바타 아래로 위치변경 - modefied by jeong 
 	{
+		CString strAIM = "";
+		
+		strAIM = NumberToOrientalString(Play[PNum].UI.PMoney);
+		strAIM +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
+
 		pDC->SetTextColor(RGB(172,252,255));
-		rect.SetRect(0,0,180,14);
-		//rect.OffsetRect(x+56, y+7);				
-		//rect.OffsetRect(398, 180);				
+		rect.SetRect(0,0,180,14);			
 		rect.OffsetRect(310, 34);				
-		//pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
+		//pDC->DrawText(strAIM, &rect, DT_RIGHT | DT_WORDBREAK);
 	}
 	/*
 	else {
@@ -847,6 +850,27 @@ void CCharBox::draw_6user(CDC *pDC)
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -109,6 +109,15 @@ BOOL CMiniDlg::OnInitDialog()
 
 	m_MnGame.InitGame();
 
+	m_bMiniBtnMouseDown = FALSE; 
+	m_nMiniBtnIndex = 0;
+
+	m_nMiniOffSetX[0] = 263;
+	m_nMiniOffSetX[1] = 371;
+	
+	m_nMiniOffSetY[0] = 403;
+	m_nMiniOffSetY[1] = 403;
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -376,6 +385,26 @@ LRESULT CMiniDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 
 	}
+
+	// 게임 시작 및 종료 버튼 효과 - jeong
+	X2PlayBtn.OnMouseMove( m_nMiniOffSetX[m_nMiniBtnIndex], m_nMiniOffSetY[m_nMiniBtnIndex] );
+	X2EndBtn.OnMouseMove( m_nMiniOffSetX[m_nMiniBtnIndex], m_nMiniOffSetY[m_nMiniBtnIndex] );
+	
+	if( m_bMiniBtnMouseDown )
+	{
+		m_bMiniBtnMouseDown = FALSE;
+		
+		mxp = m_nMiniOffSetX[m_nMiniBtnIndex];
+		myp = m_nMiniOffSetY[m_nMiniBtnIndex];
+		
+		X2PlayBtn.OnLButtonDown(mxp, myp);
+		X2EndBtn.OnLButtonDown(mxp, myp);
+		
+		X2PlayBtn.OnLButtonUp(mxp, myp);
+		X2EndBtn.OnLButtonUp(mxp, myp);
+	}
+
+	
 	
 	return CDialog::WindowProc(message, wParam, lParam);
 }
@@ -396,6 +425,32 @@ BOOL CMiniDlg::PreTranslateMessage(MSG* pMsg)
 			CSV_ASK_MONEYINFO aumsg;
 			aumsg.Set(Play[0].UI.UNum, 100, g_RI.RoomNum);
 			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+		}
+	}
+
+	if( m_MnGame.GetWinGame() == 0 || m_MnGame.GetGameContinue() == 2 )
+	{
+		if(pMsg->message == WM_KEYDOWN)
+		{
+		
+			if(pMsg->wParam == VK_LEFT)
+			{	
+				m_nMiniBtnIndex--;
+				
+				if( m_nMiniBtnIndex < 0)
+					m_nMiniBtnIndex = 1;
+			}
+			else if( pMsg->wParam == VK_RIGHT )
+			{
+				m_nMiniBtnIndex++;
+				if( m_nMiniBtnIndex > 1)
+					m_nMiniBtnIndex = 0;
+			}
+			else if( pMsg->wParam == VK_DOWN )
+			{
+				m_bMiniBtnMouseDown = TRUE;
+			}
+		
 		}
 	}
 	

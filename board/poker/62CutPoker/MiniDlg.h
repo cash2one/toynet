@@ -30,6 +30,8 @@
 #define MINISTOP_OFFSET_X 322
 #define MINISTOP_OFFSET_Y 390
 
+#define MINI_BTN_TOTAL 2
+
 
 /////////////////////////////////////////////////////////////////////////////
 // CMiniDlg dialog
@@ -105,6 +107,12 @@ private:
 
 	int					X2Cnt;
 	int					CloseGameCnt;
+
+	// 시작 종료 버튼 인덱스
+	int m_nMiniBtnIndex;
+	bool m_bMiniBtnMouseDown;
+	int	m_nMiniOffSetX[MINI_BTN_TOTAL];
+	int	m_nMiniOffSetY[MINI_BTN_TOTAL];
 };
 
 //{{AFX_INSERT_LOCATION}}

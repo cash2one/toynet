@@ -184,7 +184,7 @@ BOOL CResultHi::OnInitDialog()
 
 	if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0){
 		m_CloseBtn.Init(130,361,".\\image\\commonbtn\\Btn_ok.bmp",4);
-		//m_MiniGame.Init(190,361,".\\image\\commonbtn\\Btn_Yes.bmp",4);
+		//m_MiniGame.Init(250,361,".\\image\\commonbtn\\Btn_Yes.bmp",4);
 	}
 	else{
 		m_CloseBtn.Init(110,251,".\\image\\commonbtn\\Btn_ok.bmp",4);

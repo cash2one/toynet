@@ -70,6 +70,7 @@ public:
 	CLobyDlg(CWnd* pParent = NULL);   // standard constructor
 
 	void DrawBkgnd(CDC& dc);
+	void DrawEffect(CDC& dc);
 	void RefreshList();
 
 	//void Room_InitList();

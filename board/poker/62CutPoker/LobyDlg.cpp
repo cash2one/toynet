@@ -244,7 +244,7 @@ BOOL CLobyDlg::OnInitDialog()
 
 	m_nLobyCnt = 0;
 	SetTimer(LOBY_TIMER , 55 , NULL);
-
+	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -254,9 +254,9 @@ void CLobyDlg::OnPaint()
 	CPaintDC dc(this); // device context for painting
 	
 	// TODO: Add your message handler code here
-	DrawBkgnd(dc);
-
 	SetFocus();
+	DrawBkgnd(dc);
+	DrawEffect(dc);
 
 	// Do not call CDialog::OnPaint() for painting messages
 }
@@ -1363,7 +1363,6 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 	GetClientRect(&rect);
 	dc.BitBlt(0, 0, rect.right, rect.bottom, &cdc, 0, 0, SRCCOPY);
 
-	// 캐릭터 정보 찍기
 	// 폰트 생성
 	CFont Font1;
 	if(Font1.m_hObject == NULL)
@@ -1382,22 +1381,6 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 
 	dc.SetBkMode(TRANSPARENT);
 
-
-
-	// Draw Insert Coin  - jeong
-	CMyBitmap bmpInsertCoin;
-	bmpInsertCoin.LoadBitmapFile(".\\image\\insertcoin.bmp");	
-
-	if(bmpInsertCoin.m_hObject == NULL) return;
-	
-	if( Play[0].UI.PMoney < 500 )
-	{
-		if((m_nLobyCnt/20)%2  == 0 )
-			bmpInsertCoin.TransDraw(dc.m_hDC, 300, 550, 230, 35, 0, 0, RGB(248,0,248));
-	}
-
-	bmpInsertCoin.DeleteObject();
-
 	if( Play[0].UI.PMoney < 500 )
 		m_QuickStart.EnableWindow(FALSE);
 	else
@@ -1408,7 +1391,6 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 	CString strM="";
 	CFont* pOldFont = dc.SelectObject(&Font1);
 	
-	// 아이디 찍기 
 	dc.SetTextColor(RGB(255,255,255));
 	rect.SetRect(0,0,200,80);
 	rect.OffsetRect(560, 525);
@@ -1420,49 +1402,35 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 	rect.OffsetRect(560, 500);
 	str.Format("[알림] S키를 눌러야 입장 가능");// ### [ 관전기능 ] ###	
 	dc.DrawText(str, &rect, DT_RIGHT | DT_WORDBREAK);
-	/*
-	rect.OffsetRect(0, 20);
-	str.Format(g_StrMan.Get(_T("LEVEL")));	
-	dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);
 
-	// ### [ 관전기능 ] ###
-	rect.OffsetRect(0, 30);
-	str.Format("전적:");	
-	dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);
-	rect.OffsetRect(0, 15);
-	str.Format("%d승 %d패", g_MyInfo.UI.WinNum, g_MyInfo.UI.LooseNum);	
-	dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);
-	rect.OffsetRect(0, 15);
-	str.Format("%d포기", g_MyInfo.UI.DrawNum);// ### [ 관전기능 ] ###	
-	dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);
-	rect.OffsetRect(0, 15);
-	str.Format(g_StrMan.Get(_T("WINRATE")),winpro,'%');
-	dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);
-	str = NumberToOrientalString(g_MyInfo.UI.PMoney);// ### [ 관전기능 ] ###
-	//str.Format(g_StrMan.Get(_T("HASPMONEY")),strM);
-	str +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
-	rect.SetRect(0,0,210,80);
-	rect.OffsetRect(576,524);
-	dc.DrawText(str, &rect, DT_LEFT | DT_WORDBREAK);
-
-	/////////////////////////////////////////////////////////
-	dc.SetTextColor( RGB(255, 255, 255) );
-	dc.TextOut(140, 8, m_LobyMsg);
-	/////////////////////////////////////////////////////////
-	dc.SelectObject(pOldFont);
-
-	m_CharView.SetCharacter(&g_MyInfo.UI);// ### [ 관전기능 ] ###
-	*/
 	Font1.DeleteObject();
 	cdc.SelectObject(pOldBmp);
 	cdc.DeleteDC();
 	Back.DeleteObject();
 }
 
+// Draw Insert Coin  - jeong
+void CLobyDlg::DrawEffect(CDC& dc)
+{
+	CMyBitmap bmpInsertCoin;
+	bmpInsertCoin.LoadBitmapFile(".\\image\\insertcoin.bmp");	
+	
+	if(bmpInsertCoin.m_hObject == NULL) return;
+	
+	if( Play[0].UI.PMoney < 500 )
+	{
+		if((m_nLobyCnt/15)%2  == 0 )
+			bmpInsertCoin.TransDraw(dc.m_hDC, 300, 550, 230, 35, 0, 0, RGB(248,0,248));
+	}
+	
+	bmpInsertCoin.DeleteObject();
+}
+
 BOOL CLobyDlg::OnEraseBkgnd(CDC* pDC) 
 {
 	// TODO: Add your message handler code here and/or call default
 	DrawBkgnd(*pDC);
+	DrawEffect(*pDC);
 	return TRUE;
 
 	
