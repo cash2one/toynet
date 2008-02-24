@@ -2136,6 +2136,10 @@ void CGameView::OnLButtonDblClk(UINT nFlags, CPoint point)
 BOOL CGameView::PreTranslateMessage(MSG* pMsg) 
 {
 	// TODO: Add your specialized code here and/or call the base class
+	if( g_Mini.X2Cnt > 0 )				// 미니게임 진행시 본게임 키 막음 
+		return TRUE;
+
+
 	if( !m_bShowSelectedBtn )
 	{
 	

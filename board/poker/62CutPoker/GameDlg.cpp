@@ -302,6 +302,9 @@ BOOL CGameDlg::PreTranslateMessage(MSG* pMsg)
 		}
 
 	}
+	else if( pMsg->message == WM_KEYUP)
+		g_CvCard.OnGameKeyUp(pMsg->wParam);
+	
 	return CDialog::PreTranslateMessage(pMsg);
 }
 

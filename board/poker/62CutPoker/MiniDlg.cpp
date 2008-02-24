@@ -242,6 +242,7 @@ void CMiniDlg::OnDestroy()
 	
 	// TODO: Add your message handler code here
 	KillTimer( MINIGAME_TIMER );
+	X2Cnt = 0;
 	
 }
 
@@ -415,6 +416,9 @@ LRESULT CMiniDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 BOOL CMiniDlg::PreTranslateMessage(MSG* pMsg) 
 {
 	// TODO: Add your specialized code here and/or call the base class
+	if( Game.bGameStart )			// 본게임 진행중 미니게임 키 막음
+		return TRUE;
+
 	if(pMsg->message == WM_KEYDOWN) 
 	{
 		if(pMsg->wParam == VK_INSERT || pMsg->wParam == VK_DELETE)

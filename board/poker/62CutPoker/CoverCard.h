@@ -25,8 +25,13 @@ public:
 	BOOL bButtonMove;
 	BOOL bBUttonUp;
 	BOOL bDraw;
-	int	nYpDown;
-	int nYpMove;
+	int	 nYpDown;
+	int  nYpMove;
+	int	 nKeyDownTimes;
+
+	int	 nMouseOffSetX;
+	int	 nMouseOffSetY;
+	BOOL bKeyDown;
 
 	void Init(CPage *ppage, int cardnum, int pnum);	// 카드 셋팅
 	void Clear();
@@ -36,6 +41,8 @@ public:
 	BOOL OnLButtonUp(int xp, int yp);
 	BOOL OnLButtonDown(int xp, int yp);
 	BOOL OnLButtonMove(int xp, int yp);
+	void OnGameKey(int nVKey);
+	void OnGameKeyUp(int nVKey);
 
 	void Draw( int nYp );
 };

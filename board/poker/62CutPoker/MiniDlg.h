@@ -47,6 +47,7 @@ public:
 public:
 	CMiniGame			m_MnGame;
 	bool				bInitGame;
+	int					X2Cnt;
 	
 // Construction
 public:
@@ -105,7 +106,6 @@ private:
 	CGraphButton		X2PlayBtn;
 	CGraphButton		X2EndBtn;
 
-	int					X2Cnt;
 	int					CloseGameCnt;
 
 	// 시작 종료 버튼 인덱스

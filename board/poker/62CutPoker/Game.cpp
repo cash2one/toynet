@@ -323,6 +323,7 @@ void CGame::PlayMusic()
 void CGame::OnGameKey(int nVKey)
 {
 	PlayScr[0].OnGameKey(nVKey);
+	g_CvCard.OnGameKey(nVKey);
 }
 
 BOOL CGame::OnLButtonDown(int x, int y)
@@ -343,7 +344,7 @@ BOOL CGame::OnLButtonDown(int x, int y)
 	if(PlayScr[4].OnLButtonDown(x, y)) { return TRUE; }
 	if(PlayScr[5].OnLButtonDown(x, y)) { return TRUE; }
 
-	g_CvCard.OnLButtonDown(x, y);
+	//g_CvCard.OnLButtonDown(x, y);
 	
 	return FALSE;
 }
@@ -351,14 +352,14 @@ BOOL CGame::OnLButtonDown(int x, int y)
 BOOL CGame::OnLButtonUp(int x, int y)
 {
 	if(PlayScr[0].OnLButtonUp(x, y) ) return TRUE;
-	g_CvCard.OnLButtonUp(x, y);
+	//g_CvCard.OnLButtonUp(x, y);
 	return FALSE;
 }
 
 BOOL CGame::OnMouseMove(int x, int y)
 {
 	if(PlayScr[0].OnMouseMove(x, y) ) return TRUE;
-	g_CvCard.OnLButtonMove(x, y);
+	//g_CvCard.OnLButtonMove(x, y);
 	return FALSE;
 }
 

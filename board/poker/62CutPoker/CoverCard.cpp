@@ -44,6 +44,11 @@ void CCoverCard::Clear()
 	bButtonMove = FALSE;
 	bBUttonUp = FALSE;
 	bDraw = FALSE;
+
+	nMouseOffSetX = 470;
+	nMouseOffSetY = 470;
+	nKeyDownTimes = 0;
+	bKeyDown = TRUE;
 }
 
 void CCoverCard::Reset()
@@ -131,4 +136,60 @@ BOOL CCoverCard::OnLButtonMove(int xp, int yp)
 	}
 
 	return FALSE;
+}
+
+void CCoverCard::OnGameKey(int nVKey)
+{
+	switch(nVKey)
+	{
+		case 55:				// 7번 키
+		{
+			if( bAllowControl && Game.FlyWindCard == FALSE )
+			{
+				nMouseOffSetY = nMouseOffSetY + nKeyDownTimes;
+				if( bKeyDown )
+				{
+					OnLButtonDown(nMouseOffSetX, nMouseOffSetY);
+					bKeyDown = FALSE;
+				}
+	
+				OnLButtonMove(nMouseOffSetX, nMouseOffSetY);
+
+				nKeyDownTimes++;
+			}	
+		}
+		break;
+		case 56:				// 8번 키
+		{
+
+		}
+		break;
+	}
+}
+
+void CCoverCard::OnGameKeyUp(int nVKey)
+{
+	switch(nVKey)
+	{
+		case 55:				// 7번 키
+		{
+			if( bAllowControl && Game.FlyWindCard == FALSE )
+			{
+				OnLButtonUp(nMouseOffSetX, nMouseOffSetY);
+				bKeyDown = TRUE;
+				nKeyDownTimes = 0;
+				nMouseOffSetY = 470;
+			}
+		}
+		break;
+		case 56:				// 8번 키
+		{
+				nMouseOffSetY = 550;
+				bButtonDown = TRUE;
+				//bButtonMove = TRUE;
+				OnLButtonMove(nMouseOffSetX, nMouseOffSetY);
+				OnLButtonUp(nMouseOffSetX, nMouseOffSetY);
+		}
+		break;
+	}
 }
