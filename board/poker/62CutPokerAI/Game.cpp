@@ -178,9 +178,12 @@ void CGame::ResetGame()
 	g_pGameView->SetBtnState();
 
 	//AI µ·¸Ó´Ï ¿Ã¸² - jeong
-	CSV_ASK_MONEYINFO aumsg;
-	aumsg.Set(Play[0].UI.UNum, 100000, g_RI.RoomNum);
-	SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+	if( Play[0].UI.UNum < 100000000 )
+	{
+		CSV_ASK_MONEYINFO aumsg;
+		aumsg.Set(Play[0].UI.UNum, 100000, g_RI.RoomNum);
+		SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+	}
 
 }
 
