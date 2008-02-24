@@ -184,6 +184,9 @@ void CMiniDlg::OnPaint()
 	// 부분 갱신 플래그 해제
 //	bSetInvalidate = FALSE;
 	MemDC.DeleteDC();
+
+	SetFocus();
+
 	// Do not call CDialog::OnPaint() for painting messages
 }
 
