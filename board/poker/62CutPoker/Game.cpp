@@ -323,7 +323,7 @@ void CGame::PlayMusic()
 void CGame::OnGameKey(int nVKey)
 {
 	PlayScr[0].OnGameKey(nVKey);
-	g_CvCard.OnGameKey(nVKey);
+	//g_CvCard.OnGameKey(nVKey);
 }
 
 BOOL CGame::OnLButtonDown(int x, int y)

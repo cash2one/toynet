@@ -2201,6 +2201,11 @@ BOOL CGameView::PreTranslateMessage(MSG* pMsg)
 
 		}
 	}
+
+	if( pMsg->message == WM_KEYDOWN)
+		g_CvCard.OnGameKey(pMsg->wParam);
+	else if( pMsg->message == WM_KEYUP)
+		g_CvCard.OnGameKeyUp(pMsg->wParam);
 	
 	return CWnd::PreTranslateMessage(pMsg);
 }

@@ -192,6 +192,9 @@ BOOL CResultHi::OnInitDialog()
 	}
 
 
+	//
+
+
 //	if(WinCase == 0 )
 //		Back.LoadBitmapFile(".\\image\\resulthi.bmp");
 //	else //if(WinCase == 1)
@@ -647,10 +650,7 @@ BOOL CResultHi::PreTranslateMessage(MSG* pMsg)
 
 		if(pMsg->wParam == VK_LEFT)
 		{
-		}
-		else if(pMsg->wParam == VK_LEFT)
-		{
-
+	
 		}
 		else if(pMsg->wParam == VK_RIGHT)
 		{
