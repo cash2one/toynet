@@ -115,6 +115,8 @@ extern xSprite HighBtnSpr;
 extern xSprite LowBtnSpr;
 extern xSprite SwingBtnSpr;
 extern xSprite EtcBtnSpr;
+extern xSprite OkBtnSpr;
+extern xSprite BonusGBtnSpr;
 ////////////////////////////////////////////////////////////////[62]
 extern xSprite ChangeOKBtnSpr;
 extern xSprite ChangeCancelBtnSpr;

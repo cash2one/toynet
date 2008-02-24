@@ -65,6 +65,8 @@ xSprite HighBtnSpr;
 xSprite LowBtnSpr;
 xSprite SwingBtnSpr;
 xSprite EtcBtnSpr;
+xSprite OkBtnSpr;
+xSprite BonusGBtnSpr;
 ////////////////////////////////////////////////////////////////[62]
 xSprite ChangeOKBtnSpr;
 xSprite ChangeCancelBtnSpr;

@@ -29,6 +29,8 @@ CResultHi::CResultHi(CWnd* pParent /*=NULL*/)
 	m_Str1 = "";
 	m_Str2 = "";
 	m_winner_kind = 0;
+
+	nResultBtnIndex = 0;
 	
 	m_nItemByeUse = 0; // [수호천사] 2004.07.08
 
@@ -182,6 +184,7 @@ BOOL CResultHi::OnInitDialog()
 		}
 	}
 
+	
 	if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0){
 		m_CloseBtn.Init(130,361,".\\image\\commonbtn\\Btn_ok.bmp",4);
 		//m_MiniGame.Init(250,361,".\\image\\commonbtn\\Btn_Yes.bmp",4);
@@ -190,8 +193,7 @@ BOOL CResultHi::OnInitDialog()
 		m_CloseBtn.Init(110,251,".\\image\\commonbtn\\Btn_ok.bmp",4);
 		m_MiniGame.Init(190,251,".\\image\\commonbtn\\Btn_Yes.bmp",4);
 	}
-
-
+	
 	//
 
 
@@ -241,13 +243,25 @@ BOOL CResultHi::OnInitDialog()
 
 	Page.Init(146, ySize, 16);
 
+	// 스프라이트 초기화 
+	// 버튼 초기화
+	OkBtn.Init(this, &Page, 110, 251, &OkBtnSpr, 0,IDM_RESULT_OK);
+	OkBtn.Show(TRUE);
+	OkBtn.m_Width = 100;
+	OkBtn.m_Height = 44;
+	
+	BonusGBtn.Init(this, &Page, 200, 251, &BonusGBtnSpr, 0,IDM_RESULT_BONUS);
+	BonusGBtn.Show(TRUE);
+	BonusGBtn.m_Width = 100;
+	BonusGBtn.m_Height = 44;
+
 	// 캐릭터 뷰 초기화
 	CRect rc;
 	rc.SetRect(0,0,75,125);
 	rc.OffsetRect(22,61);
 	m_CharView.Create(this, rc, 5, 3224);
 
-	hTimer = SetTimer(RESULTHI_TIMER, 1000, NULL);
+	hTimer = SetTimer(RESULTHI_TIMER, 500, NULL);
 	TimeCnt = 0;
 
 	// [수호천사] 2004.07.08 
@@ -255,7 +269,7 @@ BOOL CResultHi::OnInitDialog()
 	//else TimeCnt = 5;
 
 	// 승패결과창 대기시간 - jeong
-	TimeCnt = MAX_WAIT_RESULT;
+	TimeCnt = MAX_WAIT_RESULT*2;
 	
 	/*
 
@@ -520,9 +534,7 @@ void CResultHi::OnPaint()
 	else
 		m_CharView.CharNum = g_pGameView->CharBox[0].m_nCharIndex[1];
 	*/
-	
-	
-	
+
 	cdc.DeleteDC();
 	
 	// Do not call CDialog::OnPaint() for painting messages
@@ -573,7 +585,20 @@ void CResultHi::OnTimer(UINT nIDEvent)
 			OnCancel();
 		}
 	}
-	
+
+	if( nResultBtnIndex == 0)
+	{
+		m_CloseBtn.nState = 2;
+		m_MiniGame.nState = 1;
+	}
+	else if ( nResultBtnIndex == 1 )
+	{
+		m_CloseBtn.nState = 1;
+		m_MiniGame.nState = 2;
+	}
+
+	Invalidate(FALSE);
+
 	CDialog::OnTimer(nIDEvent);
 }
 
@@ -650,23 +675,74 @@ BOOL CResultHi::PreTranslateMessage(MSG* pMsg)
 
 		if(pMsg->wParam == VK_LEFT)
 		{
-	
+			nResultBtnIndex--;
+			if( nResultBtnIndex < 0)
+				nResultBtnIndex = 0;
 		}
 		else if(pMsg->wParam == VK_RIGHT)
 		{
-			
+			nResultBtnIndex++;
+			if( nResultBtnIndex > 1 )
+				nResultBtnIndex = 1;
+
 		}
-		/*
-		if(pMsg->wParam == VK_INSERT)
+		else if(pMsg->wParam == VK_DOWN)
 		{
-			OnOK();
+
+			if( nResultBtnIndex == 0)
+				OnOK();
+			else
+				OnMinigame();
 		}
-		else if(pMsg->wParam == VK_HOME)
-		{
-			OnMinigame();
-		}
-		*/
+
+		if(Play[0].ServPNum != Game.WinnerPNum)
+			nResultBtnIndex = 0;
+		else
+			m_winner_kind = 1;
+
 	}
 
 	return CDialog::PreTranslateMessage(pMsg);
 }
+
+BOOL CResultHi::OnCommand(WPARAM wParam, LPARAM lParam) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	switch(wParam)
+	{
+		case IDM_RESULT_OK:
+		{
+			OnMinigame();
+		}
+		break;
+			
+		case IDM_RESULT_BONUS:
+		{
+			OnOK();
+		}
+		break;
+	}
+		
+	return CDialog::OnCommand(wParam, lParam);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

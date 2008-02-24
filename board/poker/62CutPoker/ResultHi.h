@@ -12,12 +12,16 @@
 #include "MyBitmap.h"
 
 #include "Graphic.h"
+#include "GraphButton.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CResultHi dialog
 
 #define RESULTHI_TIMER 1300
-#define MAX_WAIT_RESULT 7;			//Variant For waiting Result - jeong
+#define MAX_WAIT_RESULT 7			//Variant For waiting Result - jeong
+
+#define IDM_RESULT_OK		(WM_USER+6114)
+#define IDM_RESULT_BONUS	(WM_USER+6115)
 
 class CResultHi : public CDialog
 {
@@ -26,6 +30,8 @@ public:
 	
 
 	CPage Page;
+	CGraphButton OkBtn;
+	CGraphButton BonusGBtn;
 
 	CMyBitmap Back;
 	CCharView m_CharView;
@@ -33,6 +39,8 @@ public:
 	USERINFO UI;
 	GAMEOVERRESULT pGO;
 	int WinCase;
+
+	int nResultBtnIndex;
 
 	int m_winner_kind;
 
@@ -67,6 +75,7 @@ public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -92,3 +101,24 @@ protected:
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_RESULTHI_H__612C30A2_53E3_45AB_BD0E_99C6AAC6FF9A__INCLUDED_)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
