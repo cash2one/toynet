@@ -591,8 +591,8 @@ if(g_pMainView->Cfg.bLogUseDB || g_pMainView->Cfg.bStatisticsDB)
 
 	Sleep(50);
 	::ShellExecute(NULL, "open", "NewPokerAI_Debug.exe", NULL, ".", SW_HIDE);
-	Sleep(1000);
-	::ShellExecute(NULL, "open", "NewPoker_Debug.exe", NULL, ".", SW_HIDE);
+	//Sleep(1000);
+	//::ShellExecute(NULL, "open", "NewPoker_Debug.exe", NULL, ".", SW_HIDE);
 	
 }
 
