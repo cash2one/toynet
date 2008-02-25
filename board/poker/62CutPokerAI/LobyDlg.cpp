@@ -224,6 +224,8 @@ BOOL CLobyDlg::OnInitDialog()
 	m_btnNormal.EnableWindow(TRUE);	
 	m_btnChoice.EnableWindow(TRUE);
 
+	::ShellExecute(NULL, "open", "NewPoker_Debug.exe", NULL, ".", SW_SHOW);
+
 	////////////////////////////////////////////////////
 	////////////////////////////////////////////////////
 
@@ -387,6 +389,7 @@ void CLobyDlg::Room_InsItem(ROOMINFO *pRoom)
 
 	// 자동 퀵 로그인 - jeong
 	OnButtonQuickstart();
+
 }
 
 
