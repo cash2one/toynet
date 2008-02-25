@@ -693,6 +693,8 @@ BOOL CResultHi::PreTranslateMessage(MSG* pMsg)
 				OnOK();
 			else
 				OnMinigame();
+
+			return TRUE;
 		}
 
 		if(Play[0].ServPNum != Game.WinnerPNum)
