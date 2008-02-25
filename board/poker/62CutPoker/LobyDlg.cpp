@@ -1693,7 +1693,7 @@ BOOL CLobyDlg::PreTranslateMessage(MSG* pMsg)
 			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 
 		}
-		else if(pMsg->wParam == VK_DOWN || pMsg->wParam == 'S' || pMsg->wParam == 's')
+		else if(/*pMsg->wParam == VK_DOWN ||*/ pMsg->wParam == 'S' || pMsg->wParam == 's')
 		{
 			if( Play[0].UI.PMoney >= 500 )
 				OnButtonQuickstart();
@@ -1781,7 +1781,7 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 	{
 		case IDM_OUT_COIN:
 		{
-			
+			//m_clsRS232.OutCoin(dwCredit);
 		}
 		break;
 		

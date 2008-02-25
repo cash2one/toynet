@@ -814,12 +814,14 @@ void C62CutPokerDlg::ChangeView(int vnum)
 		g_pGameView->SetFocus();
 		m_GameDlg.m_GameView.Reset();
 
+		/*
 		if(g_RI.bPlayer==0)
 			str.Format("☆도움말☆\n1. 게임창->채팅창 포커스 이동 단축키 - Enter, ESC\n2. 채팅창->게임창 포커스 이동 단축키 - ESC\n3. 채팅창<->족보 이동 단축기 - Tab\n");
 		else 
 			str.Format("☆도움말☆\n1. 게임창->채팅창 포커스 이동 단축키 - Enter, ESC\n2. 채팅창->게임창 포커스 이동 단축키 - ESC\n");
 		
 		g_pGameView->ChatBox.AddText(&str, NOTIC_COLOR);//RGB(255,100,200));
+		*/
 		
 		// 족보등급 보기
 		Game.SetChangeViewTabBtn(); //기본 채팅창
