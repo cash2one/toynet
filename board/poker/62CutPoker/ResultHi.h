@@ -18,7 +18,7 @@
 // CResultHi dialog
 
 #define RESULTHI_TIMER 1300
-#define MAX_WAIT_RESULT 7			//Variant For waiting Result - jeong
+#define MAX_WAIT_RESULT 6			//Variant For waiting Result - jeong
 
 #define IDM_RESULT_OK		(WM_USER+6114)
 #define IDM_RESULT_BONUS	(WM_USER+6115)

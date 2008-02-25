@@ -72,6 +72,11 @@ extern CBadChatMan BadChat;		// 욕설 필터링 클래스
 extern CAdminMessageDlg *g_pAMes; // [관리자 모드 작업]
 /////////////////////////////////////////////////////////////////
 
+extern xSprite LobybackSpr;
+extern xSprite InsertCoinSpr;
+extern xSprite QuickStartSpr;
+extern xSprite OutCoinSpr;
+
 extern xSprite GameBackSpr;		// 게임 배경화면 스프라이트
 extern xSprite GameBackSpr_7;		// 게임 배경화면 스프라이트
 

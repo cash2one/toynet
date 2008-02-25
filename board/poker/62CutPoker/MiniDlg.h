@@ -119,3 +119,24 @@ private:
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_MINIDLG_H__8B80A5C7_8B18_4AB6_9983_977FFBCDC0F5__INCLUDED_)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

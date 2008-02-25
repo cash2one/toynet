@@ -261,7 +261,7 @@ BOOL CResultHi::OnInitDialog()
 	rc.OffsetRect(22,61);
 	m_CharView.Create(this, rc, 5, 3224);
 
-	hTimer = SetTimer(RESULTHI_TIMER, 500, NULL);
+	hTimer = SetTimer(RESULTHI_TIMER, 400, NULL);
 	TimeCnt = 0;
 
 	// [수호천사] 2004.07.08 

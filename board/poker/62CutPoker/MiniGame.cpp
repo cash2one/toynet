@@ -393,8 +393,6 @@ void CMiniGame::DefeatGame()
 	CSV_ASK_MONEYINFO aumsg;
 	aumsg.Set(Play[0].UI.UNum, -m_nPrevWinMoney, g_RI.RoomNum);
 	SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
-
-	//g_Mini.SendMessage(WM_CLOSE,0,0);
 }
 
 void CMiniGame::OnGameKey(int nVKey)
@@ -425,6 +423,27 @@ void CMiniGame::OnGameKey(int nVKey)
 		break;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

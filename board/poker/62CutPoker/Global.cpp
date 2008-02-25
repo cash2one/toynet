@@ -30,6 +30,10 @@ CBadChatMan BadChat;		// 욕설 필터링 클래스
 
 CAdminMessageDlg *g_pAMes  = NULL; // [관리자 모드 작업]
 /////////////////////////////////////////////////////////////////
+xSprite LobybackSpr;
+xSprite InsertCoinSpr;
+xSprite QuickStartSpr;
+xSprite OutCoinSpr;
 xSprite GameBackSpr;		// 게임 배경화면 스프라이트
 xSprite GameBackSpr_7;		// 게임 배경화면 스프라이트
 
@@ -76,7 +80,6 @@ xSprite RoomMasterSpr;
 xSprite BanishVoteSpr;
 xSprite SortSpr;
 xSprite AllinAniSpr;
-xSprite InsertCoinSpr;
 /////////////////////////////////////////////////////////////////
 xSprite EtcSpr;				// 기타
 xSprite OringCharSpr;	// 파산

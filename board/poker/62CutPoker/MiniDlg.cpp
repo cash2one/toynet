@@ -47,6 +47,7 @@ BEGIN_MESSAGE_MAP(CMiniDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON2, OnButtonLow)
 	ON_WM_MOUSEMOVE()
 	ON_WM_WINDOWPOSCHANGING()
+	ON_BN_CLICKED(IDC_BUTTON3, OnOK)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -114,7 +115,7 @@ BOOL CMiniDlg::OnInitDialog()
 
 	m_bMiniBtnMouseDown = FALSE; 
 	m_nMiniBtnIndex = 0;
-
+	
 	m_nMiniOffSetX[0] = 263;
 	m_nMiniOffSetX[1] = 371;
 	
@@ -384,12 +385,14 @@ LRESULT CMiniDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 
+		
 		case WM_CLOSE :
 		{
 			g_pGameView->X2StartBtn.Show(FALSE);
 			m_MnGame.Reset();
 		}
 		break;
+		
 
 	}
 
@@ -528,3 +531,8 @@ void CMiniDlg::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 		MoveWindow(rect);
 	}
 }
+
+
+
+
+

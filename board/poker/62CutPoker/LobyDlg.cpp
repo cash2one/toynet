@@ -44,6 +44,15 @@ CLobyDlg::CLobyDlg(CWnd* pParent /*=NULL*/)
 	m_RefuseInviteCheck = FALSE;
 	m_RefuseWhisper = FALSE;
 	//}}AFX_DATA_INIT
+
+	m_nLobyOffSetX[0] = 510;
+	m_nLobyOffSetX[1] = 680;
+	
+	m_nLobyOffSetY[0] = 570;
+	m_nLobyOffSetY[1] = 570;
+	
+	m_nLobyBtnIndex = 0;
+	m_bLobyBtnMouseDown = FALSE; 
 }
 
 
@@ -57,7 +66,7 @@ void CLobyDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON_CAPTURE, m_CaptureBtn);
 	DDX_Control(pDX, IDC_BUTTON_ITEMBAG, m_ItemBagBtn);
 	DDX_Control(pDX, IDC_BUTTON_MINIMIZE, m_MiniBtn);
-	DDX_Control(pDX, IDC_BUTTON_QUICKSTART, m_QuickStart);
+	//DDX_Control(pDX, IDC_BUTTON_QUICKSTART, m_QuickStart);
 	DDX_Control(pDX, IDC_BUTTON_OPTION, m_Option);
 	DDX_Control(pDX, IDC_BUTTON_EXIT1, m_ExitLoby);
 	DDX_Control(pDX, IDC_BUTTON_CARD, m_CardShop);
@@ -104,7 +113,7 @@ BEGIN_MESSAGE_MAP(CLobyDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_CARD, OnButtonCard)
 	ON_BN_CLICKED(IDC_BUTTON_OPTION, OnButtonOption)
 	ON_BN_CLICKED(IDC_BUTTON_EXIT1, OnButtonExit1)
-	ON_BN_CLICKED(IDC_BUTTON_QUICKSTART, OnButtonQuickstart)
+	//ON_BN_CLICKED(IDC_BUTTON_QUICKSTART, OnButtonQuickstart)
 	ON_WM_LBUTTONDOWN()
 	ON_BN_CLICKED(IDC_BUTTON_MINIMIZE, OnButtonMinimize)
 	ON_BN_CLICKED(IDC_BUTTON_ITEMBAG, OnButtonItembag)
@@ -147,112 +156,29 @@ BOOL CLobyDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	// TODO: Add extra initialization here
-	// 다이얼로그 컨트롤 포지션과 위치 재정렬
-	CDialogCtrlReposition CtrlRepos;
-	CtrlRepos.Reposition(m_hWnd);
-	
+	if(LobybackSpr.Load(".\\data\\lobyback.spr", 555)==FALSE) AfxMessageBox("lobyback.spr 파일을 읽을 수 없습니다");
+	if(InsertCoinSpr.Load(".\\data\\insertcoin.spr", 555)==FALSE) AfxMessageBox("insertcoin.spr 파일을 읽을 수 없습니다");
+	if(QuickStartSpr.Load(".\\data\\MainStartBtn.spr", 555)==FALSE) AfxMessageBox("MainStartBtn.spr 파일을 읽을 수 없습니다");
+	if(OutCoinSpr.Load(".\\data\\outcoin.spr", 555)==FALSE) AfxMessageBox("outcoin.spr 파일을 읽을 수 없습니다");
 
-	// 버튼 초기화
-	/*
-	m_LogoutBtn.Init(33, 40, ".\\image\\Loby\\LBtn_channel.bmp", 4); // 채널변경
-	m_RoomInfoBtn.Init(163, 40, ".\\image\\Loby\\LBtn_roominfo.bmp", 4);
-	m_EnterRoomBtn.Init(293, 40, ".\\image\\Loby\\LBtn_enterroom.bmp", 4);
-	m_CreateRoomBtn.Init(420, 40, ".\\image\\Loby\\LBtn_createroom.bmp", 4);
-	m_BadUserBtn.Init(505, 510, ".\\image\\Loby\\LBtn_baduser.bmp", 4);
-	m_FindIDBtn.Init(673, 339, ".\\image\\Loby\\LBtn_findid.bmp", 4);
-	// [###바로시작###] 
-
-	
-	m_btnNormal.Init(573, 540, ".\\image\\Loby\\normal.BMP", 4); // 채널변경
-	m_btnChoice.Init(573, 561, ".\\image\\Loby\\choice.bmp", 4); // 채널변경
-	m_btnAllKind.Init(623, 540, ".\\image\\Loby\\allkind.bmp", 4); // 채널변경
-
-*/
-	m_QuickStart.Init(661,539,".\\image\\Loby\\LBtn_go.bmp", 4);
-	/*
-	m_CaptureBtn.Init(536+31, 3, ".\\image\\Loby\\LBtn_Capture.bmp", 4); //화면캡쳐
-	m_ItemBagBtn.Init(565+31, 3, "image\\Loby\\btn_gameitem.bmp", 4);	// [게임 아이템 작업]
-	m_Option.Init( 664,3,".\\image\\Loby\\LBtn_option.bmp", 4);
-	m_MiniBtn.Init(695,3,".\\image\\Loby\\LBtn_mini.bmp", 4);
-	m_ChangeDisplayBtn.Init(718,3,".\\image\\Loby\\LBtn_fullscreen.bmp", 4);
-	m_ExitLoby.Init(741,3,".\\image\\Loby\\LBtn_exit.bmp", 4);
-	m_CardShop.Init(IDB_BTN_CSHOP1, IDB_BTN_CSHOP2, IDB_BTN_CSHOP3, NULL);
-
-	// 툴팁 생성 및 초기화
-	BadUserTip.Create(this);
-	BadUserTip.WndTip(&m_BadUserBtn, "대화내용 신고");
-
-	// 팝업 메뉴 초기화
-	//m_RoomMenu.LoadMenu(IDR_ROOMMENU);
-	
-
-	// 리스트 컨트롤 초기화
-	//Room_InitList();
-	User_InitList();
-
-	// 채팅 뷰 리치 에디트 컨트롤 초기화
-	m_ChatViewEdit.SetReadOnly(TRUE);
-	m_ChatViewEdit.SetBackgroundColor(FALSE, RGB(230,245,255));
-
-	bDontClickSound = FALSE;
-
-	// 센드 에디트 초기화
-	m_SendEdit.iUse = 0;
-
-	// 캐릭터 뷰 생성
-	*/
-	CRect rc;
-	
-	/*
-	rc.SetRect(0, 0, 75, 125);
-	//rc.SetRect(0, 0, 80, 130);
-	rc.OffsetRect(574, 391);
-	m_CharView.Create(this, rc, 0, 2443);
-	*/
-
-	
-	// [ 세븐 포커 ] 잭팟 테스트 241 40
-	rc.SetRect(0, 0, 241, 40);	
-	rc.OffsetRect(557 , 37);
-
-
-	/*
-	// [ 세븐 포커 ] 잭팟 테스트
-	rc.SetRect(0, 0, 213, 19);
-	rc.OffsetRect(567 , 52);
-	*/
-	
-	//m_JackPotBox.Create(this, rc, 1, 1223);
-
-	////////////////////////////////////////////////////
-	////////////////////////////////////////////////////
-	// ### [ 대기실 리스트 관련 ] ###
-
-	/*
-	rc.SetRect( 0, 0, 528, 253 );//17
-	rc.OffsetRect( 19, 94 );
-	m_RoomView.Create( this, rc, 2000, 0 );
-	m_RoomView.Init( &LobyListBackSpr, &LobyListButtonSpr );	
-	*/
-
-	
-//	m_ItemBagBtn.EnableWindow(FALSE); // 게임아이템
-
-	
 	m_ChoiceKind = 0 ;
-	/*
-	m_btnAllKind.EnableWindow(FALSE);
-	m_btnNormal.EnableWindow(TRUE);	
-	m_btnChoice.EnableWindow(TRUE);
-	*/
-	
-
-	////////////////////////////////////////////////////
-	////////////////////////////////////////////////////
-
 	m_nLobyCnt = 0;
 	SetTimer(LOBY_TIMER , 60 , NULL);
-	
+	InitPage();
+
+	if(Font.m_hObject == NULL)
+		Font.CreateFont(12,0,0,0,
+		FW_NORMAL,
+		FALSE,FALSE,
+		0,
+		//ANSI_CHARSET,
+		DEFAULT_CHARSET,
+		OUT_DEFAULT_PRECIS,
+		CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY,
+		DEFAULT_PITCH | FF_SWISS,
+		"굴림");
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -262,10 +188,74 @@ void CLobyDlg::OnPaint()
 	CPaintDC dc(this); // device context for painting
 	
 	// TODO: Add your message handler code here
-	SetFocus();
-	DrawBkgnd(dc);
-	DrawEffect(dc);
+	// 더블 버퍼링용 메모리 DC 생성
 
+	SetFocus();
+
+	CDC MemDC;
+	MemDC.CreateCompatibleDC(&dc);
+	
+	// 메모리DC에 버퍼용 비트맵 핸들을 선택
+	MemDC.SelectObject(Page.hBmp);
+	
+	Page.PutSprAuto(0, 0, &LobybackSpr, 0);
+
+	OutCoinBtn.Draw(&MemDC);
+	QuickStartBtn.Draw(&MemDC);
+
+	if( g_MyInfo.UI.PMoney < 500)
+	{
+		if( (m_nLobyCnt/12) %2 == 0 )
+			Page.PutSprAuto(300, 450, &InsertCoinSpr, 0);
+	}
+
+	// 마우스 좌표 체크
+	POINT mpos;
+	GetCursorPos(&mpos);
+	ScreenToClient(&mpos);
+	CString str;
+	str.Format("Mouse (%d, %d)", mpos.x, mpos.y);
+	MemDC.SelectObject(&Font);
+	MemDC.SetBkMode(TRANSPARENT);
+	MemDC.SetTextColor(RGB(255,255,255));
+	MemDC.TextOut(100,100, str);
+	
+	// 돈출력 
+	CString strM;
+	CRect rtMoney;
+	GetClientRect(&rtMoney);
+	rtMoney.SetRect(0,0,200,80);
+	rtMoney.OffsetRect(560, 525);
+	strM = NumberToOrientalString(g_MyInfo.UI.PMoney);
+	str.Format("%s원", strM);
+	MemDC.DrawText(str, &rtMoney, DT_RIGHT | DT_WORDBREAK);
+
+	CRect rect;
+	GetClientRect(&rect);
+	
+	dc.BitBlt(0, 0, rect.right, rect.bottom, &MemDC, 0, 0, SRCCOPY);
+
+	MemDC.DeleteDC();
+
+
+	OutCoinBtn.OnMouseMove( m_nLobyOffSetX[m_nLobyBtnIndex], m_nLobyOffSetY[m_nLobyBtnIndex] );
+	QuickStartBtn.OnMouseMove( m_nLobyOffSetX[m_nLobyBtnIndex], m_nLobyOffSetY[m_nLobyBtnIndex] );
+	
+	short mxp, myp;
+	if( m_bLobyBtnMouseDown )
+	{
+		m_bLobyBtnMouseDown = FALSE;
+		
+		mxp = m_nLobyOffSetX[m_nLobyBtnIndex];
+		myp = m_nLobyOffSetY[m_nLobyBtnIndex];
+		
+		OutCoinBtn.OnLButtonDown(mxp, myp);
+		QuickStartBtn.OnLButtonDown(mxp, myp);
+		
+		OutCoinBtn.OnLButtonUp(mxp, myp);
+		QuickStartBtn.OnLButtonUp(mxp, myp);
+	}
+	
 	// Do not call CDialog::OnPaint() for painting messages
 }
 
@@ -1289,24 +1279,6 @@ void CLobyDlg::OnButtonExit1()
 // [###바로시작###] // ### [ 관전기능 ] ###
 void CLobyDlg::OnButtonQuickstart() 
 {
-	/*
-	GAMEOVERRESULT pGOR={0,};
-	CResultHi Dlg;
-	Dlg.Init(&Play[0].UI, &pGOR, 0, 0);
-	Dlg.DoModal();
-	return;
-	*/
-
-	/*
-	COring dlg;
-	dlg.DoModal();
-	return;
-	*/
-
-	//0원일때 입장 제한 메세지
-//	if(g_MyInfo.UI.PMoney <=0){
-//		g_pMainDlg->m_MsgBoxDlg.MsgBox(0,g_StrMan.Get(_T("LECK_PMONEY1")));  return;
-//	}
 
 	// TODO: Add your control notification handler code here
 	Sound.Play(SND45);
@@ -1314,7 +1286,6 @@ void CLobyDlg::OnButtonQuickstart()
 	// ### [ 관전기능 ] ###
 	CSV_ASK_QUICKSTART	msg;
 	msg.Set( g_MyInfo.UI.UNum, g_MyInfo.UI.ID, g_MyInfo.nSndFxKind , m_ChoiceKind);// ### [사운드 추가 작업] ###
-//	msg.Set( Play[0].UI.UNum, Play[0].UI.ID, Play[0].nSndFxKind );// ### [사운드 추가 작업] ###
 	SockMan.SendData(g_MainSrvSID, msg.pData, msg.GetTotalSize());
 
 
@@ -1359,6 +1330,7 @@ void CLobyDlg::OnButtonItembag()
 
 void CLobyDlg::DrawBkgnd(CDC& dc)
 {
+	/*
 	CDC cdc;
 	cdc.CreateCompatibleDC(&dc);
 	if(cdc.m_hDC == NULL) return;
@@ -1415,6 +1387,7 @@ void CLobyDlg::DrawBkgnd(CDC& dc)
 	cdc.SelectObject(pOldBmp);
 	cdc.DeleteDC();
 	Back.DeleteObject();
+	*/
 }
 
 // Draw Insert Coin  - jeong
@@ -1734,6 +1707,27 @@ BOOL CLobyDlg::PreTranslateMessage(MSG* pMsg)
 			dlg.DoModal();
 			return 1;
 		}
+
+	
+		if(pMsg->wParam == VK_LEFT)
+		{	
+			m_nLobyBtnIndex--;
+			
+			if( m_nLobyBtnIndex < 0)
+				m_nLobyBtnIndex = 1;
+		}
+		else if( pMsg->wParam == VK_RIGHT )
+		{
+			m_nLobyBtnIndex++;
+			if( m_nLobyBtnIndex > 1)
+				m_nLobyBtnIndex = 0;
+		}
+		else if( pMsg->wParam == VK_DOWN )
+		{
+			m_bLobyBtnMouseDown = TRUE;
+		}
+			
+		
 	}
 		
 	return CDialog::PreTranslateMessage(pMsg);
@@ -1803,4 +1797,43 @@ long CLobyDlg::OnCoinOut(WPARAM wParam, LPARAM lParam)
 }
 
 
+void CLobyDlg::InitPage( )
+{
 
+	Page.Init(GAMEVIEW_WIDTH, GAMEVIEW_HEIGHT, 16);
+	
+	
+	OutCoinBtn.Init(this, &Page, 500, 550, &OutCoinSpr, 0,IDM_OUT_COIN);
+	OutCoinBtn.Show(TRUE);
+	OutCoinBtn.m_Width = 170;
+	OutCoinBtn.m_Height = 44;
+	
+	QuickStartBtn.Init(this, &Page, 670, 550, &QuickStartSpr, 0,IDM_QUICK_START);
+	QuickStartBtn.Show(TRUE);
+	QuickStartBtn.m_Width = 100;
+	QuickStartBtn.m_Height = 44;
+	
+}
+
+
+BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	switch(wParam)
+	{
+		case IDM_OUT_COIN:
+		{
+			
+		}
+		break;
+		
+		case IDM_QUICK_START:
+		{
+			if( g_MyInfo.UI.PMoney >= 500)
+				OnButtonQuickstart();
+		}
+		break;
+	}
+
+	return CDialog::OnCommand(wParam, lParam);
+}

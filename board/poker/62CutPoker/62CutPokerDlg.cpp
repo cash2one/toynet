@@ -3666,6 +3666,7 @@ void C62CutPokerDlg::DoScreenCapture()
 
 void C62CutPokerDlg::LoadSpriteFile()
 {
+	
 	if(GameBackSpr.Load(".\\data\\GameBack.spr", 555)==FALSE) AfxMessageBox("GameBack.spr 파일을 읽을 수 없습니다");
 //	if(GameBackSpr[1].Load(".\\data\\skin1\\GameBack1.spr", 555)==FALSE) AfxMessageBox("GameBack1.spr 파일을 읽을 수 없습니다");
 //	if(GameBackSpr[2].Load(".\\data\\skin2\\GameBack2.spr", 555)==FALSE) AfxMessageBox("GameBack2.spr 파일을 읽을 수 없습니다");

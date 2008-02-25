@@ -20,12 +20,17 @@
 #include "AdminTitleDlg.h"// [관리자 모드 작업]
 #include "LevelView.h"
 #include "LobbyListWnd.h"	// ### [ 대기실 리스트 관련 ] ###
+#include "Graphic.h"
+#include "GraphButton.h"
+
 #include "AdminBtnTestDlg.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CLobyDlg dialog
 
 #define LOBY_TIMER 101
+#define IDM_OUT_COIN	(WM_USER+6115)
+#define IDM_QUICK_START	(WM_USER+6116)
 
 class CLobyDlg : public CDialog
 {
@@ -63,12 +68,26 @@ public:
 
 	CAdminBtnTestDlg btntestDlg_;
 
+	CPage Page;
+
+	CFont Font;
+
+	CGraphButton		OutCoinBtn;
+	CGraphButton		QuickStartBtn;
+
+	int					m_nLobyBtnIndex;
+	bool				m_bLobyBtnMouseDown;
+
+	int					m_nLobyOffSetX[2];
+	int					m_nLobyOffSetY[2];
+
 	//////////////////////////////////////////////////
 	//////////////////////////////////////////////////
 
 public:
 	CLobyDlg(CWnd* pParent = NULL);   // standard constructor
 
+	void InitPage( );
 	void DrawBkgnd(CDC& dc);
 	void DrawEffect(CDC& dc);
 	void RefreshList();
@@ -102,7 +121,7 @@ public:
 	CMyButton	m_CaptureBtn;
 	CMyButton	m_ItemBagBtn;
 	CMyButton	m_MiniBtn;
-	CMyButton	m_QuickStart;
+	//CMyButton	m_QuickStart;
 	CMyButton	m_Option;
 	CMyButton	m_ExitLoby;
 	CMyButton	m_CardShop;
@@ -133,6 +152,7 @@ public:
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
+	virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
 	//}}AFX_VIRTUAL
 
 // Implementation
