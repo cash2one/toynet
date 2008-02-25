@@ -69,6 +69,8 @@ xSprite HighBtnSpr;
 xSprite LowBtnSpr;
 xSprite SwingBtnSpr;
 xSprite EtcBtnSpr;
+xSprite ResultWinSpr;
+xSprite ResultLoseSpr;
 xSprite OkBtnSpr;
 xSprite BonusGBtnSpr;
 ////////////////////////////////////////////////////////////////[62]

@@ -3702,6 +3702,8 @@ void C62CutPokerDlg::LoadSpriteFile()
 	if(DadangkBtnSpr.Load(".\\data\\DadangkBtn.spr", 555)==FALSE) AfxMessageBox("DadangkBtn.spr 파일을 읽을 수 없습니다");
 	if(MaxBtnSpr.Load(".\\data\\MaxBtn.spr", 555)==FALSE) AfxMessageBox("MaxBtn.spr 파일을 읽을 수 없습니다");
 
+	if(ResultWinSpr.Load(".\\data\\result_mywin.spr", 555)==FALSE) AfxMessageBox("result_mywin.spr 파일을 읽을 수 없습니다");
+	if(ResultLoseSpr.Load(".\\data\\result_otherwin.spr", 555)==FALSE) AfxMessageBox("result_otherwin.spr 파일을 읽을 수 없습니다");
 	if(OkBtnSpr.Load(".\\data\\Btok.spr", 555)==FALSE) AfxMessageBox("Btok.spr 파일을 읽을 수 없습니다");
 	if(BonusGBtnSpr.Load(".\\data\\bonusG.spr", 555)==FALSE) AfxMessageBox("bonusG.spr 파일을 읽을 수 없습니다");
 

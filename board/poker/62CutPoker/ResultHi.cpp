@@ -30,7 +30,7 @@ CResultHi::CResultHi(CWnd* pParent /*=NULL*/)
 	m_Str2 = "";
 	m_winner_kind = 0;
 
-	nResultBtnIndex = 0;
+	m_nResultBtnIndex = 0;
 	
 	m_nItemByeUse = 0; // [수호천사] 2004.07.08
 
@@ -84,20 +84,6 @@ BOOL CResultHi::Init(USERINFO *pUI, GAMEOVERRESULT *pGOR, int wincase, int pnum)
 	}
 	
 	
-	/*
-	else if(WinCase == 2)
-	{
-		m_Str2 = Game.GetLowName(pnum);
-		memcpy(m_aCard, Game.m_CardLow, sizeof(int)*5);
-	}
-	else if(WinCase == 3) // 7 장 보여준다.
-	{
-			m_Str1 = Game.GetName(pnum);
-			m_Str1 += Game.GetLowName(pnum);
-			memcpy(m_aSwing, Game.m_CardSwing, sizeof(int)*7);
-	}
-	*/
-
 	return TRUE;
 }
 
@@ -131,6 +117,12 @@ BOOL CResultHi::OnInitDialog()
 
 		// 이긴 금액 세팅 - jeong
 		Play[0].nWinMoney = pGO.nWinMoney;
+
+		m_nResultOffSetX[0] = 100;
+		m_nResultOffSetX[1] = 190;
+
+		m_nResultOffSetY[0] = 255;
+		m_nResultOffSetY[1] = 255;
 	}
 	else {
 		Back.LoadBitmapFile(".\\image\\Gameover\\result_otherwin.bmp");		// Result design will be changed - jeong
@@ -140,7 +132,6 @@ BOOL CResultHi::OnInitDialog()
 		m_CharView.CharNum = g_pGameView->CharBox[0].m_nCharIndex[1];
 
 		// 잃은 금액 저장 - jeong
-		//Play[0].LoseMoney = Play[0].LoseMoney + pGO.Ui[Play[0].ServPNum].LoseMoney;
 		Play[0].LoseMoney = 0;
 
 		
@@ -150,21 +141,8 @@ BOOL CResultHi::OnInitDialog()
 			aumsg.Set(Play[0].UI.UNum, pGO.Ui[Play[0].ServPNum].LoseMoney, g_RI.RoomNum);
 			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 		}
-		
-		/*
-		INT64 MinusMoney = Play[0].PrevMoney-Play[0].LoseMoney;
 
-		if( MinusMoney < 0)
-		{
-				Play[0].PrevMoney = 0;
-				Play[0].LoseMoney = 0;
-				Play[0].BankMoney += MinusMoney;
-		}
-		*/
-	
 
-		//m_CloseBtn.Init(131, 304,".\\image\\commonbtn\\Btn_ok.bmp",4);
-		
 		// [수호천사] 2004.07.08 
 		// 현재 시간을 얻어서 서버의 시간으로 변환
 		CTime time = CTime::GetCurrentTime() - g_CSTimeGap;
@@ -182,9 +160,16 @@ BOOL CResultHi::OnInitDialog()
 			//m_SafeBtn.Init(238,290,".\\image\\GameOver\\Btn_Bye.bmp",4); // 구매하기
 	
 		}
+
+		m_nResultOffSetX[0] = 140;
+		m_nResultOffSetX[1] = 140;
+
+		m_nResultOffSetY[0] = 355;
+		m_nResultOffSetY[1] = 355;
 	}
 
-	
+
+	/*
 	if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0){
 		m_CloseBtn.Init(130,361,".\\image\\commonbtn\\Btn_ok.bmp",4);
 		//m_MiniGame.Init(250,361,".\\image\\commonbtn\\Btn_Yes.bmp",4);
@@ -193,24 +178,13 @@ BOOL CResultHi::OnInitDialog()
 		m_CloseBtn.Init(110,251,".\\image\\commonbtn\\Btn_ok.bmp",4);
 		m_MiniGame.Init(190,251,".\\image\\commonbtn\\Btn_Yes.bmp",4);
 	}
+	*/
 	
 	//
 
 
-//	if(WinCase == 0 )
-//		Back.LoadBitmapFile(".\\image\\resulthi.bmp");
-//	else //if(WinCase == 1)
-//		Back.LoadBitmapFile(".\\image\\resulthi.bmp");
-//	else if(WinCase == 2)
-//		Back.LoadBitmapFile(".\\image\\resultLow.bmp");
-//	else
-//		Back.LoadBitmapFile(".\\image\\resultSwing.bmp");
 
-	// 버튼 초기화
-	//m_CloseBtn.Init(IDB_BTN_RESULTOK1, IDB_BTN_RESULTOK2, IDB_BTN_RESULTOK3, IDB_BTN_RESULTOK4);
-	//m_CloseBtn.Init(268,176,".\\image\\GBtn_result_mywin.bmp",4);
-
-		// 폰트 생성
+	// 폰트 생성
 	if(Font1.m_hObject == NULL)
 	Font1.CreateFont(12,0,0,0,
 		//FW_NORMAL,
@@ -241,27 +215,43 @@ BOOL CResultHi::OnInitDialog()
 	int xSize = 59;
 	int ySize = 99;
 
-	Page.Init(146, ySize, 16);
+	if(Play[0].ServPNum == Game.WinnerPNum)
+		Page.Init(347, 297, 16);
+	else
+		Page.Init(347, 406, 16);
 
-	// 스프라이트 초기화 
+
 	// 버튼 초기화
-	OkBtn.Init(this, &Page, 110, 251, &OkBtnSpr, 0,IDM_RESULT_OK);
-	OkBtn.Show(TRUE);
-	OkBtn.m_Width = 100;
-	OkBtn.m_Height = 44;
+	if(Play[0].ServPNum == Game.WinnerPNum)
+	{
+		OkBtn.Init(this, &Page, 90, 251, &OkBtnSpr, 0,IDM_RESULT_OK);
+		OkBtn.Show(TRUE);
+		OkBtn.m_Width = 20;
+		OkBtn.m_Height = 44;
 	
-	BonusGBtn.Init(this, &Page, 200, 251, &BonusGBtnSpr, 0,IDM_RESULT_BONUS);
-	BonusGBtn.Show(TRUE);
-	BonusGBtn.m_Width = 100;
-	BonusGBtn.m_Height = 44;
+		BonusGBtn.Init(this, &Page, 180, 251, &BonusGBtnSpr, 0,IDM_RESULT_BONUS);
+		BonusGBtn.Show(TRUE);
+		BonusGBtn.m_Width = 100;
+		BonusGBtn.m_Height = 44;
+	}
+	else
+	{
+		OkBtn.Init(this, &Page, 135, 350, &OkBtnSpr, 0,IDM_RESULT_OK);
+		OkBtn.Show(TRUE);
+		OkBtn.m_Width = 20;
+		OkBtn.m_Height = 44;
+	}
+
+	m_bResultBtnMouseDown = FALSE;
+
 
 	// 캐릭터 뷰 초기화
 	CRect rc;
 	rc.SetRect(0,0,75,125);
 	rc.OffsetRect(22,61);
-	m_CharView.Create(this, rc, 5, 3224);
+	//m_CharView.Create(this, rc, 5, 3224);
 
-	hTimer = SetTimer(RESULTHI_TIMER, 400, NULL);
+	hTimer = SetTimer(RESULTHI_TIMER, 100, NULL);
 	TimeCnt = 0;
 
 	// [수호천사] 2004.07.08 
@@ -269,7 +259,7 @@ BOOL CResultHi::OnInitDialog()
 	//else TimeCnt = 5;
 
 	// 승패결과창 대기시간 - jeong
-	TimeCnt = MAX_WAIT_RESULT*2;
+	TimeCnt = MAX_WAIT_RESULT*10;
 	
 	/*
 
@@ -313,121 +303,63 @@ void CResultHi::OnPaint()
 	CPaintDC dc(this); // device context for painting
 	
 	// TODO: Add your message handler code here
-	CDC cdc;
-	cdc.CreateCompatibleDC(&dc);
-	if(cdc.m_hDC == NULL) return;
-
-	HRGN h = BitmapToRegion( Back.operator HBITMAP(), RGB(255,0,255));
-	if(h) SetWindowRgn(h,TRUE);// 사용방법
-
-	cdc.SelectObject(&Back);
-
-	CRect rect;
-	GetClientRect(&rect);
-	dc.BitBlt(0, 0, rect.right, rect.bottom, &cdc, 0, 0, SRCCOPY);
-
-	::DeleteObject(h);
-	h = NULL;
-
-	int ax = 12, ay = 182;
-
-	// 레벨 찍기
-	int level =  UI.nIcon;// GetLevel( UI.WinNum, UI.LooseNum, UI.DrawNum);
-//	CMyBitmap bmp;
-//	bmp.LoadBitmap(IDB_LEVEL15);
-//	bmp.TransDraw(dc.m_hDC, ax-4, ay, 15, 15, 15*level, 0, RGB(255,0,255));
-//	bmp.DeleteObject();
-	dc.SetBkMode(TRANSPARENT);
-	/*
-	// 아이디 찍기 deleted by jeong
-	dc.SelectObject(&Font1);
-	dc.SetTextColor(RGB(0,0,0));
-	//dc.TextOut(ax, ay+20, UI.ID);
-	*/
-
-	CRect rt;
-
-	if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0 ){
-		rt.SetRect(13,217,13+92,217+21);
+	CDC MemDC;
+	MemDC.CreateCompatibleDC(&dc);
+	
+	// 메모리DC에 버퍼용 비트맵 핸들을 선택
+	MemDC.SelectObject(Page.hBmp);
+	
+	// 버튼 출력 및 배경 출력
+	if(Play[0].ServPNum == Game.WinnerPNum)
+	{
+		Page.PutSprAuto(0, 0, &ResultWinSpr, 0);
+		OkBtn.Draw(&MemDC);
+		BonusGBtn.Draw(&MemDC);
 	}
-	else{
-		rt.SetRect(12,206,12+92,206+21);
+	else
+	{
+		Page.PutSprAuto(0, 0, &ResultLoseSpr, 0);
+		OkBtn.Draw(&MemDC);
 	}
 
-	
-	// 아이디 출력
-	//dc.DrawText(UI.ID, &rt, DT_CENTER | DT_WORDBREAK);
+	// 아바타 출력
+	Page.PutSprAuto(22, 61, &AvaSpr, m_CharView.CharNum);
 
-	
+	// 텍스트 출력
 	CString str ="";
 	CString strM="";
+	int ax, ay;
 
-
-	if(WinCase == 0)
-	{	
-		/*
-		ax = 115 , ay = 60;
-		INT64 nTotBat = Game.GetRealBet();
-		strM = NumberToOrientalString(nTotBat);//pGO.Pg.nTotBat);					// 하이승자 머니 총
-		str.Format("◈ 총배팅액:%s원",strM);
-		dc.TextOut(ax, ay+19, str);
+	MemDC.SelectObject(&Font2);
+	MemDC.SetBkMode(TRANSPARENT);
+	MemDC.SetTextColor(RGB(0,0,0));
 	
-		strM = NumberToOrientalString(pGO.nWinMoney); // 하이 머니	
-		str.Format("◈ 획득금액:%s원",strM);
-		dc.TextOut(ax, ay+38, str);
-
-			//#####  고리금액 표시 #####
-		strM = NumberToOrientalString(pGO.nGory);	
-		str.Format(g_StrMan.Get(_T("BET_GORIWINDOW")),pGO.nPercent,strM);
-		dc.TextOut(ax, ay+57, str);
-
-		strM = NumberToOrientalString(UI.PMoney);
-		str.Format(g_StrMan.Get(_T("USER_PMONEY")),strM);//◈ 금액:%s원	
-		str.Format("◈ 금액:%s원",strM);//
-		dc.TextOut(ax, ay+76, str);
-		*/
-
+	if(WinCase == 0)
+	{
 		ax = 109, ay = 183;
-		strM = NumberToOrientalString(pGO.nWinMoney); // 하이 머니		
-		//str.Format("◈획득금액(+%s)원",strM );//, pGO.nPercent); // 하이승 (+%s) 게임비(%d%%):-%s원
+		strM = NumberToOrientalString(pGO.nWinMoney);
 		str.Format("+%s",strM );
 		CRect rt;
 
-		if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0){
+		if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0)
 			rt.SetRect(117,217,117+210,217+17);
-		}
-		else{
+		else
 			rt.SetRect(114,207,114+210,207+17);
-		}
 		
+		
+		MemDC.DrawText(str, &rt, DT_RIGHT | DT_WORDBREAK);
 
-		dc.DrawText(str, &rt, DT_RIGHT | DT_WORDBREAK);
-
-		if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0)//내가 잃은 금액 표시 
+		if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0)
 		{
 			CRect rt;
 			CString str1,str2;
 			rt.SetRect(117,244,117+210,244+17);
 
-		//	INT64 roundingoff = g_Poker.RU[Play[0].ServPNum].nRealBat;
-		//	INT64 roundingoff = pGO.Ui[Play[0].ServPNum].LoseMoney;
 			INT64 roundingoff = 200;
-			//if(roundingoff > 100)
-			//roundingoff = (roundingoff/100)*100;
 
 			str2 = NumberToOrientalString(roundingoff);
 			str1.Format("-%s",str2);
-			dc.DrawText(str1, &rt, DT_RIGHT | DT_WORDBREAK);
-
-			/*
-			//수호천사 제한 머니
-			CString limitm;
-			CRect limitrt;
-			dc.SetTextColor(RGB(255,0,0));
-			limitm = "기본 18억원 ~ 최대 45억원";
-			limitrt.SetRect(35,333,180+35,333+13);
-			dc.DrawText(limitm, &limitrt, DT_CENTER | DT_WORDBREAK);
-			*/
+			MemDC.DrawText(str1, &rt, DT_RIGHT | DT_WORDBREAK);
 		}
 
 
@@ -435,29 +367,24 @@ void CResultHi::OnPaint()
 		int px = 149;
 		int py = 88;
 
-		for(int i = 0; i < 5; i++) {
-			Page.PutSprAuto(i*18, 0, &BigCardSpr, 52);
-		}
-		Page.FlipToGDI(dc.m_hDC, px, py ,1);
-
+		for(int i = 0; i < 5; i++) 
+			Page.PutSprAuto(px+i*18, py, &BigCardSpr, 52);
 	}
 	else if(WinCase == 1)
 	{
 		ax = 109, ay = 183;
-		strM = NumberToOrientalString(pGO.nWinMoney); // 하이 머니		
-		//str.Format("◈획득금액(+%s)원",strM );//, pGO.nPercent); // 하이승 (+%s) 게임비(%d%%):-%s원
+		strM = NumberToOrientalString(pGO.nWinMoney);
 		str.Format("+%s",strM );
 		CRect rt;
 
-		if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0){
+		if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0)
 			rt.SetRect(117,217,117+210,217+17);
-		}
-		else{
+		else
 			rt.SetRect(114,207,114+210,207+17);
-		}
+		
 		
 
-		dc.DrawText(str, &rt, DT_RIGHT | DT_WORDBREAK);
+		MemDC.DrawText(str, &rt, DT_RIGHT | DT_WORDBREAK);
 
 		if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0)//내가 잃은 금액 표시 
 		{
@@ -465,26 +392,12 @@ void CResultHi::OnPaint()
 			CString str1,str2;
 			rt.SetRect(117,244,117+210,244+17);
 
-		//	INT64 roundingoff = g_Poker.RU[Play[0].ServPNum].nRealBat;
-		//	INT64 roundingoff = pGO.Ui[Play[0].ServPNum].LoseMoney;
 			INT64 roundingoff = 200;
-
-			//if(roundingoff > 100)
-			//roundingoff = (roundingoff/100)*100;
 
 			str2 = NumberToOrientalString(roundingoff);
 			str1.Format("-%s",str2);
-			dc.DrawText(str1, &rt, DT_RIGHT | DT_WORDBREAK);
+			MemDC.DrawText(str1, &rt, DT_RIGHT | DT_WORDBREAK);
 
-			/*
-			//수호천사 제한 머니
-			CString limitm;
-			CRect limitrt;
-			dc.SetTextColor(RGB(255,0,0));
-			limitm = "기본 18억원 ~ 최대 45억원";
-			limitrt.SetRect(35,333,180+35,333+13);
-			dc.DrawText(limitm, &limitrt, DT_CENTER | DT_WORDBREAK);
-			*/
 
 		}
 
@@ -492,50 +405,50 @@ void CResultHi::OnPaint()
 		int px = 149;
 		int py = 88;
 
-		for(int i = 0; i < 5; i++) {
-			Page.PutSprAuto(i*18, 0, &BigCardSpr, m_aCard[i]);
+		for(int i = 0; i < 5; i++) 
+		{
+			Page.PutSprAuto(px+i*18, py, &BigCardSpr, m_aCard[i]);
 		}
-		Page.FlipToGDI(dc.m_hDC, px, py ,1);
-	
+		
 	//	m_Str1 = "로얄 스트레이트 양아치 2";
 		ax = 139;
 		ay = 68;			// 족보 결과출력 좌표 - modifed by jeong
 		CRect rect;
 		rect.SetRect(0,0,160,14);
-		if(m_Str1!=""){
-			dc.SetTextColor(RGB(0,0,0));
+		if(m_Str1!="")
+		{
+			MemDC.SetTextColor(RGB(0,0,0));
 			rect.OffsetRect(ax, ay);
-			dc.DrawText(m_Str1, &rect, DT_CENTER | DT_WORDBREAK);
+			MemDC.DrawText(m_Str1, &rect, DT_CENTER | DT_WORDBREAK);
 
 		}
 	}
 
+
+	CRect rect;
+	GetClientRect(&rect);
 	
+	dc.BitBlt(0, 0, rect.right, rect.bottom, &MemDC, 0, 0, SRCCOPY);
 
-//	str.Format("획득한 금액의 %d%%가 게임비로 적립됩니다.", pGO.nPercent);
-//	dc.SetTextColor(RGB(43,140,185));
-//	dc.TextOut(55, 208, str.operator LPCTSTR());
+	MemDC.DeleteDC();
 
-/*	
-	if(m_winner_kind==0)
-		dc.SetTextColor(RGB(43,140,185));
-	else if(m_winner_kind==1)
-		dc.SetTextColor(RGB(255,131,7));
-	else
-		dc.SetTextColor(RGB(103,130,160));
-*/
+	OkBtn.OnMouseMove( m_nResultOffSetX[m_nResultBtnIndex], m_nResultOffSetY[m_nResultBtnIndex] );
+	BonusGBtn.OnMouseMove( m_nResultOffSetX[m_nResultBtnIndex], m_nResultOffSetY[m_nResultBtnIndex] );
 	
-
-	//m_CharView.SetCharacter(&UI);
-	// 캐릭터 인덱스 저장(결과창) - jeong
-	/*
-	if ( Play[0].ServPNum == Game.WinnerPNum )
-		m_CharView.CharNum = g_pGameView->CharBox[0].m_nCharIndex[0];
-	else
-		m_CharView.CharNum = g_pGameView->CharBox[0].m_nCharIndex[1];
-	*/
-
-	cdc.DeleteDC();
+	short mxp, myp;
+	if( m_bResultBtnMouseDown )
+	{
+		m_bResultBtnMouseDown = FALSE;
+		
+		mxp = m_nResultOffSetX[m_nResultBtnIndex];
+		myp = m_nResultOffSetY[m_nResultBtnIndex];
+		
+		OkBtn.OnLButtonDown(mxp, myp);
+		BonusGBtn.OnLButtonDown(mxp, myp);
+		
+		OkBtn.OnLButtonUp(mxp, myp);
+		BonusGBtn.OnLButtonUp(mxp, myp);
+	}
 	
 	// Do not call CDialog::OnPaint() for painting messages
 }
@@ -584,17 +497,6 @@ void CResultHi::OnTimer(UINT nIDEvent)
 			KillTimer(hTimer);
 			OnCancel();
 		}
-	}
-
-	if( nResultBtnIndex == 0)
-	{
-		m_CloseBtn.nState = 2;
-		m_MiniGame.nState = 1;
-	}
-	else if ( nResultBtnIndex == 1 )
-	{
-		m_CloseBtn.nState = 1;
-		m_MiniGame.nState = 2;
 	}
 
 	Invalidate(FALSE);
@@ -675,33 +577,19 @@ BOOL CResultHi::PreTranslateMessage(MSG* pMsg)
 
 		if(pMsg->wParam == VK_LEFT)
 		{
-			nResultBtnIndex--;
-			if( nResultBtnIndex < 0)
-				nResultBtnIndex = 0;
+			m_nResultBtnIndex--;
+			if( m_nResultBtnIndex < 0)
+				m_nResultBtnIndex = 1;
 		}
 		else if(pMsg->wParam == VK_RIGHT)
 		{
-			nResultBtnIndex++;
-			if( nResultBtnIndex > 1 )
-				nResultBtnIndex = 1;
+			m_nResultBtnIndex++;
+			if( m_nResultBtnIndex > 1 )
+				m_nResultBtnIndex = 0;
 
 		}
 		else if(pMsg->wParam == VK_DOWN)
-		{
-
-			if( nResultBtnIndex == 0)
-				OnOK();
-			else
-				OnMinigame();
-
-			return TRUE;
-		}
-
-		if(Play[0].ServPNum != Game.WinnerPNum)
-			nResultBtnIndex = 0;
-		else
-			m_winner_kind = 1;
-
+			m_bResultBtnMouseDown = TRUE;
 	}
 
 	return CDialog::PreTranslateMessage(pMsg);
@@ -714,13 +602,13 @@ BOOL CResultHi::OnCommand(WPARAM wParam, LPARAM lParam)
 	{
 		case IDM_RESULT_OK:
 		{
-			OnMinigame();
+			OnOK();
 		}
 		break;
 			
 		case IDM_RESULT_BONUS:
 		{
-			OnOK();
+			OnMinigame();
 		}
 		break;
 	}

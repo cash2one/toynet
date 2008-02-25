@@ -120,6 +120,8 @@ extern xSprite HighBtnSpr;
 extern xSprite LowBtnSpr;
 extern xSprite SwingBtnSpr;
 extern xSprite EtcBtnSpr;
+extern xSprite ResultWinSpr;
+extern xSprite ResultLoseSpr;
 extern xSprite OkBtnSpr;
 extern xSprite BonusGBtnSpr;
 ////////////////////////////////////////////////////////////////[62]
