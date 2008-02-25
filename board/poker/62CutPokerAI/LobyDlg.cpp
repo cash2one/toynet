@@ -119,6 +119,7 @@ BEGIN_MESSAGE_MAP(CLobyDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_CHOICE, OnButtonChoice)
 	ON_BN_CLICKED(IDC_BUTTON_ALLKIND, OnButtonAllkind)
 	ON_WM_WINDOWPOSCHANGING()
+	ON_WM_SETFOCUS()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 /*
@@ -1703,5 +1704,15 @@ void CLobyDlg::RegistTrayIcon()
 	Shell_NotifyIcon(NIM_ADD, &nid);
 	SendMessage(WM_SETICON, (WPARAM)TRUE, (LPARAM)nid.hIcon);
 	//m_bIsTrayIcon = TRUE;
+	
+}
+
+void CLobyDlg::OnSetFocus(CWnd* pOldWnd) 
+{
+	CDialog::OnSetFocus(pOldWnd);
+	
+	// TODO: Add your message handler code here
+	if (pOldWnd->GetSafeHwnd()) 
+	      pOldWnd->SetFocus(); 
 	
 }

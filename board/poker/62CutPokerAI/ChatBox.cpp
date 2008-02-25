@@ -139,7 +139,7 @@ void CChatBox::Init( CWnd *pWnd, CPage *ppage, xSprite *pSpr,/* POINT StartPoint
 		ChatViewEdit.GetClientRect( rc );
 		rc.OffsetRect( -1000, 0 );
 		ChatViewEdit.MoveWindow( rc );
-		ChatViewEdit.ShowWindow( SW_SHOW );
+		ChatViewEdit.ShowWindow( SW_HIDE );
 		
 
 		rc.SetRect(m_Xp+3, m_Yp+y, m_Xp+width, m_Yp + m_Height -y);
@@ -150,7 +150,7 @@ void CChatBox::Init( CWnd *pWnd, CPage *ppage, xSprite *pSpr,/* POINT StartPoint
 		SendEdit.GetClientRect(rc);
 		rc.OffsetRect(-1000, 0);
 		SendEdit.MoveWindow(rc);
-		SendEdit.ShowWindow(SW_SHOW);
+		SendEdit.ShowWindow(SW_HIDE);
 	}
 
 	chat_changeinitpos();
@@ -257,7 +257,7 @@ void CChatBox::ResetChatViewEditPos( void )
 	// 채팅 뷰 리치에디트를 안보이는 곳으로 옮겨둔다
 	rc.OffsetRect( -1000, 0 );
 	ChatViewEdit.MoveWindow( rc );
-	ChatViewEdit.ShowWindow( SW_SHOW );
+	ChatViewEdit.ShowWindow( SW_HIDE );
 
 	return;
 }
@@ -590,7 +590,7 @@ BOOL CChatBox::OnLButtonUp( int x, int y )
 		ChatViewEdit.GetClientRect( rc );
 		rc.OffsetRect( -1000, 0 );
 		ChatViewEdit.MoveWindow( rc );
-		ChatViewEdit.ShowWindow( SW_SHOW );
+		ChatViewEdit.ShowWindow( SW_HIDE );
 		ChatViewEdit.MoveWindow( rc );
 
 		// 윈도 2000의 문제로 텍스트를 다시 세팅

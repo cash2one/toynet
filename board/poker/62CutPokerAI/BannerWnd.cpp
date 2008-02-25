@@ -136,6 +136,6 @@ void CBannerWnd::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	CStatic::OnWindowPosChanging(lpwndpos);
 	
 	// TODO: Add your message handler code here
-//	lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	lpwndpos->flags &= ~SWP_SHOWWINDOW;
 	
 }

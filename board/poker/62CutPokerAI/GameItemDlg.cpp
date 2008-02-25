@@ -151,7 +151,7 @@ void CGameItemDlg::OnCancel()
 
 	// 메인 다이얼로그가 뒤로 사라지는 경우를 막기 위함
 	if(g_pMainDlg->GetSafeHwnd()) {
-		g_pMainDlg->SetFocus();
+		//g_pMainDlg->SetFocus();
 	}
 
 	if(!m_bModal) {
@@ -204,7 +204,7 @@ BOOL CGameItemDlg::DoModaless(int firsttab, BOOL bRefreshList, int iDefSelItemKi
 	m_DefShopItemKind = iDefSelItemKind;
 
 	BOOL rtn = Create(IDD, g_pMainDlg);
-	if(rtn) ShowWindow(SW_SHOW);
+	if(rtn) ShowWindow(SW_HIDE);
 
 	return rtn;
 }
@@ -275,7 +275,7 @@ void CGameItemDlg::ChangeTab(int tabno)
 	m_ItemBtn.EnableWindow(TRUE);	
 
 	if(tabno == 0) {
-		m_pHelpWeb->ShowWindow(SW_SHOW);
+		m_pHelpWeb->ShowWindow(SW_HIDE);
 		m_HelpBtn.EnableWindow(FALSE);
 		
 		if( !m_bHelpWebNavigated ) {
@@ -288,7 +288,7 @@ void CGameItemDlg::ChangeTab(int tabno)
 		}
 	}
 	if(tabno == 1) {
-		m_ItemListDlg.ShowWindow(SW_SHOW);
+		m_ItemListDlg.ShowWindow(SW_HIDE);
 		m_ItemBtn.EnableWindow(FALSE);
 		
 		// 아이템 리프레쉬
@@ -419,6 +419,6 @@ void CGameItemDlg::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	CDialog::OnWindowPosChanging(lpwndpos);
 	
 	// TODO: Add your message handler code here
-//	lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	lpwndpos->flags &= ~SWP_SHOWWINDOW;
 	
 }

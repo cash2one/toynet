@@ -50,6 +50,7 @@ BEGIN_MESSAGE_MAP(CGameDlg, CDialog)
 	ON_WM_TIMER()
 	ON_WM_DESTROY()
 	ON_WM_WINDOWPOSCHANGING()
+	ON_WM_SETFOCUS()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -90,7 +91,7 @@ BOOL CGameDlg::OnInitDialog()
 	CRect rect(0, 0, GAMEVIEW_WIDTH, GAMEVIEW_HEIGHT);
 	//rect.OffsetRect(3, 60);
 	m_GameView.Create(NULL, "GameView", WS_CHILD | WS_VISIBLE | WS_CLIPCHILDREN, rect, this, 12345);
-	m_GameView.ShowWindow(SW_SHOW);
+	m_GameView.ShowWindow(SW_HIDE);
 	
 
 
@@ -298,6 +299,16 @@ void CGameDlg::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	CDialog::OnWindowPosChanging(lpwndpos);
 	
 	// TODO: Add your message handler code here
-//	lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	
+}
+
+void CGameDlg::OnSetFocus(CWnd* pOldWnd) 
+{
+	CDialog::OnSetFocus(pOldWnd);
+	
+	// TODO: Add your message handler code here
+	if (pOldWnd->GetSafeHwnd()) 
+        pOldWnd->SetFocus(); 
 	
 }

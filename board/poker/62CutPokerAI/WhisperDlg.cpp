@@ -206,7 +206,7 @@ BOOL CWhisperDlg::Create(char *id)
 	TarID.Format("%s", id);
 	bCreated = CDialog::Create(IDD_WHISPER_DIALOG, NULL);
 	//bCreated = CDialog::Create(IDD_WHISPER_DIALOG, g_pMainDlg);
-	ShowWindow(SW_SHOW);
+	ShowWindow(SW_HIDE);
 	return bCreated;
 	//return CDialog::Create(IDD, pParentWnd);
 }

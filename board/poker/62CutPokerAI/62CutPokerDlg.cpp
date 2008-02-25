@@ -248,7 +248,7 @@ BOOL C62CutPokerDlg::OnInitDialog()
 	m_TitleDlg.MoveWindow(rect, FALSE);
 	m_LobyDlg.MoveWindow(rect, FALSE);
 	m_GameDlg.MoveWindow(rect, FALSE);
-	m_TitleDlg.ShowWindow(SW_SHOW);	
+	m_TitleDlg.ShowWindow(SW_HIDE);	
 
 	// 타이틀 바 제거후 아이콘 보이기
 	this->ModifyStyle(0, WS_SYSMENU,0 );//| WS_MINIMIZE | WS_MAXIMIZE,0);
@@ -642,10 +642,10 @@ void C62CutPokerDlg::KillBadUserTimer()
 
 void C62CutPokerDlg::ChangeView(int vnum)
 {
-	(vnum==0)? m_TitleDlg.ShowWindow(SW_SHOW) : m_TitleDlg.ShowWindow(SW_HIDE);
-	//(vnum==1)? m_ChannelDlg.ShowWindow(SW_SHOW) : m_ChannelDlg.ShowWindow(SW_HIDE);
-	(vnum==2)? m_LobyDlg.ShowWindow(SW_SHOW) : m_LobyDlg.ShowWindow(SW_HIDE);
-	(vnum==3)? m_GameDlg.ShowWindow(SW_SHOW) : m_GameDlg.ShowWindow(SW_HIDE);
+	(vnum==0)? m_TitleDlg.ShowWindow(SW_HIDE) : m_TitleDlg.ShowWindow(SW_HIDE);
+	//(vnum==1)? m_ChannelDlg.ShowWindow(SW_HIDE) : m_ChannelDlg.ShowWindow(SW_HIDE);
+	(vnum==2)? m_LobyDlg.ShowWindow(SW_HIDE) : m_LobyDlg.ShowWindow(SW_HIDE);
+	(vnum==3)? m_GameDlg.ShowWindow(SW_HIDE) : m_GameDlg.ShowWindow(SW_HIDE);
 
 	CString str, str2;
 	static BOOL bFirstLoby=TRUE;
@@ -772,7 +772,7 @@ void C62CutPokerDlg::ChangeView(int vnum)
 		g_pGameView->ChatBox.ChatViewEdit.SetWindowText(""); // 채팅창
 		g_pGameView->ChatBox.SendEdit.SetWindowText("");
 		// 포커스
-		g_pGameView->SetFocus();
+		//g_pGameView->SetFocus();
 		m_GameDlg.m_GameView.Reset();
 
 		if(g_RI.bPlayer==0)
@@ -1229,7 +1229,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			ShowWindow(SW_HIDE);
 			MoveWindow(g_OrgMainDlgRect);
 			CenterWindow();
-			ShowWindow(SW_SHOW);
+			ShowWindow(SW_HIDE);
 
 			// Top으로 이동 (Windows 2000의 경우 익스플로러 아래로 프로그램이 가려지는 경우가 있음)
 			SetWindowPos(&wndTopMost,0,0,0,0,SWP_NOSIZE|SWP_NOMOVE);
@@ -1758,7 +1758,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			// 대기실로 이동
 			g_Where = WH_LOBY;
 			ChangeView(2);
-			m_LobyDlg.m_SendEdit.SetFocus();
+//			m_LobyDlg.m_SendEdit.SetFocus();
 			CString str;
 			str.Format(g_StrMan.Get(_T("WELCOME")), Play[0].UI.ID);
 			str+=g_StrMan.Get(_T("USE_WHIS"));

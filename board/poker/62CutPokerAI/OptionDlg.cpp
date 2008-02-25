@@ -231,19 +231,19 @@ void COptionDlg::OnChangeView(char mode)//메크로
 {	
 	if(mode == MODE_OPTION && mode != m_DisPlayMode)
 	{	
-		m_ManSnd3.ShowWindow(SW_SHOW);
-		m_FemaleSnd3.ShowWindow(SW_SHOW);
-		m_StartWindowScreenMode.ShowWindow(SW_SHOW);
-		m_StartFullScreenMode.ShowWindow(SW_SHOW);
-		m_ManSnd2.ShowWindow(SW_SHOW);
-		m_ManSnd1.ShowWindow(SW_SHOW);
-		m_FemaleSnd2.ShowWindow(SW_SHOW);
-		m_FemaleSnd1.ShowWindow(SW_SHOW);
-		m_OffSndFx.ShowWindow(SW_SHOW);
-		m_OffMusic.ShowWindow(SW_SHOW);
-		m_NoWhisper.ShowWindow(SW_SHOW);
-		m_NoInvite.ShowWindow(SW_SHOW);	
-		m_IDList.ShowWindow(SW_SHOW);
+		m_ManSnd3.ShowWindow(SW_HIDE);
+		m_FemaleSnd3.ShowWindow(SW_HIDE);
+		m_StartWindowScreenMode.ShowWindow(SW_HIDE);
+		m_StartFullScreenMode.ShowWindow(SW_HIDE);
+		m_ManSnd2.ShowWindow(SW_HIDE);
+		m_ManSnd1.ShowWindow(SW_HIDE);
+		m_FemaleSnd2.ShowWindow(SW_HIDE);
+		m_FemaleSnd1.ShowWindow(SW_HIDE);
+		m_OffSndFx.ShowWindow(SW_HIDE);
+		m_OffMusic.ShowWindow(SW_HIDE);
+		m_NoWhisper.ShowWindow(SW_HIDE);
+		m_NoInvite.ShowWindow(SW_HIDE);	
+		m_IDList.ShowWindow(SW_HIDE);
 
 		for( int i=0; i< MAX_MACRO_NUM; i++){
 			this->m_Macroedit[i].ShowWindow(SW_HIDE);	
@@ -274,7 +274,7 @@ void COptionDlg::OnChangeView(char mode)//메크로
 		m_IDList.ShowWindow(SW_HIDE);
 	
 		for( int i=0; i< MAX_MACRO_NUM; i++){
-			this->m_Macroedit[i].ShowWindow(SW_SHOW);	
+			this->m_Macroedit[i].ShowWindow(SW_HIDE);	
 		}
 		
 		RECT rc1;	

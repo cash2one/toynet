@@ -215,6 +215,6 @@ void CChangeCharDlg::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	CDialog::OnWindowPosChanging(lpwndpos);
 	
 	// TODO: Add your message handler code here
-//	lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	lpwndpos->flags &= ~SWP_SHOWWINDOW;
 	
 }

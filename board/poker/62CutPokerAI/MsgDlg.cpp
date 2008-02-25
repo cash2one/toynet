@@ -52,7 +52,7 @@ void CMsgDlg::MsgBox(int mode, char *msgstr)
 	iMode = mode;
 	szMsgText.Format(msgstr);
 	Create(IDD_MSG_DIALOG, NULL);
-	ShowWindow(SW_SHOW);
+	ShowWindow(SW_HIDE);
 }
 
 BOOL CMsgDlg::OnInitDialog() 

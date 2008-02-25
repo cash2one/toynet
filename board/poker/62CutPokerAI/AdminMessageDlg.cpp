@@ -216,7 +216,7 @@ void CAdminMessageDlg::Show(int unum, CString strID/*=_T("")*/)
 	}
 
 	if(!IsShow()){
-		ShowWindow(SW_SHOW);
+		ShowWindow(SW_HIDE);
 		m_bShow = TRUE;
 		CenterWindow(); 
 	//	if(g_bFullScreen) CenterWindow(); // 풀스크린시 중앙에 위치

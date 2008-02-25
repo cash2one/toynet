@@ -50,7 +50,7 @@ void CCharView::Create(CWnd *pParentWnd, CRect &rect, int usemode, int nID)
 	Page.Init(rect.Width(), rect.Height(), 16);
 	UseMode = usemode;
 	CWnd::Create(NULL, NULL, WS_CHILD | WS_VISIBLE, rect, pParentWnd, nID);
-	ShowWindow(SW_SHOW);
+	ShowWindow(SW_HIDE);
 
 	SetTimer(CHARVIEWREPAINT_TIMER, 100, NULL);
 }

@@ -174,7 +174,7 @@ protected:
 	afx_msg void OnButtonChoice();
 	afx_msg void OnButtonAllkind();
 	afx_msg void OnWindowPosChanging(WINDOWPOS FAR* lpwndpos);
-	afx_msg LRESULT TrayIconMsg( WPARAM wParam, LPARAM lParam ); 
+	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

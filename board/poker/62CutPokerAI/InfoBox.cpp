@@ -97,7 +97,7 @@ void CInfoBox::Init(CWnd *pWnd, CPage *ppage)
 	ChatViewEdit.GetClientRect(rc);
 	rc.OffsetRect(-2000, 0);
 	ChatViewEdit.MoveWindow(rc);
-	ChatViewEdit.ShowWindow(SW_SHOW);
+	ChatViewEdit.ShowWindow(SW_HIDE);
 }
 
 BOOL CInfoBox::OnLButtonDown(int x, int y)
@@ -125,13 +125,13 @@ void CInfoBox::OnLButtonUp()
 		ChatViewEdit.GetClientRect(rc);
 		rc.OffsetRect(-3000, 0);
 		ChatViewEdit.MoveWindow(rc);
-		ChatViewEdit.ShowWindow(SW_SHOW);
+		ChatViewEdit.ShowWindow(SW_HIDE);
 
 		// 센드 에디트를 안보이는 곳으로 옮겨둔다
 		SendEdit.GetClientRect(rc);
 		rc.OffsetRect(-2000, 0);
 		SendEdit.MoveWindow(rc);
-		SendEdit.ShowWindow(SW_SHOW);
+		SendEdit.ShowWindow(SW_HIDE);
 		SendEdit.SetFocus();
 	}
 	bMove = FALSE;

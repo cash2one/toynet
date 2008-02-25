@@ -387,7 +387,7 @@ void CObserverDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 	CDialog::OnShowWindow(bShow, nStatus);
 	
 	// TODO: Add your message handler code here
-	g_pGameDlg->SetFocus();
+	//g_pGameDlg->SetFocus();
 	
 }
 
@@ -446,11 +446,11 @@ void CObserverDlg::SetObserverViewBtn()
 
 	if(g_MyObserver == TRUE) //관전 -> 참여
 	{
-		m_InBtn.ShowWindow(SW_SHOW);
+		m_InBtn.ShowWindow(SW_HIDE);
 	}
 	else                     //참여 -> 관전
 	{
-		m_OutBtn.ShowWindow(SW_SHOW); // 관전
+		m_OutBtn.ShowWindow(SW_HIDE); // 관전
 	}
 
 }

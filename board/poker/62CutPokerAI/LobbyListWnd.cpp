@@ -84,7 +84,7 @@ END_MESSAGE_MAP()
 void CLobbyListWnd::Create( CWnd* pParentWnd, const RECT& rect, UINT nID, int UseMode )
 {
 	CWnd::Create( NULL, NULL, WS_CHILD | WS_VISIBLE, rect, pParentWnd, nID );
-	ShowWindow(SW_SHOW);
+	ShowWindow(SW_HIDE);
 
 	//	 0 - 룸리스트, 1 - 유저리스트
 	m_UseMode = UseMode;
@@ -1191,6 +1191,6 @@ void CLobbyListWnd::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	CWnd::OnWindowPosChanging(lpwndpos);
 	
 	// TODO: Add your message handler code here
-//	lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	lpwndpos->flags &= ~SWP_SHOWWINDOW;
 	
 }

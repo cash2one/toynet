@@ -697,7 +697,7 @@ BOOL CGameView::OnCommand(WPARAM wParam, LPARAM lParam)
 			//g_pGameDlg->m_InviteDlg.User_ReloadList();
 			g_pGameDlg->m_InviteDlg.m_UserList.DeleteAllItems();
 			//g_pGameDlg->m_InviteDlg.MoveToSide();
-			g_pGameDlg->m_InviteDlg.ShowWindow(SW_SHOW);
+			g_pGameDlg->m_InviteDlg.ShowWindow(SW_HIDE);
 			g_pGameDlg->m_InviteDlg.CenterWindow(this);
 			g_pGameView->ChatBox.SendEdit.SetFocus();
 
@@ -998,7 +998,7 @@ BOOL CGameView::OnCommand(WPARAM wParam, LPARAM lParam)
 			}
 			else {
 				//g_pGameDlg->m_ObserverDlg.m_UserList.DeleteAllItems();
-				g_pGameDlg->m_ObserverDlg.ShowWindow(SW_SHOW);
+				g_pGameDlg->m_ObserverDlg.ShowWindow(SW_HIDE);
 				g_pGameView->ChatBox.SendEdit.SetFocus();
 					
 			}
@@ -1611,7 +1611,7 @@ void CGameView::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	CWnd::OnWindowPosChanging(lpwndpos);
 	
 	// TODO: Add your message handler code here
-	//lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	lpwndpos->flags &= ~SWP_SHOWWINDOW;
 }
 
 

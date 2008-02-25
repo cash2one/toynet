@@ -530,7 +530,7 @@ void CItemListDlg::RefreshList()
 	RebuildItemList();
 
 	// 숨겨둔 리스트를 보이게 함
-	m_ItemList.ShowWindow(SW_SHOW);
+	m_ItemList.ShowWindow(SW_HIDE);
 
 	// 화면을 갱신
 	Invalidate(FALSE);

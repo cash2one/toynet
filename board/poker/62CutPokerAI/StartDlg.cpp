@@ -90,7 +90,7 @@ BOOL CStartDlg::OnInitDialog()
 	RECT rect={0,40,50,80};
 	m_test1.Create("button","",WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, rect, this,ctlID1);
 	m_test1.Init(135,292, ".\\image\\Common\\Btn_close.bmp",4);
-	m_test1.ShowWindow(SW_SHOW);
+	m_test1.ShowWindow(SW_HIDE);
 
 	
 	m_test2.Create("button","",WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, rect, this,ctlID2);
@@ -191,6 +191,6 @@ void CStartDlg::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 	CDialog::OnWindowPosChanging(lpwndpos);
 	
 	// TODO: Add your message handler code here
-//	lpwndpos->flags &= ~SWP_SHOWWINDOW;
+	lpwndpos->flags &= ~SWP_SHOWWINDOW;
 	
 }
