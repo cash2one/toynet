@@ -3977,9 +3977,9 @@ WPARAM GetValFromCom(WPARAM wParam)
 	case 13:return VK_RIGHT;// 'd'
 
 	//조이기.
-	case 7: return 7;
-	case 8: return 8;
-	case 9: return 0;
+	case 7: return 55;//7번키
+	case 8: return 56;//8번키
+	//case 9: return 57;
 	}
 	return 0;
 }
@@ -3994,15 +3994,6 @@ long C62CutPokerDlg::OnKeypadDown(WPARAM wParam, LPARAM lParam)
 
 	if (m_hBaseWindow != m_hSubWindow)
 		::PostMessage((HWND)m_hSubWindow, WM_KEYDOWN, GetValFromCom(wParam), lParam);
-	/*
-	CString sKeypad;
-
-	sKeypad.Format("Keydown %d", (UINT)wParam);
-
-	SetDlgItemText(IDC_EB_KEYPAD, sKeypad);
-	*/
-
-
 
 	return 1;
 }
@@ -4017,30 +4008,19 @@ long C62CutPokerDlg::OnKeypadUp(WPARAM wParam, LPARAM lParam)
 
 	if (m_hWnd != m_hSubWindow)
 		::PostMessage((HWND)m_hSubWindow, WM_KEYUP, GetValFromCom(wParam), lParam);
-		
-
-	/*
-	CString sKeypad;
-
-	sKeypad.Format("Keyup %d", (UINT)wParam);
-
-	SetDlgItemText(IDC_EB_KEYPAD, sKeypad);
-	*/
-
+	
 	return 1;
 }
 
 long C62CutPokerDlg::OnCoinIn(WPARAM wParam, LPARAM lParam)
 {
-	/*
-	CString sCredit;
+	::PostMessage((HWND)m_hWnd, WM_KEYDOWN, (LPARAM)'M', lParam);
 
-	GetDlgItemText(IDC_EB_CREDIT, sCredit);
-	int nCredit = atoi(sCredit);
-	nCredit++;
-	sCredit.Format("%d", nCredit);
-	SetDlgItemText(IDC_EB_CREDIT, sCredit);
-	*/
+	if (m_hWnd != m_hBaseWindow)
+		::PostMessage((HWND)m_hBaseWindow, WM_KEYDOWN, (LPARAM)'M', lParam);
+
+	if (m_hWnd != m_hSubWindow)
+		::PostMessage((HWND)m_hSubWindow, WM_KEYDOWN, (LPARAM)'M', lParam);
 
 	return 1;
 }
@@ -4048,20 +4028,13 @@ long C62CutPokerDlg::OnCoinIn(WPARAM wParam, LPARAM lParam)
 // 코인 하나가 배출 되었다는 의미
 long C62CutPokerDlg::OnCoinOut(WPARAM wParam, LPARAM lParam)
 {
-//	CString sCredit;
-//
-//	GetDlgItemText(IDC_EB_CREDIT, sCredit);
-//	int nCredit = atoi(sCredit);
-///*
-//	if(nCredit <= 0)
-//	{
-//		return 1;
-//	}
-//*/
-//
-//	nCredit--;
-//	sCredit.Format("%d", nCredit);
-//	SetDlgItemText(IDC_EB_CREDIT, sCredit);
+	::PostMessage((HWND)m_hWnd, WM_KEYDOWN, (LPARAM)'C', lParam);
+
+	if (m_hWnd != m_hBaseWindow)
+		::PostMessage((HWND)m_hBaseWindow, WM_KEYDOWN, (LPARAM)'C', lParam);
+
+	if (m_hWnd != m_hSubWindow)
+		::PostMessage((HWND)m_hSubWindow, WM_KEYDOWN, (LPARAM)'C', lParam);
 
 	return 1;
 }

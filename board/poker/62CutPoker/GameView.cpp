@@ -2201,8 +2201,21 @@ BOOL CGameView::PreTranslateMessage(MSG* pMsg)
 		}
 	}
 
-	if( pMsg->message == WM_KEYDOWN)
+	if( pMsg->message == WM_KEYDOWN){
 		g_CvCard.OnGameKey(pMsg->wParam);
+
+		// 돈 추가 키 - jeong
+		if(pMsg->wParam == 'M' || pMsg->wParam == 'C')
+		{
+			// 서버에 플레이어정보 돈 추가  - jeong
+			int money = pMsg->wParam=='M'?100:-100;
+			Play[0].PrevMoney +=money;			
+			CSV_ASK_MONEYINFO aumsg;
+			aumsg.Set(Play[0].UI.UNum, money, g_RI.RoomNum);
+			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+
+		}
+	}
 	else if( pMsg->message == WM_KEYUP)
 		g_CvCard.OnGameKeyUp(pMsg->wParam);
 	

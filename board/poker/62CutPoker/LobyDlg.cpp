@@ -132,12 +132,6 @@ BEGIN_MESSAGE_MAP(CLobyDlg, CDialog)
 	ON_WM_KEYDOWN()
 	ON_WM_SHOWWINDOW()
 	//}}AFX_MSG_MAP
-	ON_MESSAGE(WM_COMM_READ , OnCommunication) //추가
-	ON_MESSAGE(WM_COMM_KEYPADDOWN , OnKeypadDown) //추가
-	ON_MESSAGE(WM_COMM_KEYPADUP , OnKeypadUp) //추가
-	ON_MESSAGE(WM_COMM_COININ , OnCoinIn) //추가
-	ON_MESSAGE(WM_COMM_COINOUT , OnCoinOut) //추가
-
 END_MESSAGE_MAP()
 
 /*
@@ -1689,12 +1683,15 @@ BOOL CLobyDlg::PreTranslateMessage(MSG* pMsg)
 	// TODO: Add your specialized code here and/or call the base class	
 	if(pMsg->message == WM_KEYDOWN) 
 	{
-		if(pMsg->wParam == 'M' || pMsg->wParam == 'm')
+		if(pMsg->wParam == 'M' || pMsg->wParam == 'C')
 		{
-			Play[0].PrevMoney += 100;	
+			// 서버에 플레이어정보 돈 추가  - jeong
+			int money = pMsg->wParam=='M'?100:-100;
+			Play[0].PrevMoney +=money;			
 			CSV_ASK_MONEYINFO aumsg;
-			aumsg.Set(Play[0].UI.UNum, 100, g_RI.RoomNum);
+			aumsg.Set(Play[0].UI.UNum, money, g_RI.RoomNum);
 			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+
 		}
 		else if(pMsg->wParam == VK_DOWN || pMsg->wParam == 'S' || pMsg->wParam == 's')
 		{
@@ -1757,45 +1754,6 @@ void CLobyDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 		((C62CutPokerDlg *)AfxGetMainWnd())->m_hBaseWindow = m_hWnd;
 	
 }
-
-long CLobyDlg::OnCommunication(WPARAM wParam, LPARAM lParam)
-{
-	//m_clsRS232.ProcessRcvData();
-
-	return 1;
-}
-
-long CLobyDlg::OnKeypadDown(WPARAM wParam, LPARAM lParam)
-{
-
-	//::PostMessage((HWND)m_clsRS232.hCommWnd, WM_KEYDOWN, GetValFromCom(wParam), lParam);
-	//::PostMessage((HWND)m_hCurWindow, WM_KEYDOWN, GetValFromCom(wParam), lParam);
-
-	return 1;
-}
-
-long CLobyDlg::OnKeypadUp(WPARAM wParam, LPARAM lParam)
-{
-	//::PostMessage((HWND)m_clsRS232.hCommWnd, WM_KEYDOWN, GetValFromCom(wParam), lParam);
-	//::PostMessage((HWND)m_hCurWindow, WM_KEYUP, GetValFromCom(wParam), lParam);
-
-	return 1;
-}
-
-long CLobyDlg::OnCoinIn(WPARAM wParam, LPARAM lParam)
-{
-
-
-	return 1;
-}
-
-// 코인 하나가 배출 되었다는 의미
-long CLobyDlg::OnCoinOut(WPARAM wParam, LPARAM lParam)
-{
-
-	return 1;
-}
-
 
 void CLobyDlg::InitPage( )
 {

@@ -434,14 +434,17 @@ BOOL CMiniDlg::PreTranslateMessage(MSG* pMsg)
 		}
 		else if (pMsg->wParam == VK_HOME)
 			m_MnGame.StopGame();
-		else if(pMsg->wParam == 'M' || pMsg->wParam == 'm')
+		else if(pMsg->wParam == 'M' || pMsg->wParam == 'C')
 		{
-			Play[0].PrevMoney += 100;
-
+			// 서버에 플레이어정보 돈 추가  - jeong
+			int money = pMsg->wParam=='M'?100:-100;
+			Play[0].PrevMoney +=money;			
 			CSV_ASK_MONEYINFO aumsg;
-			aumsg.Set(Play[0].UI.UNum, 100, g_RI.RoomNum);
+			aumsg.Set(Play[0].UI.UNum, money, g_RI.RoomNum);
 			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+
 		}
+
 	}
 
 	if( m_MnGame.GetWinGame() == 0 || m_MnGame.GetGameContinue() == 2 )
