@@ -86,6 +86,7 @@ enum
 	SV_ASK_ALLUSERINFO,		// 모든 접속자 목록을 요구
 	SV_ASK_USERINFO,		// 특정 사용자 정보를 요구
 	SV_ASK_MONEYINFO,		// 돈 업데이트 요구 - jeong
+	SV_ASK_BANKINFO,		// 은행 업데이트 요구 - jeong
 	SV_ASK_CHANGECHAR,		// 사용자 캐릭터를 바꾸기를 요구
 	SV_ASK_CREATEROOM,		// 방 만들기를 요구
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -179,6 +180,7 @@ enum
 	CL_CHARGE_SAFEANGEL,	// [수호천사] 2004.07.08 머니 충전 메시지
 
 	SV_MONEYINFO,			//
+	SV_BANKINFO,			//
 };
 
 // 클라이언트용 메세지 #########################################################
@@ -626,7 +628,21 @@ public:
 	int *UNum;
 	int *UMoney;
 	int *UPlus;
-	BOOL Set(int unum, int nMoney, int nPlus);
+	int *UBank;
+	BOOL Set(int unum, int nMoney, int nPlus, int nBank=0);
+	BOOL Get(char* lpdata, int size);
+};
+
+/////////// 은행 업데이트 요청 정보
+class CSV_ASK_BANKINFO : public CCommMsg
+{
+public:
+	CSV_ASK_BANKINFO() : CCommMsg() {}
+	CSV_ASK_BANKINFO(char *pRefBuf) : CCommMsg(pRefBuf) {}
+	
+	int *UNum;
+	INT64 *UBank;
+	BOOL Set(int unum, INT64 nBank);
 	BOOL Get(char* lpdata, int size);
 };
 
@@ -651,7 +667,20 @@ public:
 	CSV_MONEYINFO(char *pRefBuf) : CCommMsg(pRefBuf) {}
 
 	INT *UMoney;
-	BOOL Set(int nMoney);
+	INT *UBank;
+	BOOL Set(int nMoney, int nBank=0);
+	BOOL Get(char* lpdata, int size);
+};
+
+/////////// 은행 정보를 보내줌
+class CSV_BANKINFO : public CCommMsg
+{
+public:
+	CSV_BANKINFO() : CCommMsg() {}
+	CSV_BANKINFO(char *pRefBuf) : CCommMsg(pRefBuf) {}
+	
+	INT64 *UBank;
+	BOOL Set(INT64 nBank);
 	BOOL Get(char* lpdata, int size);
 };
 /////////// 새로운 사용자가 접속했음을 알린다

@@ -806,14 +806,15 @@ BOOL CSV_ASK_USERINFO::Get(char* lpdata, int size)
 }
 
 ////////// 돈 정보를 업데이트 - jeong
-BOOL CSV_ASK_MONEYINFO::Set(int unum, int nMoney, int nPlus)
+BOOL CSV_ASK_MONEYINFO::Set(int unum, int nMoney, int nPlus, int nBank)
 {
-	int msglen = sizeof(*UNum) + sizeof(*UMoney) + sizeof(*UPlus);
+	int msglen = sizeof(*UNum) + sizeof(*UMoney) + sizeof(*UPlus) + sizeof(*UBank);
 	char* ptemp = SetHeader(SV_ASK_MONEYINFO, msglen);
 	if(ptemp==NULL) {TRACE("CSV_ASK_MONEYINFO::Set() 메모리 할당 에러\n"); return FALSE;}
 	UNum = (int*)SmartCpy(&ptemp, &unum, sizeof(*UNum));
 	UMoney = (int*)SmartCpy(&ptemp, &nMoney, sizeof(*UMoney));
 	UPlus = (int*)SmartCpy(&ptemp, &nPlus, sizeof(*UPlus));
+	UBank = (int*)SmartCpy(&ptemp, &nBank, sizeof(*UBank));
 	return TRUE;
 }
 BOOL CSV_ASK_MONEYINFO::Get(char* lpdata, int size)
@@ -823,6 +824,26 @@ BOOL CSV_ASK_MONEYINFO::Get(char* lpdata, int size)
 	UNum = (int*)Jump(&ptemp, sizeof(*UNum));
 	UMoney = (int*)Jump(&ptemp, sizeof(*UMoney));
 	UPlus = (int*)Jump(&ptemp, sizeof(*UPlus));
+	UBank = (int*)Jump(&ptemp, sizeof(*UBank));
+	return TRUE;
+}
+
+////////// 은행 정보를 업데이트 - jeong
+BOOL CSV_ASK_BANKINFO::Set(int unum, INT64 nBank)
+{
+	int msglen = sizeof(*UNum) + sizeof(*UBank);
+	char* ptemp = SetHeader(SV_ASK_BANKINFO, msglen);
+	if(ptemp==NULL) {TRACE("CSV_ASK_BANKINFO::Set() 메모리 할당 에러\n"); return FALSE;}
+	UNum = (int*)SmartCpy(&ptemp, &unum, sizeof(*UNum));
+	UBank = (INT64*)SmartCpy(&ptemp, &nBank, sizeof(*UBank));
+	return TRUE;
+}
+BOOL CSV_ASK_BANKINFO::Get(char* lpdata, int size)
+{
+	char* ptemp = GetHeader(lpdata, size);
+	if(ptemp==NULL) {TRACE("CSV_ASK_BANKINFO::Get() 메모리 할당 에러\n"); return FALSE;}
+	UNum = (int*)Jump(&ptemp, sizeof(*UNum));
+	UBank = (INT64*)Jump(&ptemp, sizeof(*UBank));
 	return TRUE;
 }
 
@@ -846,12 +867,13 @@ BOOL CSV_USERINFO::Get(char* lpdata, int size)
 }
 
 //////////  돈 정보를 보내줌
-BOOL CSV_MONEYINFO::Set(int nMoney)
+BOOL CSV_MONEYINFO::Set(int nMoney, int nBank)
 {
 	int msglen = sizeof(nMoney);
 	char* ptemp = SetHeader(SV_MONEYINFO, msglen);
 	if(ptemp==NULL) {TRACE("CSV_MONEYINFO::Set() 메모리 할당 에러\n"); return FALSE;}
 	UMoney = (int*)SmartCpy(&ptemp, &nMoney, sizeof(*UMoney));
+	UBank = (int*)SmartCpy(&ptemp, &nMoney, sizeof(*UBank));
 	return TRUE;
 }
 BOOL CSV_MONEYINFO::Get(char* lpdata, int size)
@@ -859,6 +881,24 @@ BOOL CSV_MONEYINFO::Get(char* lpdata, int size)
 	char* ptemp = GetHeader(lpdata, size);
 	if(ptemp==NULL) {TRACE("SV_ASK_MONEYINFO::Get() 메모리 할당 에러\n"); return FALSE;}
 	UMoney = (int*)Jump(&ptemp, sizeof(*UMoney));
+	UBank = (int*)Jump(&ptemp, sizeof(*UBank));
+	return TRUE;
+}
+
+//////////  은행 정보를 보내줌
+BOOL CSV_BANKINFO::Set(INT64 nBank)
+{
+	int msglen = sizeof(nBank);
+	char* ptemp = SetHeader(SV_BANKINFO, msglen);
+	if(ptemp==NULL) {TRACE("CSV_BANKINFO::Set() 메모리 할당 에러\n"); return FALSE;}
+	UBank = (INT64*)SmartCpy(&ptemp, &nBank, sizeof(*UBank));
+	return TRUE;
+}
+BOOL CSV_BANKINFO::Get(char* lpdata, int size)
+{
+	char* ptemp = GetHeader(lpdata, size);
+	if(ptemp==NULL) {TRACE("CSV_BANKINFO::Get() 메모리 할당 에러\n"); return FALSE;}
+	UBank = (INT64*)Jump(&ptemp, sizeof(*UBank));
 	return TRUE;
 }
 
