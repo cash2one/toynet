@@ -1781,11 +1781,13 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 	{
 		case IDM_OUT_COIN:
 		{
+			
 			int nCoin = g_MyInfo.UI.PMoney/100;
 			if (nCoin>0){
 				((C62CutPokerDlg *)AfxGetMainWnd())->m_clsRS232.OutCoin(nCoin);
 				g_MyInfo.UI.PMoney = 0;
 			}
+			
 		}
 		break;
 		
