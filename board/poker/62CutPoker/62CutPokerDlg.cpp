@@ -1962,13 +1962,27 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			
 			g_Wait = FALSE;
 
-			int nMoney = *msg.UMoney;
+			INT64 nMoney = *msg.UMoney;
 
 			Play[0].UI.PMoney = nMoney;
 			//Play[0].PrevMoney = nMoney - Play[0].BankMoney;
 			g_MyInfo.UI.PMoney = nMoney;
 			
 
+		} break;
+
+	case SV_BANKINFO:
+		{
+			CSV_BANKINFO msg;
+			msg.Get(lpData, TotSize);
+			
+			g_Wait = FALSE;
+			
+			INT64 nBank = *msg.UBank;
+			
+			Play[0].PrevMoney -= nBank;
+			Play[0].BankMoney = nBank;
+			
 		} break;
 
 	case SV_NEWUSER: // 货肺款 荤侩磊 立加

@@ -75,6 +75,9 @@ void CGraphButton::Init(CWnd *pWnd, CPage *ppage, int x, int y, xSprite *pspr, i
 		}
 	}
 
+	m_nAniButtonIndex = 0;
+	m_nMouseMoveCnt = 0;
+
 
 
 }
@@ -121,6 +124,16 @@ BOOL CGraphButton::OnMouseMove(int x, int y)
 			m_bOverSound = true;
 			Sound.Play( m_SoundNum, false, m_SoundVol );
 		}
+
+	
+		// 버튼 애니메이션 - jeong
+		if( (g_pLobyDlg->m_nLobyCnt/10)%2 == 0 )
+			m_nAniButtonIndex  = 0;
+
+		else
+			m_nAniButtonIndex  = 1;
+		
+
 		return TRUE;
 	}
 	else
@@ -172,7 +185,8 @@ void CGraphButton::Draw(CDC *pDC, int opt, int grade )
 		//if(m_ButtonCnt <4) m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 2, opt, grade );
 		//else m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 3, opt, grade);		//	다운된그림
 	}
-	else if(m_bOver==TRUE && m_bClick==FALSE)	m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 1, opt, grade);
+	else if(m_bOver==TRUE && m_bClick==FALSE)
+		m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 1 + m_nAniButtonIndex, opt, grade);
 	else if(m_bClick==FALSE) m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 0, opt, grade);
 	else if(m_bClick==TRUE) m_pPage->PutSprAuto(m_Xp, m_Yp, m_pSpr, ( m_iButtonNumber * m_ButtonCnt ) + 2, opt, grade);
 

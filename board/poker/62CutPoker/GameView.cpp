@@ -258,11 +258,11 @@ int CGameView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_nBetOffSetY[4] = 556;
 	m_nBetOffSetY[5] = 556;
 
-	m_nStartOffSetX[0] = 295;
-	m_nStartOffSetX[1] = 464;
+	m_nStartOffSetX[0] = 280;
+	m_nStartOffSetX[1] = 420;
 
-	m_nStartOffSetY[0] = 299;
-	m_nStartOffSetY[1] = 299;
+	m_nStartOffSetY[0] = 260;
+	m_nStartOffSetY[1] = 260;
 
 	return 0;
 }
@@ -304,10 +304,10 @@ void CGameView::pagebutton_init()
 		MasterBtn.Init(this, &Page, 675, 451, &RoomMasterSpr, 0,IDM_MASTER);
 		BanishvoteBtn.Init(this, &Page, 736, 451, &BanishVoteSpr, 0,IDM_BANISHVOTE);
 
-		GameStartBtn.Init(this, &Page, 200, 265, &GameStartBtnSpr, 0,IDM_START);//시작버튼
+		GameStartBtn.Init(this, &Page, 270, 256, &GameStartBtnSpr, 0,IDM_START);//시작버튼
 		GameStartBtn.Show(FALSE);
 
-		GameQuitBtn.Init(this, &Page, 370, 265, &GameQuitBtnSpr, 0,IDM_EXIT);
+		GameQuitBtn.Init(this, &Page, 410, 256, &GameQuitBtnSpr, 0,IDM_EXIT);
 		GameQuitBtn.Show(FALSE);
 		GameQuitBtn.m_Width = 178;
 		GameQuitBtn.m_Height = 44;
@@ -1305,6 +1305,13 @@ BOOL CGameView::OnCommand(WPARAM wParam, LPARAM lParam)
 		}
 		else g_pGameDlg->ExitGame();
 	*/
+
+		// Bank 서버로 전송
+		CSV_ASK_BANKINFO aumsg;
+		aumsg.Set(Play[0].UI.UNum, Play[0].BankMoney);
+		SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+
+
 		ShowWindow(SW_HIDE);
 		}
 		break;

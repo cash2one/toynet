@@ -41,6 +41,8 @@ public:
 	int m_Width, m_Height;
 
 	int		m_iButtonNumber;
+	int		m_nAniButtonIndex;
+	int		m_nMouseMoveCnt;
 
 //	===================== 윈도 이동 ===========================================
 	void	MoveWindow( int x, int y ) { m_Xp = x; m_Yp = y; }

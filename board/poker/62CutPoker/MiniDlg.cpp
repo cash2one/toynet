@@ -116,11 +116,11 @@ BOOL CMiniDlg::OnInitDialog()
 	m_bMiniBtnMouseDown = FALSE; 
 	m_nMiniBtnIndex = 0;
 	
-	m_nMiniOffSetX[0] = 263;
-	m_nMiniOffSetX[1] = 371;
+	m_nMiniOffSetX[0] = 120;
+	m_nMiniOffSetX[1] = 245;
 	
-	m_nMiniOffSetY[0] = 403;
-	m_nMiniOffSetY[1] = 403;
+	m_nMiniOffSetY[0] = 400;
+	m_nMiniOffSetY[1] = 400;
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

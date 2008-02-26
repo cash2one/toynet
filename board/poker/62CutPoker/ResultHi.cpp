@@ -97,15 +97,11 @@ BOOL CResultHi::OnInitDialog()
 	CDialogCtrlReposition CtrlRepos;
 	CtrlRepos.Reposition(m_hWnd);
 
-	m_ShowCardBtn.Init(80,226,".\\image\\commonbtn\\Btn_ok.bmp",4);
-	m_ShowCardBtn.ShowWindow(SW_HIDE);
+	//m_ShowCardBtn.Init(80,226,".\\image\\commonbtn\\Btn_ok.bmp",4);
+	//m_ShowCardBtn.ShowWindow(SW_HIDE);
 
 	// 배경 그림 읽기
-	if( g_MyObserver ) {
-		Back.LoadBitmapFile(".\\image\\Gameover\\result_ob.bmp");
-		m_winner_kind = 0;
-	}
-	else if(Play[0].ServPNum == Game.WinnerPNum) {
+	if(Play[0].ServPNum == Game.WinnerPNum) {
 		Back.LoadBitmapFile(".\\image\\Gameover\\result_mywin.bmp");
 		m_winner_kind = 1;
 
@@ -167,22 +163,6 @@ BOOL CResultHi::OnInitDialog()
 		m_nResultOffSetY[0] = 355;
 		m_nResultOffSetY[1] = 355;
 	}
-
-
-	/*
-	if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0){
-		m_CloseBtn.Init(130,361,".\\image\\commonbtn\\Btn_ok.bmp",4);
-		//m_MiniGame.Init(250,361,".\\image\\commonbtn\\Btn_Yes.bmp",4);
-	}
-	else{
-		m_CloseBtn.Init(110,251,".\\image\\commonbtn\\Btn_ok.bmp",4);
-		m_MiniGame.Init(190,251,".\\image\\commonbtn\\Btn_Yes.bmp",4);
-	}
-	*/
-	
-	//
-
-
 
 	// 폰트 생성
 	if(Font1.m_hObject == NULL)
@@ -260,17 +240,7 @@ BOOL CResultHi::OnInitDialog()
 
 	// 승패결과창 대기시간 - jeong
 	TimeCnt = MAX_WAIT_RESULT*10;
-	
-	/*
 
-	RECT rc1;
-	GetWindowRect( &rc1 );
-	rc1.right = rc1.left + 346;
-//	rc1.bottom = rc1.top + 269;
-	rc1.bottom = rc1.top + Back.GetHeight();
-
-	MoveWindow( &rc1 );
-	*/
 
 	WindowResize2Bitmap(m_hWnd, Back);
 

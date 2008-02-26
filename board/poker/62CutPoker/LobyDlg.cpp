@@ -152,7 +152,7 @@ BOOL CLobyDlg::OnInitDialog()
 	// TODO: Add extra initialization here
 	if(LobybackSpr.Load(".\\data\\lobyback.spr", 555)==FALSE) AfxMessageBox("lobyback.spr 파일을 읽을 수 없습니다");
 	if(InsertCoinSpr.Load(".\\data\\insertcoin.spr", 555)==FALSE) AfxMessageBox("insertcoin.spr 파일을 읽을 수 없습니다");
-	if(QuickStartSpr.Load(".\\data\\MainStartBtn.spr", 555)==FALSE) AfxMessageBox("MainStartBtn.spr 파일을 읽을 수 없습니다");
+	if(QuickStartSpr.Load(".\\data\\StartBtn.spr", 555)==FALSE) AfxMessageBox("MainStartBtn.spr 파일을 읽을 수 없습니다");
 	if(OutCoinSpr.Load(".\\data\\outcoin.spr", 555)==FALSE) AfxMessageBox("outcoin.spr 파일을 읽을 수 없습니다");
 
 	m_ChoiceKind = 0 ;
@@ -1795,8 +1795,7 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 				CSV_ASK_MONEYINFO aumsg;
 				aumsg.Set(Play[0].UI.UNum, money, g_RI.RoomNum);
 				SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
-			}
-			
+			}	
 		}
 		break;
 		
@@ -1804,6 +1803,8 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 		{
 			if( g_MyInfo.UI.PMoney >= 500)
 				OnButtonQuickstart();
+
+			
 		}
 		break;
 	}
