@@ -735,6 +735,7 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 
 		GameStartBtn.OnLButtonUp(mxp, myp);
 		GameQuitBtn.OnLButtonUp(mxp, myp);
+		m_nStartBtnIndex = 0;
 	}
 
 	return CWnd::WindowProc(message, wParam, lParam);
