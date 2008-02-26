@@ -1667,7 +1667,7 @@ void CLobyDlg::OnTimer(UINT nIDEvent)
 	// TODO: Add your message handler code here and/or call default
 	Invalidate(FALSE);
 	m_nLobyCnt++;
-	SetFocus();
+	//SetFocus();
 	
 	//CDialog::OnTimer(nIDEvent);
 }
