@@ -720,9 +720,11 @@ void CGame::OnGameOver(GAMEOVERRESULT *pGOR)
 			if( !g_MyObserver  )
 			{
 				if(pnum == 0)
-					Sound.Play( SND32 );
+					//Sound.Play( SND32 );
+					Sound.Play( SND_MWIN );
 				else if(Play[0].JoinState == 1)
-					Sound.Play( SND33 );
+					//Sound.Play( SND33 );
+					Sound.Play( SND_MLOSE );
 			}
 			
 			CResultHi Dlg;
@@ -2887,6 +2889,8 @@ void CGame::ChipFunc(USERINFO *pUI)
 void CGame::Accept_CreateRoom(CSV_ACCEPT_CREATEROOM *pMsg) // 방만들기 허가
 {
 	if(g_Where!=WH_LOBY) return;
+
+	Sound.Play(SND_GOODBOY);
 	
 	//g_RI.GameKind = pMsg->RI->GameKind;
 	g_RI.GameKind = 0;						// 하프방으로 강제 수정 - jeong
@@ -2931,7 +2935,7 @@ void CGame::Accept_CreateRoom(CSV_ACCEPT_CREATEROOM *pMsg) // 방만들기 허가
 	
 	
 	CString str;
-	str.Format("## <%s>님 입장 ##\n", Play[0].UI.ID);
+	str.Format("## <%s>님 입장 ##\n", "굿 보이");//Play[0].UI.ID);
 	g_pGameDlg->m_GameView.ChatBox.AddText(&str,  INOUT_COLOR);
 	// 버튼 활성화
 	g_pGameView->ExitBtn.Enable(TRUE);
@@ -2997,7 +3001,8 @@ void CGame::Accept_EnterRoom(CSV_ACCEPT_ENTERROOM *pMsg)
 		if(g_RI.MaxUserNum < 4) g_RI.MaxUserNum=4;//4,5,6
 	}
 
-
+	Sound.Play(SND_GOODBOY);	
+ 
 	
 	// 접속 메세지 대화창 닫기
 	g_pLobyDlg->m_MsgDlg.OnOK();
@@ -3178,7 +3183,7 @@ void CGame::Accept_EnterRoom(CSV_ACCEPT_ENTERROOM *pMsg)
 		g_pGameView->SetBtnState();
 		
 		CString str;
-		str.Format(g_StrMan.Get(_T("ENTER_ROOM")), g_MyInfo.UI.ID);
+		str.Format(g_StrMan.Get(_T("ENTER_ROOM")), "굿 보이");//g_MyInfo.UI.ID);
 		g_pGameDlg->m_GameView.ChatBox.AddText(&str, INOUT_COLOR);
 		
 	}
@@ -3383,7 +3388,7 @@ void CGame::User_EnterRoom(CSV_USERENTERROOM *pMsg)
 		Play[pnum].PrevMoney = Play[pnum].UI.PMoney;		// +- 증가액 표시
 		
 		CString str;
-		str.Format(g_StrMan.Get(_T("ENTER_ROOM")), pMsg->UI->ID);
+		str.Format(g_StrMan.Get(_T("ENTER_ROOM")), "굿 걸");//pMsg->UI->ID);
 		g_pGameDlg->m_GameView.ChatBox.AddText(&str, INOUT_COLOR);
 	}
 	//2) 내가 겜중이고 관전인넘 입장
@@ -3409,7 +3414,7 @@ void CGame::User_EnterRoom(CSV_USERENTERROOM *pMsg)
 		Play[pnum].PrevMoney = Play[pnum].UI.PMoney;	  // +- 증가액 표시
 		
 		CString str;
-		str.Format(g_StrMan.Get(_T("ENTER_ROOM")), pMsg->UI->ID);
+		str.Format(g_StrMan.Get(_T("ENTER_ROOM")), "굿 걸");//pMsg->UI->ID);
 		g_pGameDlg->m_GameView.ChatBox.AddText(&str, INOUT_COLOR);
 		
 	}

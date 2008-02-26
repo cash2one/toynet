@@ -559,7 +559,8 @@ void CResultHi::OnButtonSafeangel()
 void CResultHi::OnMinigame() 
 {
 	// TODO: Add your control notification handler code here
-	Sound.Play(SND45);	
+	//Sound.Play(SND45);	
+	Sound.Play(SND_FBONUS);	
 
 	//if( Game.m_bShowMiniGame )
 	if( Play[0].ServPNum == Game.WinnerPNum )

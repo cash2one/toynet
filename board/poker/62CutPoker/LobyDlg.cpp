@@ -799,7 +799,7 @@ void CLobyDlg::OnButtonCreateroom()
 		return; 
 	}
 
-	Sound.Play(SND45);
+	//Sound.Play(SND45);
 
 	// ### [ 관전기능 ] ###
 	//softpark
@@ -1275,7 +1275,7 @@ void CLobyDlg::OnButtonQuickstart()
 {
 
 	// TODO: Add your control notification handler code here
-	Sound.Play(SND45);
+	//Sound.Play(SND45);
 
 	// ### [ 관전기능 ] ###
 	CSV_ASK_QUICKSTART	msg;
@@ -1748,7 +1748,6 @@ void CLobyDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 {
 	CDialog::OnShowWindow(bShow, nStatus);
 	
-
 	// TODO: Add your message handler code here
 
 	if (bShow)
@@ -1782,7 +1781,11 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 	{
 		case IDM_OUT_COIN:
 		{
-			//m_clsRS232.OutCoin(dwCredit);
+			int nCoin = g_MyInfo.UI.PMoney/100;
+			if (nCoin>0){
+				((C62CutPokerDlg *)AfxGetMainWnd())->m_clsRS232.OutCoin(nCoin);
+				g_MyInfo.UI.PMoney = 0;
+			}
 		}
 		break;
 		

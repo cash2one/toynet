@@ -161,9 +161,17 @@ BOOL CSound::Init(HWND hWnd)
 
 
 	SetSndFile(SND51, ".\\Sound\\turn.wav");	// À½¾Ç 3
+
+	//added.
+	SetSndFile(	SND_FBONUS, ".\\Sound\\add\\fbonus-game.wav");
+	SetSndFile(	SND_FLOSE, ".\\Sound\\add\\flose.wav");
+	SetSndFile(	SND_FWIN, ".\\Sound\\add\\fwin.wav");
+	SetSndFile(	SND_GOODBOY, ".\\Sound\\add\\goodboy7poker.wav");
+	SetSndFile(	SND_MBONUS, ".\\Sound\\add\\mbonus-game.wav");
+	SetSndFile(	SND_MLOSE, ".\\Sound\\add\\mlose.wav");
+	SetSndFile(	SND_MWIN, ".\\Sound\\add\\mwin.wav");
+	SetSndFile(	SND_ONEMORE, ".\\Sound\\add\\onemore.wav");
 	
-
-
 	if(bInited == FALSE) return FALSE;
 
 	return TRUE;

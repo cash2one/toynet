@@ -197,6 +197,7 @@ void CMiniGame::PreCardGame()
 
 void CMiniGame::NextCardGame()
 {
+	Sound.Play(SND_ONEMORE);
 	InitWinGame();
 	
 	int nCardNum;
@@ -332,12 +333,14 @@ void CMiniGame::SetGameResult(int nGameContinue)
 		//½Â¸®
 		RaiseMoney();
 		m_nWinGame = 0;
-		Sound.Play(SND32);
+		//Sound.Play(SND32);
+		Sound.Play(SND_FWIN);
 	}
 	else if( m_nGameContinue == 1 ){
 		//ÆÐ¹è
 		m_nWinGame = 1;
-		Sound.Play(SND33);
+		//Sound.Play(SND33);
+		Sound.Play(SND_FLOSE);
 		DefeatGame();
 	}
 	else if( m_nGameContinue == 2 ){
@@ -411,14 +414,14 @@ void CMiniGame::OnGameKey(int nVKey)
 		{
 			nResult = CheckWinGame( 1 );
 			SetGameResult( nResult );
-			Sound.Play(SND45);
+			//Sound.Play(SND45);
 		}
 		break;
 		case VK_DELETE:
 		{
 			nResult = CheckWinGame( 0 );
 			SetGameResult( nResult );
-			Sound.Play(SND45);
+			//Sound.Play(SND45);
 		}
 		break;
 	}
