@@ -80,7 +80,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 Odbccp32.lib RxCom232.lib /nologo /subsystem:windows /map /debug /machine:I386 /out:"../_BIN/Client/NewPoker_Debug.exe" /pdbtype:sept /libpath:".\GraphLib" /libpath:"..\CommonFile" /libpath:".\FolderLib" /libpath:".\SoundLib"
+# ADD LINK32 Odbccp32.lib RxCom232.lib /nologo /subsystem:windows /map /debug /debugtype:both /machine:I386 /out:"../_BIN/Client/NewPoker_Debug.exe" /pdbtype:sept /libpath:".\GraphLib" /libpath:"..\CommonFile" /libpath:".\FolderLib" /libpath:".\SoundLib"
 
 !ELSEIF  "$(CFG)" == "62CutPoker - Win32 ReleaseDebug"
 

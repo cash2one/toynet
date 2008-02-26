@@ -3677,7 +3677,7 @@ void C62CutPokerDlg::LoadSpriteFile()
 	if(CharBackSpr.Load(".\\data\\CharBack.spr", 555)==FALSE) AfxMessageBox("CharBack.spr 파일을 읽을 수 없습니다");
 	if(InfoBoxSpr.Load(".\\data\\InfoBox.spr", 555)==FALSE) AfxMessageBox("InfoBox.spr 파일을 읽을 수 없습니다");
 	if(ChatBoxSpr.Load(".\\data\\ChatBox.spr", 555)==FALSE) AfxMessageBox("ChatBox.spr 파일을 읽을 수 없습니다");
-	if(ExitBtnSpr.Load(".\\data\\ExitBtn.spr", 555)==FALSE) AfxMessageBox("ExitBtn.spr 파일을 읽을 수 없습니다");
+	//if(ExitBtnSpr.Load(".\\data\\ExitBtn.spr", 555)==FALSE) AfxMessageBox("ExitBtn.spr 파일을 읽을 수 없습니다");
 	//if(InviteBtnSpr.Load(".\\data\\InviteBtn.spr", 555)==FALSE) AfxMessageBox("InviteBtn.spr 파일을 읽을 수 없습니다");
 	if(FullScreenBtnSpr.Load(".\\data\\FullScreenBtn.spr", 555)==FALSE) AfxMessageBox("FullScreenBtn.spr 파일을 읽을 수 없습니다");
 	if(WindowBtnSpr.Load(".\\data\\WindowBtn.spr", 555)==FALSE) AfxMessageBox("WindowBtn.spr 파일을 읽을 수 없습니다");

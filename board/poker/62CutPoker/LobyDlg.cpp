@@ -1790,7 +1790,11 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 			int nCoin = g_MyInfo.UI.PMoney/100;
 			if (nCoin>0){
 				((C62CutPokerDlg *)AfxGetMainWnd())->m_clsRS232.OutCoin(nCoin);
-				g_MyInfo.UI.PMoney = 0;
+			
+				int money = -g_MyInfo.UI.PMoney;
+				CSV_ASK_MONEYINFO aumsg;
+				aumsg.Set(Play[0].UI.UNum, money, g_RI.RoomNum);
+				SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 			}
 			
 		}
