@@ -1496,21 +1496,39 @@ BOOL C62CutPokerServerView::ProcessPacket(int sid, CMySocket *pSocket, char* lpd
 			int unum = *MsgData.UNum;
 			int uMoney = *MsgData.UMoney;
 			int uRoomIndex = *MsgData.UPlus;
+			int uBank = *MsgData.UBank;
 
 			User[unum].UI.PMoney += uMoney;
-
+	
 			int uChanIndex = User[unum].ChNum;
 			int nPNum = User[unum].PNum;
 
 			Chan[uChanIndex].Room[uRoomIndex].m_Raise.m_User[nPNum].nPMoney += uMoney;
 
-			
-			// 잘못된 아이디일경우 빈 사용자 정보를 보내줌
 			CSV_MONEYINFO uimsg(SndBuf);
 			uimsg.Set(User[unum].UI.PMoney);
 			SockMan.SendData(sid, uimsg.pData, uimsg.GetTotalSize());
 		
 
+		} break;
+
+	case SV_ASK_BANKINFO: // 은행 정보 업데이트 요청 - jeong
+		{
+			
+			CSV_ASK_BANKINFO MsgData;
+			MsgData.Get(lpdata, totsize);
+
+			int unum = *MsgData.UNum;
+			int uBank = *MsgData.UBank;
+			
+			User[unum].nBMoney = uBank;
+			
+			/*
+			CSV_MONEYINFO uimsg(SndBuf);
+			uimsg.Set(User[unum].UI.PMoney);
+			SockMan.SendData(sid, uimsg.pData, uimsg.GetTotalSize());
+			*/
+			
 		} break;
 
 	case SV_ASK_CHANGECHAR: // 캐릭터 바꾸기를 요청

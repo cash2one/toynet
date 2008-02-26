@@ -1247,6 +1247,12 @@ BOOL CChannel::ProcessPacket(int sid, USERVAL *pUserVal, char* lpdata, int totsi
 				SockMan.SendData(sid, rqstart.pData, rqstart.GetTotalSize());
 			}
 
+
+			// Bank 정보 전송 - jeong
+			CSV_BANKINFO uimsg(SndBuf);
+			uimsg.Set(User[unum].nBMoney);
+			SockMan.SendData(sid, uimsg.pData, uimsg.GetTotalSize());
+
 		} break;
 
 	case SV_ASK_OUTROOM: // 사용자가 방에서 나오기를 요청

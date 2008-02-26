@@ -70,6 +70,8 @@ public:
 	int		m_UserLevel;		// 로그인시 레벨
 	COleDateTime	m_StartTime;		// 시작 시간
 
+	INT64	nBMoney;			// 은행 돈
+
 public:
 	CUser();
 	virtual ~CUser();
