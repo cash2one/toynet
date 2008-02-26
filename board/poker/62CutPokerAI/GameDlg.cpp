@@ -308,7 +308,5 @@ void CGameDlg::OnSetFocus(CWnd* pOldWnd)
 	CDialog::OnSetFocus(pOldWnd);
 	
 	// TODO: Add your message handler code here
-	if (pOldWnd->GetSafeHwnd()) 
-        pOldWnd->SetFocus(); 
-	
+
 }
