@@ -54,6 +54,8 @@ public:
 	BOOL OutCoin(int nOutCredit);
 	void TestOutCoin1();
 	void TestOutCoin2();
+	BOOL IsEmptyCoin();		// 돈통에 잔고가 없는지 여부 ( 사용할 필요없음 )
+	void ConfirmEmpty();	// 돈통에 코인을 채우고 확인시 호출 함수
 
 	//--------- 내부 사용 함수 ------------------------------------//
 	DWORD	ReadComm(BYTE *pBuff, DWORD nToRead);//포트에서 데이터 읽어오기
@@ -65,6 +67,7 @@ private:
 	BOOL m_bCoinIn;
 	BOOL m_bCoinOut;
 	BOOL m_bCoinOutConfirm;
+	BOOL m_bCoinEmpty;
 	int m_nSend00Cnt;
 	int m_nSend02Cnt;
 	int  m_nOutCredit;	// 내보낼 돈 크기..

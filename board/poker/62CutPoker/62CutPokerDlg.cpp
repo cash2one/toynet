@@ -3705,7 +3705,8 @@ void C62CutPokerDlg::LoadSpriteFile()
 	// 게임 진행 관련 이미지 
 	//if(GameStartBtnSpr.Load(".\\data\\MainStartBtn.spr", 555)==FALSE) AfxMessageBox("MainStartBtn.spr 파일을 읽을 수 없습니다");
 	if(GameStartBtnSpr.Load(".\\data\\StartBtn.spr", 555)==FALSE) AfxMessageBox("MainStartBtn.spr 파일을 읽을 수 없습니다");
-	if(GameQuitBtnSpr.Load(".\\data\\Mini\\endBtn.spr", 555)==FALSE) AfxMessageBox("endBtn.spr 파일을 읽을 수 없습니다");
+	//if(GameQuitBtnSpr.Load(".\\data\\Mini\\endBtn.spr", 555)==FALSE) AfxMessageBox("endBtn.spr 파일을 읽을 수 없습니다");
+	if(GameQuitBtnSpr.Load(".\\data\\endBtn.spr", 555)==FALSE) AfxMessageBox("endBtn.spr 파일을 읽을 수 없습니다");
 	if(X2StartBtnSpr.Load(".\\data\\Mini\\bonusG.spr", 555)==FALSE) AfxMessageBox("bonusG.spr 파일을 읽을 수 없습니다");
 	if(AvaSpr.Load(".\\data\\aba.spr", 555)==FALSE) AfxMessageBox("aba.spr 파일을 읽을 수 없습니다");
 	if(AllinBtnSpr.Load(".\\data\\Allinbtn.spr", 555)==FALSE) AfxMessageBox("AllinBtn.spr 파일을 읽을 수 없습니다");
@@ -4060,7 +4061,43 @@ long C62CutPokerDlg::OnCoinOut(WPARAM wParam, LPARAM lParam)
 }
 
 
+long C62CutPokerDlg::OnCoinEmpty(WPARAM wParam, LPARAM lParam)
+{
+	int nEmpty = (int)wParam;
 
+	// 돈통이 비였다는 신호
+	if(nEmpty == 1)
+	{
+		//AfxMessageBox("잔고가 부족합니다.\n코인을 채워주세요");
+		m_clsRS232.ConfirmEmpty();
+	}
+	// 돈통이 채웠다는 신호
+	// m_clsRS232.ConfirmEmpty() 함수가 불러지고 난뒤에
+	// 호출되지만 실제로 돈통이 채워지지 않아도 불러진다.
+	else if(nEmpty == 0)
+	{
+		//m_clsRS232.ConfirmEmpty(); 누르면, ACK로 다시 날라옴. 0 으로.
+
+		/*
+		CString sCredit;
+		DWORD dwCredit;
+
+		GetDlgItemText(IDC_EB_CREDIT, sCredit);
+		dwCredit = (DWORD)atol(sCredit);
+		
+		if(dwCredit <= 0)
+		{
+			AfxMessageBox("0 이상을 입력해 주세요");
+		}
+		else
+		{
+			m_clsRS232.OutCoin(dwCredit);
+		}
+		*/
+	}
+
+	return 1;
+}
 
 
 

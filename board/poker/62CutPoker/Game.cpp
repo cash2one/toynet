@@ -643,8 +643,9 @@ void CGame::OnGameOver(GAMEOVERRESULT *pGOR)
 		CurPlayer = WinnerPNum; // 하이 승자를 선으로 한다.
 		g_Poker.CurPlayer = CurPlayer;
 		
-		str.Format(g_StrMan.Get(_T("WIN_MESINFO")), pGOR->ID);		
-		g_pGameDlg->m_GameView.ChatBox.AddText(&str,RGB(247,200,80));
+		//softpark
+		//str.Format(g_StrMan.Get(_T("WIN_MESINFO")), pGOR->ID);		
+		//g_pGameDlg->m_GameView.ChatBox.AddText(&str,RGB(247,200,80));
 		
 		INT64 nTotBat = Game.GetRealBet();
 		strM = NumberToOrientalString(nTotBat);					// 베팅액 총 ## 총베팅액
@@ -689,9 +690,9 @@ void CGame::OnGameOver(GAMEOVERRESULT *pGOR)
 		CurPlayer = WinnerPNum; // 하이 승자를 선으로 한다.
 		g_Poker.CurPlayer = CurPlayer;
 			
-		str.Format(g_StrMan.Get(_T("WIN_MESINFO")), pGOR->ID);
+		//str.Format(g_StrMan.Get(_T("WIN_MESINFO")), pGOR->ID);
 		//g_pGameDlg->m_GameView.InfoBox.ChatViewEdit.AddText(&str,RGB(247,200,80));
-		g_pGameDlg->m_GameView.ChatBox.AddText(&str,RGB(247,200,80));
+		//g_pGameDlg->m_GameView.ChatBox.AddText(&str,RGB(247,200,80));
 		
 		INT64 nTotBat = Game.GetRealBet();
 		strM = NumberToOrientalString(nTotBat);//pGOR->Pg.nTotBat);					// 베팅액 총 ## 총베팅액
