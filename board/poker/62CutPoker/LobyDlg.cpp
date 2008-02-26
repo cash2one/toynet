@@ -1671,8 +1671,8 @@ void CLobyDlg::OnTimer(UINT nIDEvent)
 	
 
 	// 풀스크린
-	if( m_nLobyCnt == 7 )
-		SendMessage(WM_COMMAND, IDC_BUTTON_CHANGEDISPLAY);
+	//if( m_nLobyCnt == 7 )
+	//	SendMessage(WM_COMMAND, IDC_BUTTON_CHANGEDISPLAY);
 	
 	//CDialog::OnTimer(nIDEvent);
 }
@@ -1786,16 +1786,26 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 	{
 		case IDM_OUT_COIN:
 		{
-			
-			int nCoin = g_MyInfo.UI.PMoney/100;
-			if (nCoin>0){
-				((C62CutPokerDlg *)AfxGetMainWnd())->m_clsRS232.OutCoin(nCoin);
-			
-				int money = -g_MyInfo.UI.PMoney;
+			Play[0].BankMoney = g_MyInfo.BankMoney;
+			int nCoin = Play[0].BankMoney/100;
+			int nExtra = Play[0].BankMoney%100;
+			if (nCoin>0)
+			{
+				g_MyInfo.UI.PMoney -= nCoin*100;
+
 				CSV_ASK_MONEYINFO aumsg;
-				aumsg.Set(Play[0].UI.UNum, money, g_RI.RoomNum);
+				aumsg.Set(Play[0].UI.UNum, -(nCoin*100), g_RI.RoomNum);
 				SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+				
+				// Bank 서버로 전송
+				CSV_ASK_BANKINFO abmsg;
+				abmsg.Set(Play[0].UI.UNum, nExtra);
+				SockMan.SendData(g_MainSrvSID, abmsg.pData, abmsg.GetTotalSize());
+
+				((C62CutPokerDlg *)AfxGetMainWnd())->m_clsRS232.OutCoin(nCoin);
 			}	
+
+			g_MyInfo.BankMoney = 0;
 		}
 		break;
 		

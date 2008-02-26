@@ -1311,6 +1311,8 @@ BOOL CGameView::OnCommand(WPARAM wParam, LPARAM lParam)
 		aumsg.Set(Play[0].UI.UNum, Play[0].BankMoney);
 		SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
 
+		g_MyInfo.BankMoney = Play[0].BankMoney;
+
 
 		ShowWindow(SW_HIDE);
 		}
