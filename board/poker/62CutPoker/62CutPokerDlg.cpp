@@ -4046,6 +4046,7 @@ long C62CutPokerDlg::OnCoinIn(WPARAM wParam, LPARAM lParam)
 // 코인 하나가 배출 되었다는 의미
 long C62CutPokerDlg::OnCoinOut(WPARAM wParam, LPARAM lParam)
 {
+	/*
 	::PostMessage((HWND)m_hWnd, WM_KEYDOWN, (LPARAM)'C', lParam);
 
 	if (m_hWnd != m_hBaseWindow)
@@ -4053,6 +4054,7 @@ long C62CutPokerDlg::OnCoinOut(WPARAM wParam, LPARAM lParam)
 
 	if (m_hWnd != m_hSubWindow)
 		::PostMessage((HWND)m_hSubWindow, WM_KEYDOWN, (LPARAM)'C', lParam);
+	*/
 
 	return 1;
 }
