@@ -173,6 +173,7 @@ BOOL CLobyDlg::OnInitDialog()
 		DEFAULT_PITCH | FF_SWISS,
 		"굴림");
 
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -1667,7 +1668,11 @@ void CLobyDlg::OnTimer(UINT nIDEvent)
 	// TODO: Add your message handler code here and/or call default
 	Invalidate(FALSE);
 	m_nLobyCnt++;
-	//SetFocus();
+	
+
+	// 풀스크린
+	if( m_nLobyCnt == 7 )
+		SendMessage(WM_COMMAND, IDC_BUTTON_CHANGEDISPLAY);
 	
 	//CDialog::OnTimer(nIDEvent);
 }
