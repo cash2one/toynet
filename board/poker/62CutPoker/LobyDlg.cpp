@@ -1680,8 +1680,8 @@ void CLobyDlg::OnTimer(UINT nIDEvent)
 	
 
 	// 풀스크린
-	//if( m_nLobyCnt == 7 )
-	//	SendMessage(WM_COMMAND, IDC_BUTTON_CHANGEDISPLAY);
+	if( m_nLobyCnt == 7 )
+		SendMessage(WM_COMMAND, IDC_BUTTON_CHANGEDISPLAY);
 	
 	//CDialog::OnTimer(nIDEvent);
 }
