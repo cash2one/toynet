@@ -45,11 +45,11 @@ CLobyDlg::CLobyDlg(CWnd* pParent /*=NULL*/)
 	m_RefuseWhisper = FALSE;
 	//}}AFX_DATA_INIT
 
-	m_nLobyOffSetX[0] = 510;
-	m_nLobyOffSetX[1] = 680;
+	m_nLobyOffSetX[0] = 600;
+	m_nLobyOffSetX[1] = 350;
 	
-	m_nLobyOffSetY[0] = 570;
-	m_nLobyOffSetY[1] = 570;
+	m_nLobyOffSetY[0] = 460;
+	m_nLobyOffSetY[1] = 410;
 	
 	m_nLobyBtnIndex = 0;
 	m_bLobyBtnMouseDown = FALSE; 
@@ -1766,12 +1766,12 @@ void CLobyDlg::InitPage( )
 	Page.Init(GAMEVIEW_WIDTH, GAMEVIEW_HEIGHT, 16);
 	
 	
-	OutCoinBtn.Init(this, &Page, 500, 550, &OutCoinSpr, 0,IDM_OUT_COIN);
+	OutCoinBtn.Init(this, &Page, 591, 457, &OutCoinSpr, 0,IDM_OUT_COIN);
 	OutCoinBtn.Show(TRUE);
 	OutCoinBtn.m_Width = 170;
 	OutCoinBtn.m_Height = 44;
 	
-	QuickStartBtn.Init(this, &Page, 670, 550, &QuickStartSpr, 0,IDM_QUICK_START);
+	QuickStartBtn.Init(this, &Page, 345, 401, &QuickStartSpr, 0,IDM_QUICK_START);
 	QuickStartBtn.Show(TRUE);
 	QuickStartBtn.m_Width = 100;
 	QuickStartBtn.m_Height = 44;
