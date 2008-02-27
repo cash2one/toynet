@@ -211,6 +211,7 @@ void CMiniGame::NextCardGame()
 	m_nMoveIndex = m_nNextGame;
 	m_nGameContinue = -1;
 	m_bBetEnabled = TRUE;
+	m_bPlayGame = TRUE;
 }
 
 void CMiniGame::ChangeCardPosition()
@@ -366,8 +367,6 @@ void CMiniGame::IsGame()
 {
 	if( m_bPlayGame == TRUE )
 		return;
-
-	m_bPlayGame = TRUE;
 
 	if( m_nGameContinue == 1)			//Lose
 		DefeatGame();

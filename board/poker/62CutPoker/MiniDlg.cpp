@@ -518,8 +518,11 @@ void CMiniDlg::FucButtonDraw(CDC *pDC)
 
 	if( m_MnGame.GetWinGame() == 0 || m_MnGame.GetGameContinue() == 2 )
 	{
-		X2PlayBtn.Draw(pDC);
-		X2EndBtn.Draw(pDC);
+		if( !m_MnGame.IsPlayGame() )
+		{
+			X2PlayBtn.Draw(pDC);
+			X2EndBtn.Draw(pDC);
+		}
 	}
 }
 

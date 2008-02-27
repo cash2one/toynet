@@ -215,15 +215,24 @@ void CLobyDlg::OnPaint()
 	MemDC.SetTextColor(RGB(255,255,255));
 	MemDC.TextOut(100,100, str);
 	
-	// 돈출력 
+	// Credit
 	CString strM;
 	CRect rtMoney;
 	GetClientRect(&rtMoney);
 	rtMoney.SetRect(0,0,200,80);
-	rtMoney.OffsetRect(560, 525);
-	strM = NumberToOrientalString(g_MyInfo.UI.PMoney);
+	rtMoney.OffsetRect(565, 525);
+	strM = NumberToOrientalString(g_MyInfo.UI.PMoney-g_MyInfo.BankMoney);
 	str.Format("%s원", strM);
 	MemDC.DrawText(str, &rtMoney, DT_RIGHT | DT_WORDBREAK);
+
+	// Bank
+	rtMoney.SetRect(0,0,200,80);
+	rtMoney.OffsetRect(565, 545);
+	strM = NumberToOrientalString(g_MyInfo.BankMoney);
+	str.Format("%s원", strM);
+	MemDC.DrawText(str, &rtMoney, DT_RIGHT | DT_WORDBREAK);
+
+	
 
 	CRect rect;
 	GetClientRect(&rect);
@@ -1671,8 +1680,8 @@ void CLobyDlg::OnTimer(UINT nIDEvent)
 	
 
 	// 풀스크린
-	if( m_nLobyCnt == 7 )
-		SendMessage(WM_COMMAND, IDC_BUTTON_CHANGEDISPLAY);
+	//if( m_nLobyCnt == 7 )
+	//	SendMessage(WM_COMMAND, IDC_BUTTON_CHANGEDISPLAY);
 	
 	//CDialog::OnTimer(nIDEvent);
 }
@@ -1791,7 +1800,7 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 			int nExtra = Play[0].BankMoney%100;
 			if (nCoin>0)
 			{
-				g_MyInfo.UI.PMoney -= nCoin*100;
+				g_MyInfo.BankMoney -= nCoin*100;
 
 				CSV_ASK_MONEYINFO aumsg;
 				aumsg.Set(Play[0].UI.UNum, -(nCoin*100), g_RI.RoomNum);
@@ -1805,7 +1814,7 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 				((C62CutPokerDlg *)AfxGetMainWnd())->m_clsRS232.OutCoin(nCoin);
 			}	
 
-			g_MyInfo.BankMoney = 0;
+			//g_MyInfo.BankMoney = 0;
 		}
 		break;
 		

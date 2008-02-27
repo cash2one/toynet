@@ -47,6 +47,8 @@ public:
 
 	int m_winner_kind;
 
+	BOOL m_bWin;
+
 	UINT hTimer;
 	UINT TimeCnt;
 

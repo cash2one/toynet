@@ -119,6 +119,8 @@ BOOL CResultHi::OnInitDialog()
 
 		m_nResultOffSetY[0] = 255;
 		m_nResultOffSetY[1] = 255;
+
+		m_bWin = TRUE;
 	}
 	else {
 		Back.LoadBitmapFile(".\\image\\Gameover\\result_otherwin.bmp");		// Result design will be changed - jeong
@@ -162,6 +164,8 @@ BOOL CResultHi::OnInitDialog()
 
 		m_nResultOffSetY[0] = 355;
 		m_nResultOffSetY[1] = 355;
+
+		m_bWin = FALSE;
 	}
 
 	// 폰트 생성
@@ -280,16 +284,16 @@ void CResultHi::OnPaint()
 	MemDC.SelectObject(Page.hBmp);
 	
 	// 버튼 출력 및 배경 출력
-	if(Play[0].ServPNum == Game.WinnerPNum)
+	if(!m_bWin)
+	{
+		Page.PutSprAuto(0, 0, &ResultLoseSpr, 0);
+		OkBtn.Draw(&MemDC);
+	}
+	else
 	{
 		Page.PutSprAuto(0, 0, &ResultWinSpr, 0);
 		OkBtn.Draw(&MemDC);
 		BonusGBtn.Draw(&MemDC);
-	}
-	else
-	{
-		Page.PutSprAuto(0, 0, &ResultLoseSpr, 0);
-		OkBtn.Draw(&MemDC);
 	}
 
 	// 아바타 출력
@@ -311,7 +315,7 @@ void CResultHi::OnPaint()
 		str.Format("+%s",strM );
 		CRect rt;
 
-		if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0)
+		if(!m_bWin)
 			rt.SetRect(117,217,117+210,217+17);
 		else
 			rt.SetRect(114,207,114+210,207+17);
@@ -319,7 +323,7 @@ void CResultHi::OnPaint()
 		
 		MemDC.DrawText(str, &rt, DT_RIGHT | DT_WORDBREAK);
 
-		if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0)
+		if(!m_bWin)
 		{
 			CRect rt;
 			CString str1,str2;
@@ -347,7 +351,7 @@ void CResultHi::OnPaint()
 		str.Format("+%s",strM );
 		CRect rt;
 
-		if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0)
+		if(!m_bWin)
 			rt.SetRect(117,217,117+210,217+17);
 		else
 			rt.SetRect(114,207,114+210,207+17);
@@ -356,7 +360,7 @@ void CResultHi::OnPaint()
 
 		MemDC.DrawText(str, &rt, DT_RIGHT | DT_WORDBREAK);
 
-		if(Play[0].ServPNum != Game.WinnerPNum && m_winner_kind > 0)//내가 잃은 금액 표시 
+		if(!m_bWin)
 		{
 			CRect rt;
 			CString str1,str2;
