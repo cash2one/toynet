@@ -311,12 +311,8 @@ void CMiniDlg::PushStopBtn()
 	if( m_MnGame.IsPlayGame() )
 		return;
 
-	if( m_MnGame.GetGameResult() == 0 )
-		m_MnGame.StopGame();
-	else if ( m_MnGame.GetGameResult() == 1 )
-		m_MnGame.DefeatGame();
-	else if ( m_MnGame.GetGameResult() == 2 )
-		m_MnGame.PreCardGame();
+	m_MnGame.StopGame();
+
 }
 
 void CMiniDlg::OnMouseMove(UINT nFlags, CPoint point) 

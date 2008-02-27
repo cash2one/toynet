@@ -235,7 +235,7 @@ BOOL CResultHi::OnInitDialog()
 	rc.OffsetRect(22,61);
 	//m_CharView.Create(this, rc, 5, 3224);
 
-	hTimer = SetTimer(RESULTHI_TIMER, 100, NULL);
+	hTimer = SetTimer(RESULTHI_TIMER, 55, NULL);
 	TimeCnt = 0;
 
 	// [수호천사] 2004.07.08 
@@ -243,7 +243,7 @@ BOOL CResultHi::OnInitDialog()
 	//else TimeCnt = 5;
 
 	// 승패결과창 대기시간 - jeong
-	TimeCnt = MAX_WAIT_RESULT*10;
+	TimeCnt = MAX_WAIT_RESULT*20;
 
 
 	WindowResize2Bitmap(m_hWnd, Back);

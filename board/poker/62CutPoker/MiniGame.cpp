@@ -239,7 +239,7 @@ void CMiniGame::PreCardSet()
 int CMiniGame::LoopToCheckCardNum(int nIndex)
 {
 	int nCardNum;
-	for( int i=0; i<DUMY_CARD; i++)
+	for(int i=0; i<DUMY_CARD; i++)
 	{
 		srand(i*time(NULL));
 		nCardNum = CheckDuplicatedCardNum(nIndex);
@@ -376,7 +376,7 @@ void CMiniGame::IsGame()
 
 void CMiniGame::StopGame()
 {
-	if( m_nGameContinue == 0 )
+	if( m_nGameContinue == 0 || m_nGameContinue == 2 )
 	{
 		Play[0].BankMoney += m_nBankMoney;
 

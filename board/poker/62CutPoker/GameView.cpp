@@ -915,7 +915,7 @@ void CGameView::OnPaint()
 		if(GameStartBtn.GetButtonState() > -1)
 		{
 			//Page.PutSprAuto(306, 296, &EtcBtnSpr, 19,10,10);	// deleted by jeong	
-			m_bStartShowBtn = 1;
+			m_nStartBtnIndex = 1;
 			GameQuitBtn.Draw(&MemDC);
 			X2StartBtn.Draw(&MemDC);		
 		}
