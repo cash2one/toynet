@@ -975,20 +975,23 @@ void CGameView::OnPaint()
 	}
 
 	// 마우스 좌표 체크
+	/*
 	POINT mpos;
 	GetCursorPos(&mpos);
 	ScreenToClient(&mpos);
 	CString str;
-	str.Format("%5.1f FPS, Mouse (%d, %d)", FPS, mpos.x, mpos.y);
+	//str.Format("%5.1f FPS, Mouse (%d, %d)", FPS, mpos.x, mpos.y);
 
 	MemDC.SelectObject(&Font2);
 	MemDC.SetBkMode(TRANSPARENT);
 	MemDC.SetTextColor(RGB(255,255,255));
+	
 	if(g_RI.bPlayer==0)
 		MemDC.TextOut(600,300, str);		// change position of MouseInfo - jeong
-		//MemDC.TextOut(327,72, str);
 	else
 		MemDC.TextOut(20,65, str);
+	*/
+	
 /*
 	//카드 값 표시
 	for(int i=0;i<g_Max_Player;i++)

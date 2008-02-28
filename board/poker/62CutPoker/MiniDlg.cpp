@@ -155,7 +155,7 @@ void CMiniDlg::OnPaint()
 	MemDC.SelectObject(&Font2);
 	MemDC.SetBkMode(TRANSPARENT);
 	MemDC.SetTextColor(RGB(255,255,255));
-	MemDC.TextOut(100,100, str);		
+	//MemDC.TextOut(100,100, str);		
 
 	CRect rt;
 	// Win Money

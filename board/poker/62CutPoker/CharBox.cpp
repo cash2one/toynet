@@ -470,7 +470,7 @@ void CCharBox::draw_5user(CDC *pDC)
 		strM = NumberToOrientalString(roundingoff);
 		rect.SetRect(0,0,200,14);
 		rect.OffsetRect(590,450);
-		pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
+		//pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
 		
 		
 		

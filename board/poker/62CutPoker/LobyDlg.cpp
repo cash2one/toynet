@@ -214,7 +214,7 @@ void CLobyDlg::OnPaint()
 	MemDC.SelectObject(&Font);
 	MemDC.SetBkMode(TRANSPARENT);
 	MemDC.SetTextColor(RGB(255,255,255));
-	MemDC.TextOut(100,100, str);
+	//MemDC.TextOut(100,100, str);
 	
 	// Credit
 	CString strM;
@@ -1681,14 +1681,15 @@ void CLobyDlg::OnTimer(UINT nIDEvent)
 	
 
 	// 풀스크린
-	//if( m_nLobyCnt == 7 )
-	//	SendMessage(WM_COMMAND, IDC_BUTTON_CHANGEDISPLAY);
+	if( m_nLobyCnt == 7 )
+		SendMessage(WM_COMMAND, IDC_BUTTON_CHANGEDISPLAY);
 	
 	//CDialog::OnTimer(nIDEvent);
 }
 
 LRESULT CLobyDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) 
 {
+
 	// TODO: Add your specialized code here and/or call the base class
 	
 	return CDialog::WindowProc(message, wParam, lParam);
