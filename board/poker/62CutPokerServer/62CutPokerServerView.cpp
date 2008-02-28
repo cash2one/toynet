@@ -1568,7 +1568,7 @@ BOOL C62CutPokerServerView::ProcessPacket(int sid, CMySocket *pSocket, char* lpd
 
 	// [세븐포커] 추가루틴
 	case SV_CHANGECARD: // 카드 바꾸기를 요청
-		{
+		{\
 			// 유효한 유저가 아니면 처리하지 않음
 			if(pUserVal->iUser1 == FALSE) break;
 

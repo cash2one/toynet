@@ -803,6 +803,45 @@ BEGIN
                     WS_DISABLED
 END
 
+IDD_SYSTEM_DIALOG DIALOG DISCARDABLE  0, 0, 359, 319
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "운영현황"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "닫기",IDOK,7,7,50,25
+    CONTROL         "List1",IDC_LC_DATA,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,64,7,213,305
+    PUSHBUTTON      "당일",IDC_BTN_SHOWTODAY,7,35,50,25
+    PUSHBUTTON      "월별",IDC_BTN_SHOWMONTH,7,92,50,25
+    PUSHBUTTON      "연별",IDC_BTN_SHOWYEAR,7,121,50,25
+    PUSHBUTTON      "일별",IDC_BTN_SHOWDAY,7,64,50,25
+    COMBOBOX        IDC_CB_YEAR,24,184,29,140,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_CB_MONTH,24,203,29,121,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_CB_DAY,24,223,29,101,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "년",IDC_STATIC,14,187,8,8
+    LTEXT           "월",IDC_STATIC,14,207,8,8
+    LTEXT           "일",IDC_STATIC,14,226,8,8
+    GROUPBOX        "",IDC_STATIC,7,151,51,93
+    PUSHBUTTON      "오늘로",IDC_BTN_TODAY,14,163,38,14
+    GROUPBOX        "당첨확률",IDC_STATIC,283,3,69,59
+    GROUPBOX        "현재시간",IDC_STATIC,282,72,70,86
+    LTEXT           "설정",IDC_STATIC,290,23,15,8
+    LTEXT           "현재",IDC_STATIC,291,42,15,8
+    EDITTEXT        IDC_EB_SETRETURN,314,20,25,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EB_CURRETURN,313,39,25,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    PUSHBUTTON      "적용",IDC_BTN_APPLYTIME,292,135,50,14
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER1,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP,288,88,59,15
+    CONTROL         "DateTimePicker2",IDC_DATETIMEPICKER2,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,288,112,
+                    60,15
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1040,6 +1079,14 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 196
     END
+
+    IDD_SYSTEM_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 352
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 312
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -1158,6 +1205,117 @@ BEGIN
     IDC_COMBO_RESON, 0x403, 25, 0
 0xf1ba, 0xc5b8, 0xcab3, 0xfbc0, 0xcec0, 0xc720, 0xb5e0, 0xc0bf, 0x20bb, 
 0xd5c7, 0xcfb4, 0xd9b4, "\000" 
+    0
+END
+
+IDD_SYSTEM_DIALOG DLGINIT
+BEGIN
+    IDC_CB_YEAR, 0x403, 5, 0
+0x3032, 0x3830, "\000" 
+    IDC_CB_YEAR, 0x403, 5, 0
+0x3032, 0x3930, "\000" 
+    IDC_CB_YEAR, 0x403, 5, 0
+0x3032, 0x3031, "\000" 
+    IDC_CB_YEAR, 0x403, 5, 0
+0x3032, 0x3131, "\000" 
+    IDC_CB_YEAR, 0x403, 5, 0
+0x3032, 0x3231, "\000" 
+    IDC_CB_YEAR, 0x403, 5, 0
+0x3032, 0x3331, "\000" 
+    IDC_CB_YEAR, 0x403, 5, 0
+0x3032, 0x3431, "\000" 
+    IDC_CB_YEAR, 0x403, 5, 0
+0x3032, 0x3531, "\000" 
+    IDC_CB_YEAR, 0x403, 5, 0
+0x3032, 0x3631, "\000" 
+    IDC_CB_YEAR, 0x403, 5, 0
+0x3032, 0x3731, "\000" 
+    IDC_CB_MONTH, 0x403, 2, 0
+0x0031, 
+    IDC_CB_MONTH, 0x403, 2, 0
+0x0032, 
+    IDC_CB_MONTH, 0x403, 2, 0
+0x0033, 
+    IDC_CB_MONTH, 0x403, 2, 0
+0x0034, 
+    IDC_CB_MONTH, 0x403, 2, 0
+0x0035, 
+    IDC_CB_MONTH, 0x403, 2, 0
+0x0036, 
+    IDC_CB_MONTH, 0x403, 2, 0
+0x0037, 
+    IDC_CB_MONTH, 0x403, 2, 0
+0x0038, 
+    IDC_CB_MONTH, 0x403, 2, 0
+0x0039, 
+    IDC_CB_MONTH, 0x403, 3, 0
+0x3031, "\000" 
+    IDC_CB_MONTH, 0x403, 3, 0
+0x3131, "\000" 
+    IDC_CB_MONTH, 0x403, 3, 0
+0x3231, "\000" 
+    IDC_CB_DAY, 0x403, 2, 0
+0x0031, 
+    IDC_CB_DAY, 0x403, 2, 0
+0x0032, 
+    IDC_CB_DAY, 0x403, 2, 0
+0x0033, 
+    IDC_CB_DAY, 0x403, 2, 0
+0x0034, 
+    IDC_CB_DAY, 0x403, 2, 0
+0x0035, 
+    IDC_CB_DAY, 0x403, 2, 0
+0x0036, 
+    IDC_CB_DAY, 0x403, 2, 0
+0x0037, 
+    IDC_CB_DAY, 0x403, 2, 0
+0x0038, 
+    IDC_CB_DAY, 0x403, 2, 0
+0x0039, 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3031, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3131, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3231, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3331, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3431, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3531, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3631, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3731, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3831, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3931, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3032, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3132, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3232, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3332, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3432, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3532, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3632, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3732, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3832, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3932, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3033, "\000" 
+    IDC_CB_DAY, 0x403, 3, 0
+0x3133, "\000" 
     0
 END
 

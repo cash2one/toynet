@@ -22,6 +22,7 @@ RegistTrayIcon// 62CutPokerDlg.cpp : implementation file
 #include "DesktopIconMan.h"
 #include "NMCrypt.h"
 #include <assert.h>
+#include "Logfile.h"
 
 #include "ResultFindIdDlg.h"
 #include "LeadersMoneyLimit.h"
@@ -139,7 +140,11 @@ C62CutPokerDlg::C62CutPokerDlg(CWnd* pParent /*=NULL*/)
 	ZeroMemory(&CFG, sizeof(CONFIG));
 
 	m_bExamServer = FALSE;
-	m_nItemServer = 0;	
+	m_nItemServer = 0;
+	m_pDatabase_Statistic = 0;
+	m_pStatisticDB = 0;
+
+	this->CreateStatisticDB();
 
 	//{{AFX_DATA_INIT(C62CutPokerDlg)
 		// NOTE: the ClassWizard will add member initialization here
@@ -4041,6 +4046,8 @@ long C62CutPokerDlg::OnCoinIn(WPARAM wParam, LPARAM lParam)
 	if (m_hWnd != m_hSubWindow)
 		::PostMessage((HWND)m_hSubWindow, WM_KEYDOWN, (LPARAM)'M', lParam);
 
+	DB_UpdateCreditPoint();
+
 	return 1;
 }
 
@@ -4099,7 +4106,418 @@ long C62CutPokerDlg::OnCoinEmpty(WPARAM wParam, LPARAM lParam)
 	return 1;
 }
 
+BOOL C62CutPokerDlg::CreateStatisticDB()
+{
+	// 클래스가 할당이 되어있더라도 오픈되어있지 않다면 클래스 삭제
+	CStatisticDB::m_DSN = _T("Netmarble PokerDB");
+	CStatisticDB::m_Table = _T("tb_statictic");
+	CStatisticDB::m_UID = _T("sqladmin");
+	CStatisticDB::m_Pass = _T("world1st!");
 
+
+	if(m_pDatabase_Statistic && !m_pDatabase_Statistic->IsOpen())
+	{
+		if(m_pStatisticDB) 
+		{
+			delete m_pStatisticDB;
+			m_pStatisticDB=NULL; 
+		}
+		
+		delete m_pDatabase_Statistic;
+		m_pDatabase_Statistic=NULL;
+	}
+
+	if(m_pDatabase_Statistic==NULL)
+	{
+		m_pDatabase_Statistic = new CDatabase;
+		if(m_pDatabase_Statistic == NULL) return FALSE;
+
+		TRY
+		{
+			// 로그인 및 쿼리 타임아웃 설정
+			m_pDatabase_Statistic->SetLoginTimeout(60);
+			m_pDatabase_Statistic->SetQueryTimeout(60);
+			
+			CString strConnect;
+			strConnect.Format("DSN=%s;UID=%s;PWD=%s;", (LPCTSTR)CStatisticDB::m_DSN, 
+													   (LPCTSTR)CStatisticDB::m_UID,
+													   (LPCTSTR)CStatisticDB::m_Pass);
+			// DB를 오픈한다(ODBC 설정 대화상자를 띄우지 않음)
+			m_pDatabase_Statistic->OpenEx(strConnect, CDatabase::noOdbcDialog | CDatabase::useCursorLib);
+		}
+		CATCH(CDBException, e)
+		{
+			CLogFile logfile;
+			logfile.Writef("Database OpenEX 실패(CStatisticDB) : %s", e->m_strError.operator LPCTSTR());
+			delete m_pDatabase_Statistic;
+			m_pDatabase_Statistic = NULL;
+			return FALSE;
+		}
+		END_CATCH
+	}
+
+	if(m_pStatisticDB == NULL)
+	{
+		m_pStatisticDB = new CStatisticDB(m_pDatabase_Statistic);
+		if(m_pStatisticDB==NULL)
+			return FALSE;
+	}
+
+	return TRUE;
+}
+
+// 한시간동안 배출된 머니를 반환한다.. 시간당 2 만원이상을 배출 못 하도록..
+long C62CutPokerDlg::DB_GetBankPoint()
+{
+	CString str;
+	SYSTEMTIME st;
+	GetLocalTime( &st );
+	char szDate[256];
+	sprintf(szDate, "%04d%02d%02d%02d", st.wYear, st.wMonth, st.wDay, st.wHour);
+
+	str.Format("[LogTime] = '%s'", szDate);
+
+	TRY
+	{
+		// 레코드셋이 열려있으면 닫는다
+		if(m_pStatisticDB->IsOpen()) m_pStatisticDB->Close();
+
+		m_pStatisticDB->m_strFilter = str;
+		if(!m_pStatisticDB->IsOpen())
+			m_pStatisticDB->Open(CRecordset::snapshot, NULL, CRecordset::executeDirect);
+	}
+	CATCH(CDBException, e)
+	{
+		//CLogFile logfile;
+		//logfile.Writef("StatisticDB실패 - AddNewGameDB Open : %s", e->m_strError.operator LPCTSTR());
+		//ErrorCnt++;	// 에러 카운트 증가
+		return 0;
+	}
+	END_CATCH
+
+	// 같은 날짜가 존재하면
+	if(!m_pStatisticDB->IsEOF() && m_pStatisticDB->m_LogTime.CompareNoCase(szDate) == 0)
+	{
+		/////////// DB수정
+		TRY
+		{
+			long lCurPoint = m_pStatisticDB->m_BankPoint;
+
+			return lCurPoint;
+		}
+		CATCH(CDBException, e)
+		{
+			if(e->m_nRetCode != AFX_SQL_ERROR_NO_ROWS_AFFECTED) {
+				//CLogFile logfile;
+				//logfile.Writef("GameDBerror - SetUserInfo Update (ID=%s) : %s", pUI->ID, e->m_strError.operator LPCTSTR());
+				//if(m_pGameDB->IsOpen()) m_pGameDB->Close();
+				//ErrorCnt++;	// 에러 카운트 증가
+				return 0;
+			}
+			else {
+				//CLogFile logfile;
+				//logfile.Writef("GameDB??(ID=%s): 뫘劤써벎，청唐肝돕緞捲돨契(%s)", pUI->ID, e->m_strError);
+			}
+		}
+		END_CATCH
+	}
+
+	return 0;
+}
+
+//코인 들어갈때 호출되어야함. 개당 1번.
+BOOL C62CutPokerDlg::DB_UpdateCreditPoint()
+{
+	CString str;
+	SYSTEMTIME st;
+	GetLocalTime( &st );
+	char szUniqueRoomNo[256];
+	sprintf(szUniqueRoomNo, "%04d%02d%02d%02d", st.wYear, st.wMonth, st.wDay, st.wHour);
+
+	str.Format("[LogTime] = '%s'", szUniqueRoomNo);
+
+	TRY
+	{
+		// 레코드셋이 열려있으면 닫는다
+		if(m_pStatisticDB->IsOpen()) m_pStatisticDB->Close();
+
+		m_pStatisticDB->m_strFilter = str;
+		if(!m_pStatisticDB->IsOpen())
+			m_pStatisticDB->Open(CRecordset::snapshot, NULL, CRecordset::executeDirect);
+	}
+	CATCH(CDBException, e)
+	{
+		//CLogFile logfile;
+		//logfile.Writef("StatisticDB실패 - AddNewGameDB Open : %s", e->m_strError.operator LPCTSTR());
+		//ErrorCnt++;	// 에러 카운트 증가
+		return FALSE;
+	}
+	END_CATCH
+
+	// 같은 날짜가 존재하면 추가 취소
+	// Update 로직을 탄다.
+	if(!m_pStatisticDB->IsEOF() && m_pStatisticDB->m_LogTime.CompareNoCase(szUniqueRoomNo) == 0)
+	{
+		/////////// DB수정
+		TRY
+		{
+			m_pStatisticDB->Edit();
+
+			long lCreditPoint = m_pStatisticDB->m_CreditPoint;
+
+			lCreditPoint++;
+
+			m_pStatisticDB->m_CreditPoint = lCreditPoint;
+
+			m_pStatisticDB->Update();
+		}
+		CATCH(CDBException, e)
+		{
+			if(e->m_nRetCode != AFX_SQL_ERROR_NO_ROWS_AFFECTED) {
+				//CLogFile logfile;
+				//logfile.Writef("GameDBerror - SetUserInfo Update (ID=%s) : %s", pUI->ID, e->m_strError.operator LPCTSTR());
+				//if(m_pGameDB->IsOpen()) m_pGameDB->Close();
+				//ErrorCnt++;	// 에러 카운트 증가
+				return FALSE;
+			}
+			else {
+				//CLogFile logfile;
+				//logfile.Writef("GameDB??(ID=%s): 뫘劤써벎，청唐肝돕緞捲돨契(%s)", pUI->ID, e->m_strError);
+			}
+		}
+		END_CATCH
+	}
+	else
+	{
+		// DB를 추가하는 상태
+		TRY
+		{
+			if(!m_pStatisticDB->IsEOF()) 
+				m_pStatisticDB->MoveLast();
+			m_pStatisticDB->AddNew();
+
+			// DB추가
+			m_pStatisticDB->m_GameCode = 49;
+			m_pStatisticDB->m_ServerCode = 99;
+			m_pStatisticDB->m_ServerCode = 99;
+			m_pStatisticDB->m_CreditPoint = 1;
+			m_pStatisticDB->m_UsePoint = 0;
+			m_pStatisticDB->m_BankPoint = 0;
+			m_pStatisticDB->m_LogTime.Format("%s", szUniqueRoomNo);
+
+			m_pStatisticDB->Update();
+		}
+		CATCH(CDBException, e)
+		{
+			//CLogFile logfile;
+			//logfile.Writef("GameDB댄轎 - AddNewGameDB Update (ID=%s) : %s", pUI->ID, e->m_strError.operator LPCTSTR());
+			if(m_pStatisticDB->IsOpen())
+				m_pStatisticDB->Close();
+			//ErrorCnt++;	// 에러 카운트 증가
+			return FALSE;
+		}
+		END_CATCH
+	}
+
+	return TRUE;
+}
+
+//잃었을때마다. 한번씩 호출. 포카는 무조건 호출..
+BOOL C62CutPokerDlg::DB_UpdateUsePoint(long lUsePoint)
+{
+	CString str;
+	SYSTEMTIME st;
+	GetLocalTime( &st );
+	char szUniqueRoomNo[256];
+	sprintf(szUniqueRoomNo, "%04d%02d%02d%02d", st.wYear, st.wMonth, st.wDay, st.wHour);
+
+	str.Format("[LogTime] = '%s'", szUniqueRoomNo);
+
+	TRY
+	{
+		// 레코드셋이 열려있으면 닫는다
+		if(m_pStatisticDB->IsOpen()) m_pStatisticDB->Close();
+
+		m_pStatisticDB->m_strFilter = str;
+		if(!m_pStatisticDB->IsOpen())
+			m_pStatisticDB->Open(CRecordset::snapshot, NULL, CRecordset::executeDirect);
+	}
+	CATCH(CDBException, e)
+	{
+		//CLogFile logfile;
+		//logfile.Writef("StatisticDB실패 - AddNewGameDB Open : %s", e->m_strError.operator LPCTSTR());
+		//ErrorCnt++;	// 에러 카운트 증가
+		return FALSE;
+	}
+	END_CATCH
+
+	// 같은 날짜가 존재하면 추가 취소
+	// Update 로직을 탄다.
+	if(!m_pStatisticDB->IsEOF() && m_pStatisticDB->m_LogTime.CompareNoCase(szUniqueRoomNo) == 0)
+	{
+		/////////// DB수정
+		TRY
+		{
+			m_pStatisticDB->Edit();
+
+			long lCurPoint = m_pStatisticDB->m_UsePoint;
+
+			lCurPoint += lUsePoint;
+
+			m_pStatisticDB->m_UsePoint = lCurPoint;
+
+			m_pStatisticDB->Update();
+		}
+		CATCH(CDBException, e)
+		{
+			if(e->m_nRetCode != AFX_SQL_ERROR_NO_ROWS_AFFECTED) {
+				//CLogFile logfile;
+				//logfile.Writef("GameDBerror - SetUserInfo Update (ID=%s) : %s", pUI->ID, e->m_strError.operator LPCTSTR());
+				//if(m_pGameDB->IsOpen()) m_pGameDB->Close();
+				//ErrorCnt++;	// 에러 카운트 증가
+				return FALSE;
+			}
+			else {
+				//CLogFile logfile;
+				//logfile.Writef("GameDB??(ID=%s): 뫘劤써벎，청唐肝돕緞捲돨契(%s)", pUI->ID, e->m_strError);
+			}
+		}
+		END_CATCH
+	}
+	else
+	{
+		// DB를 추가하는 상태
+		TRY
+		{
+			if(!m_pStatisticDB->IsEOF()) 
+				m_pStatisticDB->MoveLast();
+			m_pStatisticDB->AddNew();
+
+			// DB추가
+			m_pStatisticDB->m_GameCode = 49;
+			m_pStatisticDB->m_ServerCode = 99;
+			m_pStatisticDB->m_ServerCode = 99;
+			m_pStatisticDB->m_CreditPoint = 0;
+			m_pStatisticDB->m_UsePoint = lUsePoint;
+			m_pStatisticDB->m_BankPoint = 0;
+			m_pStatisticDB->m_LogTime.Format("%s", szUniqueRoomNo);
+
+			m_pStatisticDB->Update();
+		}
+		CATCH(CDBException, e)
+		{
+			//CLogFile logfile;
+			//logfile.Writef("GameDB댄轎 - AddNewGameDB Update (ID=%s) : %s", pUI->ID, e->m_strError.operator LPCTSTR());
+			if(m_pStatisticDB->IsOpen())
+				m_pStatisticDB->Close();
+			//ErrorCnt++;	// 에러 카운트 증가
+			return FALSE;
+		}
+		END_CATCH
+	}
+
+	return TRUE;
+}
+
+//배출할대마다 호출해서, .. 시간이 지나면 다른 레코드로 삽입.. 
+//1시에 배출하려는데. 정보가 없으면, 생성하고.. 저장.
+//배출로 나간금액을 저장하기 위함..
+
+BOOL C62CutPokerDlg::DB_UpdateBankPoint(long lBankPoint)
+{
+	CString str;
+	SYSTEMTIME st;
+	GetLocalTime( &st );
+	char szUniqueRoomNo[256];
+	sprintf(szUniqueRoomNo, "%04d%02d%02d%02d", st.wYear, st.wMonth, st.wDay, st.wHour);
+
+	str.Format("[LogTime] = '%s'", szUniqueRoomNo);
+
+	TRY
+	{
+		// 레코드셋이 열려있으면 닫는다
+		if(m_pStatisticDB->IsOpen()) m_pStatisticDB->Close();
+
+		m_pStatisticDB->m_strFilter = str;
+		if(!m_pStatisticDB->IsOpen())
+			m_pStatisticDB->Open(CRecordset::snapshot, NULL, CRecordset::executeDirect);
+	}
+	CATCH(CDBException, e)
+	{
+		//CLogFile logfile;
+		//logfile.Writef("StatisticDB실패 - AddNewGameDB Open : %s", e->m_strError.operator LPCTSTR());
+		//ErrorCnt++;	// 에러 카운트 증가
+		return FALSE;
+	}
+	END_CATCH
+
+	// 같은 날짜가 존재하면 추가 취소
+	// Update 로직을 탄다.
+	if(!m_pStatisticDB->IsEOF() && m_pStatisticDB->m_LogTime.CompareNoCase(szUniqueRoomNo) == 0)
+	{
+		/////////// DB수정
+		TRY
+		{
+			m_pStatisticDB->Edit();
+
+			long lCurPoint = m_pStatisticDB->m_BankPoint;
+
+			lCurPoint += lBankPoint;
+
+			m_pStatisticDB->m_BankPoint = lCurPoint;
+
+			m_pStatisticDB->Update();
+		}
+		CATCH(CDBException, e)
+		{
+			if(e->m_nRetCode != AFX_SQL_ERROR_NO_ROWS_AFFECTED) {
+				//CLogFile logfile;
+				//logfile.Writef("GameDBerror - SetUserInfo Update (ID=%s) : %s", pUI->ID, e->m_strError.operator LPCTSTR());
+				//if(m_pGameDB->IsOpen()) m_pGameDB->Close();
+				//ErrorCnt++;	// 에러 카운트 증가
+				return FALSE;
+			}
+			else {
+				//CLogFile logfile;
+				//logfile.Writef("GameDB??(ID=%s): 뫘劤써벎，청唐肝돕緞捲돨契(%s)", pUI->ID, e->m_strError);
+			}
+		}
+		END_CATCH
+	}
+	else
+	{
+		// DB를 추가하는 상태
+		TRY
+		{
+			if(!m_pStatisticDB->IsEOF()) 
+				m_pStatisticDB->MoveLast();
+			m_pStatisticDB->AddNew();
+
+			// DB추가
+			m_pStatisticDB->m_GameCode = 49;
+			m_pStatisticDB->m_ServerCode = 99;
+			m_pStatisticDB->m_ServerCode = 99;
+			m_pStatisticDB->m_CreditPoint = 0;
+			m_pStatisticDB->m_UsePoint = 0;
+			m_pStatisticDB->m_BankPoint = 1;
+			m_pStatisticDB->m_LogTime.Format("%s", szUniqueRoomNo);
+
+			m_pStatisticDB->Update();
+		}
+		CATCH(CDBException, e)
+		{
+			//CLogFile logfile;
+			//logfile.Writef("GameDB댄轎 - AddNewGameDB Update (ID=%s) : %s", pUI->ID, e->m_strError.operator LPCTSTR());
+			if(m_pStatisticDB->IsOpen())
+				m_pStatisticDB->Close();
+			//ErrorCnt++;	// 에러 카운트 증가
+			return FALSE;
+		}
+		END_CATCH
+	}
+
+	return TRUE;
+}
 
 
 

@@ -23,6 +23,7 @@
 #include "MsgBoxDlg.h"
 #include "Oring.h"			// [ 올인잡업 ]
 #include "NewAskChargeDlg.h" // [수호천사] 2004.07.08
+#include "StatisticDB.h"
 
 // [수호천사] 2004.07.08
 #define 	WM_ALLINMESSAGE			(WM_USER+7510)	
@@ -76,6 +77,16 @@ public:
 	BOOL bNowLogout;			// 지금 로그아웃중인가?
 	CMsgBoxDlg m_MsgBoxDlg;
 	COring m_Oringdlg;
+
+	CDatabase* m_pDatabase_Statistic;
+	CStatisticDB* m_pStatisticDB;
+
+	BOOL CreateStatisticDB();
+	long DB_GetBankPoint();
+	BOOL DB_UpdateCreditPoint();
+	BOOL DB_UpdateUsePoint(long lUsePoint);
+	BOOL DB_UpdateBankPoint(long lBankPoint);
+
 
 public:	
 	C62CutPokerDlg(CWnd* pParent = NULL);	// standard constructor

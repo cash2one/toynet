@@ -30,6 +30,8 @@
 #include <functional>
 
 #include "RxCom232Dll.h"
+#include <afxdb.h>			// MFC ODBC database classes
+#include <afxdao.h>			// MFC DAO database classes
 
 WPARAM GetValFromCom(WPARAM wParam);
 

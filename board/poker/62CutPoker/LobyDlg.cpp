@@ -18,6 +18,7 @@
 #include "AdminTitleDlg.h"// [관리자 모드 작업]
 #include "ResultHi.h"
 #include "MiniDlg.h"
+#include "SystemDlg.h"
 //#include "SelCardDlg.h"
 //#include "SelCardChoiceDlg.h"
 //#include "Oring.h"
@@ -152,7 +153,7 @@ BOOL CLobyDlg::OnInitDialog()
 	// TODO: Add extra initialization here
 	if(LobybackSpr.Load(".\\data\\lobyback.spr", 555)==FALSE) AfxMessageBox("lobyback.spr 파일을 읽을 수 없습니다");
 	if(InsertCoinSpr.Load(".\\data\\insertcoin.spr", 555)==FALSE) AfxMessageBox("insertcoin.spr 파일을 읽을 수 없습니다");
-	if(QuickStartSpr.Load(".\\data\\StartBtn.spr", 555)==FALSE) AfxMessageBox("MainStartBtn.spr 파일을 읽을 수 없습니다");
+	if(QuickStartSpr.Load(".\\data\\MainStartBtn.spr", 555)==FALSE) AfxMessageBox("MainStartBtn.spr 파일을 읽을 수 없습니다");
 	if(OutCoinSpr.Load(".\\data\\outcoin.spr", 555)==FALSE) AfxMessageBox("outcoin.spr 파일을 읽을 수 없습니다");
 
 	m_ChoiceKind = 0 ;
@@ -1719,6 +1720,12 @@ BOOL CLobyDlg::PreTranslateMessage(MSG* pMsg)
 			dlg.DoModal();
 			return 1;
 		}
+		else if (pMsg->wParam == 'I' || pMsg->wParam == 'i')
+		{
+			CSystemDlg dlg(this);
+			dlg.DoModal();
+			return 1;
+		}
 
 	
 		if(pMsg->wParam == VK_LEFT)
@@ -1796,8 +1803,20 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 		case IDM_OUT_COIN:
 		{
 			Play[0].BankMoney = g_MyInfo.BankMoney;
-			int nCoin = Play[0].BankMoney/100;
+			int nOutCoin= Play[0].BankMoney/100;
+
+			int nCoin = 0;//실제 배출가능한 돈.
 			int nExtra = Play[0].BankMoney%100;
+
+			LONG outCoinPerHour = g_pMainDlg->DB_GetBankPoint();
+
+			int canOut = 20000 - outCoinPerHour;
+
+			if (nOutCoin <= canOut*100)
+				nCoin = nOutCoin;
+			else 
+				nCoin = canOut;
+			
 			if (nCoin>0)
 			{
 				g_MyInfo.BankMoney -= nCoin*100;
@@ -1812,9 +1831,11 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 				SockMan.SendData(g_MainSrvSID, abmsg.pData, abmsg.GetTotalSize());
 
 				((C62CutPokerDlg *)AfxGetMainWnd())->m_clsRS232.OutCoin(nCoin);
+
+				g_pMainDlg->DB_UpdateBankPoint(nCoin*100);
+
 			}	
 
-			//g_MyInfo.BankMoney = 0;
 		}
 		break;
 		

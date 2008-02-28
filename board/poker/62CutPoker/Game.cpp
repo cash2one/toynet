@@ -512,6 +512,8 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 	}
 	
 
+	g_pMainDlg->DB_UpdateUsePoint(-200);
+
 	CSV_ASK_MONEYINFO aumsg;
 	aumsg.Set(Play[0].UI.UNum, -200, g_RI.RoomNum);
 	SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
@@ -545,7 +547,6 @@ void CGame::OnGameOver(GAMEOVERRESULT *pGOR)
 	g_TmpJackPotMoney = pGOR->JackPotMoney;
 
 	g_Mini.m_MnGame.SetWinMoney(pGOR->nWinMoney);		// 승리 금액 추가 - jeong
-
 
 	for(int i=0; i<g_Max_Player; i++)
 	{
