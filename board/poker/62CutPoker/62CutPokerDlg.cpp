@@ -2323,7 +2323,7 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 			g_MyInfo.UI.LooseNum = Play[0].UI.LooseNum = msg.pCMI->LooseNum;
 			g_MyInfo.UI.DrawNum = Play[0].UI.DrawNum = msg.pCMI->DrawNum;
 			Play[0].UI.PMoney = msg.pCMI->PMoney;
-			if(Play[0].UI.PMoney < 0) Play[0].UI.PMoney = 0;
+			//if(Play[0].UI.PMoney < 0) Play[0].UI.PMoney = 0;
 			g_MyInfo.UI.PMoney   = Play[0].UI.PMoney;
 			g_MyInfo.UI.nIcon = Play[0].UI.nIcon = GetPokerLevel(Play[0].UI.PMoney);
 

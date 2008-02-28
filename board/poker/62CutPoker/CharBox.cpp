@@ -421,9 +421,6 @@ void CCharBox::draw_5user(CDC *pDC)
 	// 나의 머니(Credit)
 	INT64 roundingoff = Play[PNum].PrevMoney-Play[PNum].LoseMoney;
 
-	if( roundingoff < 0 )
-		roundingoff = 0;
-
 	strM = NumberToOrientalString(roundingoff);
 	strM +=g_StrMan.Get(_T("DEFAULT_UNIT2"));
 
@@ -473,7 +470,7 @@ void CCharBox::draw_5user(CDC *pDC)
 		strM = NumberToOrientalString(roundingoff);
 		rect.SetRect(0,0,200,14);
 		rect.OffsetRect(590,450);
-		//pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
+		pDC->DrawText(strM, &rect, DT_RIGHT | DT_WORDBREAK);
 		
 		
 		

@@ -164,7 +164,7 @@ void CGame::ResetGame()
 	//  카드 선택
 	m_bchoice_card		= FALSE;
 	m_nchoice_cardcnt  = 0;
-	m_ncur_selectcard = 0;
+	m_ncur_selectcard = 1;			// 선택카드 인덱스 설정 - jeong
 	m_nchange_card = 0; //카드 바꾸기 카운트 
 
 	m_hpos = NULL;
@@ -3785,7 +3785,7 @@ void CGame::ChangeCard_Init()
 		g_pGameView->ChangeCard_OK.Enable(TRUE);
 		g_pGameView->ChangeCard_Cancel.Enable(TRUE);
 		Game.CardDeck[0].SetCardRect();		
-		Play[0].m_KD_SeleteCard =-1; // 방향키 값 reset
+		Play[0].m_KD_SeleteCard =-1; // 방향키 값 reset	
 		Game.m_nchange_card = 13000 / int(1000.0f/REFRESH_FPS);//13초
 		//	Game.m_nchange_card = 600;
 	}

@@ -175,6 +175,7 @@ public:
 	int	m_nBetOffSetX[BET_BTN_TOTAL];
 	int	m_nBetOffSetY[BET_BTN_TOTAL];
 	bool m_bBetBtnMouseDown;
+	bool m_bShowBetBtn;
 	bool m_bBetBtnEnabled[BET_BTN_TOTAL];
 	int m_nGameViewCnt;
 	bool m_bShowSelectedBtn;

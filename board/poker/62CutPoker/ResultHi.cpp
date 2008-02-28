@@ -131,14 +131,29 @@ BOOL CResultHi::OnInitDialog()
 
 		// 잃은 금액 저장 - jeong
 		Play[0].LoseMoney = 0;
-
-		
-		if( Play[0].BankMoney >= 0 )
+		int pnum = Play[0].ServPNum;
+		int nBetMoney = g_Poker.RU[pnum].nRealBat;
+		int nTotalMoney = Play[0].PrevMoney+ Play[0].BankMoney;
+		if( nBetMoney > 0 )
 		{
-			CSV_ASK_MONEYINFO aumsg;
-			aumsg.Set(Play[0].UI.UNum, pGO.Ui[Play[0].ServPNum].LoseMoney, g_RI.RoomNum);
-			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+			if( nTotalMoney > 0)
+			{
+				CSV_ASK_MONEYINFO aumsg;
+				aumsg.Set(Play[0].UI.UNum, nBetMoney, g_RI.RoomNum);
+				SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+			}
 		}
+		else if( nBetMoney == 0 )
+		{
+			if ( Play[0].UI.PMoney < 0 )
+			{
+				CSV_ASK_MONEYINFO aumsg;
+				aumsg.Set(Play[0].UI.UNum, -Play[0].UI.PMoney, g_RI.RoomNum);
+				SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
+				
+			}
+		}
+
 
 
 		// [수호천사] 2004.07.08 

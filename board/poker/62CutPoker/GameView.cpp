@@ -109,6 +109,7 @@ CGameView::CGameView()
 
 	m_nStartBtnIndex = 0;
 	m_bStartBtnMouseDown = FALSE;
+	m_bShowBetBtn = FALSE;
 }
 
 CGameView::~CGameView()
@@ -710,13 +711,17 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	
 
-	DieBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
-	CheckBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
-	CallBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
-	PingBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
-	DadangkBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
-	MaxBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
-	if(m_bAllin)AllInBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+	if( m_bShowBetBtn )
+	{
+	
+		DieBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+		CheckBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+		CallBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+		PingBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+		DadangkBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+		MaxBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+		if(m_bAllin)AllInBtn.OnMouseMove( m_nBetOffSetX[m_nBetBtnIndex], m_nBetOffSetY[m_nBetBtnIndex]);
+	}
 
 
 	// 게임 시작 및 종료 버튼 효과 - jeong
@@ -1664,6 +1669,7 @@ void CGameView::SetBtnState(BOOL bDisable)
 	if(bDisable){
 		ClearFlag(); // 버튼플래그 클리어
 //		m_bTurn = FALSE;
+		m_bShowBetBtn = FALSE;
 
 		DieBtn.Enable(FALSE);
 		CheckBtn.Enable(FALSE);
@@ -2159,17 +2165,21 @@ BOOL CGameView::PreTranslateMessage(MSG* pMsg)
 			if(pMsg->wParam == VK_LEFT)
 			{
 				m_nBetBtnIndex = GetBetBtnIndexForLeft( m_nBetBtnIndex );
+				m_bShowBetBtn = TRUE;
 			}
 			else if( pMsg->wParam == VK_RIGHT )
 			{
 				m_nBetBtnIndex = GetBetBtnIndexForRight( m_nBetBtnIndex );
+				m_bShowBetBtn = TRUE;
 			}
 			else if( pMsg->wParam == VK_DOWN )
 			{
-				m_bBetBtnMouseDown = TRUE;
-				m_bShowFirstBtn = TRUE;
+				if( m_bShowBetBtn == TRUE )
+				{
+					m_bBetBtnMouseDown = TRUE;
+					m_bShowFirstBtn = TRUE;
+				}
 			}
-
 		}
 	}
 
@@ -2219,7 +2229,8 @@ BOOL CGameView::PreTranslateMessage(MSG* pMsg)
 		{
 			// 서버에 플레이어정보 돈 추가  - jeong
 			int money = pMsg->wParam=='M'?100:-100;
-			Play[0].PrevMoney +=money;			
+			Play[0].PrevMoney +=money;
+			
 			CSV_ASK_MONEYINFO aumsg;
 			aumsg.Set(Play[0].UI.UNum, money, g_RI.RoomNum);
 			SockMan.SendData(g_MainSrvSID, aumsg.pData, aumsg.GetTotalSize());
