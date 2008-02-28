@@ -757,7 +757,7 @@ void CRoom::OnGlobalGameTimer()
 								Ps2[i].nWindOn = 0;
 								
 								// 강제 퇴장 처리
-								OnUserOutRoom(Ui[i].UNum, Ui[i].ID, FALSE);
+								//OnUserOutRoom(Ui[i].UNum, Ui[i].ID, FALSE);
 							}
 						}
 						
@@ -2135,7 +2135,7 @@ void CRoom::OnMyBanishVote(char *id, BOOL bAgree)
 			VoteBanUserList.AddID(User[tarunum].UI.ID);
 			
 			// 강제 추방
-			OnUserOutRoom(tarunum, User[tarunum].UI.ID, FALSE);
+			//OnUserOutRoom(tarunum, User[tarunum].UI.ID, FALSE);
 		}
 		else
 		{
@@ -2255,6 +2255,8 @@ BOOL CRoom::FoldUser(int nNum, BOOL bOut)
 		if(m_Raise.m_User[nNum].bInUse)	m_Raise.m_User[nNum].bFold = TRUE;
 		Ps2[nNum].nFoldNum++;
 		GetPrimer(); // 새로운 선 세팅
+
+		/*			강티 처리 금지 - jeong
 		if(Ps2[nNum].nFoldNum>=3){
 			CString strMess = g_StrMan.Get(_T("SPOKER_OUTROOM"));
 			CSV_SERVERMSG smsg(SndBuf);
@@ -2265,6 +2267,7 @@ BOOL CRoom::FoldUser(int nNum, BOOL bOut)
 			if ( !bOut )
 				OnUserOutRoom(Ui[nNum].UNum, Ui[nNum].ID, FALSE);
 		}
+		*/
 		BOOL bOpen = FALSE;
 		if(CheckGameOver(bOpen)){
 			DoGameOver(bOpen);
@@ -2290,6 +2293,7 @@ BOOL CRoom::FoldUser(int nNum, BOOL bOut)
 		if(m_Raise.m_User[nNum].bInUse)	m_Raise.m_User[nNum].bFold = TRUE;
 		Ps2[nNum].nFoldNum++;
 		GetPrimer(); // 새로운 선 세팅
+		/*			강티 처리 금지 - jeong
 		if(Ps2[nNum].nFoldNum>=3){
 			CString strMess = g_StrMan.Get(_T("SPOKER_OUTROOM"));
 			CSV_SERVERMSG smsg(SndBuf);
@@ -2300,7 +2304,7 @@ BOOL CRoom::FoldUser(int nNum, BOOL bOut)
 			if ( !bOut )
 				OnUserOutRoom(Ui[nNum].UNum, Ui[nNum].ID, FALSE);
 		}		
-		
+		*/
 		BOOL bOpen = FALSE;
 		if(CheckGameOver(bOpen)){
 			DoGameOver(bOpen);			
@@ -4267,7 +4271,7 @@ void CRoom::Emerge_Out(int unum, int pnum)
 			smsg.Set(1, "도배성 버튼 클릭으로 인하여, 자동 퇴장 되었습니다");
 			User[unum].SendMsg(&smsg);
 
-			OnUserOutRoom(unum, User[unum].UI.ID, FALSE); //경고
+			//OnUserOutRoom(unum, User[unum].UI.ID, FALSE); //경고
 			return;
 		}
 		CSV_OBSERVER_MESSAGE smsg2(SndBuf);
