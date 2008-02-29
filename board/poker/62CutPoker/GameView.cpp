@@ -728,7 +728,7 @@ LRESULT CGameView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 	GameStartBtn.OnMouseMove( m_nStartOffSetX[m_nStartBtnIndex], m_nStartOffSetY[m_nStartBtnIndex] );
 	GameQuitBtn.OnMouseMove( m_nStartOffSetX[m_nStartBtnIndex], m_nStartOffSetY[m_nStartBtnIndex] );
 
-	if( m_bStartBtnMouseDown )
+	if( m_bStartBtnMouseDown && m_bResultWindowClosed)
 	{
 		m_bStartBtnMouseDown = FALSE;
 

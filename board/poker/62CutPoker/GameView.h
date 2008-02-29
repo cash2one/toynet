@@ -185,6 +185,7 @@ public:
 	// 시작 종료 버튼 인덱스
 	int m_nStartBtnIndex;
 	bool m_bStartBtnMouseDown;
+	bool m_bResultWindowClosed;
 	int	m_nStartOffSetX[START_BTN_TOTAL];
 	int	m_nStartOffSetY[START_BTN_TOTAL];
 

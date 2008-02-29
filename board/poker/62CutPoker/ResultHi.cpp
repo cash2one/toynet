@@ -276,7 +276,10 @@ void CResultHi::OnOK()
 {
 	// TODO: Add extra validation here
 	Sound.Play(SND45);
-	
+
+
+
+
 	CDialog::OnOK();
 }
 
@@ -457,6 +460,7 @@ void CResultHi::OnDestroy()
 		hTimer = NULL;
 	}
 	
+	g_pGameView->m_bResultWindowClosed = TRUE;
 }
 
 
@@ -471,6 +475,7 @@ void CResultHi::OnLButtonDown(UINT nFlags, CPoint point)
 void CResultHi::OnTimer(UINT nIDEvent) 
 {
 	// TODO: Add your message handler code here and/or call default
+	/*
 	if(nIDEvent == hTimer)
 	{
 		TimeCnt--;
@@ -487,7 +492,8 @@ void CResultHi::OnTimer(UINT nIDEvent)
 			OnCancel();
 		}
 	}
-
+	*/
+	
 	Invalidate(FALSE);
 
 	CDialog::OnTimer(nIDEvent);
@@ -552,7 +558,7 @@ void CResultHi::OnMinigame()
 	Sound.Play(SND_FBONUS);	
 
 	//if( Game.m_bShowMiniGame )
-	if( Play[0].ServPNum == Game.WinnerPNum )
+	//if( Play[0].ServPNum == Game.WinnerPNum )
 		g_Mini.DoModal();
 
 	OnOK();

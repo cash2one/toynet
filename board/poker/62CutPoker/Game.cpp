@@ -400,6 +400,7 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 
 	g_pGameView->GameStartBtn.Show(FALSE);
 	g_pGameView->X2StartBtn.Show(FALSE);
+	g_pGameView->m_bResultWindowClosed = FALSE;
 
 	// 서버, 클라이언트 각각 선언하여 별도로 사용한다.
 	ZeroMemory(&g_Poker, sizeof(g_Poker));

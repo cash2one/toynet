@@ -1387,7 +1387,12 @@ void CPlayScr::draw_5user(CDC *pDC)
 			
 			CRect rect;
 			rect.SetRect(0,0,160,14);
-			rect.OffsetRect(MsgX+5, MsgY+5);
+			//rect.OffsetRect(MsgX+5, MsgY+5);
+			if(Play[PNum].ServPNum == Play[0].ServPNum)
+				rect.OffsetRect(MsgX+5, MsgY+158);
+			else
+				rect.OffsetRect(MsgX+5, MsgY-128);
+
 			if(str!="") {
 				pDC->DrawText(str, &rect, DT_CENTER | DT_WORDBREAK);
 			}
