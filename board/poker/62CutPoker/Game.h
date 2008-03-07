@@ -106,6 +106,8 @@ public:
 	BOOL bCantStartGame;	// 게임을 시작할 수 없는 상태인가?
 	int GameCnt;
 
+	bool bResultClosed;
+
 	int m_discardindex;     // 버린카드 1~4
 
 	// 게임 도움말창 관련 정보

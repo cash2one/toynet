@@ -247,6 +247,7 @@ void CMiniDlg::OnDestroy()
 	// TODO: Add your message handler code here
 	KillTimer( MINIGAME_TIMER );
 	X2Cnt = 0;
+	Game.bResultClosed = TRUE;
 	
 }
 

@@ -1813,10 +1813,10 @@ BOOL CLobyDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 
 			int canOut = 20000 - outCoinPerHour;
 
-			if (nOutCoin <= canOut*100)
+			if (nOutCoin*100 <= canOut)
 				nCoin = nOutCoin;
 			else 
-				nCoin = canOut;
+				nCoin = canOut/100;
 			
 			if (nCoin>0)
 			{

@@ -97,6 +97,7 @@ BOOL C62CutPokerApp::InitInstance()
 
 // ###버그를잡아라
 	// 릴리즈모드일때만....
+	/*
 #ifndef _DEBUG
 	// 명령행 인자가 하나도 없으면 프로그램 종료
 	if(cmdInfo.m_nShellCommand==0)
@@ -106,6 +107,7 @@ BOOL C62CutPokerApp::InitInstance()
 		return FALSE;
 	}
 #endif
+	*/
 
 	CString szCmnd;
 	szCmnd.Format("%s",::GetCommandLine());
@@ -144,6 +146,7 @@ BOOL C62CutPokerApp::InitInstance()
 
 //###버그를잡아라
 // 릴리즈모드일때만....
+	/*
 #ifndef _DEBUG
 	// 인자를 분석해서 게임 접속 환경을 초기화
 	if(g_pMainDlg->AnalyzeArgument((char*)szArg1.operator LPCTSTR())==FALSE)
@@ -160,6 +163,7 @@ BOOL C62CutPokerApp::InitInstance()
 	// 현재 디렉토리를 게임이 실행된 곳으로 설정한다
 	SetCurrentDirectory(szDir);
 #endif
+	*/
 	
 	if (!AfxSocketInit())
 	{

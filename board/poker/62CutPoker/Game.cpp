@@ -59,6 +59,7 @@ CGame::CGame()
 	nChatRuleMessage = 0;
 	
 	bCreateRoom = FALSE;
+	bResultClosed = TRUE;
 }
 
 CGame::~CGame()
@@ -407,6 +408,7 @@ void CGame::DoPrepareGame(STARTINFO *pSC)
 	memcpy(g_Poker.PS, pSC->Ps, sizeof(PLAYSTATE)*g_Max_Player);
 	// 게임 시작 플래그 세팅
 	bGameStart = TRUE;
+	bResultClosed = FALSE;
 
 	
 	BOOL bFalse = FALSE;
@@ -2938,7 +2940,7 @@ void CGame::Accept_CreateRoom(CSV_ACCEPT_CREATEROOM *pMsg) // 방만들기 허가
 	
 	
 	CString str;
-	str.Format("## <%s>님 입장 ##\n", "굿 보이");//Play[0].UI.ID);
+	str.Format("## <%s>님 입장 ##\n", "플레이어");//Play[0].UI.ID);
 	g_pGameDlg->m_GameView.ChatBox.AddText(&str,  INOUT_COLOR);
 	// 버튼 활성화
 	g_pGameView->ExitBtn.Enable(TRUE);
@@ -3186,7 +3188,7 @@ void CGame::Accept_EnterRoom(CSV_ACCEPT_ENTERROOM *pMsg)
 		g_pGameView->SetBtnState();
 		
 		CString str;
-		str.Format(g_StrMan.Get(_T("ENTER_ROOM")), "굿 보이");//g_MyInfo.UI.ID);
+		str.Format(g_StrMan.Get(_T("ENTER_ROOM")), "플레이어");//g_MyInfo.UI.ID);
 		g_pGameDlg->m_GameView.ChatBox.AddText(&str, INOUT_COLOR);
 		
 	}

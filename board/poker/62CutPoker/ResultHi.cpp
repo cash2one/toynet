@@ -598,6 +598,7 @@ BOOL CResultHi::OnCommand(WPARAM wParam, LPARAM lParam)
 	{
 		case IDM_RESULT_OK:
 		{
+			Game.bResultClosed = TRUE;
 			OnOK();
 		}
 		break;

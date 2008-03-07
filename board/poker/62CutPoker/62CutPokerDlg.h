@@ -82,9 +82,22 @@ public:
 	CStatisticDB* m_pStatisticDB;
 
 	BOOL CreateStatisticDB();
+	
+	// 한시간동안 배출된 머니를 반환한다.. 시간당 2 만원이상을 배출 못 하도록..
+	// 배출할때 호출해서. 2만원이 넘으면, 배출하지않는다.
+	// 19천이면. 천원만 배출하고 남겨두면 되겠지..
 	long DB_GetBankPoint();
+
+	//코인 들어갈때 호출되어야함. 개당 1번.
 	BOOL DB_UpdateCreditPoint();
+
+	//!!잃었을때마다. 한번씩 호출. 포카는 무조건 호출..(원단위)
+	// 500원 잃었을때., -500 으로 입력.		
 	BOOL DB_UpdateUsePoint(long lUsePoint);
+	
+	//1시에 배출하려는데. 정보가 없으면, 생성하고.. 저장.
+	//돈을땃을때. 그때 생긴 Bank 머니 저장.(lBankPoint = 딴돈)
+	//돈 배출할때 마다 호출
 	BOOL DB_UpdateBankPoint(long lBankPoint);
 
 

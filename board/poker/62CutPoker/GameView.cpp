@@ -2186,7 +2186,7 @@ BOOL CGameView::PreTranslateMessage(MSG* pMsg)
 		}
 	}
 
-	if( Game.bGameStart == FALSE )
+	if( Game.bGameStart == FALSE && Game.bResultClosed == TRUE )
 	{
 		if(pMsg->message == WM_KEYDOWN ) 
 		{

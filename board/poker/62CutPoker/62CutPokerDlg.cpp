@@ -27,6 +27,7 @@ RegistTrayIcon// 62CutPokerDlg.cpp : implementation file
 #include "ResultFindIdDlg.h"
 #include "LeadersMoneyLimit.h"
 #include "SysUtil.h"
+#include "SparKey.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -309,6 +310,36 @@ BOOL C62CutPokerDlg::OnInitDialog()
 		AfxMessageBox("ÀÌ¹Ì Æ÷Æ®°¡ ¿­·ÁÀÖ½À´Ï´Ù");
 	}
 
+	char * m_chrTemp;
+	bool b=false ;	
+	BOOL b_SparKey=1;
+	if (b_SparKey)
+	{
+		int Ret;
+		WORD FunctionCode,Password1,Password2,Password3,Password4,SparKeyW;
+		FunctionCode=SPARKFIND;
+		Password1=0x5734;
+		Password2=0x1cb9;
+		Password3=0x4f14;
+		Password4=0x2ab2;
+		SparKeyW=0;
+		BYTE IoBuffer[256];
+		DWORD TNum =0;//Ä¬ÈÏ¼ì²âËùÓÐ²¢¿ÚºÍUSB¿ÚµÄ¼ÓÃÜËø
+		Ret=SparKey( FunctionCode,&Password1, &Password2,  &Password3,
+						   &Password4, (unsigned char *)IoBuffer, SparKeyW, &TNum);
+		if (Ret==ERR_SPKSUCCEED)
+		{
+			m_chrTemp="Open SparKey Succeed!";
+		}
+		else
+		{
+			m_chrTemp="Open SparKey Error!";
+			b_SparKey=!b_SparKey;
+			AfxMessageBox(m_chrTemp);
+			return FALSE;
+		}
+	}			
+
 	//CLOSE
 	/*
 	 if(m_clsRS232.m_bConnected == TRUE)
@@ -322,7 +353,7 @@ BOOL C62CutPokerDlg::OnInitDialog()
 	}
 	 */
 //###¹ö±×¸¦Àâ¾Æ¶ó
-#ifdef _DEBUG
+//#ifdef _DEBUG
 
 
 	CLoginDlg LoginDlg;
@@ -340,7 +371,7 @@ BOOL C62CutPokerDlg::OnInitDialog()
 	}
 	
 
-#endif
+//#endif
 
 	// ¿å¼³ ÇÊÅÍ¸µ µ¥ÀÌÅÍ ÀÐ±â
 	//char strbuf[1024] = {0,};
@@ -1164,10 +1195,10 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 				ASK_LOGININFO al;
 				memset(&al, 0, sizeof(ASK_LOGININFO));
 
-			#ifdef _DEBUG
+			//#ifdef _DEBUG
 				strcpy(al.ID, g_LoginID);
 				strcpy(al.Pass, g_LoginPass);
-			#endif
+			//#endif
 
 				strcpy(al.SockNameIP, SockMan.pDataSock[g_MainSrvSID]->SockAddr);	// ¿¬°áµÈ ¼ÒÄÏÀÇ ¾îµå·¹½º
 				strcpy(al.HostNameIP, SockMan.GetServerIP());						// È£½ºÆ® ½Ã½ºÅÛ ¾îµå·¹½º
@@ -3110,7 +3141,14 @@ LONG C62CutPokerDlg::OnPacketNotify(UINT wParam, LONG lParam)
 				}
 				Game.SoundFxKind(1, Play[pnum].UI.Sex, Play[pnum].nSndFxKind);// ### [»ç¿îµå Ãß°¡ ÀÛ¾÷] ### ´ÙÀÌ
 				CString str;
-				str.Format(g_StrMan.Get(_T("FOLD_USER")),Play[pnum].UI.ID);
+				CString strID;
+				if(Play[pnum].UI.UNum == Play[0].UI.UNum)
+					strID = "ÇÃ·¹ÀÌ¾î";
+				else
+					strID = "±Â °É";
+
+				//str.Format(g_StrMan.Get(_T("FOLD_USER")),Play[pnum].UI.ID);
+				str.Format(g_StrMan.Get(_T("FOLD_USER")),strID);
 				g_pGameDlg->m_GameView.ChatBox.AddText(&str,RGB(220,220,0));
 			}
 
