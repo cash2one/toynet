@@ -65,6 +65,7 @@ BOOL CMiniDlg::OnInitDialog()
 	if(StartBtnSpr.Load(".\\data\\Mini\\continue.spr", 555)==FALSE) AfxMessageBox("continue.spr 파일을 읽을 수 없습니다");
 	if(EndBtnSpr.Load(".\\data\\Mini\\Gstop.spr", 555)==FALSE) AfxMessageBox("Gstop.spr 파일을 읽을 수 없습니다");
 	if(FocusSpr.Load(".\\data\\Focus.spr", 555)==FALSE) AfxMessageBox("Focus.spr 파일을 읽을 수 없습니다");
+	if(DrawBonusSpr.Load(".\\data\\draw.spr", 555)==FALSE) AfxMessageBox("draw.spr 파일을 읽을 수 없습니다");
 
 
 	// 다이얼로그 컨트롤 포지션과 위치 재정렬
@@ -483,7 +484,7 @@ void CMiniDlg::FocusEffectDraw(CPage *pPage)
 	const int nWaitCnt = 12;
 	const int nShowTimes = 35;				// 3 times
 
-	if( m_MnGame.GetWinGame() == 0 )
+	if( m_MnGame.GetWinGame() == 0 )		// Win Image
 	{
 		if((X2Cnt/nWaitCnt)%2  == 0 && m_MnGame.GetWinCnt() < nShowTimes )
 		{
@@ -491,7 +492,7 @@ void CMiniDlg::FocusEffectDraw(CPage *pPage)
 			m_MnGame.PlusWinCnt();
 		}
 	}
-	else if( m_MnGame.GetWinGame() == 1 )
+	else if( m_MnGame.GetWinGame() == 1 )	// Lose Image
 	{
 		if((X2Cnt/nWaitCnt)%2  == 0 && m_MnGame.GetLoseCnt() < nShowTimes)
 		{
@@ -504,8 +505,17 @@ void CMiniDlg::FocusEffectDraw(CPage *pPage)
 				SendMessage(WM_CLOSE,0,0);
 		}		
 	}
+	else if( m_MnGame.GetWinGame() == 2 )	// Draw Image
+	{
+		if((X2Cnt/nWaitCnt)%2  == 0 && m_MnGame.GetDrawCnt() < nShowTimes)
+		{
+			pPage->PutSprAuto(nXp , nYp , &DrawBonusSpr, 0 );
+			m_MnGame.PlusDrawCnt();
+		}		
+	}
 	else
 		m_MnGame.InitWinLoseCnt();
+	
 }
 
 void CMiniDlg::FucButtonDraw(CDC *pDC)

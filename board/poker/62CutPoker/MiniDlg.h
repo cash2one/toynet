@@ -101,6 +101,7 @@ private:
 	xSprite				EndBtnSpr;
 	xSprite				GameBackSpr;
 	xSprite				FocusSpr;
+	xSprite				DrawBonusSpr;
 
 	CGraphButton		X2InitBtn;
 	CGraphButton		X2PlayBtn;

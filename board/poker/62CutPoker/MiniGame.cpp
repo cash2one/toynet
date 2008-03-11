@@ -238,6 +238,7 @@ void CMiniGame::PreCardSet()
 
 int CMiniGame::LoopToCheckCardNum(int nIndex)
 {
+	//return 6;
 	int nCardNum;
 	for(int i=0; i<DUMY_CARD; i++)
 	{
@@ -326,6 +327,7 @@ void CMiniGame::SetGameResult(int nGameContinue)
 
 	m_nWinCnt = 0;
 	m_nLoseCnt = 0;
+	m_nDrawCnt = 0;
 
 	m_bBetEnabled = FALSE; 
 
@@ -346,7 +348,8 @@ void CMiniGame::SetGameResult(int nGameContinue)
 	}
 	else if( m_nGameContinue == 2 ){
 		//µå·Î¿ì
-		m_nWinGame = -1;
+		m_nWinGame = 2;
+		Sound.Play(SND_DRAWBONUS);
 	}
 
 	

@@ -72,11 +72,13 @@ public:
 
 	void		PlusWinCnt() { m_nWinCnt++; }
 	void		PlusLoseCnt() { m_nLoseCnt++; }
+	void		PlusDrawCnt() { m_nDrawCnt++; }
 
 	int			GetWinCnt() { return m_nWinCnt; }
 	int			GetLoseCnt() { return m_nLoseCnt; }
+	int			GetDrawCnt() { return m_nDrawCnt; }
 
-	void		InitWinLoseCnt() { m_nWinCnt = 0; m_nLoseCnt = 0; }
+	void		InitWinLoseCnt() { m_nWinCnt = 0; m_nLoseCnt = 0; m_nDrawCnt = 0;}
 
 	int			GetGameContinue() { return m_nGameContinue;}
 	bool		GetMoveCard() { return m_bMoveCard; }
@@ -125,6 +127,7 @@ private:
 	// Grphic Count
 	int		m_nWinCnt;
 	int		m_nLoseCnt;
+	int		m_nDrawCnt;
 
 	bool	m_bBetEnabled;
 
