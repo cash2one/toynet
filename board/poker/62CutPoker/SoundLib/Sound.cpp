@@ -171,6 +171,8 @@ BOOL CSound::Init(HWND hWnd)
 	SetSndFile(	SND_MLOSE, ".\\Sound\\add\\mlose.wav");
 	SetSndFile(	SND_MWIN, ".\\Sound\\add\\mwin.wav");
 	SetSndFile(	SND_ONEMORE, ".\\Sound\\add\\onemore.wav");
+	SetSndFile(	SND_DRAWBONUS, ".\\Sound\\add\\DrawSevenCard.wav");				// 드로우 보너스게임
+	
 	
 	if(bInited == FALSE) return FALSE;
 
