@@ -43,6 +43,7 @@ public:
 	BOOL OnLButtonMove(int xp, int yp);
 	void OnGameKey(int nVKey);
 	void OnGameKeyUp(int nVKey);
+	void OnSlideKey(int nState);
 
 	void Draw( int nYp );
 };

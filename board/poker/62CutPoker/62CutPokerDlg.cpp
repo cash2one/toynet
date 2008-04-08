@@ -4099,6 +4099,8 @@ long C62CutPokerDlg::OnSlideState(WPARAM wParam, LPARAM lParam)
 	//11,12,13 총 4 단계라고 한다.
 	int nState = (int)wParam;
 
+	g_CvCard.OnSlideKey(nState);
+
 	//CString sState;
 	//sState.Format("%d", nState);
 	//SetDlgItemText(IDC_EB_SLIDESTATE, sState);
