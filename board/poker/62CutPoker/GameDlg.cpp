@@ -51,12 +51,6 @@ BEGIN_MESSAGE_MAP(CGameDlg, CDialog)
 	ON_WM_DESTROY()
 	ON_WM_SHOWWINDOW()
 	//}}AFX_MSG_MAP
-	ON_MESSAGE(WM_COMM_READ , OnCommunication) //추가
-	ON_MESSAGE(WM_COMM_KEYPADDOWN , OnKeypadDown) //추가
-	ON_MESSAGE(WM_COMM_KEYPADUP , OnKeypadUp) //추가
-	ON_MESSAGE(WM_COMM_COININ , OnCoinIn) //추가
-	ON_MESSAGE(WM_COMM_COINOUT , OnCoinOut) //추가
-
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -323,40 +317,3 @@ void CGameDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 	
 }
 
-long CGameDlg::OnCommunication(WPARAM wParam, LPARAM lParam)
-{
-	//m_clsRS232.ProcessRcv채Data();
-
-	return 1;
-}
-
-long CGameDlg::OnKeypadDown(WPARAM wParam, LPARAM lParam)
-{
-
-	///::PostMessage((HWND)m_clsRS232.hCommWnd, WM_KEYDOWN, GetValFromCom(wParam), lParam);
-	//::PostMessage((HWND)m_hCurWindow, WM_KEYDOWN, GetValFromCom(wParam), lParam);
-
-	return 1;
-}
-
-long CGameDlg::OnKeypadUp(WPARAM wParam, LPARAM lParam)
-{
-	//::PostMessage((HWND)m_clsRS232.hCommWnd, WM_KEYDOWN, GetValFromCom(wParam), lParam);
-	//::PostMessage((HWND)m_hCurWindow, WM_KEYUP, GetValFromCom(wParam), lParam);
-
-	return 1;
-}
-
-long CGameDlg::OnCoinIn(WPARAM wParam, LPARAM lParam)
-{
-
-
-	return 1;
-}
-
-// 코인 하나가 배출 되었다는 의미
-long CGameDlg::OnCoinOut(WPARAM wParam, LPARAM lParam)
-{
-
-	return 1;
-}

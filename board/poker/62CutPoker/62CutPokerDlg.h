@@ -171,6 +171,7 @@ public:
 	afx_msg long OnCoinIn(WPARAM wParam, LPARAM lParam);
 	afx_msg long OnCoinOut(WPARAM wParam, LPARAM lParam);
 	afx_msg long OnCoinEmpty(WPARAM wParam, LPARAM lParam);
+	afx_msg long OnSlideState(WPARAM wParam, LPARAM lParam);//2008.04
 };
 
 

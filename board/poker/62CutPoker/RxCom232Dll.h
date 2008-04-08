@@ -6,6 +6,7 @@
 #define WM_COMM_COININ (WM_USER+21)
 #define WM_COMM_COINOUT (WM_USER+22)
 #define WM_COMM_COINEMPTY (WM_USER+23)
+#define WM_COMM_SLIDESTATE (WM_USER+24)
 
 #define BUFF_SIZE		4192
 #define MAX_RECV_BUF	4196
@@ -68,6 +69,7 @@ private:
 	BOOL m_bCoinOut;
 	BOOL m_bCoinOutConfirm;
 	BOOL m_bCoinEmpty;
+	BOOL m_bConfirmEmpty;
 	int m_nSend00Cnt;
 	int m_nSend02Cnt;
 	int  m_nOutCredit;	// 내보낼 돈 크기..

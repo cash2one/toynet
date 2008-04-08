@@ -179,6 +179,7 @@ BEGIN_MESSAGE_MAP(C62CutPokerDlg, CDialog)
 	ON_MESSAGE(WM_COMM_KEYPADUP , OnKeypadUp) //추가
 	ON_MESSAGE(WM_COMM_COININ , OnCoinIn) //추가
 	ON_MESSAGE(WM_COMM_COINOUT , OnCoinOut) //추가
+	ON_MESSAGE(WM_COMM_SLIDESTATE , OnSlideState) //추가
 
 END_MESSAGE_MAP()
 
@@ -4085,6 +4086,22 @@ long C62CutPokerDlg::OnCoinIn(WPARAM wParam, LPARAM lParam)
 		::PostMessage((HWND)m_hSubWindow, WM_KEYDOWN, (LPARAM)'M', lParam);
 
 	DB_UpdateCreditPoint();
+
+	return 1;
+}
+
+long C62CutPokerDlg::OnSlideState(WPARAM wParam, LPARAM lParam)
+{
+	//아래에 먼가를 수정해야 할듯??
+	//::PostMessage((HWND)m_hWnd, WM_KEYDOWN, (LPARAM)'M', lParam);
+
+	//10, 덮어진 상태. (게임중에도 계속 온다고 한다.)
+	//11,12,13 총 4 단계라고 한다.
+	int nState = (int)wParam;
+
+	//CString sState;
+	//sState.Format("%d", nState);
+	//SetDlgItemText(IDC_EB_SLIDESTATE, sState);
 
 	return 1;
 }
